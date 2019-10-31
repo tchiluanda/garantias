@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1571947022640.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3884942247",
+    "id" : "ED49538C",
+    "lastKnownWriteTime" : 1572529648,
+    "last_content_update" : 1572529648749,
+    "path" : "C:/Users/lucas.leite/Desktop/Lucas/RStudio/16. Painel Garantias - CODIV - SUDIP/R/app.R",
+    "project_path" : "R/app.R",
+    "properties" : {
+        "cursorPosition" : "308,0",
+        "scrollLine" : "294"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

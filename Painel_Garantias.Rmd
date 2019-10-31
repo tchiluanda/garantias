@@ -1,0 +1,150 @@
+---
+title: "PAINEL DE GARANTIAS"
+
+output: 
+  flexdashboard::flex_dashboard:
+    #orientation: rows
+    social: menu
+    source_code: embed
+  #runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(plotly)
+library(plyr)
+library(flexdashboard)
+library(knitr)
+library(png)
+library(shiny)
+
+```
+
+
+Estados
+=======================================================================
+
+Column
+-----------------------------------------------------------------------
+
+
+### Os estados estão coloridos no mapa de acordo com o valor da dívida garantida pela União. Clique em um Estado no mapa para obter mais informações
+
+
+![](Imagens/Mapa.png)
+
+Column
+-----------------------------------------------------------------------
+
+### Detalhamento - Composição das Garantias
+
+
+![](Imagens/Card_Estado.png)
+
+Municípios
+=======================================================================
+
+Column
+-----------------------------------------------------------------------
+
+
+### SALDO GARANTIAS - Quadrmiestre xx
+
+
+![](Imagens/Municipios.png)
+
+Column
+-----------------------------------------------------------------------
+
+### Detalhamento - Composição das Garantias
+
+![](Imagens/opcao_municipio.png)
+![](Imagens/Card_RJ.png)
+
+
+
+Estatais Federais
+=======================================================================
+Column
+-----------------------------------------------------------------------
+
+
+### SALDO GARANTIAS - Quadrmiestre xx
+
+
+![](Imagens/estatais.png)
+
+Column
+-----------------------------------------------------------------------
+
+### Detalhamento - Composição das Garantias
+
+![](Imagens/opcao_estatal.png)
+![](Imagens/Card_estatal.png)
+
+Bancos Federais
+=======================================================================
+Column
+-----------------------------------------------------------------------
+
+
+### SALDO GARANTIAS - Quadrmiestre xx
+
+
+![](Imagens/Bancos_Federais.png)
+
+Column
+-----------------------------------------------------------------------
+
+### Detalhamento - Composição das Garantias
+
+![](Imagens/opcao_municipio.png)
+![](Imagens/Card_RJ.png)
+
+Entidades Controladas
+=======================================================================
+Column
+-----------------------------------------------------------------------
+
+
+### SALDO GARANTIAS - Quadrmiestre xx
+
+
+![](Imagens/entidades.png)
+
+Column
+-----------------------------------------------------------------------
+
+### Detalhamento - Composição das Garantias
+
+![](Imagens/opcao_municipio.png)
+![](Imagens/Card_RJ.png)
+
+Quadro Geral
+=======================================================================
+
+Column
+-------------------------------------------------------------------------
+
+### SALDO GARANTIAS A OPERAÇÕES DE CRÉDITO (quadrimestre xx)
+
+![](Imagens/correto.png)
+
+
+Column
+-------------------------------------------------------------------------
+
+### MUTUÁRIOS - COMPOSIÇÃO DAS GARANTIAS (quadrimestre xx)
+
+![](Imagens/mutuario_geral.png)
+
+
+Column
+-----------------------------------------------------------------------
+
+
+### Credores - COMPOSIÇÃO DAS GARANTIAS (quadrimestre xx)
+
+![](Imagens/credor_total.png)
+
+
