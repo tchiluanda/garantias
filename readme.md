@@ -28,6 +28,13 @@ Algumas observações:
 
 ### agrupador_atm_completo
 
+### Referências
+
+Tabelas como essa daqui:
+https://pudding.cool/2018/08/wiki-death/
+
+Print do css está no Google Docs.
+
 
 
 
