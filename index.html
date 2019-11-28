@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137891614-4"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-137891614-4');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Garantias</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Merriweather+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="webpage/style.css">
+</head>
+
+<body>
+
+<header class="logo">
+        <img class="logo-tt" src="webpage/tt-logo-int.png" alt="logo do Tesouro Nacional Transparente">
+</header>
+
+<main>
+    <header id="abertura">
+        <h1>Garantia? <br/>&iexcl;La garantia soy yo!</h1>
+    </header>
+
+    <section class="prose">
+        <p>Quando se trata do panorama das contas públicas brasileiras, as despesas podem ser separadas em dois grandes grupos, de acordo com a liberdade que o governo tem para executá-las: as obrigatórias e as discricionárias.
+        </p>
+
+        <p>Como o próprio nome já diz, as despesas <em>obrigatórias</em> são aquelas que o governo não pode deixar de fazer, seja por determinação constitucional ou legal. É o caso, por exemplo, do pagamento de salários e aposentadorias, dos encargos da dívida pública e das transferências a estados e municípios.
+        </p>
+
+        <p>Por outro lado, quando o governo tem liberdade para decidir o momento mais oportuno para a realização de um gasto, dizemos que se trata de uma despesa <em>discricionária</em>. Mesmo sem a imposição da constituição ou de uma lei, a despesa discricionária se revela fundamental para o desenvolvimento do país, como se pode ver em relação ao investimento em infraestrutura, ao financiamento de pesquisas científicas ou mesmo à manutenção de diversas políticas públicas.
+        </p>
+
+        <p>O movimento dessas despesas conduz a uma percepção sobre a rigidez do orçamento público, pois possibilita uma reflexão sobre a margem de ação dos gestores em relação ao gasto governamental. E como essas duas despesas evoluíram nos últimos anos na União? Essa é mais uma crônica fiscal que o Tesouro quer ilustrar. Clique abaixo e descubra 
+        </p>
+
+        <p class="nota">Fonte dos dados: <a href="http://www.tesourotransparente.gov.br/ckan/dataset/resultado-do-tesouro-nacional" target="blank">Série histórica do Resultado do Tesouro Nacional</a>, Tabela 1.1, Valores Correntes). Esta história de dados foi elaborada apenas com software livre. O repositório com dados e códigos está disponível <a href="https://github.com/tchiluanda/cronicas-fiscais/tree/master/obrig-discr" target="blank">aqui.</a></p>
+        </p>
+
+    </section>
+
+    <section class="vis">
+
+        <div class="grafico-d3-container"> 
+            <nav class="controle-vis">
+                <button>Visão Geral</button>
+                <button>Por tipo de entidade</button>
+                <button>Rank</button>
+            </nav>
+
+            <!-- este container vai servir como referência de largura para o svg, para tornar o gráfico responsivo -->
+            <!-- vamos capturar a largura desse container para usar como largura do svg / escala -->
+            <svg class="grafico-d3-svg"></svg>
+        </div>
+
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="webpage/visualizacao.js"></script>   
+         
+    </section>
+</main>
+</body>
+</html>
