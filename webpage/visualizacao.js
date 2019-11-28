@@ -29,9 +29,14 @@ const lista_tipos = ["Estados", "Bancos Federais", "Municípios", "Estatais Fede
 const list_rank = d3.range(16).map(d => d+1);
 
 const tipos = {}
-lista_tipos.forEach(function(d) {
-    divisor_x = 
-})
+lista_tipos.forEach(function(d,i) {
+    coord_i = i % ncol_type;
+    coord_j = Math.floor(i/ncol_type)
+    return (tipos[d] = {x: w/(ncol_type*2) + (w*coord_i)/ncol_type,
+            y: h/(ncol_type*2) + (h*coord_i)/ncol_type})
+});
+// ^ melhor fazer uma função, vou precisar fazer a mesma coisa com os
+// centros por ranking
 
 var yearCenters = {
   2008: { x: width / 3, y: height / 2 },
