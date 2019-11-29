@@ -51,6 +51,23 @@ const generate_centers = function(list, ncol) {
     return obj;  
 }
 
+// function to format the values
+
+// formatação valores
+    
+const localeBrasil = {
+    "decimal": ",",
+    "thousands": ".",
+    "grouping": [3],
+    "currency": ["R$", ""]};
+
+const formataBR = d3.formatDefaultLocale(localeBrasil).format(",.0f");
+
+const formata_vlr_tooltip = function(val){
+    return "R$ "+formataBR(val/1e6)+" mi"
+}
+
+// *************************************************************
 // the bubbleChart
 
 const bubbleChart = function() {
@@ -106,6 +123,9 @@ const bubbleChart = function() {
 
 
 // read data
+// will include random generated values for x and y so 
+// the bubble will have a (random) start position, before
+// the force layout starts to act.
 
 d3.csv("webpage/dados_vis.csv", function(d) {
     return {
@@ -119,7 +139,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
         y: Math.random() * h
     }
 }).then(function(dados) {
-    console.table(dados);
+
     // scales
 
     const fillColor = d3.scaleOrdinal()
@@ -138,8 +158,32 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
     // JV: sort them to prevent occlusion of smaller nodes.
     dados.sort((a,b) => b.valor - a.valor);
+    console.table(dados);
 
-    
+    // Bind nodes data to what will become DOM 
+    // elements to represent them.
+    // using a key function with "entidade" + "classificador"
+    // because there are two cases of "entidade" that repeat
+    // themselves, with different "classificador" ("Sao Paulo" and
+    // "Rio de Janeiro", which are both States and Municipalities)
+    let bubbles = $svg.selectAll(".bubble")
+      .data(dados, d => d.entidade + d.classificador);
+
+    let bubbles_enter = bubbles.enter().append("circle")
+      .classed("bubble", true)
+      .attr("r", 1)
+      .attr("fill", d => fillColor(d.classificador))
+      .attr("stroke", d => d3.rgb(fillColor(d.classificador)).darker())
+      .attr("stroke-width", 2)
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y);
+
+    bubbles = bubbles.merge(bubbles_enter);
+});
 
 
-})
+const showTooltip = function(d) {
+    let pos_x = +d3.select(this).attr('cx');
+    let pos_y = +d3.select(this).attr('cy');
+
+}

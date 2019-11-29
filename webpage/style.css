@@ -25,9 +25,12 @@ header img.logo-tt {
     top: 20px;*/
 }
 
-main {
+.limited-width {
     max-width: 680px;
-    margin: 0 auto;
+    margin: 0 auto;    
+}
+
+main {
     padding: 0 5px;
     font-family: 'Merriweather Sans', sans-serif;
 }
@@ -70,6 +73,28 @@ section.prose p.nota a:hover{
 
 }
 
+section.vis {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+section.vis div.grafico-d3-container {
+    position: relative;
+}
+
+section.vis div.grafico-d3-container #tooltip {
+    position: absolute;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 12px;
+    width: 180px;
+    height: auto;
+    background-color: ghostwhite;
+    color: teal;
+    border: 2px solid teal;
+    padding: 5px;
+    box-shadow: 2px 2px 5px #888;
+    pointer-events: none;    
+}
 
 div.narrativa {
     background: rgba(255,255,255,.85);
