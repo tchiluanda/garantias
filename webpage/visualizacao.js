@@ -46,6 +46,60 @@ const generate_centers = function(list, ncol) {
     return obj;  
 }
 
+// the bubbleChart
+
+const bubbleChart = function() {
+
+  // Original Jim's comments are marked below (with a "JV:").
+
+  // JV: @v4 strength to apply to the position forces
+  const forceStrength = 0.03;
+
+  // JV: These will be set in create_nodes and create_vis
+  var svg = null;
+  var bubbles = null;
+  var nodes = [];
+
+  // JV all the way down
+  // Charge function that is called for each node.
+  // As part of the ManyBody force.
+  // This is what creates the repulsion between nodes.
+  //
+  // Charge is proportional to the diameter of the
+  // circle (which is stored in the radius attribute
+  // of the circle's associated data.
+  //
+  // This is done to allow for accurate collision
+  // detection with nodes of different sizes.
+  //
+  // Charge is negative because we want nodes to repel.
+  // @v4 Before the charge was a stand-alone attribute
+  //  of the force layout. Now we can use it as a separate force!
+
+  const charge = function(d) {
+    return -Math.pow(d.radius, 2.0) * forceStrength;
+  }
+
+  // JV: Here we create a force layout and
+  // JV: @v4 We create a force simulation now and
+  // JV: add forces to it.
+  const simulation = d3.forceSimulation()
+    .velocityDecay(0.2)
+    .force('x', d3.forceX().strength(forceStrength).x(center.x))
+    .force('y', d3.forceY().strength(forceStrength).y(center.y))
+    .force('charge', d3.forceManyBody().strength(charge))
+    .on('tick', ticked);
+
+  // JV: @v4 Force starts up automatically,
+  // JV: which we don't want as there aren't any nodes yet.
+  simulation.stop();
+
+  const fillColor = d3.scaleOrdinal()
+    .domain(lista_tipos)
+    .range(["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]);
+
+}
+
 // read data
 
 d3.csv("webpage/dados_vis.csv", function(d) {
@@ -53,6 +107,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
         classificador: d.Classificador,
         entidade: d.Inicio,
         valor: +d.valor,
+        radius: 
         valor_classificador: +d.total_classificador,
         rank_geral: +d.rank_geral,
         rank_classificador: +d.rank_classificadores
