@@ -15,6 +15,11 @@ console.log("Largura do container: ", w);
 // defines h based on the width
 const h = w < 510 ? 400 : 600;
 
+// configures svg dimensions
+$svg      
+  .attr('width', w)
+  .attr('height', h);
+
 // center of the plot
 const center = { x: w / 2, y: h / 2 };
 
@@ -94,11 +99,11 @@ const bubbleChart = function() {
   // JV: which we don't want as there aren't any nodes yet.
   simulation.stop();
 
-  const fillColor = d3.scaleOrdinal()
-    .domain(lista_tipos)
-    .range(["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]);
-
 }
+
+// function to process the data
+
+
 
 // read data
 
@@ -107,11 +112,34 @@ d3.csv("webpage/dados_vis.csv", function(d) {
         classificador: d.Classificador,
         entidade: d.Inicio,
         valor: +d.valor,
-        radius: 
         valor_classificador: +d.total_classificador,
         rank_geral: +d.rank_geral,
-        rank_classificador: +d.rank_classificadores
+        rank_classificador: +d.rank_classificadores,
+        x: Math.random() * w,
+        y: Math.random() * h
     }
 }).then(function(dados) {
     console.table(dados);
+    // scales
+
+    const fillColor = d3.scaleOrdinal()
+      .domain(lista_tipos)
+      .range(["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]);
+
+    const maxValue = d3.max(dados, d => +d.valor);
+
+    const radiusScale = d3.scaleSqrt()
+      .range([0, 35])
+      .domain([0, maxValue]);
+    
+    // Jim uses a function to create the nodes, i.e., the 
+    // data array. Here the data comes from d3.csv as "dados"
+    // to this current function.
+
+    // JV: sort them to prevent occlusion of smaller nodes.
+    dados.sort((a,b) => b.valor - a.valor);
+
+    
+
+
 })
