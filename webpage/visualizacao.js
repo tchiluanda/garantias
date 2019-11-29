@@ -67,6 +67,12 @@ const formata_vlr_tooltip = function(val){
     return "R$ "+formataBR(val/1e6)+" mi"
 }
 
+// scales: color
+
+const fillColor = d3.scaleOrdinal()
+  .domain(lista_tipos)
+  .range(["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]);
+
 // *************************************************************
 // the bubbleChart
 
@@ -142,10 +148,6 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
     // scales
 
-    const fillColor = d3.scaleOrdinal()
-      .domain(lista_tipos)
-      .range(["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]);
-
     const maxValue = d3.max(dados, d => +d.valor);
 
     const radiusScale = d3.scaleSqrt()
@@ -185,14 +187,17 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
 
 const showTooltip = function(d) {
+
     let pos_x = +d3.select(this).attr('cx');
     let pos_y = +d3.select(this).attr('cy');
 
     const $tooltip = d3.select("#tooltip");
 
+    const tt_fill = d3.rgb(fillColor(d.classificador)).brighter(2);
+    const tt_color  = d3.rgb(fillColor(d.classificador)).darker();
+
     console.log("Estou na tooltip", this, d, d["entidade"]);
     
-
     let tooltip_width_style = $tooltip.style("width");
     let tooltip_width = +tooltip_width_style.substring(0, tooltip_width_style.length-2);
     
@@ -219,6 +224,29 @@ const showTooltip = function(d) {
 
     const tooltip_height = $tooltip.node().getBoundingClientRect().height;
     console.log(tooltip_height);
+
+    // calculate positions
+
+    const pad = 10;
+
+    if (pos_x + tooltip_width + pad > w) {
+        pos_x = pos_x - tooltip_width - pad;
+    } else {
+        pos_x = pos_x + pad
+    }
+
+    if (pos_y + tooltip_height + pad > h) {
+        pos_y = pos_y - tooltip_height - pad;
+    } else {
+        pos_y = pos_y + pad
+    }
+
+    $tooltip
+      .style('left', pos_x + 'px')
+      .style('top', pos_y + 'px')
+      .style('color', tt_color)
+      .style('border-color', tt_color)
+      .style('background-color', tt_fill);
 }
 
 const hideTooltip = function(d) {
