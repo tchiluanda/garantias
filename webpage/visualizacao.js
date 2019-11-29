@@ -173,7 +173,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
     let bubbles_enter = bubbles.enter().append("circle")
       .classed("bubble", true)
-      .attr("r", 1)
+      .attr("r", d=>radiusScale(d.valor))
       .attr("fill", d => fillColor(d.classificador))
       .attr("stroke", d => d3.rgb(fillColor(d.classificador)).darker())
       .attr("stroke-width", 2)
