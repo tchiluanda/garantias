@@ -176,7 +176,9 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       .attr("stroke", d => d3.rgb(fillColor(d.classificador)).darker())
       .attr("stroke-width", 2)
       .attr("cx", d => d.x)
-      .attr("cy", d => d.y);
+      .attr("cy", d => d.y)
+      .on('mouseover', showTooltip)
+      .on('mouseout',  hideTooltip)
 
     bubbles = bubbles.merge(bubbles_enter);
 });
@@ -186,4 +188,39 @@ const showTooltip = function(d) {
     let pos_x = +d3.select(this).attr('cx');
     let pos_y = +d3.select(this).attr('cy');
 
+    const $tooltip = d3.select("#tooltip");
+
+    console.log("Estou na tooltip", this, d, d["entidade"]);
+    
+
+    let tooltip_width_style = $tooltip.style("width");
+    let tooltip_width = +tooltip_width_style.substring(0, tooltip_width_style.length-2);
+    
+    console.log("Largura: ", tooltip_width);
+
+    // show tooltip
+    $tooltip.classed("hidden", false);
+
+    // populate tooltip information
+
+    // $tooltip.select("#tolltip-entidade").text(d[entidade])
+    // hmm better use a loop.
+    const infos_tooltip = ["entidade", "classificador", "valor"];
+
+    infos_tooltip.forEach(function(info) {
+        let text = "";
+        if (info == "valor") text = formata_vlr_tooltip(d[info])
+        else text = d[info];
+        $tooltip.select("#tooltip-"+info).text(text);
+    })
+
+    // now that the content is populated, we can capture the tooltip
+    // height, so that we can optime the tt position.
+
+    const tooltip_height = $tooltip.node().getBoundingClientRect().height;
+    console.log(tooltip_height);
+}
+
+const hideTooltip = function(d) {
+    d3.select("#tooltip").classed("hidden", true);
 }

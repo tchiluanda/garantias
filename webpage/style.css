@@ -85,15 +85,19 @@ section.vis div.grafico-d3-container {
 section.vis div.grafico-d3-container #tooltip {
     position: absolute;
     font-family: 'Merriweather Sans', sans-serif;
-    font-size: 12px;
+    font-size: 10px;
     width: 180px;
     height: auto;
     background-color: ghostwhite;
     color: teal;
-    border: 2px solid teal;
-    padding: 5px;
+    border: 1px solid teal;
+    padding: 3px 6px;
     box-shadow: 2px 2px 5px #888;
     pointer-events: none;    
+}
+
+.hidden {
+    display: none;
 }
 
 div.narrativa {
