@@ -4,14 +4,14 @@
 
 body {
     margin: 0;
-    background-color: lightcyan;
+    background-color: #FAFFFF; /* lightcyan */
 }
 
 header.logo {
     width: 100%;
-    background-color: Teal;
+    background-color: #004D4D;
     padding: 10px;
-    box-shadow: 0 0 5px 1px Teal;
+    box-shadow: 0 0 5px 1px #004D4D;
     margin: 0;
 }
 
@@ -39,7 +39,7 @@ main header#abertura h1 {
     font-family: 'Merriweather', serif;
     text-align: center;
     font-size: 3rem;
-    color: Teal; /*#E32C10;*/
+    color: #004D4D; /*#E32C10; teal*/
     line-height: 1.3
 }
 
@@ -89,8 +89,8 @@ section.vis div.grafico-d3-container #tooltip {
     width: 180px;
     height: auto;
     background-color: ghostwhite;
-    color: teal;
-    border: 1px solid teal;
+    color: #004D4D;
+    border: 1px solid #004D4D;
     padding: 3px 6px;
     box-shadow: 2px 2px 5px #888;
     pointer-events: none;    
