@@ -39,13 +39,16 @@ lista_rank.push("Demais");
 
 // a function that returns an object with the coordinates and parameters
 // of the bubbles "clusters"
+
+const PAD = 15;
+
 const generate_groups_coordinates = function(list, ncol) {  
   nrow = Math.ceil(list.length / ncol);  
   const obj = {
     cols: ncol,
     rows: nrow,
     w_cell: w / ncol,
-    h_cell: h / nrow
+    h_cell: h / nrow - 2*PAD
   }
   list.forEach(function(d,i) {     
     coord_i = i % ncol;
@@ -140,8 +143,9 @@ const bubbleChart = function() {
 // function to process the data
 
 
-
+// ###############################################################
 // read data
+// ###############################################################
 // will include random generated values for x and y so 
 // the bubble will have a (random) start position, before
 // the force layout starts to act.
@@ -176,14 +180,14 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
     console.table(dados);
 
-    // cria objetos para gerar os rótulos
+    // cria objetos para posicionar os rótulos
 
     const subtotals = d3.map(dados, d => d.valor_classificador).keys();
     const classificadores = d3.map(dados, d => d.classificador).keys();
 
-    const tipos_com_valores = [];
+    const labels_tipos_com_valores = [];
     classificadores.forEach(
-      (d, i) => tipos_com_valores[i] = {
+      (d, i) => labels_tipos_com_valores[i] = {
         classificador: d,
         value: subtotals[i],
         x_label : tipos[d].x_cell - tipos.w_cell/2,
@@ -192,9 +196,9 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       }
     );
 
-    const ranks_com_valores = [];
+    const labels_ranks_com_valores = [];
     lista_rank.forEach(
-      (d, i) => ranks_com_valores[i] = {
+      (d, i) => labels_ranks_com_valores[i] = {
         rank: d == "Demais" ? d : d + ". " + dados[i].entidade, // (1)
         tipo: d == "Demais" ? "" : dados[i].classificador,
         value: d == "Demais" ? "" : dados[i].valor, // (1)
@@ -208,8 +212,8 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     // foram ordenados (linha 172), senão teria que fazer um
     // tratamento aqui
 
-    console.log(tipos_com_valores)
-    console.log(ranks_com_valores)
+    console.log(labels_tipos_com_valores)
+    console.log(labels_ranks_com_valores)
 
 
     // Bind nodes data to what will become DOM 
@@ -284,7 +288,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
           $grafico_container.selectAll("div.label").remove()
 
           const labels_tipos = $grafico_container.selectAll("div.label")
-            .data(tipos_com_valores)
+            .data(labels_tipos_com_valores)
             .enter()
             .append("div")
             .classed("label", true)
@@ -320,7 +324,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
           $grafico_container.selectAll("div.label").remove()
 
           const labels_ranks = $grafico_container.selectAll("div.label")
-            .data(ranks_com_valores)
+            .data(labels_ranks_com_valores)
             .enter()
             .append("div")
             .classed("label", true)
