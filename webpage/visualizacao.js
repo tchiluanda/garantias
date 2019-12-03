@@ -35,21 +35,30 @@ const lista_tipos = ["Estados", "Bancos Federais", "Municípios", "Estatais Fede
 
 const lista_rank = d3.range(16).map(d => d+1);
 
-// a function that returns an object with the centers of the
-// bubbles "clusters"
-const generate_centers = function(list, ncol) {
-    const obj = {}
-    list.forEach(function(d,i) {
-      nrow = Math.ceil(list.length / ncol);
-      coord_i = i % ncol;
-      coord_j = Math.floor(i/ncol)
-      return (obj[d] = {
-              x: w/(ncol*2) + (w*coord_i)/ncol,
-              y: h/(nrow*2) + (h*coord_j)/nrow
-              })
-    });
-    return obj;  
+// a function that returns an object with the coordinates and parameters
+// of the bubbles "clusters"
+const generate_groups_coordinates = function(list, ncol) {  
+  nrow = Math.ceil(list.length / ncol);  
+  const obj = {
+    cols: ncol,
+    rows: nrow,
+    w_cell: w / ncol,
+    h_cell: h / nrow
+  }
+  list.forEach(function(d,i) {     
+    coord_i = i % ncol;
+    coord_j = Math.floor(i/ncol)
+    return (obj[d] = {
+            x_cell: w/(ncol*2) + (w*coord_i)/ncol,
+            y_cell: h/(nrow*2) + (h*coord_j)/nrow
+            })
+  });
+  return obj;  
 }
+
+// populate objects
+const tipos = generate_groups_coordinates(lista_tipos, ncol_tipos);
+
 
 // function to format the values
 
@@ -177,12 +186,58 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       .attr("fill", d => fillColor(d.classificador))
       .attr("stroke", d => d3.rgb(fillColor(d.classificador)).darker())
       .attr("stroke-width", 2)
-      .attr("cx", d => d.x)
-      .attr("cy", d => d.y)
+      .attr("cx", function(d) {
+        if (d.x + radiusScale(d.valor) > w) return (w - radiusScale(d.valor) - 2)
+        else if (d.x - radiusScale(d.valor) < 0) return (radiusScale(d.valor) + 2)
+        else return d.x
+        })
+      .attr("cy", function(d) {
+        if (d.y + radiusScale(d.valor) > h) return (h - radiusScale(d.valor) - 2)
+        else if (d.y - radiusScale(d.valor) < 0) return (radiusScale(d.valor) + 2)
+        else return d.y
+        })
       .on('mouseover', showTooltip)
       .on('mouseout',  hideTooltip)
 
-    bubbles = bubbles.merge(bubbles_enter);
+    bubbles = bubbles.merge(bubbles_enter); // precisa?
+  
+
+    const nav_buttons = d3.selectAll("nav.controle-vis > button");
+
+    nav_buttons.on("click", function(){
+      console.log("Cliquei em ", this, this.id);
+      
+      const vis_option = this.id;
+
+      switch (vis_option){
+
+        case "geral":
+          bubbles.transition().duration(1000)
+            .attr("cx", function(d) {
+              if (d.x + radiusScale(d.valor) > w) return (w - radiusScale(d.valor) - 2)
+              else if (d.x - radiusScale(d.valor) < 0) return (radiusScale(d.valor) + 2)
+              else return d.x
+              })
+            .attr("cy", function(d) {
+              if (d.y + radiusScale(d.valor) > h) return (h - radiusScale(d.valor) - 2)
+              else if (d.y - radiusScale(d.valor) < 0) return (radiusScale(d.valor) + 2)
+              else return d.y
+              })
+          break;
+
+        case "tipo":
+          bubbles.transition().duration(1000)
+            .attr("cx", d => d.x*tipos.w_cell/w + tipos[d.classificador].x_cell - tipos.w_cell/2)
+            .attr("cy", d => d.y*tipos.h_cell/h + tipos[d.classificador].y_cell - tipos.y_cell/2);
+          break;
+      }
+
+      
+
+
+
+
+    })
 });
 
 
