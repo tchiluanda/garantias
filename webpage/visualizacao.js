@@ -1,6 +1,7 @@
 // capture some important references
 const $grafico_container = d3.select('.grafico-d3-container');
 const $svg     = $grafico_container.select('.grafico-d3-svg');
+const qde_rank = 20
 
 // I will define the margins of the plot area in terms of a "PAD". 
 // Sorry, Mike.
@@ -13,7 +14,7 @@ const w = $grafico_container.node().offsetWidth;
 console.log("Largura do container: ", w);
 
 // defines h based on the width
-const h = w < 510 ? 400 : 600;
+const h = w < 510 ? 500 : 700;
 
 // configures svg dimensions
 $svg      
@@ -33,7 +34,8 @@ const ncol_rank = w < 510 ? 2 : 4;
 const lista_tipos = ["Estados", "Bancos Federais", "Municípios", "Estatais Federais", 
 "Entidades Estaduais Controladas", "Empresas Privatizadas"];
 
-const lista_rank = d3.range(16).map(d => d+1);
+const lista_rank = d3.range(qde_rank-1).map(d => d+1);
+lista_rank.push("Demais");
 
 // a function that returns an object with the coordinates and parameters
 // of the bubbles "clusters"
@@ -58,8 +60,9 @@ const generate_groups_coordinates = function(list, ncol) {
 
 // populate objects
 const tipos = generate_groups_coordinates(lista_tipos, ncol_tipos);
+const ranks = generate_groups_coordinates(lista_rank, ncol_rank);
 
-console.log(tipos);
+console.log("Ranks: ", ranks);
 
 // function to format the values
 
@@ -149,7 +152,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
         entidade: d.Inicio,
         valor: +d.valor,
         valor_classificador: +d.total_classificador,
-        rank_geral: +d.rank_geral,
+        rank_geral: +d.rank_geral < qde_rank ? +d.rank_geral : "Demais",
         rank_classificador: +d.rank_classificadores,
         x: Math.random() * w,
         y: Math.random() * h
@@ -173,7 +176,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
     console.table(dados);
 
-    // cria um objeto para gerar os rótulos
+    // cria objetos para gerar os rótulos
 
     const subtotals = d3.map(dados, d => d.valor_classificador).keys();
     const classificadores = d3.map(dados, d => d.classificador).keys();
@@ -189,7 +192,24 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       }
     );
 
+    const ranks_com_valores = [];
+    lista_rank.forEach(
+      (d, i) => ranks_com_valores[i] = {
+        rank: d == "Demais" ? d : d + ". " + dados[i].entidade, // (1)
+        tipo: d == "Demais" ? "" : dados[i].classificador,
+        value: d == "Demais" ? "" : dados[i].valor, // (1)
+        x_label : ranks[d].x_cell - ranks.w_cell/2,
+        y_label : ranks[d].y_cell + ranks.h_cell/2,
+        w_label : ranks.w_cell
+      }
+    );
+
+    // (1) aqui me aproveito do fato de que os dados 
+    // foram ordenados (linha 172), senão teria que fazer um
+    // tratamento aqui
+
     console.log(tipos_com_valores)
+    console.log(ranks_com_valores)
 
 
     // Bind nodes data to what will become DOM 
@@ -230,6 +250,9 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       
       const vis_option = this.id;
 
+      nav_buttons.classed("selected", false);
+      d3.select(this).classed("selected", true);
+
       const show_labels = function(list) {
 
 
@@ -258,6 +281,8 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
           //labels
 
+          $grafico_container.selectAll("div.label").remove()
+
           const labels_tipos = $grafico_container.selectAll("div.label")
             .data(tipos_com_valores)
             .enter()
@@ -285,9 +310,50 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
           bubbles.transition().duration(1000)
             .attr("cx", d => d.x*tipos.w_cell/w + tipos[d.classificador].x_cell - tipos.w_cell/2)
-            .attr("cy", function(d) {
-              console.log(d.y*tipos.h_cell/h, tipos[d.classificador].y_cell, tipos.h_cell/2);
-              return d.y*tipos.h_cell/h + tipos[d.classificador].y_cell - tipos.h_cell/2});
+            .attr("cy", d => d.y*tipos.h_cell/h + tipos[d.classificador].y_cell - tipos.h_cell/2);
+          break;
+
+        case "rank":
+
+          //labels
+
+          $grafico_container.selectAll("div.label").remove()
+
+          const labels_ranks = $grafico_container.selectAll("div.label")
+            .data(ranks_com_valores)
+            .enter()
+            .append("div")
+            .classed("label", true)
+            .style('left', d => d.x_label + 'px')
+            .style('top', d => d.y_label + 'px')
+            .style('width', d => d.w_label + 'px')
+            .style('opacity', 0);
+
+          labels_ranks.transition().duration(1000).style('opacity', 1);
+
+          labels_ranks
+            .append("p")
+            .append("strong")
+            .text(d => d.rank)
+            .style("color", d => fillColor(d.tipo));
+
+          labels_ranks
+            .append("p")
+            .text(d => d.tipo)
+            .classed("tipo", true)            
+            .style("color", d => fillColor(d.tipo));
+
+          labels_ranks
+            .append("p")
+            .classed("valor", true)
+            .text(d => formata_vlr_tooltip(d.value));
+
+          // move the bubbles
+
+          bubbles.transition().duration(1000)
+            .attr("cx", d => d.rank_geral == "Demais" ? d.x*ranks.w_cell/w + ranks[d.rank_geral].x_cell - ranks.w_cell/2 : ranks[d.rank_geral].x_cell)
+            .attr("cy", d => d.rank_geral == "Demais" ? d.y*ranks.h_cell/h + ranks[d.rank_geral].y_cell - ranks.h_cell/2 : ranks[d.rank_geral].y_cell);
+
           break;
       }
 

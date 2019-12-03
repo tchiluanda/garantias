@@ -78,6 +78,40 @@ section.vis {
     margin: 0 auto;
 }
 
+section.vis nav.controle-vis {
+    display: flex;
+    justify-content: center;
+}
+
+section.vis nav.controle-vis button {
+    padding: 0.4em 0.5em;
+    margin-right: 0.5em;
+    background: none;
+    border: none;
+    border-bottom: 5px solid transparent;;
+    font-family: "Merriweather Sans", sans-serif;
+}
+
+section.vis nav.controle-vis button:focus {
+    outline: none;
+}
+
+
+section.vis nav.controle-vis button.selected {
+    border-bottom: 5px solid #004D4D;
+    color: #004D4D;
+    font-weight: bold;
+}
+
+section.vis nav.controle-vis button:hover {
+    border-bottom: 5px solid #004D4D;
+}
+
+
+
+
+
+
 section.vis div.grafico-d3-container {
     position: relative;
 }
@@ -92,7 +126,8 @@ section.vis div.grafico-d3-container .label p {
     margin: 0 0 .25em 0;
 }
 
-section.vis div.grafico-d3-container .label p.valor {
+section.vis div.grafico-d3-container .label p.valor,
+section.vis div.grafico-d3-container .label p.tipo  {
     font-size: 0.7em;
 }
 
@@ -114,181 +149,5 @@ section.vis div.grafico-d3-container #tooltip {
     display: none;
 }
 
-div.narrativa {
-    background: rgba(255,255,255,.85);
-    box-shadow: 1px 1px 3px rgba(0,0,0,.1);
-    color: slategray;
-    padding: 20px;
-    font-size: 0.8rem;
-}
 
-div.narrativa .textos-steps {
-    line-height: 1.5;
-}
-
-
-#botao-proximo {
-    text-decoration: none;
-}
-
-
-.proximo-ativo {
-    color: #E32C10;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.proximo-inativo {
-    color: slategray;
-    cursor: auto;
-}
-
-/*
-.piscante {
-    font-weight: bold;
-    cursor: pointer;
-    color: #2E3D48;
-    animation: 1s blink step-end infinite;
-}
-
-@keyframes "blink" {
-    from, to {
-      color: transparent;
-    }
-    50% {
-      color: #E32C10;
-    }
-  }
-  */
-
-.text-label {
-    font-size: 0.8rem;
-    font-family: 'Merriweather Sans', sans-serif;
-}
-
-.titulo-eixo, .titulo-eixo-var {
-    font-size: 0.6rem;
-    font-family: 'Merriweather Sans', sans-serif;
-    fill: lightslategray;
-}
-
-.label-valores-linha {
-    font-family: 'Merriweather Sans', sans-serif;
-    font-size: 0.7rem;
-}
-
-.texto-circulos-step9 {
-    font-family: 'Merriweather Sans', sans-serif;
-    font-size: 10px;
-    alignment-baseline: central;
-}
-
-.label-inicial {
-    font-size: 0.6rem;
-    fill: lightslategray;
-}
-
-.axis text, text.label-inicial {
-    fill: lightslategray;
-    font-family: 'Merriweather Sans', sans-serif;
-}
-
-.axis line, .axis path {
-    stroke: lightslategray;
-}
-
-.nav-stepper ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 0;
-    margin: 10px auto;
-}
-
-.nav-stepper li {
-    margin: 0 0.25rem;
-    list-style: none;
-    font-size: 0.8em;
-    padding: 0em;
-    width: 2rem;
-    height: 2rem;
-    line-height: 2rem;
-}
-
-.nav-stepper ul.controle-prev-next > li {
-    color: maroon;
-    cursor: pointer;
-
-}
-
-.nav-stepper ul.steps > li {
-    color: #CCC;
-    border-bottom: 5px solid #CCC;
-    text-align: center;
-    cursor: pointer;
-    font-size: 0.75rem;
-}
-
-.nav-stepper ul.steps > li.active {
-    color: #333;
-    border-bottom: 5px solid #333;
-    /*background-color: maroon;*/
-    text-align: center;
-}
-
-/* comentários */
-
-.comentarios {
-    background-color: aquamarine;
-    position: relative;
-}
-
-.comentario {
-    font-size: 12px;
-    position: absolute;
-    width: 90px;
-    height: auto;
-    background-color: ghostwhite;
-    color: #333;
-    box-shadow: 0 4px 4px rgba(0,0,0,0.25);
-    pointer-events: none;
-    padding: .5rem .75rem;
-}
-
-.annotation {
-    font-size: 10px;
-    position: absolute;
-    width: 90px;
-    height: auto;
-    color: #333;
-}
-
-.annotation .caixa-valor {
-    position: relative;
-}
-
-.annotation p.valor {
-    font-size: 20px;
-    color: #E32C10;
-    font-weight: bold;
-}
-
-.annotation .caixa-valor .valor {
-    position: absolute;
-    top: 0;
-    background-color: white; 
-}
-
-.annotation p {
-    margin: 0;
-    line-height: 1.5;
-}
-
-.invisivel {
-    opacity: 0;
-}
-
-.oculto {
-    display: none;
-}
 
