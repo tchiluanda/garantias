@@ -1,7 +1,7 @@
 // capture some important references
 const $grafico_container = d3.select('.grafico-d3-container');
 const $svg     = $grafico_container.select('.grafico-d3-svg');
-const qde_rank = 20
+const qde_rank = 16
 
 // I will define the margins of the plot area in terms of a "PAD". 
 // Sorry, Mike.
@@ -40,15 +40,13 @@ lista_rank.push("Demais");
 // a function that returns an object with the coordinates and parameters
 // of the bubbles "clusters"
 
-const PAD = 15;
-
 const generate_groups_coordinates = function(list, ncol) {  
   nrow = Math.ceil(list.length / ncol);  
   const obj = {
     cols: ncol,
     rows: nrow,
     w_cell: w / ncol,
-    h_cell: h / nrow - 2*PAD
+    h_cell: h / nrow
   }
   list.forEach(function(d,i) {     
     coord_i = i % ncol;
@@ -89,56 +87,6 @@ const fillColor = d3.scaleOrdinal()
   .domain(lista_tipos)
   .range(["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]);
 
-// *************************************************************
-// the bubbleChart
-
-const bubbleChart = function() {
-
-  // Original Jim's comments are marked below (with a "JV:").
-
-  // JV: @v4 strength to apply to the position forces
-  const forceStrength = 0.03;
-
-  // JV: These will be set in create_nodes and create_vis
-  var svg = null;
-  var bubbles = null;
-  var nodes = [];
-
-  // JV all the way down
-  // Charge function that is called for each node.
-  // As part of the ManyBody force.
-  // This is what creates the repulsion between nodes.
-  //
-  // Charge is proportional to the diameter of the
-  // circle (which is stored in the radius attribute
-  // of the circle's associated data.
-  //
-  // This is done to allow for accurate collision
-  // detection with nodes of different sizes.
-  //
-  // Charge is negative because we want nodes to repel.
-  // @v4 Before the charge was a stand-alone attribute
-  //  of the force layout. Now we can use it as a separate force!
-
-  const charge = function(d) {
-    return -Math.pow(d.radius, 2.0) * forceStrength;
-  }
-
-  // JV: Here we create a force layout and
-  // JV: @v4 We create a force simulation now and
-  // JV: add forces to it.
-  const simulation = d3.forceSimulation()
-    .velocityDecay(0.2)
-    .force('x', d3.forceX().strength(forceStrength).x(center.x))
-    .force('y', d3.forceY().strength(forceStrength).y(center.y))
-    .force('charge', d3.forceManyBody().strength(charge))
-    .on('tick', ticked);
-
-  // JV: @v4 Force starts up automatically,
-  // JV: which we don't want as there aren't any nodes yet.
-  simulation.stop();
-
-}
 
 // function to process the data
 
@@ -168,7 +116,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     const maxValue = d3.max(dados, d => +d.valor);
 
     const radiusScale = d3.scaleSqrt()
-      .range([0, 35])
+      .range([0, 45])
       .domain([0, maxValue]);
     
     // Jim uses a function to create the nodes, i.e., the 
@@ -180,7 +128,17 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
     console.table(dados);
 
+    // #############################################
     // cria objetos para posicionar os rótulos
+    // e funções para gerar os rótulos
+
+    // total demais
+    let demais = 0;
+    dados.forEach(function(d) {
+      if (d.rank_geral == "Demais")
+        demais += d.valor;
+    });
+    console.log(demais);
 
     const subtotals = d3.map(dados, d => d.valor_classificador).keys();
     const classificadores = d3.map(dados, d => d.classificador).keys();
@@ -191,7 +149,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
         classificador: d,
         value: subtotals[i],
         x_label : tipos[d].x_cell - tipos.w_cell/2,
-        y_label : tipos[d].y_cell + tipos.h_cell/2,
+        y_label : tipos[d].y_cell + tipos.h_cell/2 - 50,
         w_label : tipos.w_cell
       }
     );
@@ -201,9 +159,9 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       (d, i) => labels_ranks_com_valores[i] = {
         rank: d == "Demais" ? d : d + ". " + dados[i].entidade, // (1)
         tipo: d == "Demais" ? "" : dados[i].classificador,
-        value: d == "Demais" ? "" : dados[i].valor, // (1)
+        value: d == "Demais" ? demais : dados[i].valor, // (1)
         x_label : ranks[d].x_cell - ranks.w_cell/2,
-        y_label : ranks[d].y_cell + ranks.h_cell/2,
+        y_label : d == "Demais" ? ranks[d].y_cell + ranks.h_cell/2 : ranks[d].y_cell + ranks.h_cell/2 -50,
         w_label : ranks.w_cell
       }
     );
@@ -214,6 +172,70 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
     console.log(labels_tipos_com_valores)
     console.log(labels_ranks_com_valores)
+
+
+    // labels
+
+    const remove_labels = function() {
+      $grafico_container.selectAll("div.label").remove()
+    }
+
+    const show_labels_groups = function() {
+      const labels_tipos = $grafico_container.selectAll("div.label")
+        .data(labels_tipos_com_valores)
+        .enter()
+        .append("div")
+        .classed("label", true)
+        .style('left', d => d.x_label + 'px')
+        .style('top', d => d.y_label + 'px')
+        .style('width', d => d.w_label + 'px')
+        .style('opacity', 0);
+
+      labels_tipos.transition().duration(1000).style('opacity', 1);
+
+      labels_tipos
+        .append("p")
+        .append("strong")
+        .text(d => d.classificador)
+        .style("color", d => fillColor(d.classificador));
+
+      labels_tipos
+        .append("p")
+        .classed("valor", true)
+        .text(d => formata_vlr_tooltip(d.value));
+    }
+
+    const show_labels_rank = function() {
+
+      const labels_ranks = $grafico_container.selectAll("div.label")
+        .data(labels_ranks_com_valores)
+        .enter()
+        .append("div")
+        .classed("label", true)
+        .style('left', d => d.x_label + 'px')
+        .style('top', d => d.y_label + 'px')
+        .style('width', d => d.w_label + 'px')
+        .style('opacity', 0);
+
+      labels_ranks.transition().duration(1000).style('opacity', 1);
+
+      labels_ranks
+        .append("p")
+        .append("strong")
+        .text(d => d.rank)
+        .style("color", d => fillColor(d.tipo));
+
+      labels_ranks
+        .append("p")
+        .text(d => d.tipo)
+        .classed("tipo", true)            
+        .style("color", d => fillColor(d.tipo));
+
+      labels_ranks
+        .append("p")
+        .classed("valor", true)
+        .text(d => d == "Demais" ? "" : formata_vlr_tooltip(d.value));             
+    }
 
 
     // Bind nodes data to what will become DOM 
@@ -227,29 +249,95 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
     let bubbles_enter = bubbles.enter().append("circle")
       .classed("bubble", true)
-      .attr("r", d=>radiusScale(d.valor))
+      .attr("r", 0)
       .attr("fill", d => fillColor(d.classificador))
       .attr("stroke", d => d3.rgb(fillColor(d.classificador)).darker())
       .attr("stroke-width", 2)
-      .attr("cx", function(d) {
-        if (d.x + radiusScale(d.valor) > w) return (w - radiusScale(d.valor) - 2)
-        else if (d.x - radiusScale(d.valor) < 0) return (radiusScale(d.valor) + 2)
-        else return d.x
-        })
-      .attr("cy", function(d) {
-        if (d.y + radiusScale(d.valor) > h) return (h - radiusScale(d.valor) - 2)
-        else if (d.y - radiusScale(d.valor) < 0) return (radiusScale(d.valor) + 2)
-        else return d.y
-        })
       .on('mouseover', showTooltip)
       .on('mouseout',  hideTooltip)
 
     bubbles = bubbles.merge(bubbles_enter); // precisa?
-  
+
+    bubbles.transition()
+      .duration(2000)
+      .attr("r", d=>radiusScale(d.valor));
+
+    // #####################
+    // simulacao
+    // *************************************************************
+
+    // Original Jim's comments are marked below (with a "JV:").
+
+    // JV: @v4 strength to apply to the position forces
+    const forceStrength = 0.03;
+
+    // JV: These will be set in create_nodes and create_vis
+    // JV all the way down
+    // Charge function that is called for each node.
+    // As part of the ManyBody force.
+    // This is what creates the repulsion between nodes.
+    //
+    // Charge is proportional to the diameter of the
+    // circle (which is stored in the radius attribute
+    // of the circle's associated data.
+    //
+    // This is done to allow for accurate collision
+    // detection with nodes of different sizes.
+    //
+    // Charge is negative because we want nodes to repel.
+    // @v4 Before the charge was a stand-alone attribute
+    //  of the force layout. Now we can use it as a separate force!
+
+    const charge = function(d) {
+      return -Math.pow(radiusScale(d.valor), 2.0) * forceStrength;
+    }
+
+    const ticked = function() {
+      bubbles
+        .attr('cx', function (d) { return d.x; })
+        .attr('cy', function (d) { return d.y; });
+    }
+
+    // Set the simulation's nodes to our newly created nodes array.
+    // @v4 Once we set the nodes, the simulation will start running automatically!
+
+    // JV: Here we create a force layout and
+    // JV: @v4 We create a force simulation now and
+    // JV: add forces to it.
+    const simulation = d3.forceSimulation()
+      .velocityDecay(0.2)
+      .force('x', d3.forceX().strength(forceStrength).x(center.x))
+      .force('y', d3.forceY().strength(forceStrength).y(center.y))
+      .force('charge', d3.forceManyBody().strength(charge))
+      .on('tick', ticked);
+
+    // JV: @v4 Force starts up automatically,
+    // JV: which we don't want as there aren't any nodes yet.
+    simulation.stop();
+
+    // fim simulacao
+    // #####################
+
+    simulation.nodes(dados);
+
+    const geral = function() {    
+      // @v4 Reset the 'x' force to draw the bubbles to the center.
+      simulation.force('x', d3.forceX().strength(forceStrength).x(center.x));
+      simulation.force('y', d3.forceY().strength(forceStrength).y(center.y));
+    
+      // @v4 We can reset the alpha value and restart the simulation
+      simulation.alpha(1).restart();
+    }
+
+    geral();
+
+    // #######################
+    // interatividade
 
     const nav_buttons = d3.selectAll("nav.controle-vis > button");
 
     nav_buttons.on("click", function(){
+
       console.log("Cliquei em ", this, this.id);
       
       const vis_option = this.id;
@@ -257,114 +345,59 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       nav_buttons.classed("selected", false);
       d3.select(this).classed("selected", true);
 
-      const show_labels = function(list) {
-
-
-      }
-
       switch (vis_option){
 
         case "geral":
-          
-          $grafico_container.selectAll("div.label").remove()
-
-          bubbles.transition().duration(1000)
-            .attr("cx", function(d) {
-              if (d.x + radiusScale(d.valor) > w) return (w - radiusScale(d.valor) - 2)
-              else if (d.x - radiusScale(d.valor) < 0) return (radiusScale(d.valor) + 2)
-              else return d.x
-              })
-            .attr("cy", function(d) {
-              if (d.y + radiusScale(d.valor) > h) return (h - radiusScale(d.valor) - 2)
-              else if (d.y - radiusScale(d.valor) < 0) return (radiusScale(d.valor) + 2)
-              else return d.y
-              })
+          console.log("Tô aqui no Geral.")
+          remove_labels();
+          // @v4 Reset the 'x' force to draw the bubbles to the center.
+          simulation.force('x', d3.forceX().strength(forceStrength).x(d => center.x));
+          simulation.force('y', d3.forceY().strength(forceStrength).y(d => center.y));
+        
+          // @v4 We can reset the alpha value and restart the simulation
+          simulation.alpha(1).restart();
           break;
 
         case "tipo":
 
           //labels
-
-          $grafico_container.selectAll("div.label").remove()
-
-          const labels_tipos = $grafico_container.selectAll("div.label")
-            .data(labels_tipos_com_valores)
-            .enter()
-            .append("div")
-            .classed("label", true)
-            .style('left', d => d.x_label + 'px')
-            .style('top', d => d.y_label + 'px')
-            .style('width', d => d.w_label + 'px')
-            .style('opacity', 0);
-
-          labels_tipos.transition().duration(1000).style('opacity', 1);
-
-          labels_tipos
-            .append("p")
-            .append("strong")
-            .text(d => d.classificador)
-            .style("color", d => fillColor(d.classificador));
-
-          labels_tipos
-            .append("p")
-            .classed("valor", true)
-            .text(d => formata_vlr_tooltip(d.value));
+          remove_labels();
+          show_labels_groups();          
 
           // move the bubbles
+          // @v4 Reset the 'x' force to draw the bubbles to their year centers
+          simulation.force('x', d3.forceX().strength(forceStrength).x(d => tipos[d.classificador].x_cell));
+          simulation.force('y', d3.forceY().strength(forceStrength).y(d => tipos[d.classificador].y_cell));
+      
+          // @v4 We can reset the alpha value and restart the simulation
+          simulation.alpha(1).restart();
 
-          bubbles.transition().duration(1000)
-            .attr("cx", d => d.x*tipos.w_cell/w + tipos[d.classificador].x_cell - tipos.w_cell/2)
-            .attr("cy", d => d.y*tipos.h_cell/h + tipos[d.classificador].y_cell - tipos.h_cell/2);
           break;
 
         case "rank":
 
           //labels
 
-          $grafico_container.selectAll("div.label").remove()
-
-          const labels_ranks = $grafico_container.selectAll("div.label")
-            .data(labels_ranks_com_valores)
-            .enter()
-            .append("div")
-            .classed("label", true)
-            .style('left', d => d.x_label + 'px')
-            .style('top', d => d.y_label + 'px')
-            .style('width', d => d.w_label + 'px')
-            .style('opacity', 0);
-
-          labels_ranks.transition().duration(1000).style('opacity', 1);
-
-          labels_ranks
-            .append("p")
-            .append("strong")
-            .text(d => d.rank)
-            .style("color", d => fillColor(d.tipo));
-
-          labels_ranks
-            .append("p")
-            .text(d => d.tipo)
-            .classed("tipo", true)            
-            .style("color", d => fillColor(d.tipo));
-
-          labels_ranks
-            .append("p")
-            .classed("valor", true)
-            .text(d => formata_vlr_tooltip(d.value));
+          remove_labels();
+          show_labels_rank(); 
 
           // move the bubbles
+
+          // @v4 Reset the 'x' force to draw the bubbles to their year centers
+          simulation.force('x', d3.forceX().strength(forceStrength).x(d => ranks[d.rank_geral].x_cell));
+          simulation.force('y', d3.forceY().strength(forceStrength).y(d => ranks[d.rank_geral].y_cell));
+      
+          // @v4 We can reset the alpha value and restart the simulation
+          simulation.alpha(1).restart();     
+          /*     
 
           bubbles.transition().duration(1000)
             .attr("cx", d => d.rank_geral == "Demais" ? d.x*ranks.w_cell/w + ranks[d.rank_geral].x_cell - ranks.w_cell/2 : ranks[d.rank_geral].x_cell)
             .attr("cy", d => d.rank_geral == "Demais" ? d.y*ranks.h_cell/h + ranks[d.rank_geral].y_cell - ranks.h_cell/2 : ranks[d.rank_geral].y_cell);
+            */
 
           break;
       }
-
-      
-
-
-
 
     })
 });
