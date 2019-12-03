@@ -59,6 +59,7 @@ const generate_groups_coordinates = function(list, ncol) {
 // populate objects
 const tipos = generate_groups_coordinates(lista_tipos, ncol_tipos);
 
+console.log(tipos);
 
 // function to format the values
 
@@ -169,7 +170,27 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
     // JV: sort them to prevent occlusion of smaller nodes.
     dados.sort((a,b) => b.valor - a.valor);
+
     console.table(dados);
+
+    // cria um objeto para gerar os rótulos
+
+    const subtotals = d3.map(dados, d => d.valor_classificador).keys();
+    const classificadores = d3.map(dados, d => d.classificador).keys();
+
+    const tipos_com_valores = [];
+    classificadores.forEach(
+      (d, i) => tipos_com_valores[i] = {
+        classificador: d,
+        value: subtotals[i],
+        x_label : tipos[d].x_cell - tipos.w_cell/2,
+        y_label : tipos[d].y_cell + tipos.h_cell/2,
+        w_label : tipos.w_cell
+      }
+    );
+
+    console.log(tipos_com_valores)
+
 
     // Bind nodes data to what will become DOM 
     // elements to represent them.
@@ -209,9 +230,17 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       
       const vis_option = this.id;
 
+      const show_labels = function(list) {
+
+
+      }
+
       switch (vis_option){
 
         case "geral":
+          
+          $grafico_container.selectAll("div.label").remove()
+
           bubbles.transition().duration(1000)
             .attr("cx", function(d) {
               if (d.x + radiusScale(d.valor) > w) return (w - radiusScale(d.valor) - 2)
@@ -226,9 +255,39 @@ d3.csv("webpage/dados_vis.csv", function(d) {
           break;
 
         case "tipo":
+
+          //labels
+
+          const labels_tipos = $grafico_container.selectAll("div.label")
+            .data(tipos_com_valores)
+            .enter()
+            .append("div")
+            .classed("label", true)
+            .style('left', d => d.x_label + 'px')
+            .style('top', d => d.y_label + 'px')
+            .style('width', d => d.w_label + 'px')
+            .style('opacity', 0);
+
+          labels_tipos.transition().duration(1000).style('opacity', 1);
+
+          labels_tipos
+            .append("p")
+            .append("strong")
+            .text(d => d.classificador)
+            .style("color", d => fillColor(d.classificador));
+
+          labels_tipos
+            .append("p")
+            .classed("valor", true)
+            .text(d => formata_vlr_tooltip(d.value));
+
+          // move the bubbles
+
           bubbles.transition().duration(1000)
             .attr("cx", d => d.x*tipos.w_cell/w + tipos[d.classificador].x_cell - tipos.w_cell/2)
-            .attr("cy", d => d.y*tipos.h_cell/h + tipos[d.classificador].y_cell - tipos.y_cell/2);
+            .attr("cy", function(d) {
+              console.log(d.y*tipos.h_cell/h, tipos[d.classificador].y_cell, tipos.h_cell/2);
+              return d.y*tipos.h_cell/h + tipos[d.classificador].y_cell - tipos.h_cell/2});
           break;
       }
 

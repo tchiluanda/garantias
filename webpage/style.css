@@ -82,6 +82,20 @@ section.vis div.grafico-d3-container {
     position: relative;
 }
 
+section.vis div.grafico-d3-container .label {
+    position: absolute;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-align: center;
+}
+
+section.vis div.grafico-d3-container .label p {
+    margin: 0 0 .25em 0;
+}
+
+section.vis div.grafico-d3-container .label p.valor {
+    font-size: 0.7em;
+}
+
 section.vis div.grafico-d3-container #tooltip {
     position: absolute;
     font-family: 'Merriweather Sans', sans-serif;
