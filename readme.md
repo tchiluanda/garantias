@@ -35,6 +35,10 @@ https://pudding.cool/2018/08/wiki-death/
 
 Print do css está no Google Docs.
 
+Inspiração para o gráfico de bolhas:
+https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html
 
+Tutorial do Jim:
+https://vallandingham.me//bubble_charts_with_d3v4.html
 
 
