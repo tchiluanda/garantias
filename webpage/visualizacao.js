@@ -1,7 +1,6 @@
 // capture some important references
 const $grafico_container = d3.select('.grafico-d3-container');
 const $svg     = $grafico_container.select('.grafico-d3-svg');
-const qde_rank = 16
 
 // I will define the margins of the plot area in terms of a "PAD". 
 // Sorry, Mike.
@@ -13,8 +12,11 @@ const qde_rank = 16
 const w = $grafico_container.node().offsetWidth;
 console.log("Largura do container: ", w);
 
-// defines h based on the width
-const h = w < 510 ? 500 : 700;
+// defines h and the number of itens in the rank
+//  based on the width
+
+const h = w < 510 ? 600 : 680;
+const qde_rank = w < 510 ? 9 : 21;
 
 // configures svg dimensions
 $svg      
@@ -22,12 +24,12 @@ $svg
   .attr('height', h);
 
 // center of the plot
-const center = { x: w / 2, y: h / 2 };
+const center = { x: w / 2, y: h / 3 };
 
 // layouts for the display by type option
 const ncol_tipos = w < 510 ? 2 : 3;
 
-const ncol_rank = w < 510 ? 2 : 4;
+const ncol_rank = w < 510 ? 2 : 5;
 
 // lists/arrays with the two categories that will be used
 // as criteria for spreading out the bubbles
@@ -52,7 +54,7 @@ const generate_groups_coordinates = function(list, ncol) {
     coord_i = i % ncol;
     coord_j = Math.floor(i/ncol)
     return (obj[d] = {
-            x_cell: w/(ncol*2) + (w*coord_i)/ncol,
+            x_cell: d == "Demais" ? w/2 : w/(ncol*2) + (w*coord_i)/ncol,
             y_cell: h/(nrow*2) + (h*coord_j)/nrow
             })
   });
@@ -116,7 +118,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     const maxValue = d3.max(dados, d => +d.valor);
 
     const radiusScale = d3.scaleSqrt()
-      .range([0, 45])
+      .range([0, h/15])  // 45
       .domain([0, maxValue]);
     
     // Jim uses a function to create the nodes, i.e., the 
@@ -140,6 +142,12 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     });
     console.log(demais);
 
+    // total geral
+    const total = dados
+      .map(d => d.valor)
+      .reduce((cum_value, current_value) => cum_value + current_value);
+    console.log("total geral: ", total);
+
     const subtotals = d3.map(dados, d => d.valor_classificador).keys();
     const classificadores = d3.map(dados, d => d.classificador).keys();
 
@@ -161,7 +169,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
         tipo: d == "Demais" ? "" : dados[i].classificador,
         value: d == "Demais" ? demais : dados[i].valor, // (1)
         x_label : ranks[d].x_cell - ranks.w_cell/2,
-        y_label : d == "Demais" ? ranks[d].y_cell + ranks.h_cell/2 : ranks[d].y_cell + ranks.h_cell/2 -50,
+        y_label : d == "Demais" ? ranks[d].y_cell + ranks.h_cell/2 : ranks[d].y_cell + ranks.h_cell/2 - 30,
         w_label : ranks.w_cell
       }
     );
@@ -173,11 +181,41 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     console.log(labels_tipos_com_valores)
     console.log(labels_ranks_com_valores)
 
-
+    // ####################
     // labels
 
     const remove_labels = function() {
       $grafico_container.selectAll("div.label").remove()
+    }
+    const show_label_geral = function() {
+      const labels_geral = $grafico_container.append("div")
+        .classed("label", true)
+        .style('left', '0px')
+        .style('top', 0.6*h + 'px')
+        .style('width', w + 'px')
+        .style('opacity', 0);
+
+      labels_geral.transition().duration(1000).style('opacity', 1);
+
+      labels_geral
+        .append("p")
+        .append("strong")
+        .text("Total de Garantias")
+        .style("font-size", "1.5em")
+        .style("color", "#004D4D");
+
+      labels_geral
+        .append("p")
+        .append("strong")
+        .text("concedidas pela União")
+        .style("font-size", "1.5em")
+        .style("color", "#004D4D");
+
+      labels_geral
+        .append("p")
+        .classed("valor", true)
+        .style("font-size", "1.25em")
+        .text(d => formata_vlr_tooltip(total));
     }
 
     const show_labels_groups = function() {
@@ -206,7 +244,6 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     }
 
     const show_labels_rank = function() {
-
       const labels_ranks = $grafico_container.selectAll("div.label")
         .data(labels_ranks_com_valores)
         .enter()
@@ -222,6 +259,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       labels_ranks
         .append("p")
         .append("strong")
+        .classed("texto-rank", true) 
         .text(d => d.rank)
         .style("color", d => fillColor(d.tipo));
 
@@ -279,7 +317,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     //
     // Charge is proportional to the diameter of the
     // circle (which is stored in the radius attribute
-    // of the circle's associated data.
+    // of the circle's associated data).
     //
     // This is done to allow for accurate collision
     // detection with nodes of different sizes.
@@ -330,6 +368,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     }
 
     geral();
+    show_label_geral();
 
     // #######################
     // interatividade
@@ -350,6 +389,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
         case "geral":
           console.log("Tô aqui no Geral.")
           remove_labels();
+          show_label_geral();
           // @v4 Reset the 'x' force to draw the bubbles to the center.
           simulation.force('x', d3.forceX().strength(forceStrength).x(d => center.x));
           simulation.force('y', d3.forceY().strength(forceStrength).y(d => center.y));

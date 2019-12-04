@@ -55,15 +55,14 @@
         </nav>
 
         <div class="grafico-d3-container"> 
+            <!-- este container vai servir como referência de largura para o svg, para tornar o gráfico responsivo -->
+            <!-- vamos capturar a largura desse container para usar como largura do svg / escala -->
+            <svg class="grafico-d3-svg"></svg>
             <div id="tooltip" class="hidden">
                 <p><strong id="tooltip-entidade"></strong></p>
                 <p>Categoria: <span id="tooltip-classificador"></span></p>
                 <p>Total das garantias concedidas pela União: <span id="tooltip-valor"></span></p>
             </div>
-
-            <!-- este container vai servir como referência de largura para o svg, para tornar o gráfico responsivo -->
-            <!-- vamos capturar a largura desse container para usar como largura do svg / escala -->
-            <svg class="grafico-d3-svg"></svg>
         </div>
 
         <script src="https://d3js.org/d3.v5.min.js"></script>
