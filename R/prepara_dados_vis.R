@@ -15,6 +15,10 @@ dados_vis <- dados_vis_pre %>%
   summarise(total_classificador = sum(valor)) %>%
   ungroup() %>%
   mutate(rank_classificadores = rank(-total_classificador)) %>%
-  right_join(dados_vis)
+  right_join(dados_vis_pre)
 
-write.csv(dados_vis, file = "webpage/dados_vis.csv")
+write.csv(dados_vis, file = "webpage/dados_vis.csv", fileEncoding = "UTF-8")
+
+dados_vis %>% group_by(Classificador) %>% summarize(first(total_classificador))
+
+dados_vis %>% filter(rank_geral>=16) %>% group_by() %>% summarise(sum(valor))
