@@ -10,12 +10,12 @@ const $svg     = $grafico_container.select('.grafico-d3-svg');
 // and uses it as the svg width
 // -> learnt that with @codenberg
 const w = $grafico_container.node().offsetWidth;
-console.log("Largura do container: ", w);
+//console.log("Largura do container: ", w);
 
 // defines h and the number of itens in the rank
 //  based on the width
 
-const h = w < 510 ? 600 : 680;
+const h = w < 510 ? 500 : 500;
 const qde_rank = w < 510 ? 9 : 21;
 
 // configures svg dimensions
@@ -48,24 +48,29 @@ const generate_groups_coordinates = function(list, ncol) {
     cols: ncol,
     rows: nrow,
     w_cell: w / ncol,
-    h_cell: h / nrow
+    h_cell: h / nrow // (1)
   }
   list.forEach(function(d,i) {     
     coord_i = i % ncol;
     coord_j = Math.floor(i/ncol)
     return (obj[d] = {
             x_cell: d == "Demais" ? w/2 : w/(ncol*2) + (w*coord_i)/ncol,
-            y_cell: h/(nrow*2) + (h*coord_j)/nrow
+            y_cell: h/(nrow*2) + (h*coord_j)/nrow,
+            line_number: coord_j
             })
   });
   return obj;  
 }
+  // (1) Here I calculate the "cell" dimensions, but in this way
+  //     they will be always of the same size. I'll try to set the
+  //     height proportionally to the total amount of the group
 
 // populate objects
 const tipos = generate_groups_coordinates(lista_tipos, ncol_tipos);
 const ranks = generate_groups_coordinates(lista_rank, ncol_rank);
 
 console.log("Ranks: ", ranks);
+console.log("Tipos: ", tipos);
 
 // function to format the values
 
@@ -118,7 +123,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     const maxValue = d3.max(dados, d => +d.valor);
 
     const radiusScale = d3.scaleSqrt()
-      .range([0, h/15])  // 45
+      .range([2, w < 510 ? w/13 : 35])  // 45
       .domain([0, maxValue]);
     
     // Jim uses a function to create the nodes, i.e., the 
@@ -142,11 +147,32 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     });
     console.log(demais);
 
+    /*
+    // function to evaluate subtotals
+    const subtotais = function(data, criteria, categorical_variable, value_variable) {
+      let subtotal = 0;
+      data.forEach(function(d) {
+        if (d[categorical_variable] == criteria)
+          subtotal += d[value_variable];
+      });
+      return subtotal;
+    }
+
+    const tipos_with_subtotals = []
+    lista_tipos.forEach((element) => tipos_with_subtotals.push(
+      { tipo  : element,
+        valor : subtotais(dados, element, "classificador", "valor")}
+    ))
+
+    console.table(tipos_with_subtotals); */
+
     // total geral
     const total = dados
       .map(d => d.valor)
       .reduce((cum_value, current_value) => cum_value + current_value);
     console.log("total geral: ", total);
+
+    // para os tipos
 
     const subtotals = d3.map(dados, d => d.valor_classificador).keys();
     const classificadores = d3.map(dados, d => d.classificador).keys();
@@ -157,10 +183,52 @@ d3.csv("webpage/dados_vis.csv", function(d) {
         classificador: d,
         value: subtotals[i],
         x_label : tipos[d].x_cell - tipos.w_cell/2,
-        y_label : tipos[d].y_cell + tipos.h_cell/2 - 50,
-        w_label : tipos.w_cell
+        //y_label : tipos[d].y_cell + tipos.h_cell/2 - 50,
+        w_label : tipos.w_cell,
+        line_number : tipos[d].line_number
       }
     );
+
+    const linhas_tipos = d3.map(labels_tipos_com_valores, d => d.line_number).keys();
+ 
+    const tipos_parametros_linhas = [];
+    let total_tamanhos_maximos = 0;  
+    const altura_rotulo = 50;
+
+    linhas_tipos.forEach(function(linha) {
+      let tamanhos_linha = 
+        labels_tipos_com_valores
+          .filter(el => el.line_number == linha)
+          .map(el => radiusScale(+el.value) + altura_rotulo)
+
+      //console.log("To no loop, valores da linha ", linha, ": ", tamanhos_linha);
+      
+      let max_tamanho_linha = +d3.max(tamanhos_linha);
+      total_tamanhos_maximos += max_tamanho_linha;
+
+      tipos_parametros_linhas.push(
+        {line_number : linha,
+         tamanho_maximo : max_tamanho_linha}
+      );  
+    })
+
+    let y_inicial = 0
+    tipos_parametros_linhas.forEach(
+      function(element) {
+        element.proporcao = element.tamanho_maximo / total_tamanhos_maximos;
+        element.height = h * element.proporcao;
+        element.center = element.height/2 + y_inicial - altura_rotulo*0.75;
+        y_inicial += element.height;
+        element.y_label = y_inicial - altura_rotulo;
+      })
+
+    labels_tipos_com_valores.forEach(
+      function(element) {
+        element.y_label = tipos_parametros_linhas[element.line_number].y_label;
+      }
+    )
+
+
 
     const labels_ranks_com_valores = [];
     lista_rank.forEach(
@@ -178,8 +246,10 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     // foram ordenados (linha 172), senão teria que fazer um
     // tratamento aqui
 
-    console.log(labels_tipos_com_valores)
-    console.log(labels_ranks_com_valores)
+    console.log("labels_tipos_com_valores", labels_tipos_com_valores)
+    console.log("tipos", tipos);
+    console.log("Linhas e valores máximos ", tipos_parametros_linhas);
+    //console.log(labels_ranks_com_valores)
 
     // ####################
     // labels
@@ -407,7 +477,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
           // move the bubbles
           // @v4 Reset the 'x' force to draw the bubbles to their year centers
           simulation.force('x', d3.forceX().strength(forceStrength).x(d => tipos[d.classificador].x_cell));
-          simulation.force('y', d3.forceY().strength(forceStrength).y(d => tipos[d.classificador].y_cell));
+          simulation.force('y', d3.forceY().strength(forceStrength).y(d => tipos_parametros_linhas[tipos[d.classificador].line_number].center));
       
           // @v4 We can reset the alpha value and restart the simulation
           simulation.alpha(1).restart();
@@ -424,7 +494,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
           // move the bubbles
 
           // @v4 Reset the 'x' force to draw the bubbles to their year centers
-          simulation.force('x', d3.forceX().strength(forceStrength).x(d => ranks[d.rank_geral].x_cell));
+          simulation.force('x', d3.forceX().strength(d => d.rank_geral == "Demais" ? 0.0125 : forceStrength).x(d => ranks[d.rank_geral].x_cell));
           simulation.force('y', d3.forceY().strength(forceStrength).y(d => ranks[d.rank_geral].y_cell));
       
           // @v4 We can reset the alpha value and restart the simulation
