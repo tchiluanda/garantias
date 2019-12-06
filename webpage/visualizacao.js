@@ -69,8 +69,8 @@ const generate_groups_coordinates = function(list, ncol) {
 const tipos = generate_groups_coordinates(lista_tipos, ncol_tipos);
 const ranks = generate_groups_coordinates(lista_rank, ncol_rank);
 
-console.log("Ranks: ", ranks);
-console.log("Tipos: ", tipos);
+//console.log("Ranks: ", ranks);
+//console.log("Tipos: ", tipos);
 
 // function to format the values
 
@@ -133,7 +133,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     // JV: sort them to prevent occlusion of smaller nodes.
     dados.sort((a,b) => b.valor - a.valor);
 
-    console.table(dados);
+    //console.table(dados);
 
     // #############################################
     // cria objetos para posicionar os rótulos
@@ -145,7 +145,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       if (d.rank_geral == "Demais")
         demais += d.valor;
     });
-    console.log(demais);
+    //console.log(demais);
 
     /*
     // function to evaluate subtotals
@@ -170,7 +170,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     const total = dados
       .map(d => d.valor)
       .reduce((cum_value, current_value) => cum_value + current_value);
-    console.log("total geral: ", total);
+    //console.log("total geral: ", total);
 
     // para os tipos
 
@@ -246,9 +246,9 @@ d3.csv("webpage/dados_vis.csv", function(d) {
     // foram ordenados (linha 172), senão teria que fazer um
     // tratamento aqui
 
-    console.log("labels_tipos_com_valores", labels_tipos_com_valores)
-    console.log("tipos", tipos);
-    console.log("Linhas e valores máximos ", tipos_parametros_linhas);
+    //console.log("labels_tipos_com_valores", labels_tipos_com_valores)
+    //console.log("tipos", tipos);
+    //console.log("Linhas e valores máximos ", tipos_parametros_linhas);
     //console.log(labels_ranks_com_valores)
 
     // ####################
@@ -447,7 +447,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
 
     nav_buttons.on("click", function(){
 
-      console.log("Cliquei em ", this, this.id);
+      //console.log("Cliquei em ", this, this.id);
       
       const vis_option = this.id;
 
@@ -457,7 +457,7 @@ d3.csv("webpage/dados_vis.csv", function(d) {
       switch (vis_option){
 
         case "geral":
-          console.log("Tô aqui no Geral.")
+          //console.log("Tô aqui no Geral.")
           remove_labels();
           show_label_geral();
           // @v4 Reset the 'x' force to draw the bubbles to the center.
@@ -523,12 +523,12 @@ const showTooltip = function(d) {
     const tt_fill = d3.rgb(fillColor(d.classificador)).brighter(2);
     const tt_color  = d3.rgb(fillColor(d.classificador)).darker();
 
-    console.log("Estou na tooltip", this, d, d["entidade"]);
+    //console.log("Estou na tooltip", this, d, d["entidade"]);
     
     let tooltip_width_style = $tooltip.style("width");
     let tooltip_width = +tooltip_width_style.substring(0, tooltip_width_style.length-2);
     
-    console.log("Largura: ", tooltip_width);
+    //console.log("Largura: ", tooltip_width);
 
     // show tooltip
     $tooltip.classed("hidden", false);
@@ -550,7 +550,7 @@ const showTooltip = function(d) {
     // height, so that we can optime the tt position.
 
     const tooltip_height = $tooltip.node().getBoundingClientRect().height;
-    console.log(tooltip_height);
+    //console.log(tooltip_height);
 
     // calculate positions
 
