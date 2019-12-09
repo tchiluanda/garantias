@@ -21,7 +21,7 @@ const qde_rank = w < 510 ? 9 : 21;
 // configures svg dimensions
 $svg      
   .attr('width', w)
-  .attr('height', h);
+  .attr('height', h*1.1);
 
 // center of the plot
 const center = { x: w / 2, y: h / 3 };
