@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #FAFFFF; /* lightcyan */
+}
+
+header.logo {
+    width: 100%;
+    background-color: #004D4D;
+    padding: 10px;
+    box-shadow: 0 0 5px 1px #004D4D;
+    margin: 0;
+}
+
+header img.logo-tt {
+    /*position: absolute;*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*left: 0;
+    right: 0;
+    top: 20px;*/
+}
+
+.limited-width {
+    max-width: 680px;
+    margin: 0 auto;    
+}
+
+main {
+    padding: 0 5px;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+main header#abertura h1 {
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    font-size: 3rem;
+    color: #004D4D; /*#E32C10; teal*/
+    line-height: 1.3
+}
+
+/* fiz isso aqui abaixo para o highlight ficar um pouco mais estreito */
+
+section.prose {
+    color: #444;
+    line-height: 1.5;
+}
+
+section.prose p.nota {
+    font-family: "Merriweather Sans";
+    font-size: 0.7rem;
+    color: #888;
+}
+
+section.prose p.nota a {
+    text-decoration: none;
+    border-bottom: 1px solid #888;
+}
+
+section.prose p.nota a:visited {
+    color: #888;
+    text-decoration: none;
+    border-bottom: 1px solid #888;
+}
+
+section.prose p.nota a:hover{
+    color: #FCFBFA;
+    background-color: #888;
+
+}
+
+section.vis {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+section.vis nav.controle-vis {
+    display: flex;
+    justify-content: center;
+}
+
+section.vis nav.controle-vis button {
+    padding: 0.4em 0.5em;
+    margin-right: 0.5em;
+    background: none;
+    border: none;
+    border-bottom: 5px solid transparent;;
+    font-family: "Merriweather Sans", sans-serif;
+}
+
+section.vis nav.controle-vis button:focus {
+    outline: none;
+}
+
+
+section.vis nav.controle-vis button.selected {
+    border-bottom: 5px solid #004D4D;
+    color: #004D4D;
+    font-weight: bold;
+}
+
+section.vis nav.controle-vis button:hover {
+    border-bottom: 5px solid #004D4D;
+}
+
+
+
+
+
+
+section.vis div.grafico-d3-container {
+    position: relative;
+}
+
+section.vis div.grafico-d3-container .label {
+    position: absolute;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-align: center;
+}
+
+section.vis div.grafico-d3-container .label p {
+    margin: 0 0 .25em 0;
+}
+
+section.vis div.grafico-d3-container .label p.valor,
+section.vis div.grafico-d3-container .label p.tipo,
+section.vis div.grafico-d3-container .label .texto-rank  {
+    font-size: 0.7em;
+}
+
+section.vis div.grafico-d3-container #tooltip {
+    position: absolute;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 10px;
+    width: 180px;
+    height: auto;
+    background-color: ghostwhite;
+    color: #004D4D;
+    border: 1px solid #004D4D;
+    padding: 3px 6px;
+    box-shadow: 2px 2px 5px #888;
+    pointer-events: none;   
+    z-index: 1; 
+}
+
+.hidden {
+    display: none;
+}
+
+
+
