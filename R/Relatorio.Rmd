@@ -1,0 +1,1469 @@
+---
+title: "A Secretaria do Tesouro Nacional tem orgulho de apresentar:Acompanhamento das **Garantias Concedidas pela União**"
+output:
+  html_document:
+    theme: "cerulean"
+    df_print: paged
+    toc: false
+    toc_float: true
+    code_folding: 'hide'
+    fig_height: 9
+runtime: shiny
+---
+
+***
+```{css, echo=FALSE}
+
+h1,h2,h3,h4 {
+  color: #004a93;
+}
+
+h1 {
+  text-align:center
+}
+body {
+  background-color: #FFFFFF;
+  text-align:justify
+}
+
+blockquote{ 
+  font-size: 12px;
+  background-color: #edeff9; 
+}
+
+.destaques {
+  padding: 1%;
+  background-color: #eae6af;
+}
+
+.destaques ul {
+  color: #004a93;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.destaques a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.destaques p {
+  padding: 1%;
+}
+
+.destaques p:hover{
+  color: #eae6af;
+  background-color: #004a93;
+    
+}
+p.disclaimer {
+    font-size: 0.8em;
+    padding: 8px;
+    margin: 8px;
+    background-color: ghostwhite;
+    color: dimgray;
+    font-style: italic;
+}
+
+.conceito {
+    padding: 2px;
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+.descricao {
+    background-color: lightblue;
+    margin: 8px;
+    font-size: 0.9em;
+
+}
+
+.fechamento {
+  text-align: center;
+  font-size: 0.7em;
+  color: dimgrey;
+  padding: 0 30px;
+}
+
+p.titulo-card {
+    text-transform: uppercase;
+    background-color: steelblue;
+    color: white;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+}
+
+.descricao>p:not(.titulo-card):not(.fechar-card) {
+    padding-top: 4px;
+}
+
+p.fechar-card{
+    background-color: lightsteelblue;
+    color: lightgray;
+    letter-spacing: 0.2em;
+    margin: 0;
+    text-align: right;
+    font-size: 0.7em;
+}
+
+p.fechar-card>a{
+    text-decoration: none;
+    color: white;
+}
+.link-painel {
+  box-shadow: inset 0em -0.5em lightblue;
+  color: #333;
+  text-decoration: none;
+  font-weight: 800;
+}
+```
+
+```{r setup, include=FALSE}
+
+library(shiny)
+library(readxl)
+library(tidyr)
+library(knitr)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+library(stringr)
+library(dplyr)
+library(shinydashboard)
+library(flexdashboard)
+library(bizdays)
+library(matrixStats)
+library(rlang)
+library(rmarkdown)
+library(kableExtra)
+library(hpackedbubble)
+
+load("Garantias.Rdata", envir=.GlobalEnv)
+
+funcao_formata_quantidade <- function(x){
+  paste0(format(round(x/1000000, 2), big.mark = ".", decimal.mark = ","))
+}
+
+formata <- function(x){
+    paste0("R$", format(round(x, 2), big.mark = ".", decimal.mark = ","), " mi")
+  }
+
+
+numero <- function(x){
+
+   a <- as.character(x)
+   b <- str_replace_all(a,"\\.","")
+   c <- str_replace_all(b,",","\\.")
+   d <- as.numeric(c)
+   
+   return(d)
+}
+
+
+```
+
+
+```{r include = FALSE}
+knitr::opts_chunk$set(echo=FALSE)
+```
+
+###  Garantias: O que são e o porque isso importa na sua vida - uma breve história em Números
+
+<p class="disclaimer">Saiba mais e nos acompanhe no Twitter/Instagram/Facebook</p>
+
+***
+
+## Você Sabia?
+
+**Estados**, **Municípios**, **Estatais Federais**, **Bancos Federais** e demais **Entidades controladas** possuem dívidas com instituições financeiras que são garantidas pela União. Ou seja, na prática, caso alguma dessas entidades acima não realize o devido pagamento de suas dívidas, a União realiza o <span class="conceito" id="conceito-ressarcimento">ressarcimento</span> em nome desta ao respectivo credor. Agora, porque eu devo me importar com isso?
+
+<div class="descricao" id="descricao-ressarcimento"> 
+<p class="titulo-card"> Ressarcimento </p> 
+<p>No caso de a União se deparar com a honra de uma garantia, a obrigação efetivamente se torna da União, como qualquer outra dívida em mercado lançada pelo Tesouro Nacional. Por isso, a dívida garantida constitui um passivo contingente da União. Após o pagamento da garantia dada ao credor, acionam-se as contragarantias previstas contratualmente para recuperação dos valores despendidos. Assim, a Secretaria do Tesouro Nacional monitora eventuais atrasos, estabelecendo prazos para regularização das pendências e alertando os devedores para as sanções, penalidades e consequências previstas nos contratos e na legislação pertinente. 
+
+Assim,importa conhecer as características do endividamento, bem como os custos e riscos associados a esse passivo.
+</p>
+
+<p class="fechar-card"><a class="link-fechar" id="fechar-declaram" href="#conceito-declaram">^ Fechar e voltar ao texto ^</a></p>
+</div> 
+
+É importante que a população saiba se seu **Estado /Munícipio** (e suas respectivas entidades controladas) estejam pagando  as suas contas (entre elas suas <span class="conceito" id="conceito-declaram">dívidas</span>) em dia. Esses pagamentos são a origem dos recursos que são utilizados no provimento de serviços públicos como **sáude, educação, seguraça** entre outros. Então, casos os entes estejam em dificuldade em pagar suas obrigações este é um primeiro sinal de que algum problema possa estar ocorrendo com as <span class="conceito" id="conceito-RRF">finanças da sua cidade</span>. E isso traz graves consequencias para nossas vidas. Já pensou não ter dinheiro para pagar hospitais, escolas, estradas? 
+
+
+<div class="descricao" id="descricao-declaram"> 
+<p class="titulo-card">O Que É uma dívida?</p> 
+<p>Dívidas nada mais são do que compromissos (financeiros) nos quais um agente, ao receber recurso de um outro agente (terceiro), se compromete a devolver tal quantia acrescida de um determinado valor (ou seja, os juros/ encargos). Chama-se assim de **Mutuário** aqueles que captam algum tipo de dívida e de **Credor** aquele que empresta. Isso de fato acontece a toda hora entre indivíduos/empresas em uma sociedade. Pois bem, a mesma situação pode ocorrer entre um Município e um credor privado / público (banco, organismo multilateral, etc..).
+ 
+</p>
+
+<p class="fechar-card"><a class="link-fechar" id="fechar-declaram" href="#conceito-declaram">^ Fechar e voltar ao texto ^</a></p>
+</div>
+
+<div class="descricao" id="descricao-RRF"> 
+<p class="titulo-card">Regime de Recuperação Fiscal (RRF)</p> 
+<p>O Regime de Recuperação Fiscal (RRF), aprovado pela Lei Complementar 159/2017, foi criado para fornecer aos Estados com grave desequilíbrio financeiro os  instrumentos para o ajuste de suas contas. Dessa forma, ele complementa e fortalece a Lei de Responsabilidade Fiscal, que não trazia até então previsão para o tratamento dessas situações.  
+
+De acordo com o RRF, o desequilíbrio financeiro é considerado grave quando a Receita Corrente Líquida (RCL) anual do Estado é menor do que a Dívida Consolidada ao final do último exercício; quando o somatório das suas despesas com pessoal, juros e amortizações é igual ou maior que 70% da RCL; e quando o valor total de obrigações é superior ao valor das disponibilidades de caixa. Assim, só poderá aderir ao RRF o Estado que cumprir esses três requisitos de entrada. Para saber sobre a apuração dos requisitos de adesão para cada Estado, clique aqui.
+
+Para conhecer o processo de adesão, os instrumentos de recuperação e as vedações do Regime, bem como entender o que é o Plano de Recuperação Fiscal, acesse o Manual de Adesão disponível na sessão Publicações ao final desta página.
+ 
+</p>
+
+<p class="fechar-card"><a class="link-fechar" id="fechar-declaram" href="#conceito-declaram">^ Fechar e voltar ao texto ^</a></p>
+</div> 
+
+E uma das contas que os entes deixam de pagar é exatamente a suas dívidas com terceiros. Como veremos mais adiante, desde janeiro 2016  até **data referência**, a União já teve que arcar com aproximadamente <a href="http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas" class="link-painel" target="blank">R$ 45 Bilhões </a> (valores nominais). E, pelas últimas informações disponíveis (**data referência**), temos um estoque de <a href="http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas" class="link-painel" target="blank">R$ 1231231 Bilhões </a> que atualemnte são garantidas pelo União (Tesouro Nacional) 
+
+Nesse ponto, imagino algumas perguntas: Quais Estados / Municípios não pagaram suas dívidas ? Quem possui o maior estoque de dívida garantida pela União? O Tesouro Nacional garante toda e qualquer dívida dos Estados / Municípios / Bancos Federais? Como é feito esse acompanhamento? 
+
+Vamos responder a cada pergunta, mas antes é importante destacar que por meio do [**Relatório Quadrimestral de Operações de Crédito Garantidas (RQG)**](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas) e do [**Relatório Mensal de Garantias Honradas**](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas), o Tesouro Nacional dá publicidade aos principais números e análises referentes a garantidas concedidas. [**Lá**](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas) você pode encontrar o detalhamento da base de dados além de mais informações sobre o assunto.
+
+Ok, vamos, então, ao que interessa. Esperamos que ao final, tenhamos contribuido para que você esteja mais capacitado para entender e acompanhar situações onde seu **Município / Estado** tenha compromissos financeiros honrados pela União.
+
+## Quanto de Dívida dos Estados / Municípios / Entidades Controladas que a União garante o pagamento?
+
+
+
+```{r grafico, warning=FALSE, message=FALSE ,fig.width=9, fig.height=7 }
+
+grupos <- c("Todas","Estados", "Bancos Federais", "Municípios","Estatais Federais","Entidades Estaduais Controladas","Empresas Privatizadas")
+
+agrupador_total_formatado <- agrupador_total %>%
+                 filter(!(Inicio %in% grupos)) %>%
+                mutate(total_total = as.character(total_total), 
+                       total_total = str_replace_all(total_total,"\\.",""),
+                       total_total = str_replace_all(total_total,",","\\."),
+                       total_total = as.numeric(total_total),
+                       interna_total = numero(interna_total),
+                       interna_USD = numero(interna_USD),
+                       externa_total = numero(externa_total)
+                )
+                       
+#agrupador_atm_formatado <- agrupador_atm_completo %>%
+ # filter(!(Inicio %in% grupos)) %>%
+  #                      mutate(ATM_Total = numero(ATM_Total))
+                       
+            
+ # hpackedbubble(agrupador_total_formatado$Classificador, agrupador_total_formatado$Inicio, agrupador_total_formatado$total_total,
+ #               title = "Dívidas Garantidas pela União",
+ #               pointFormat = "<b>{point.name}:</b>R$ {point.y} Bilhões ",
+ #               dataLabelsFilter = 0.1,
+ #               packedbubbleMinSize = "10%",
+ #               packedbubbleMaxSize = "200%",
+ #               theme = "sunset",
+ #               packedbubbleZMin = 0,
+ #               packedbubbleZmax = 1000, split = 1,
+ #               gravitational = 0.02,
+ #               parentNodeLimit = 1,
+ #               dragBetweenSeries = 0,
+ #               seriesInteraction = 0,
+ #                width = "100%")
+
+```
+
+## Quem sãos os principais mutuários dessas dívidas com garantia da União?
+
+
+
+
+```{r Botoes, warning=FALSE, message=FALSE ,fig.width=9, fig.height=7 }
+
+
+
+column(4,
+               selectInput("Classificador", label = "Grupo Mutuário",
+              choices = agrupador_total_formatado$Classificador, selected = agrupador_total$Classificador[1])
+        )
+
+ column(4,
+                  selectInput("mutuario", label = "Mutuário",
+                 choices = agrupador_total$Inicio)
+           )
+
+
+
+ botoes <- reactive({
+
+       list(input$Classificador)
+
+     })
+
+ observeEvent(botoes(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_total$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_total_formatado %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){saida <- "agrupador_total$Inicio[1]"} 
+   else
+   {saida <- input$mutuario}
+ 
+           observe({
+       updateSelectInput(session, "mutuario",
+                         label = "Referência (anos)",
+                         choices = filtro_classificador$Inicio,
+                         selected = filtro_classificador$Inicio[1]
+                          )
+     })
+           
+
+ })
+ 
+# tags$script(src = "script.js")
+
+
+```
+
+
+Quadro I - Resumo principais valores        (R$ Milhões)| 
+| --- | --- |
+
+```{r completo, warning=FALSE, message=FALSE ,fig.width=9, fig.height=7 }
+
+fluidPage(
+ fluidRow(
+  column(width=3,align="left",div(style = "height:17px;background-color: ;","OPERAÇÕES GARANTIDAS")),
+  
+  column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_Total_2"))),
+  
+  column(width=4,align="center",div(style = "height:40px;background-color: ;","CAPAG")),
+  column(width=2,align="center",div(style = "height:40px;background-color: ;","teste")),
+      br(), br(),
+  
+  column(width=3,align="center",div(style = "height:17px;background-color: ;","INTERNA")),
+  
+  column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_interna_2"))),
+  
+      br(),
+  column(width=3,align="right",div(style = "height:17px;background-color: ;","Internas Cambiais")),
+  
+  column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_interna_cambial_2"))),
+  
+     
+   br(),
+  column(width=3,align="right",div(style = "height:17px;background-color: ;","Internas Demais...")),
+  
+  column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_interna_demais_2"))),
+  
+      br(),br(),
+  
+  column(width=3,align="center",div(style = "height:17px;background-color: ;","EXTERNAS")),
+  
+  column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_externa_2"))),
+  
+      br(), br(),
+  column(width=4,align="center",div(style = "height:17px;background-color: #f5f5f5;","ATM")),
+  column(width=2,align="center",div(style = "height:17px;background-color: #f5f5f5;",textOutput("Garantia_ATM"))),
+      br(),br(),
+  column(width=4,align="center",div(style = "height:17px;background-color: #80cdc1;","Custo Médio")),
+  column(width=2,align="center",div(style = "height:17px;background-color: #80cdc1;",textOutput("Garantia_custo"))),
+      br(),br(),
+  column(width=6,align="center",div(style = "height:17px;background-color: #01cbad;","Percentual Vincendo")),
+  column(width=3,align="center",div(style = "height:17px;background-color: #01cbad;","R$ Milhões")),
+      
+  column(width=3,align="center",div(style = "height:17px;background-color: #01cbad;","Percentual")),
+  br(),
+  
+  column(width=6,align="center",div(style = "height:17px;background-color: #e6fffb;","Até 12 meses")),
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_12_meses"))),
+         
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_12_meses_percentual"))),
+         
+  br(),
+  column(width=6,align="center",div(style = "height:17px;background-color: #e6fffb;","De 1 a 2 anos")),
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_1_ano"))),
+         
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_1_ano_percentual"))),
+  br(),
+  column(width=6,align="center",div(style = "height:17px;background-color: #e6fffb;","De 2 a 3 anos")),
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_2_ano"))),
+         
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_2_ano_percentual"))),
+  
+  br(),
+  column(width=6,align="center",div(style = "height:17px;background-color: #e6fffb;","De 3 a 4 anos")),
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_3_ano"))),
+         
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_3_ano_percentual"))),
+  
+  br(),
+  
+  column(width=6,align="center",div(style = "height:17px;background-color: #e6fffb;","De 4 a 5 anos")),
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_4_ano"))),
+         
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_4_ano_percentual"))),
+  
+  br(),
+  column(width=6,align="center",div(style = "height:17px;background-color: #e6fffb;","Mais de 5 anos")),
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_5_ano"))),
+         
+  column(width=3,align="center",div(style = "height:17px;background-color: #e6fffb;",textOutput("Garantia_5_ano_percentual")))
+  
+  
+  
+ ))
+  
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- "agrupador_total$Classificador[1]"} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_total_formatado %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_Total_2 <- renderText(paste0("R$ ",funcao_formata_quantidade(filtro_ente$total_total), " milhões"))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_total$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_total_formatado %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_interna_2 <- renderText(paste0("R$                 ",funcao_formata_quantidade(filtro_ente$interna_total), " milhões"))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_total$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_total_formatado %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_interna_cambial_2 <- renderText(paste0("R$ " ,funcao_formata_quantidade(filtro_ente$interna_USD), " milhões"))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_total$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_total_formatado %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_interna_demais_2 <- renderText(paste0("R$ " ,funcao_formata_quantidade(filtro_ente$interna_total-filtro_ente$interna_USD), " milhões"))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_total$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_total_formatado %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_Total <- renderText(paste0("Total de Operações Garantidas: ","R$ ",funcao_formata_quantidade(filtro_ente$total_total), " milhões"))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_total$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_total_formatado %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_externa_2 <- renderText(paste0("R$                 ",funcao_formata_quantidade(filtro_ente$externa_total), " milhões"))
+
+ })
+ 
+Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_atm_completo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_ATM <- renderText(paste0(round(numero(filtro_ente$ATM_Total),2), " anos"))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_custo_completo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_custo <- renderText(paste0(filtro_ente$Custo_Total, " ao ano"))
+
+ })
+
+  Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_12_meses <- renderText(paste0(funcao_formata_quantidade(numero(filtro_ente$Ate_12_meses))))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_12_meses_percentual <- renderText(paste0(filtro_ente$Ate_12_meses_percentual))
+
+ })
+
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_1_ano <- renderText(paste0(funcao_formata_quantidade(numero(filtro_ente$De_1_2_anos))))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_1_ano_percentual <- renderText(paste0(filtro_ente$De_1_2_anos_percentual))
+
+ })
+
+Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_2_ano <- renderText(paste0(funcao_formata_quantidade(numero(filtro_ente$De_2_3_anos))))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_2_ano_percentual <- renderText(paste0(filtro_ente$De_2_3_anos_percentual))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_3_ano <- renderText(paste0(funcao_formata_quantidade(numero(filtro_ente$De_3_4_anos))))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_3_ano_percentual <- renderText(paste0(filtro_ente$De_3_4_anos_percentual))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_4_ano <- renderText(paste0(funcao_formata_quantidade(numero(filtro_ente$De_4_5_anos))))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_4_ano_percentual <- renderText(paste0(filtro_ente$De_4_5_anos_percentual))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_5_ano <- renderText(paste0(funcao_formata_quantidade(numero(filtro_ente$Acima_5_anos))))
+
+ })
+ 
+ Garantia_Total_reativo <- reactive({
+
+       list(input$Classificador, input$mutuario)
+
+     })
+
+ observeEvent(Garantia_Total_reativo(),{
+
+   if (is.null(input$Classificador)){entrada <- agrupador_atm_completo$Classificador[1]} 
+   else
+   {entrada <- input$Classificador}
+ 
+   
+   if(entrada != "all"){
+
+         filtro_classificador <- agrupador_percentual_vincendo %>%
+
+           filter(Classificador == entrada) }
+   
+   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+   else
+   {Ente <- input$mutuario}
+ 
+   if(Ente != "all"){
+
+         filtro_ente <- filtro_classificador %>%
+
+           filter(Inicio == Ente) }
+   
+   output$Garantia_5_ano_percentual <- renderText(paste0(filtro_ente$Acima_5_anos_percentual))
+
+ })
+
+
+
+ 
+``` 
+
+
+
+
+```{r garantiaa, warning=FALSE, message=FALSE ,fig.width=9, fig.height=7 }
+
+# 
+# textOutput("Garantia_Total")
+# 
+# 
+#  Garantia_Total_reativo <- reactive({
+# 
+#        list(input$Classificador, input$mutuario)
+# 
+#      })
+# 
+#  observeEvent(Garantia_Total_reativo(),{
+# 
+#    if (is.null(input$Classificador)){entrada <- agrupador_total$Classificador[1]} 
+#    else
+#    {entrada <- input$Classificador}
+#  
+#    
+#    if(entrada != "all"){
+# 
+#          filtro_classificador <- agrupador_total_formatado %>%
+# 
+#            filter(Classificador == entrada) }
+#    
+#    if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+#    else
+#    {Ente <- input$mutuario}
+#  
+#    if(Ente != "all"){
+# 
+#          filtro_ente <- filtro_classificador %>%
+# 
+#            filter(Inicio == Ente) }
+#    
+#    output$Garantia_Total <- renderText(paste0("Total de Operações Garantidas: ","R$ ",funcao_formata_quantidade(filtro_ente$total_total), " milhões"))
+# 
+#  })
+ 
+``` 
+
+```{r interna, warning=FALSE, message=FALSE ,fig.width=9, fig.height=7 }
+
+ # 
+ # 
+ #  fluidPage(
+ # fluidRow(
+ #  column(width=5,div(style = "height:17px;background-color: yellow;", textOutput("Garantia_interna")))))
+ # 
+ # 
+ # 
+ # 
+ # Garantia_Total_reativo <- reactive({
+ # 
+ #       list(input$Classificador, input$mutuario)
+ # 
+ #     })
+ # 
+ # observeEvent(Garantia_Total_reativo(),{
+ # 
+ #   if (is.null(input$Classificador)){entrada <- agrupador_total$Classificador[1]} 
+ #   else
+ #   {entrada <- input$Classificador}
+ # 
+ #   
+ #   if(entrada != "all"){
+ # 
+ #         filtro_classificador <- agrupador_total_formatado %>%
+ # 
+ #           filter(Classificador == entrada) }
+ #   
+ #   if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+ #   else
+ #   {Ente <- input$mutuario}
+ # 
+ #   if(Ente != "all"){
+ # 
+ #         filtro_ente <- filtro_classificador %>%
+ # 
+ #           filter(Inicio == Ente) }
+ #   
+ #   output$Garantia_interna <- renderText(paste0("Interna:                ",".......................................R$                 ",funcao_formata_quantidade(filtro_ente$interna_total), " milhões"))
+ # 
+ # })
+ 
+``` 
+
+
+
+```{r cambial, warning=FALSE, message=FALSE ,fig.width=9, fig.height=7 }
+# 
+#  
+# 
+#   fluidPage(
+#  fluidRow(
+#   column(width=5,align="center",div(style = "height:17px;background-color: yellow;", textOutput("Garantia_interna_cambial")))))
+# 
+# 
+# 
+# 
+#  Garantia_Total_reativo <- reactive({
+# 
+#        list(input$Classificador, input$mutuario)
+# 
+#      })
+# 
+#  observeEvent(Garantia_Total_reativo(),{
+# 
+#    if (is.null(input$Classificador)){entrada <- agrupador_total$Classificador[1]} 
+#    else
+#    {entrada <- input$Classificador}
+#  
+#    
+#    if(entrada != "all"){
+# 
+#          filtro_classificador <- agrupador_total_formatado %>%
+# 
+#            filter(Classificador == entrada) }
+#    
+#    if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+#    else
+#    {Ente <- input$mutuario}
+#  
+#    if(Ente != "all"){
+# 
+#          filtro_ente <- filtro_classificador %>%
+# 
+#            filter(Inicio == Ente) }
+#    
+#    output$Garantia_interna_cambial <- renderText(paste0("Internas Cambiais: ",".....................R$ " ,funcao_formata_quantidade(filtro_ente$interna_USD), " milhões"))
+# 
+#  })
+ 
+``` 
+
+
+
+```{r demais, warning=FALSE, message=FALSE ,fig.width=9, fig.height=7 }
+
+#  
+# fluidPage(
+#  fluidRow(
+#   column(width=5,align="center",div(style = "height:17px;background-color: yellow;",textOutput("Garantia_interna_demais"))),
+#       br(), br(),br(),br(),br()  ,
+#   column(12,"hsadiusahiusah")))
+#   
+# 
+# #style = "border: 5px dashed blue;"
+# 
+# 
+#  Garantia_Total_reativo <- reactive({
+# 
+#        list(input$Classificador, input$mutuario)
+# 
+#      })
+# 
+#  observeEvent(Garantia_Total_reativo(),{
+# 
+#    if (is.null(input$Classificador)){entrada <- agrupador_total$Classificador[1]} 
+#    else
+#    {entrada <- input$Classificador}
+#  
+#    
+#    if(entrada != "all"){
+# 
+#          filtro_classificador <- agrupador_total_formatado %>%
+# 
+#            filter(Classificador == entrada) }
+#    
+#    if (is.null(input$mutuario)){Ente <- "agrupador_total$Inicio[1]"} 
+#    else
+#    {Ente <- input$mutuario}
+#  
+#    if(Ente != "all"){
+# 
+#          filtro_ente <- filtro_classificador %>%
+# 
+#            filter(Inicio == Ente) }
+#    
+#    output$Garantia_interna_demais <- renderText(paste0("Internas Demais: ","........................R$ " ,funcao_formata_quantidade(filtro_ente$interna_total-filtro_ente$interna_USD), " milhões"))
+# 
+#  })
+#  
+``` 
+
+
+
+
+
+***
+
+
+utyutyut
+
+
+## Qualquer um pode receber?
+
+## Porque a União precisa acompanhar esses valores? Fatores de Risco?
+
+## Quanto a União já teve que pagar em razão de valores não pagos pelos Entes Subnacionais?
+
+
+
+No intuito de cumprir com suas obrigações/deveres, os Estados/ Municípios podem vir a assumir <span class="conceito" id="conceito-declaram">dívidas</span> com instituições financeiras. Uma característica comum nesse mundo de dívida é a exigência de uma **garantia**. É natural que qualquer credor tenha receio de não receber o devido pagamento pelo valor emprestado. 
+
+<div class="descricao" id="descricao-declaram"> 
+<p class="titulo-card">O Que É uma dívida?</p> 
+<p>Dívidas nada mais são do que compromissos (financeiros) nos quais um agente, ao receber recurso de um terceiro, se compromete a devolver tal quantia acrescida de um determinado valor (ou seja, os juros/ encargos). Chama-se assim de **Mutuário** aqueles que captam algum tipo de dívida e de **Credor** aquele que empresta. Isso de fato acontece a toda hora entre indivíduos/empresas em uma sociedade. Pois bem, a mesma situação pode ocorrer entre um Município e um credor privado (banco, organismo multilateral, etc..).
+No entanto, uma característica comum nesse mundo de dívida é a exigência de uma garantia. É natural que qualquer credor tenha receio de não receber o devido pagamento pelo valor emprestado. 
+
+
+</p>
+
+<p class="fechar-card"><a class="link-fechar" id="fechar-declaram" href="#conceito-declaram">^ Fechar e voltar ao texto ^</a></p>
+</div> 
+
+Nesse caso, é comum a exigência de uma garantia que possa servir como paliativo em caso de o mutuário (aquele que recebe o empréstimo) não conseguir arcar com seus compromissos financeiros. Em nosso contexto, portanto, é natural que determinados credores exijam alguma garantia ao emprestar dinheiro para algum Estado/Município. E é aqui nesse ponto que a União entra na história (ou não).
+ 
+<a href="http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas" class="link-painel" target="blank">Leia os relatórios Quadrimestrais de Garantias Concedidas e de Execução de Garantia</a>
+
+
+
+O Tesouro Nacional além de gerir a **dívida pública**, precisa estar atenta aos compromissos assumidos como garantidora de empréstimos de outros entes públicos. Essa atenção se justifica pela possibilidade de ser chamada a honrar essa garantia concedida.
+
+Ou seja, quando a dívida garantida não é paga por quem pegou dinheiro emprestado, a obrigação de pagamento dessa dívida se torna da União. E isso impacta diretamente as contas nacionais (e não apenas as contas do ente que não conseguiu pagar o empréstimo).
+
+Dessa forma, a União precisa saber com exatidão quem são os credores (aqueles que emprestam) e os mutuários (os devedores) dos empréstimos em que a União concede garantia, assim como os valores e condições que regem cada contrato.
+
+## Você Sabia?
+
+A União além de gerir a dívida pública, precisa estar atenta aos compromissos assumidos como garantidora de empréstimos de outros entes públicos. Essa atenção se justifica pela possibilidade de ser chamada a honrar essa garantia concedida. 
+
+Como sabemos, a estrutura governamental brasileira é constituída como uma Federação. Tudo bem não sabermos exatamente o que significa o termo, mas, em resumo, uma federação possui um ente Federal (União) e entes subnacionais os quais dividem de forma harmônica/complementar as suas respectivas obrigações (educação, saúde, segurança, arrecadação, defesa nacional, etc..) para população de uma território conforme definidas em uma constituição. 
+No Brasil, por exemplo, temos a União como ente Federal e os Estados / Munícios como entes subnacionais. Voltemos agora ao tema aqui proposto: Garantias!
+
+No intuito de cumprir com suas obrigações/deveres, os Estados/ Municípios, podem a vir assumem dívidas com outras entidades. 
+Essas dívidas nada mais são do que compromissos financeiros nos quais um agente, ao receber recurso de um terceiro, se compromete a devolver tal quantia acrescida de um determinado valor (ou seja, os juros/ encargos). Chama-se assim de mutuários aqueles que captam algum tipo de dívida e de Credor aquele que empresta. Isso de fato acontece a toda hora entre indivíduos/empresas em uma sociedade. Pois bem, a mesma situação pode ocorrer entre um Município e um credor privado (banco, organismo multilateral, etc..).
+No entanto, uma característica comum nesse mundo de dívida é a exigência de uma garantia. É natural que qualquer credor tenha receio de não receber o devido pagamento pelo valor emprestado. 
+Nesse caso, é relativamente comum a exigência de uma garantia que possa servir como paliativo em caso de o mutuário não conseguir arcar com seus compromissos financeiros. Em nosso contexto, portanto, é comum que determinados credores exijam alguma garantia ao emprestar dinheiro para algum Estado/Município. 
+
+***
+
+
+
+## Quanto de Dívida dos Entes Subnacionais que a União garante o pagamento?
+
+## Quem sãos os principais mutuários dessas dívidas com garantia da União?
+
+## Porque a União precisa acompanhar esses valores? Fatores de Risco?
+
+## Quanto a União já teve que pagar em razão de valores não pagos pelos Entes Subnacionais?
+
+## 2. Resumo Metodologia
+
+Em termos práticos, a grande dúvida a ser respondida é: quão abaixo (distorcido) a taxa proposta deve estar em relação a demais para ser considerada um "Cachorro Louco"?
+
+Para responder a tal pergunta, deve-se, portanto, definir algumas questões-chaves inicias como: **(1)** qual título/prazo deve ser utilizado para construção de uma séria histórica temporal a fim de permitir uma análise adequada ao longo do tempo e **(2)** que referência de preço (taxa) empregar para fins de comparação (indicação mercado).
+
+Em relação ao **item (1)**, define-se a seguinte regra para caracterização de referências **(benchmarks)** de títulos públicos por prazo de vencimento:
+
+  - **Prefixado 6 meses sem cumpom:** prazo (anos) maior que 0.25 e menor/igual a 0.75;
+  - **Prefixado 1 ano sem cupom:** prazo (anos) maior que 0.75 e menor/igual a 1.50;
+  - **Prefixado 2 anos sem cupom:** prazo (anos) maior que 1.50 e menor/igual a 2.50;
+  - **Prefixado 4 anos sem cupom:** prazo(anos) maior que 2.50;
+  - **Prefixado 7 anos com cupom:** prazo(anos) maior que 5.00 e menor/igual a 8.50;
+  - **Prefixado 10 anos com cupom:** prazo(anos) maior que 8.50 e menor/igual a 12.00;
+  
+  
+Onde: Prazo (P) corresponde a seguinte fórmula (dias úteis):
+
+
+Dessa forma, considera-se, por exemplo, que todos os títulos prefixados emitos  sem cupom com prazo (anos) entre 2.50 e 4.50 são classificados como **Prefixado 4 anos sem cupom:** e, portanto, todas as análises seguintes caracterizam os títulos com esse padrão como pertencentes a uma mesma classe (série).
+
+Como resposta ao **item (2)**, considera-se como refêrencia de preço o **Piso do mercado Secundário [^10]** correspondente à data de emissão de cada título.
+
+[^10]: O piso do mercado secundario é obtido....
+  
+Estabelecido esses dois parâmetros -**Benchmark e Referência Preço**-; defini-se, agora, as etapas para construção da metodologia aqui desenvolvida para identificação do "Cachorro Louco":
+
+**(3) Elaboração da dispersão relativa das propostas (taxas) em relação ao Piso do mercado Secundário:** Essa etapa altera o foco da dispersão nominal das taxas para uma visão relativista, corrigindo problemas de comparações com bases de valores nominais muito diferentes ao longo do tempo;
+  
+**(4) Construção de intervalos de confiança para série:** Esses intervalos permitem inferir em qual região/área encontra-se a proposta em questão e,portanto, nos auxilia em dizer **onde** a mesma está em relação às demais. A definição de uma localização ("**onde**")  de uma certa oferta se encontra em relação a outras é fundamental, pois uma das características do "Cachorro Louco" é sua não "normalidade" frente aos seus pares; 
+   
+**(5) Definição de uma distância mínima de propostas ao redor de potenciais candidatos a "Cachorro Louco":** Essa regra amplia a abrangência da métrica desenvolvida em **(4)** ao definir uma região de proximadade entre as propostas de forma a desconsiderar potenciais candidatos a "Cachorros Loucos". Além da não "normalidade" frente ao histórico de propostas, o "Cachorro Louco" possui outra característica: ele está sozinho, ou seja, nenhum outro demandante encontra-se em uma região próxima ao do "Cachorro Louco". 
+
+Na sequência, descreve-se em detalhes a justificativa/lógica para sequencia de regras de decisão propostas.
+
+***
+
+## 3. A Dispersão Relativa das Taxas em relação ao Piso Secundário
+
+Uma das dificuldades ao se trabalhar com uma série de tempo de taxas (*yields*) em de leilão títulos públicos consiste na diferença ao longo do tempo para os  valores nominais de um mesmo **Benchmark**. Esses distintos valores  podem comprometer uma análise mais acurada dos dados  ao subestimar o peso das variações em relação a um número de referência. 
+
+Um exemplo ajuda a evidenciar tal situação. Suponha um título qualquer emitido em 2015 que tenha como base um valor no mercado secundário de 10% a.a. Nessa emissão, considere a melhor demanda a uma taxa efetiva de 9% a.a, o que significa uma diferença (negativa) de 1% (100 pontos-base).
+
+Agora, avançemos para 2019. Uma emissão de um novo título com vencimento semelhante ao de 2015, mas agora com uma referência de preço no secundário de 5% a.a. Nesse cenário, vamos supor uma melhor proposta a 4% a.a. . Ou seja, a mesma diferença nominal anterior de 1% a.a. . No entanto, em termos relativos existe uma distinção significativa. No exemplo em 2015, a melhor proposta está 10% [(10-9) / 10] abaixo do preço do secundário enquanto que em 2019, o valor é 20% menor [(5-4)/5]. 
+
+Observa-se, portanto, como uma comparação meramente nominal das ofertas pode levar a uma errônea conclusão de igualdade entre os dois casos, quando, na verdade, existe uma diferença enorme. Nesse sentido, evidenciamos a seguir o histórico de propostas (taxas nominais) para o **Benchmark** em questão:   
+
+
+**Gráfico 1- Evolução Propostas Leilão - Prefixado 2 anos  sem cupom**
+
+
+O **Gráfico 1** apresenta 5 variáveis: Propostas Aceitas (azul), Propostas Rejeitadas (vermelho), Teto do Secundario, Piso do Secundario e a média do mercado secundário. Ao se passar o cursor sobre o gráfico, obtem-se informações sobre a data do leilão; o vencimento do título; o prazo (anos); a taxa proposta (%a.a); a taxa média (% a.a) aceita no leilão; a quandidade demandada pelo instituição financeira e a quantidade aceita.  
+
+De forma resumida, o **Quadro I** abaixo apresenta os principais valores em termos de propostas Aceitas / Rejeitadas e a evolução do Teto / Piso do mercado Secundario: 
+
+Quadro I - Resumo principais valores | 
+                          | 
+
+Em geral, **o Gráfico 1** e o **Quadro I** evidenciam o problema de se comparar taxas nominais de títulos (mesmo vencimento) em função da elavada variação do seus valores ao longo do tempo.
+
+Outro fator relevante é destacar os distintos títulos que compõem a série analisada em questão (Prefixados 2 anos sem cupom). Nesse sentido, o **Gráfico 2** apresenta as mesmas configurações de variáveis do **Gráfico 1**, mas no lugar da variável "Data do Leilão" tem-se o título ofertado ("título-vencimento") no eixo x.
+
+**Gráfico 2 - Propostas Leilão - Por Título / Vencimento**
+
+
+
+
+Dessa forma, os distintos títulos emitidos que compõem a série de dados em questão são: 
+
+Segue-se, agora, para uma breve análise das propostas em relação à referência de preço aqui utilizada:  o Mercado Secundario. Os **Gráficos 3 e 4** refletem o percentual das porpostas que encontram-se acima / abaixo e entre o Teto e Piso do Secundario. No entanto, o **Gráfico 3** analisa os parâmetros acima para o escopo de todas as propostas enquanto que o **Gráfico 4** restrito a ofertas aceitas.
+
+**Gráfico 3 - Propostas Leilão - Relação com o Mercado Secundário**
+
+
+
+```{js, echo=FALSE}
+
+
+const conceitos = document.getElementsByClassName('conceito');
+const descricoes = document.getElementsByClassName('descricao');
+
+let clicados = {};
+
+for (let i = 0; i < descricoes.length; i++) {
+    descricoes[i].style.display = "none";
+}
+
+document.addEventListener('click', function (event) {
+    
+    if (event.target.matches('.conceito')) {
+        let idConceito = event.target.id;
+        console.log("clicou em", idConceito);
+
+        identificador = idConceito.substring(idConceito.indexOf("-")+1);
+
+        let idDescricao = "descricao-" + identificador;
+        console.log("vou pegar o ", idDescricao);
+        let descricao = document.getElementById(idDescricao);
+        console.log("selecionou o ", descricao);
+
+        if (!(identificador in clicados)) {
+            clicados[identificador] = false;
+        } 
+
+        if (clicados[identificador]) {
+            descricao.style.display = 'none';
+        } else {
+            descricao.style.display = '';
+        }
+
+        clicados[identificador] = !(clicados[identificador]);
+
+        console.log(identificador, idConceito, idDescricao, clicados[identificador])
+
+    } else if (event.target.matches('.link-fechar')) {
+
+        let idFechar = event.target.id;
+        console.log("clicou em", idFechar);
+
+        identificador = idFechar.substring(idFechar.indexOf("-")+1);
+
+        let idDescricao = "descricao-" + identificador;
+        console.log("vou pegar o ", idDescricao);
+        let descricao = document.getElementById(idDescricao);
+        console.log("selecionou o ", descricao);
+
+        descricao.style.display = 'none';
+        clicados[identificador] = false;
+
+    }     
+}
+);
+
+// Quem me ajudou: https://gomakethings.com/why-event-delegation-is-a-better-way-to-listen-for-events-in-vanilla-js/#web-performance
+```

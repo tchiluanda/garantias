@@ -300,6 +300,25 @@ agrupador_percentual_vincendo <- agrupador_percentual_vincendo_bruto %>%
             Total_percentual = 18
     )
 
+
+#__________________________________________
+
+#CSV - Honras Garantias
+
+
+
+
+#_________________________________________________
+
+#CSV - Novos Contratos
+
+
+
+
+#___________________________
+
+
+
 #____________________________
 
 save(list = c("agrupador_atm_completo","agrupador_custo_completo","agrupador_percentual_vincendo","agrupador_total"),file = "Garantias.Rdata")
