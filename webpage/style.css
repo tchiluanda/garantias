@@ -36,11 +36,23 @@ main {
 }
 
 main header#abertura h1 {
-    font-family: 'Merriweather', serif;
+    font-family: 'Bungee', serif;
     text-align: center;
-    font-size: 3rem;
+    font-size: 3.5rem;
+    color: #80160D; /*#E32C10; teal*/
+    line-height: 1.3;
+    text-shadow: 2px 2px 2px #E69E73;
+    margin-bottom: 0;
+}
+
+main header#abertura p {
+    font-family: 'Merriweather', serif;
+    font-weight: 800;
+    text-align: center;
+    font-size: 1.8rem;
     color: #004D4D; /*#E32C10; teal*/
-    line-height: 1.3
+    line-height: 1.3;
+    margin-top: 0;
 }
 
 /* fiz isso aqui abaixo para o highlight ficar um pouco mais estreito */
@@ -48,6 +60,7 @@ main header#abertura h1 {
 section.prose {
     color: #444;
     line-height: 1.5;
+    padding: 0 0.5rem;
 }
 
 section.prose p.nota {
