@@ -122,11 +122,6 @@ section.vis nav.controle-vis button:hover {
     border-bottom: 5px solid #004D4D;
 }
 
-
-
-
-
-
 section.vis div.grafico-d3-container {
     position: relative;
 }
@@ -164,6 +159,61 @@ section.vis div.grafico-d3-container #tooltip {
 
 .hidden {
     display: none;
+}
+
+section.quadro > h2 {
+    border-left: 5px solid #004D4D;
+    padding: 5px 0px 5px 10px;
+    font-size: 1rem;
+    color: #004D4D;
+    margin-bottom: 5px;
+}
+
+section.quadro div.selecao-entidades {
+    display: flex;
+    justify-content: center;
+}
+
+section.quadro table {
+    font-size: 0.75rem;
+    border-collapse: collapse;
+}
+
+section.quadro table th {
+    text-align: left;
+}
+
+section.quadro table td {
+    text-align: right;
+}
+
+section.quadro table td {
+    font-family: "Fira Code";
+}
+
+section.quadro table th.indent{
+    padding-left: 1rem;
+}
+
+section.quadro table td,
+section.quadro table th {
+    padding: 0.25rem;
+}
+
+section.quadro table tr.border-under{
+    border-bottom: 3px solid #d0d0d0;
+}
+
+
+
+section.quadro table .space-under>td,
+section.quadro table .space-under>th {
+    padding-bottom: 1rem;
+}
+
+section.quadro table .space-above>td,
+section.quadro table .space-above>th {
+    padding-top: 1rem;
 }
 
 

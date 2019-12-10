@@ -16,6 +16,7 @@
     <title>Garantias</title>
     <link href="https://fonts.googleapis.com/css?family=Merriweather|Merriweather+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet" text="GARANTIA?">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="webpage/style.css">
 </head>
 
@@ -65,12 +66,53 @@
                 <p>Categoria: <span id="tooltip-classificador"></span></p>
                 <p>Total das garantias concedidas pela União: <span id="tooltip-valor"></span></p>
             </div>
-        </div>
-
-        <script src="https://d3js.org/d3.v5.min.js"></script>
-        <script src="webpage/visualizacao.js"></script>   
+        </div> 
          
+    </section>
+
+    <section class="quadro limited-width">
+        <h2>Quadro: resumo dos principais valores</h2>
+        <div class="selecao-entidades">
+            <select name="" id=""></select>
+            <select name="" id=""></select>
+        </div>
+        <table>
+            <tbody>
+                <tr class="space-under">
+                    <th scope="row">Operações Garantidas</td>
+                    <td id="total_total">R$ 35.567,1</td>
+                </tr>
+                <tr class="border-under">
+                    <th scope="row">INTERNA</td>
+                    <td id="interna_total">R$ 35.567,1</td>
+                </tr>  
+                <tr>
+                    <th class="indent" scope="row">Internas Cambiais</td>
+                    <td id="interna_cambial">R$ 35.567,1</td>
+                </tr>  
+                <tr class="space-under">
+                    <th class="indent" scope="row">Internas Demais</td>
+                    <td id="interna_demais">R$ 35.567,1</td>
+                </tr>
+                <tr class="border-under">
+                    <th scope="row">EXTERNA</td>
+                    <td id="externa_total">R$ 35.567,1</td>
+                </tr>  
+                <tr class="space-above">
+                    <th scope="row">ATM</td>
+                    <td id="ATM_Total">8,59 anos</td>
+                </tr>  
+                <tr class="space-above">
+                    <th scope="row">Custo Médio</td>
+                    <td id="Custo_Total">15,69% ao ano</td>
+                </tr>                                                                        
+            </tbody>
+        </table>
+
     </section>
 </main>
 </body>
+<script src="webpage/d3.v5.min.js"></script>
+<script src="webpage/visualizacao.js"></script>  
+<script src="webpage/quadro.js"></script>  
 </html>
