@@ -172,12 +172,26 @@ section.quadro > h2 {
 section.quadro div.selecao-entidades {
     display: flex;
     justify-content: center;
+    margin: 2em 0;
+}
+
+section.quadro div.selecao-entidades select {
+    padding: 6px 12px;
+    font-family: "Merriweather Sans";
+    font-size: 0.75em;
+    border-radius: 4px;
+}
+
+section.quadro div.selecao-entidades select:first-child {
+    margin-right: 2em;
 }
 
 section.quadro table {
     font-size: 0.75rem;
     border-collapse: collapse;
     color: #444;
+    margin: 0 auto;
+    min-width: 300px;
 }
 
 section.quadro table th {
