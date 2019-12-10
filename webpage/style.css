@@ -177,10 +177,12 @@ section.quadro div.selecao-entidades {
 section.quadro table {
     font-size: 0.75rem;
     border-collapse: collapse;
+    color: #444;
 }
 
 section.quadro table th {
     text-align: left;
+    font-weight: normal;
 }
 
 section.quadro table td {
@@ -200,11 +202,14 @@ section.quadro table th {
     padding: 0.25rem;
 }
 
+section.quadro table tr.destaque td,
+section.quadro table tr.destaque th{
+    font-weight: bold;
+}
+
 section.quadro table tr.border-under{
     border-bottom: 3px solid #d0d0d0;
 }
-
-
 
 section.quadro table .space-under>td,
 section.quadro table .space-under>th {
