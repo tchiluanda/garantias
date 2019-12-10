@@ -34,7 +34,7 @@ quadro <- list(
   agrupador_total %>%
     select(Inicio, Classificador, Periodo,
            total_total,
-           interna_USD, 
+           interna_cambial = interna_USD, 
            interna_total, 
            externa_total),
   
@@ -64,6 +64,7 @@ quadro <- list(
   mutate_if(is.factor, .funs = ~as.numeric(
     str_replace(
       str_replace_all(
-        as.character(.), "\\.", ""), ",", "\\.")))
+        as.character(.), "\\.", ""), ",", "\\."))) %>%
+  mutate(interna_demais = interna_total - interna_cambial)
 
 write.csv(quadro, file = "webpage/dados_quadro.csv", fileEncoding = "UTF-8")
