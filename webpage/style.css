@@ -194,6 +194,9 @@ section.quadro p.container-titulo-card {
     margin-bottom: 0;
     padding-bottom: 10px;
     font-size: 0.8rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 section.quadro p.container-titulo-card span {
@@ -208,6 +211,9 @@ section.quadro div.card {
     flex-wrap: wrap;
     padding: 10px;
     border: 3px solid #999;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 section.quadro table {
@@ -259,10 +265,20 @@ section.quadro table .space-above>th {
     padding-top: 1rem;
 }
 
+section.quadro .area-grafico {
+    flex-grow: 1;
+    min-width: 300px;
+}
+
+section.quadro .area-grafico p {
+    font-size: 0.75rem;
+    margin: 0 0 10px 80px;
+    padding-top: 0.25rem;
+
+}
+
 section.quadro .container-svg-card {
     position: relative;
-    flex-grow: 1;
-    min-width: 300px
 }
 
 section.quadro .container-svg-card p.y-label {
@@ -272,6 +288,15 @@ section.quadro .container-svg-card p.y-label {
     padding-right: 10px;
     font-size: 0.65rem;
     font-family: "Merriweather Sans";
+}
+
+section.quadro .container-svg-card p.rotulos {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    font-size: 0.65rem;
+    font-family: "Merriweather Sans";
+    text-align: left;
 }
 
 .hidden {

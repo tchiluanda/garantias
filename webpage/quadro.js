@@ -61,10 +61,10 @@ const w_svg_card = w_container_card; //> 400 ? 400 : w_container_card;
 const h_svg_card = 300;
 
 const margin = {
-  "top": 4,
+  "top": 10,
   "bottom": 20,
   "left": 80,
-  "right": 30
+  "right": 80
 };
 
 const $svg_card = d3.select('svg.card');
@@ -86,10 +86,10 @@ const draw_grafico_card = function(dados_selecionados) {
 
   const escala_valor = d3.scaleLinear()
     .domain([0, valor_maximo_mini])
-    .range([margin.left, w_svg_card - margin.right]);
+    .range([0, w_svg_card - margin.right - margin.left]);
 
   //console.log("valor maximo", valor_maximo_mini, escala_valor(valor_maximo_mini));
-  console.log("classificador", dados_selecionados, dados_selecionados.Classificador);
+  //console.log("classificador", dados_selecionados, dados_selecionados.Classificador);
   
   const cor_grupo = fillColor(dados_selecionados.Classificador);
 
@@ -119,27 +119,44 @@ const draw_grafico_card = function(dados_selecionados) {
     .attr('width', d => escala_valor(d.valor))
     .attr('fill', cor_grupo);
   
-  console.log("rotulos", periodos_maturacao["rotulos"]);
-  console.log("container", $container_svg_card);  
-  const rotulos_y = $container_svg_card
-    .selectAll("p.y-label")
-    .data(periodos_maturacao["rotulos"]);
+  //console.log("rotulos", periodos_maturacao["rotulos"]);
+  //console.log("container", $container_svg_card); 
+  
 
-  const rotulos_yEnter = rotulos_y
+  // rotulos y
+
+  const rotulos = $container_svg_card
+    .selectAll("p.rotulos")
+    .data(mini_dataset);
+
+  const rotulos_Enter = rotulos
     .enter()
     .append("p");
 
-  const rotulos_yUpdate = rotulos_y.merge(rotulos_yEnter)
+  const rotulos_Update = rotulos.merge(rotulos_Enter)
+    .classed("rotulos", true)
+    .text(d => formata_vlr_tooltip(d.valor) + " (" + d.valor_percentual + ")")
+    .style("line-height", largura_barra + "px") // fundamental para centralizar!
+    .style("left", d => (escala_valor(d.valor) + 10 + margin.left) + "px")
+    .style("top", d => (escala_rotulos(d.rotulo) - largura_barra/2) + "px")
+    .style("width", (w_svg_card - escala_valor(valor_maximo_mini) - margin.left - 10) + "px")
+    .transition()
+    .duration(750)
+    .style("color", cor_grupo);
+
+  
+  const rotulos_y = $container_svg_card
+    .selectAll("p.y-label")
+    .data(periodos_maturacao["rotulos"])
+    .enter()
+    .append("p")
     .classed("y-label", true)
     .text(d => d)
     .style("line-height", largura_barra + "px") // fundamental para centralizar!
     .style("text-align", "right")
     .style("left", 10 + "px")
-    .style("top", d => escala_rotulos(d) + "px")
-    .style("width", (margin.left - 10) + "px")
-    .transition()
-    .duration(750)
-    .style("color", cor_grupo);
+    .style("top", d => (escala_rotulos(d) - largura_barra/2) + "px")
+    .style("width", (margin.left - 10) + "px");
 
   d3.select('section.quadro div.card').style('border-color', cor_grupo);
   d3.select('section.quadro span.titulo-card')
