@@ -1,4 +1,13 @@
 library(tidyverse)
+library(lubridate)
+library(stringr)
+library(viridis)
+library(colorspace)
+library(extrafont)
+
+extrafont::font_import()
+y
+loadfonts()
 
 load("R/Garantias.Rdata")
 
@@ -68,3 +77,73 @@ quadro <- list(
   mutate(interna_demais = interna_total - interna_cambial)
 
 write.csv(quadro, file = "webpage/dados_quadro.csv", fileEncoding = "UTF-8")
+
+
+# honras ------------------------------------------------------------------
+
+honras_simples <- honras %>%
+  select(data = `Data de Vencimento`,
+         tipo_divida = `Tipo de Dívida`,
+         `Credor`,
+         tipo_credor = `Classificação do Credor`,
+         mutuario = `Mutuário`,
+         tipo_mutuario = `Tipo de Mutuário`,
+         `Status`,
+         valor = `Honra - Total (R$)`) %>%
+  as.data.frame() %>%
+  mutate(mes = str_pad(month(data), width = 2, pad = "0"),
+         ano = year(data),
+         mes_ano = paste0(ano,mes))
+
+honras_plot <- honras_simples %>%
+  group_by(mes_ano, mutuario) %>%
+  summarise(valor = sum(valor)) %>%
+  ungroup() %>%
+  arrange(mes_ano) %>%
+  mutate(data = as.Date(paste(str_sub(mes_ano, 1, 4),
+                      str_sub(mes_ano, 5, 6),
+                      "01", sep = "-"))) %>%
+  group_by(mutuario) %>%
+  mutate(total_mutuario = sum(valor)) %>%
+  ungroup() %>%
+  mutate(ente = fct_reorder(mutuario, total_mutuario))
+
+#%>% filter(!(mutuario %in% c("Rio de Janeiro", "Minas Gerais", "Goiás"))
+
+ggplot(honras_plot, aes(y = valor, x = data)) + 
+  geom_col() + 
+  coord_polar(theta = "x") +
+  scale_x_date(limits = c(as.Date("2016-01-01"), NA), date_breaks = "1 year",
+               date_labels = "%Y") +
+  scale_y_continuous(limits = c(-4e8, NA)) +
+  geom_hline(yintercept = 0, color = "lightgrey") +
+  facet_wrap(~mutuario) +
+  theme_minimal() +
+  theme(axis.line = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        panel.grid = element_blank())
+
+ggplot(honras_plot) + geom_histogram(aes(valor), bins = 100)
+
+summary(honras_plot$valor)
+
+ggplot(honras_plot, aes(y = mutuario, x = mes_ano)) + geom_point()
+
+ggplot(honras_plot, aes(y = ente, x = data, fill = valor)) + 
+  geom_tile(width = 30, height = 1, color = "white") +
+  scale_x_date(limits = c(as.Date("2016-01-01"), NA), date_breaks = "1 year",
+               date_labels = "%Y") +
+  scale_fill_continuous_sequential(palette = "BluGrn", 
+                                   labels = function(x){format(x/1e6, big.mark = ".", decimal.mark = ",")}) +
+  #scale_fill_viridis_c(direction = -1) +
+  labs(fill = "R$ milhões") +
+  theme_minimal() +
+  theme(axis.line = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        panel.grid = element_blank(),
+        legend.position = "bottom")
+
+honras_simples %>% group_by(mutuario, tipo_mutuario) %>% summarise(sum(valor), n())
