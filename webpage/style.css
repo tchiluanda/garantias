@@ -235,5 +235,14 @@ section.quadro table .space-above>th {
     padding-top: 1rem;
 }
 
+section.quadro .container-svg-card {
+    position: relative;
+}
 
-
+section.quadro .container-svg-card p.y-label {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    font-size: 0.65rem;
+    font-family: "Merriweather Sans";
+}

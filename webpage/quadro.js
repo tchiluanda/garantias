@@ -98,25 +98,46 @@ const draw_grafico_card = function(dados_selecionados) {
   const rects = $svg_card.selectAll("rect")
     .data(mini_dataset);
 
+  const largura_barra = 15;
+
   const rects_enter = rects
     .enter()
     .append('rect')
     .attr('x', margin.left)
     .attr('y', d => escala_rotulos(d.rotulo))
-    .attr('height', 10)
+    .attr('height', largura_barra)
     .attr('width', 0)
-    .attr('fill', "#444");
+    .attr('fill', "white");
   
   const rects_update = rects.merge(rects_enter)
     .transition()
-    .duration(500)
+    .duration(750)
     .attr('x', margin.left)
     .attr('y', d => escala_rotulos(d.rotulo))
-    .attr('height', 10)
     .attr('width', d => escala_valor(d.valor))
     .attr('fill', fillColor(dados_selecionados.Classificador));
   
-  const rotulos_y = $svg_card.
+  console.log("rotulos", periodos_maturacao["rotulos"]);
+  console.log("container", $container_svg_card);  
+  const rotulos_y = $container_svg_card
+    .selectAll("p.y-label")
+    .data(periodos_maturacao["rotulos"]);
+
+  const rotulos_yEnter = rotulos_y
+    .enter()
+    .append("p");
+
+  const rotulos_yUpdate = rotulos_y.merge(rotulos_yEnter)
+    .classed("y-label", true)
+    .text(d => d)
+    .style("line-height", largura_barra + "px") // fundamental para centralizar!
+    .style("text-align", "right")
+    .style("left", 10 + "px")
+    .style("top", d => escala_rotulos(d) + "px")
+    .style("width", (margin.left - 20) + "px")
+    .transition()
+    .duration(750)
+    .style("color", fillColor(dados_selecionados.Classificador));
 
 
   console.log("Mini dataset", mini_dataset);
