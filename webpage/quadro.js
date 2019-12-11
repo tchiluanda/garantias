@@ -57,13 +57,13 @@ const $container_svg_card = d3.select('.container-svg-card');
 
 const w_container_card = $container_svg_card.node().offsetWidth;
 
-const w_svg_card = w_container_card > 400 ? 400 : w_container_card;
+const w_svg_card = w_container_card; //> 400 ? 400 : w_container_card;
 const h_svg_card = 300;
 
 const margin = {
-  "top": 20,
+  "top": 4,
   "bottom": 20,
-  "left": 100,
+  "left": 80,
   "right": 30
 };
 
@@ -91,6 +91,8 @@ const draw_grafico_card = function(dados_selecionados) {
   //console.log("valor maximo", valor_maximo_mini, escala_valor(valor_maximo_mini));
   console.log("classificador", dados_selecionados, dados_selecionados.Classificador);
   
+  const cor_grupo = fillColor(dados_selecionados.Classificador);
+
   const escala_rotulos = d3.scaleBand()
     .domain(periodos_maturacao["rotulos"])
     .range([margin.top, h_svg_card - margin.bottom]);
@@ -115,7 +117,7 @@ const draw_grafico_card = function(dados_selecionados) {
     .attr('x', margin.left)
     .attr('y', d => escala_rotulos(d.rotulo))
     .attr('width', d => escala_valor(d.valor))
-    .attr('fill', fillColor(dados_selecionados.Classificador));
+    .attr('fill', cor_grupo);
   
   console.log("rotulos", periodos_maturacao["rotulos"]);
   console.log("container", $container_svg_card);  
@@ -134,10 +136,19 @@ const draw_grafico_card = function(dados_selecionados) {
     .style("text-align", "right")
     .style("left", 10 + "px")
     .style("top", d => escala_rotulos(d) + "px")
-    .style("width", (margin.left - 20) + "px")
+    .style("width", (margin.left - 10) + "px")
     .transition()
     .duration(750)
-    .style("color", fillColor(dados_selecionados.Classificador));
+    .style("color", cor_grupo);
+
+  d3.select('section.quadro div.card').style('border-color', cor_grupo);
+  d3.select('section.quadro span.titulo-card')
+    .style('background-color', cor_grupo)
+    .style('border-color', cor_grupo);
+
+  d3.select('section.quadro span.titulo-card')
+    .text(dados_selecionados.Inicio + ' (' + dados_selecionados.Classificador + ')');
+
 
 
   console.log("Mini dataset", mini_dataset);
@@ -222,6 +233,10 @@ d3.csv("webpage/dados_quadro.csv").then(function(dados) {
         const dados_filtrados = dados.filter(d => d.Classificador + d.Inicio == valor_selecionado)[0];
         console.log("dados", dados_filtrados);
 
+        // exibe o quadr0
+        d3.select('section.quadro div.card')
+          .classed("opaque", false);
+
         // atualiza tabela
 
         const $campos_de_valor = d3.selectAll("section.quadro table td");
@@ -240,6 +255,7 @@ d3.csv("webpage/dados_quadro.csv").then(function(dados) {
 
         draw_grafico_card(dados_filtrados);
 
+        
 
 
 

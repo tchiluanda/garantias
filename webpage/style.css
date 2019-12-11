@@ -5,6 +5,7 @@
 body {
     margin: 0;
     background-color: #FAFFFF; /* lightcyan */
+    color: #444;
 }
 
 header.logo {
@@ -157,17 +158,20 @@ section.vis div.grafico-d3-container #tooltip {
     z-index: 1; 
 }
 
-.hidden {
-    display: none;
-}
 
-section.quadro > h2 {
+/* Quadro */
+
+section.quadro div.mini-header h2 {
     border-left: 5px solid #004D4D;
     padding: 5px 0px 5px 10px;
     font-size: 1rem;
     color: #004D4D;
     margin-bottom: 5px;
 }
+
+/*section.quadro div.mini-header p {
+    font-size: 0.7rem;
+}*/
 
 section.quadro div.selecao-entidades {
     display: flex;
@@ -186,12 +190,32 @@ section.quadro div.selecao-entidades select:first-child {
     margin-right: 2em;
 }
 
+section.quadro p.container-titulo-card {
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    font-size: 0.8rem;
+}
+
+section.quadro p.container-titulo-card span {
+    border-width: 3px;
+    padding: 10px;
+    color: ghostwhite;
+}
+
+section.quadro div.card {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    border: 3px solid #999;
+}
+
 section.quadro table {
     font-size: 0.75rem;
     border-collapse: collapse;
     color: #444;
-    margin: 0 auto;
-    min-width: 300px;
+    margin: 0;
+    width: 300px;
 }
 
 section.quadro table th {
@@ -237,12 +261,23 @@ section.quadro table .space-above>th {
 
 section.quadro .container-svg-card {
     position: relative;
+    flex-grow: 1;
+    min-width: 300px
 }
 
 section.quadro .container-svg-card p.y-label {
     position: absolute;
     margin: 0;
     padding: 0;
+    padding-right: 10px;
     font-size: 0.65rem;
     font-family: "Merriweather Sans";
+}
+
+.hidden {
+    display: none;
+}
+
+.opaque {
+    opacity: 0;
 }

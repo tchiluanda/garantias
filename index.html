@@ -70,52 +70,57 @@
          
     </section>
 
-    <section class="quadro limited-width">
-        <h2>Quadro: resumo dos principais valores</h2>
-        <p>Escolha o mutuário desejado. Se preferir, filtre por tipo de mutuário primeiro</p>
-        <div class="selecao-entidades">
-            <select name="menu-classificador" id="menu-classificador">
-                <option value="">--Escolha um tipo de entidade--</option>
-            </select>
+    <section class="quadro">
+        <div class="mini-header limited-width">
+            <h2>Quadro: resumo dos principais valores</h2>
+            <p>Escolha o mutuário desejado. Se preferir, filtre por tipo de mutuário primeiro</p>
+            <div class="selecao-entidades">
+                <select name="menu-classificador" id="menu-classificador">
+                    <option value="">--Escolha um tipo de entidade--</option>
+                </select>
 
-            <select name="menu-entidade" id="menu-entidade">
-                <option value="">--Escolha a entidade--</option>
-            </select>
+                <select name="menu-entidade" id="menu-entidade">
+                    <option value="">--Escolha a entidade--</option>
+                </select>
+            </div>
         </div>
-        <table>
-            <tbody>
-                <tr class="space-under destaque">
-                    <th scope="row">Operações Garantidas</td>
-                    <td id="total_total"></td>
-                </tr>
-                <tr class="border-under">
-                    <th scope="row">INTERNA</td>
-                    <td id="interna_total"></td>
-                </tr>  
-                <tr>
-                    <th class="indent" scope="row">Internas Cambiais</td>
-                    <td id="interna_cambial"></td>
-                </tr>  
-                <tr class="space-under">
-                    <th class="indent" scope="row">Internas Demais</td>
-                    <td id="interna_demais"></td>
-                </tr>
-                <tr class="border-under">
-                    <th scope="row">EXTERNA</td>
-                    <td id="externa_total"></td>
-                </tr>  
-                <tr class="space-above destaque">
-                    <th scope="row">ATM</td>
-                    <td id="ATM_Total"></td>
-                </tr>  
-                <tr class="space-above destaque">
-                    <th scope="row">Custo Médio</td>
-                    <td id="Custo_Total"></td>
-                </tr>                                                                        
-            </tbody>
-        </table>
-        <div class="container-svg-card">
-            <svg class="card"></svg>
+        <p class="container-titulo-card"><span class="titulo-card"></span></p>
+        <div class="card opaque">
+            <table>
+                <tbody>
+                    <tr class="space-under destaque">
+                        <th scope="row">Operações Garantidas</td>
+                        <td id="total_total"></td>
+                    </tr>
+                    <tr class="border-under">
+                        <th scope="row">INTERNA</td>
+                        <td id="interna_total"></td>
+                    </tr>  
+                    <tr>
+                        <th class="indent" scope="row">Internas Cambiais</td>
+                        <td id="interna_cambial"></td>
+                    </tr>  
+                    <tr class="space-under">
+                        <th class="indent" scope="row">Internas Demais</td>
+                        <td id="interna_demais"></td>
+                    </tr>
+                    <tr class="border-under">
+                        <th scope="row">EXTERNA</td>
+                        <td id="externa_total"></td>
+                    </tr>  
+                    <tr class="space-above destaque">
+                        <th scope="row">ATM</td>
+                        <td id="ATM_Total"></td>
+                    </tr>  
+                    <tr class="space-above destaque">
+                        <th scope="row">Custo Médio</td>
+                        <td id="Custo_Total"></td>
+                    </tr>                                                                        
+                </tbody>
+            </table>
+            <div class="container-svg-card">
+                <svg class="card"></svg>
+            </div>
         </div>
 
     </section>
