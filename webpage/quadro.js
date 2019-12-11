@@ -60,6 +60,13 @@ const w_container_card = $container_svg_card.node().offsetWidth;
 const w_svg_card = w_container_card > 400 ? 400 : w_container_card;
 const h_svg_card = 300;
 
+const margin = {
+  "top": 20,
+  "bottom": 20,
+  "left": 100,
+  "right": 30
+};
+
 const $svg_card = d3.select('svg.card');
 
 $svg_card      
@@ -71,9 +78,45 @@ const draw_grafico_card = function(dados_selecionados) {
   const mini_dataset = periodos_maturacao["rotulos"]
     .map( (d,i) => ({
       "rotulo" : d,
-      "valor": dados_selecionados[periodos_maturacao["valores"][i]],
+      "valor": +dados_selecionados[periodos_maturacao["valores"][i]],
       "valor_percentual": dados_selecionados[periodos_maturacao["percentual"][i]] 
-    }))
+    }));
+  
+  const valor_maximo_mini = d3.max(mini_dataset, d => d.valor);
+
+  const escala_valor = d3.scaleLinear()
+    .domain([0, valor_maximo_mini])
+    .range([margin.left, w_svg_card - margin.right]);
+
+  //console.log("valor maximo", valor_maximo_mini, escala_valor(valor_maximo_mini));
+  console.log("classificador", dados_selecionados, dados_selecionados.Classificador);
+  
+  const escala_rotulos = d3.scaleBand()
+    .domain(periodos_maturacao["rotulos"])
+    .range([margin.top, h_svg_card - margin.bottom]);
+
+  const rects = $svg_card.selectAll("rect")
+    .data(mini_dataset);
+
+  const rects_enter = rects
+    .enter()
+    .append('rect')
+    .attr('x', margin.left)
+    .attr('y', d => escala_rotulos(d.rotulo))
+    .attr('height', 10)
+    .attr('width', 0)
+    .attr('fill', "#444");
+  
+  const rects_update = rects.merge(rects_enter)
+    .transition()
+    .duration(500)
+    .attr('x', margin.left)
+    .attr('y', d => escala_rotulos(d.rotulo))
+    .attr('height', 10)
+    .attr('width', d => escala_valor(d.valor))
+    .attr('fill', fillColor(dados_selecionados.Classificador));
+  
+  const rotulos_y = $svg_card.
 
 
   console.log("Mini dataset", mini_dataset);
@@ -166,7 +209,7 @@ d3.csv("webpage/dados_quadro.csv").then(function(dados) {
         $campos_de_valor._groups[0].forEach(function(d) {
             const valor = dados_filtrados[d.id];
 
-            console.log(d.id, d, dados_filtrados[d.id]);
+            //console.log(d.id, d, dados_filtrados[d.id]);
 
             if (d.id == "ATM_Total") d.textContent = dados_filtrados[d.id] == "NA" ? "" : formataBR(dados_filtrados[d.id]) + " anos"
             else
