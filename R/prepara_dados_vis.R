@@ -5,8 +5,7 @@ library(viridis)
 library(colorspace)
 library(extrafont)
 
-extrafont::font_import()
-y
+#extrafont::font_import()
 loadfonts()
 
 load("R/Garantias.Rdata")
@@ -131,19 +130,34 @@ summary(honras_plot$valor)
 
 ggplot(honras_plot, aes(y = mutuario, x = mes_ano)) + geom_point()
 
-ggplot(honras_plot, aes(y = ente, x = data, fill = valor)) + 
-  geom_tile(width = 30, height = 1, color = "white") +
-  scale_x_date(limits = c(as.Date("2016-01-01"), NA), date_breaks = "1 year",
-               date_labels = "%Y") +
+plot_honras1 <- ggplot(honras_plot, aes(y = ente, x = data, fill = valor)) + 
+  geom_tile(width = 30, height = 1, color = "white", size = 1) +
+  geom_text(x = max(honras_plot$data) + 90, y = length(unique(honras_plot$mutuario)) + 1, label = "Totais", 
+            family = "Merriweather Sans Light", size = 2.5, 
+            hjust = "center", fontface = "bold", vjust = "center") + 
+  geom_text(x = max(honras_plot$data) + 90, 
+            aes(label = format(round(total_mutuario/1e6, 0), big.mark = ".",
+                               decimal.mark = ",")),
+            family = "Merriweather Sans Light", size = 2.5, 
+            hjust = "center", check_overlap = TRUE, vjust = "center") +
+  scale_x_date(limits = c(as.Date("2015-12-01"), NA), date_breaks = "4 months",
+               date_labels = "%b\n%Y") +
   scale_fill_continuous_sequential(palette = "BluGrn", 
                                    labels = function(x){format(x/1e6, big.mark = ".", decimal.mark = ",")}) +
   #scale_fill_viridis_c(direction = -1) +
-  labs(fill = "R$ milhões") +
+  coord_cartesian(clip = "off") +
+  labs(fill = NULL) +
   theme_minimal() +
   theme(axis.line = element_blank(),
-        axis.ticks = element_blank(),
+        axis.ticks.y = element_blank(),
         axis.title = element_blank(),
+        axis.text.x = element_text(size = 6),
         panel.grid = element_blank(),
-        legend.position = "bottom")
+        legend.position = "bottom",
+        text = element_text(family = "Merriweather Sans Light"),
+        legend.text = element_text(size = 7),
+        plot.margin = margin(.75, 1.5, .25, .25, "cm"))
+
+ggsave(filename = "honras1.png", plot = plot_honras1, width = 10, height = 3.5)
 
 honras_simples %>% group_by(mutuario, tipo_mutuario) %>% summarise(sum(valor), n())
