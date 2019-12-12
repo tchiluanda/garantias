@@ -374,3 +374,15 @@ section.quadro .container-svg-card p.rotulos {
 .opaque {
     opacity: 0;
 }
+
+@media (max-width: 1080px) {
+    section.prose aside.conteudo-destaque-lateral,
+    section.prose aside.conteudo-destaque-lateral.left {
+        position: static;
+        right: auto;
+        width: 100%;
+        font-size: 13px;
+        padding: 10px;
+        margin-top: 18px;
+    }
+}
