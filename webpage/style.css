@@ -177,6 +177,7 @@ section.quadro div.selecao-entidades {
     display: flex;
     justify-content: center;
     margin: 2em 0;
+    flex-wrap: wrap;
 }
 
 section.quadro div.selecao-entidades select {
