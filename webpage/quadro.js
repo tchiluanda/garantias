@@ -137,12 +137,12 @@ const draw_grafico_card = function(dados_selecionados) {
     .classed("rotulos", true)
     .text(d => formata_vlr_tooltip(d.valor) + " (" + d.valor_percentual + ")")
     .style("line-height", largura_barra + "px") // fundamental para centralizar!
-    .style("left", d => (escala_valor(d.valor) + 10 + margin.left) + "px")
     .style("top", d => (escala_rotulos(d.rotulo) - largura_barra/2) + "px")
     .style("width", (w_svg_card - escala_valor(valor_maximo_mini) - margin.left - 10) + "px")
     .transition()
     .duration(750)
-    .style("color", cor_grupo);
+    .style("color", cor_grupo)
+    .style("left", d => (escala_valor(d.valor) + 10 + margin.left) + "px");
 
   
   const rotulos_y = $container_svg_card
@@ -165,8 +165,6 @@ const draw_grafico_card = function(dados_selecionados) {
 
   d3.select('section.quadro span.titulo-card')
     .text(dados_selecionados.Inicio + ' (' + dados_selecionados.Classificador + ')');
-
-
 
   console.log("Mini dataset", mini_dataset);
 

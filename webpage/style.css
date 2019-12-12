@@ -6,6 +6,7 @@ body {
     margin: 0;
     background-color: #FAFFFF; /* lightcyan */
     color: #444;
+    /*font-size: 0.9rem;*/
 }
 
 header.logo {
@@ -72,8 +73,61 @@ section.prose {
     padding: 0 0.5rem;
 }
 
-section.prose img {
-    width: 100%;
+section.prose h2 {
+    color: #004D4D;
+}
+
+section.prose div.container-grupo-com-quadro {
+    position: relative; /* isso para o aside, que é filho e está com position: absolute, ser posicionado relativo a este div!*/
+}
+
+section.prose span.termo-destaque-lateral {
+    background-color: #D1E8E1;
+}
+
+section.prose aside.conteudo-destaque-lateral {
+    position: absolute;
+    font-weight: lighter;
+    right: calc(50% - 340px - 200px - 20px);
+    width: 200px;
+    font-size: 12px;
+    background-color: #D1E8E1;
+    padding: 10px;
+    top: 0; /*só funciona se o pai for relative */
+}
+
+section.prose aside.conteudo-destaque-lateral.left {
+    position: absolute;
+    font-weight: lighter;
+    left: calc(50% - 340px - 200px - 20px);
+    width: 200px;
+    font-size: 12px;
+    background-color: #D1E8E1;
+    padding: 10px;
+    top: 0; /*só funciona se o pai for relative */
+}
+
+section.prose aside.conteudo-destaque-lateral h4 {
+    margin-top: 0;
+}
+
+section.prose figure.plot-container {
+    margin: 0;
+}
+
+section.prose figure.plot-container img {
+    display: block;
+    width: 60%;
+    margin: auto;
+}
+
+section.prose figure.plot-container h3.plot-title,
+section.quadro div.mini-header h3 {
+    border-left: 5px solid #80160D;
+    padding-left: 15px;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
 }
 
 section.prose p.nota {
@@ -171,13 +225,14 @@ section.vis div.grafico-d3-container #tooltip {
 
 /* Quadro */
 
+/*
 section.quadro div.mini-header h2 {
     border-left: 5px solid #004D4D;
     padding: 5px 0px 5px 10px;
     font-size: 1rem;
     color: #004D4D;
     margin-bottom: 5px;
-}
+}*/
 
 /*section.quadro div.mini-header p {
     font-size: 0.7rem;
