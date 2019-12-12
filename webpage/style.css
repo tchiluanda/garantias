@@ -48,14 +48,20 @@ main header#abertura h1 {
 }
 
 main header#abertura p {
-    font-family: 'Merriweather', serif;
-    font-weight: 800;
+    font-family: 'Fira Code', serif;
+    font-weight: 100;
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 1rem;
     color: #004D4D; /*#E32C10; teal*/
-    line-height: 1.3;
-    margin-bottom: 3rem;
-    margin-top: 0;
+    line-height: 1.5;
+    margin: 0 auto 3rem auto;
+    max-width: 400px;
+}
+
+main header#abertura p.riscado {
+    text-decoration: line-through;
+    margin-bottom: 0;
+
 }
 
 /* fiz isso aqui abaixo para o highlight ficar um pouco mais estreito */
@@ -64,6 +70,10 @@ section.prose {
     color: #444;
     line-height: 1.5;
     padding: 0 0.5rem;
+}
+
+section.prose img {
+    width: 100%;
 }
 
 section.prose p.nota {
@@ -185,11 +195,13 @@ section.quadro div.selecao-entidades select {
     font-family: "Merriweather Sans";
     font-size: 0.75em;
     border-radius: 4px;
+    margin: 1em 2em;
 }
-
+/*
 section.quadro div.selecao-entidades select:first-child {
     margin-right: 2em;
 }
+*/
 
 section.quadro p.container-titulo-card {
     margin-bottom: 0;
