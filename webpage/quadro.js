@@ -123,7 +123,7 @@ const draw_grafico_card = function(dados_selecionados) {
   //console.log("container", $container_svg_card); 
   
 
-  // rotulos y
+  // rotulos
 
   const rotulos = $container_svg_card
     .selectAll("p.rotulos")
@@ -144,7 +144,8 @@ const draw_grafico_card = function(dados_selecionados) {
     .style("color", cor_grupo)
     .style("left", d => (escala_valor(d.valor) + 10 + margin.left) + "px");
 
-  
+  // rotulos y
+
   const rotulos_y = $container_svg_card
     .selectAll("p.y-label")
     .data(periodos_maturacao["rotulos"])
