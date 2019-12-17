@@ -41,6 +41,9 @@ https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2
 Tutorial do Jim:
 https://vallandingham.me//bubble_charts_with_d3v4.html
 
+Streamgraph para honras
+![](stream.svg)
+
 ### Resolver
 
 Tooltip passando do limite no celular
