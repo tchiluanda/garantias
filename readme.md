@@ -42,7 +42,7 @@ Tutorial do Jim:
 https://vallandingham.me//bubble_charts_with_d3v4.html
 
 Streamgraph para honras
-![](stream.svg)
+![](streamgraph_hflip_shorter.svg)
 
 ### Resolver
 
