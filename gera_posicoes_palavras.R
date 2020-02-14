@@ -2,7 +2,7 @@ library(tidyverse)
 library(readxl)
 library(jsonlite)
 
-grid <- read_excel("grid_letras.xlsx", sheet = "export_4")
+grid <- read_excel("grid_letras.xlsx", sheet = "export_5")
 
 new_grid <- as.data.frame(grid[,-1])
 
@@ -33,6 +33,10 @@ gera_grid <- function(grid_inicial) {
 
 
 exportar <- gera_grid(new_grid)
+
+exportar <- bind_rows(exportar, exportar, exportar, exportar)
+exportar <- exportar[1:146,] %>%
+  mutate(nome = paste("bolha", row_number()))
 
 ggplot(exportar, aes(x = x, y = y)) + geom_point()
 
