@@ -28,7 +28,7 @@ Algumas observações:
 
 ### agrupador_atm_completo
 
-### Referências
+### Referências / inspirações
 
 Tabelas como essa daqui:
 https://pudding.cool/2018/08/wiki-death/
@@ -43,6 +43,32 @@ https://vallandingham.me//bubble_charts_with_d3v4.html
 
 Streamgraph para honras
 ![](streamgraph_hflip_shorter.svg)
+
+
+### Páginas relacionadas dentro do site
+
+http://tesouro.gov.br/web/stn/portal-de-garantias-da-uniao
+
+O conteúdo do Portal de Garantias da União está organizado da seguinte forma: 
+ 
+* Critérios de elegibilidade para concessão de garantias do Tesouro aos tomadores de recursos;
+* Relatórios Mensal de Honras de Avais e Quadrimestral de Garantias; Limites estabelecidos pelo Senado Federal;
+* Ações de modernização do Sistema de Garantias da União;
+* Resoluções e funcionamento do Comitê de Garantias da STN; 
+* Portarias MF e STN relacionadas à concessão de Garantias pela União; e
+* Manuais, fluxos de procedimentos e legislação aplicável.
+
+https://www.tesourotransparente.gov.br//visualizacao/previa-fiscal
+(avaliação da capacidade de pagamento dos entes subnacionais, o principal indicador de saúde fiscal utilizado pelo Tesouro Nacional para definir a sustentabilidade fiscal dos entes)
+
+Manual para instrução de pleitos
+https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=categories&id=58&Itemid=274
+
+
+https://www.tesouro.fazenda.gov.br/pt/-/concessao-de-garantia-pela-uniao
+
+
+
 
 ### Resolver
 
