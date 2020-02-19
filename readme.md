@@ -67,6 +67,7 @@ https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=catego
 
 https://www.tesouro.fazenda.gov.br/pt/-/concessao-de-garantia-pela-uniao
 
+https://www.tesourotransparente.gov.br/visualizacao/painel-de-operacoes-de-credito
 
 
 
