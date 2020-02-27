@@ -2,7 +2,7 @@ library(tidyverse)
 library(readxl)
 library(jsonlite)
 
-grid <- read_excel("grid_letras.xlsx", sheet = "export_5")
+grid <- read_excel("grid_letras.xlsx", sheet = "grid_export")
 
 new_grid <- as.data.frame(grid[,-1])
 
@@ -38,6 +38,33 @@ exportar <- bind_rows(exportar, exportar, exportar, exportar)
 exportar <- exportar[1:146,] %>%
   mutate(nome = paste("bolha", row_number()))
 
-ggplot(exportar, aes(x = x, y = y)) + geom_point()
-
+ggplot(exportar, aes(x = x, y = y)) + geom_point() 
 jsonlite::write_json(exportar, "grid_temp.json")
+
+## experimentos
+
+max(exportar$y)
+
+ggplot(exportar, aes(x, y)) + geom_raster() + scale_y_reverse()
+ggplot(exportar, aes(x, y)) + geom_point(size = 4) + scale_y_reverse()
+ggplot(exportar, aes(x, y)) + geom_hex(bins = c(43,52)) + scale_y_reverse()
+ggplot(exportar, aes(x, y)) + geom_polygon(aes(group = nome)) + scale_y_reverse()
+
+# cores
+coral        <- rgb(255/255, 99/255, 79/255)
+amarelo      <- rgb(255/255,227/255, 76/255)
+cinza_claro  <- rgb(183/255,177/255,165/255)
+cinza_medio  <- rgb(118/255,113/255,107/255)
+cinza_escuro <- rgb( 51/255, 51/255, 51/255)
+
+cores <- c(coral, amarelo, cinza_claro, cinza_medio, cinza_escuro)
+
+exportar_cores <- exportar %>% rowwise() %>% mutate(cor = sample(cores, 1))
+
+ggplot(exportar_cores, aes(x, y, color = cor)) + geom_point(size = 2) + scale_y_reverse() + scale_color_identity()
+ggplot(exportar_cores, aes(x, y, fill = cor)) + geom_raster() + scale_y_reverse() + scale_fill_identity()
+
+
+logo <- ggplot(exportar_cores, aes(x, y)) + geom_tile(fill = cinza_medio, color = cinza_escuro) + scale_y_reverse() + theme_minimal() + theme(axis.title = element_blank(), axis.text = element_blank(), axis.line = element_blank(), panel.grid = element_blank())
+
+ggsave(logo, filename = "logo_px.png", width = 5.2, height = 4.3, dpi = 300, type = "cairo-png", bg = "transparent")
