@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+<<<<<<< HEAD
+=======
+.vscode/settings.json
+.Rhistory
+>>>>>>> a91b16c100df9d7ff898436737f617a8fd59fd33

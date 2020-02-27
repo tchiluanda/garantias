@@ -11,13 +11,25 @@ library(flexdashboard)
 library(bizdays)
 library(matrixStats)
 library(rlang)
-
+library(readr)
+library(abjutils)
 
 #Definição Pasta de Processamento dos Arquivos
 
 setwd("C:/Users/lucas.leite/Desktop/Lucas/RStudio/16. Painel Garantias - CODIV - SUDIP/R")
 
 #___________________________________________________________________________________________
+
+ numero <- function(x){
+  
+  a <- as.character(x)
+  b <- str_replace_all(a,"\\.","")
+  c <- str_replace_all(b,",","\\.")
+  d <- as.numeric(c)
+  
+  return(d)
+ }
+##########
 
 #Novo período (Data) - Último Quadrimestre
 
@@ -48,8 +60,9 @@ percentual_vincendo <- as.character("PercVinc ")
 
 #CSV - Total de Garantias
 
-agrupador_total_bruto <- read.csv2(paste0(total,Novo_Periodo,".csv")) %>%
+agrupador_total_bruto <- read.csv2(paste0(total,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
         rename(Inicio = 1) 
+        
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
         
@@ -92,15 +105,16 @@ agrupador_total <- agrupador_total_bruto %>%
            Periodo = data_referencia,
            Grupo = as.character("Total")) %>%
     select(Inicio, Classificador,Grupo,Periodo,everything()) %>%
-    fill(Classificador)
-                    
+    fill(Classificador) %>%
+    mutate(Inicio = rm_accent(Inicio)) %>%
+    mutate(Classificador = rm_accent(Classificador))
 #___________________________________________________________________________________________________________    
     
 # Processamento - ATM (Avarage Time to Maturity) - TOTAl
 
 #CSV - ATM Total
 
-agrupador_atm_bruto <- read.csv2(paste0(atm_total,Novo_Periodo,".csv")) %>%
+agrupador_atm_bruto <- read.csv2(paste0(atm_total,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
@@ -124,7 +138,7 @@ agrupador_atm <- agrupador_atm_bruto %>%
 
 #CSV - ATM Garantias
 
-agrupador_atm_bruto_interno <- read.csv2(paste0(atm_interno,Novo_Periodo,".csv")) %>%
+agrupador_atm_bruto_interno <- read.csv2(paste0(atm_interno,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
@@ -148,7 +162,7 @@ agrupador_atm_interno <- agrupador_atm_bruto_interno %>%
 
 #CSV - ATM Garantias
 
-agrupador_atm_bruto_externo <- read.csv2(paste0(atm_externo,Novo_Periodo,".csv")) %>%
+agrupador_atm_bruto_externo <- read.csv2(paste0(atm_externo,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
@@ -172,7 +186,9 @@ agrupador_atm_externo <- agrupador_atm_bruto_externo %>%
 
 agrupador_atm_completo <- agrupador_atm %>%
     left_join(agrupador_atm_interno) %>%
-    left_join(agrupador_atm_externo)
+    left_join(agrupador_atm_externo) %>%
+    mutate(Inicio = rm_accent(Inicio)) %>%
+    mutate(Classificador = rm_accent(Classificador))
 #_______________________________________________________________________________________________________
 
 #Processamento Custo Médio
@@ -181,7 +197,7 @@ agrupador_atm_completo <- agrupador_atm %>%
 
 #CSV - CUSTO Total
 
-agrupador_custo_bruto <- read.csv2(paste0(custo_total,Novo_Periodo,".csv")) %>%
+agrupador_custo_bruto <- read.csv2(paste0(custo_total,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
@@ -205,7 +221,7 @@ agrupador_custo <- agrupador_custo_bruto %>%
 
 #CSV - CUSTO Interno
 
-agrupador_custo_bruto_interno <- read.csv2(paste0(custo_interno,Novo_Periodo,".csv")) %>%
+agrupador_custo_bruto_interno <- read.csv2(paste0(custo_interno,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
@@ -229,7 +245,7 @@ agrupador_custo_interno <- agrupador_custo_bruto_interno %>%
 
 #CSV - CUSTO Externo
 
-agrupador_custo_bruto_externo <- read.csv2(paste0(custo_externo,Novo_Periodo,".csv")) %>%
+agrupador_custo_bruto_externo <- read.csv2(paste0(custo_externo,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
@@ -255,7 +271,9 @@ agrupador_custo_externo <- agrupador_custo_bruto_externo %>%
 
 agrupador_custo_completo <- agrupador_custo %>%
     left_join(agrupador_custo_interno) %>%
-    left_join(agrupador_custo_externo)
+    left_join(agrupador_custo_externo) %>%
+     mutate(Inicio = rm_accent(Inicio)) %>%
+  mutate(Classificador = rm_accent(Classificador))
 
 #_______________________________________________________________________________________________________
 
@@ -265,7 +283,7 @@ agrupador_custo_completo <- agrupador_custo %>%
 
 #CSV - Percentual Vincendo
 
-agrupador_percentual_vincendo_bruto <- read.csv2(paste0(percentual_vincendo,Novo_Periodo,".csv")) %>%
+agrupador_percentual_vincendo_bruto <- read.csv2(paste0(percentual_vincendo,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
@@ -298,30 +316,56 @@ agrupador_percentual_vincendo <- agrupador_percentual_vincendo_bruto %>%
             Acima_5_anos_percentual = 16,
             Total = 17,
             Total_percentual = 18
-    )
+    ) %>%
+  mutate(Inicio = rm_accent(Inicio)) %>%
+  mutate(Classificador = rm_accent(Classificador))
 
 
 #__________________________________________
 
 #CSV - Honras Garantias
 
-
+honras <- read_delim("relatorio_honras_atrasos.csv", 
+                     ";", escape_double = FALSE, locale = locale(date_format = "%d/%m/%Y", 
+                                                                 decimal_mark = ",", grouping_mark = ".", 
+                                                                 encoding = "LATIN1"), trim_ws = TRUE, 
+                     skip = 9)
 
 
 #_________________________________________________
 
 #CSV - Novos Contratos
 
+novos_contratos <- read_delim("relatorio_info_cadastrais_financeiras_garantias.csv", 
+                     ";", escape_double = TRUE, locale = locale(date_format = "%d/%m/%y", 
+                                                                 decimal_mark = ",", grouping_mark = ".", 
+                                                                 encoding = "LATIN1"), trim_ws = TRUE, 
+                     
+                     skip = 10)  
+  
+                    
 
 
-
+novos_contratos <- novos_contratos %>%
+                   mutate(Mutuario = rm_accent(`Mutuário`),
+                          `Valor Contratado Original` = (`Valor Contratado Original`/1000000),
+                          Assinatura = as.Date(`Data de Assinatura`, origin="1899-12-30", format ="%d/%m/%Y"),
+                          Ano = year(Assinatura),
+                          Status = ifelse(Fase == "Concluído","Concluido","Ativo")) %>%
+                   mutate(Tipo_Mutuario = rm_accent(`Tipo Mutuário`)) %>%
+                   rename(Moeda = 22,
+                          Tipo = 9 )
+                   
+novos_contratos$Tipo_Mutuario <- ifelse(novos_contratos$Tipo_Mutuario =="Entidades Estaduais Controladas", 
+                          "Entidades Controladas",
+                          novos_contratos$Tipo_Mutuario)
 #___________________________
 
 
 
 #____________________________
 
-save(list = c("agrupador_atm_completo","agrupador_custo_completo","agrupador_percentual_vincendo","agrupador_total"),file = "Garantias.Rdata")
+save(list = c("data_referencia","honras","novos_contratos","agrupador_atm_completo","agrupador_custo_completo","agrupador_percentual_vincendo","agrupador_total"),file = "Garantias.Rdata")
 
 
 
