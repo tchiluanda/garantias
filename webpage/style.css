@@ -5,6 +5,8 @@
 body {
     margin: 0;
     background-color: #FAFFFF; /* lightcyan */
+    color: #444;
+    /*font-size: 0.9rem;*/
 }
 
 header.logo {
@@ -36,11 +38,31 @@ main {
 }
 
 main header#abertura h1 {
-    font-family: 'Merriweather', serif;
+    font-family: 'Bungee', serif;
     text-align: center;
-    font-size: 3rem;
+    font-size: 3.5rem;
+    color: #80160D; /*#E32C10; teal*/
+    line-height: 1.3;
+    text-shadow: 2px 2px 2px #E69E73;
+    margin-bottom: 0;
+    margin-top: 3rem;
+}
+
+main header#abertura p {
+    font-family: 'Fira Code', serif;
+    font-weight: 100;
+    text-align: center;
+    font-size: 1rem;
     color: #004D4D; /*#E32C10; teal*/
-    line-height: 1.3
+    line-height: 1.5;
+    margin: 0 auto 3rem auto;
+    max-width: 400px;
+}
+
+main header#abertura p.riscado {
+    text-decoration: line-through;
+    margin-bottom: 0;
+
 }
 
 /* fiz isso aqui abaixo para o highlight ficar um pouco mais estreito */
@@ -48,6 +70,64 @@ main header#abertura h1 {
 section.prose {
     color: #444;
     line-height: 1.5;
+    padding: 0 0.5rem;
+}
+
+section.prose h2 {
+    color: #004D4D;
+}
+
+section.prose div.container-grupo-com-quadro {
+    position: relative; /* isso para o aside, que é filho e está com position: absolute, ser posicionado relativo a este div!*/
+}
+
+section.prose span.termo-destaque-lateral {
+    background-color: #D1E8E1;
+}
+
+section.prose aside.conteudo-destaque-lateral {
+    position: absolute;
+    font-weight: lighter;
+    right: calc(50% - 340px - 200px - 20px);
+    width: 200px;
+    font-size: 12px;
+    background-color: #D1E8E1;
+    padding: 10px;
+    top: 0; /*só funciona se o pai for relative */
+}
+
+section.prose aside.conteudo-destaque-lateral.left {
+    position: absolute;
+    font-weight: lighter;
+    left: calc(50% - 340px - 200px - 20px);
+    width: 200px;
+    font-size: 12px;
+    background-color: #D1E8E1;
+    padding: 10px;
+    top: 0; /*só funciona se o pai for relative */
+}
+
+section.prose aside.conteudo-destaque-lateral h4 {
+    margin-top: 0;
+}
+
+section.prose figure.plot-container {
+    margin: 0;
+}
+
+section.prose figure.plot-container img {
+    display: block;
+    width: 60%;
+    margin: auto;
+}
+
+section.prose figure.plot-container h3.plot-title,
+section.quadro div.mini-header h3 {
+    border-left: 5px solid #80160D;
+    padding-left: 15px;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
 }
 
 section.prose p.nota {
@@ -107,11 +187,6 @@ section.vis nav.controle-vis button:hover {
     border-bottom: 5px solid #004D4D;
 }
 
-
-
-
-
-
 section.vis div.grafico-d3-container {
     position: relative;
 }
@@ -147,9 +222,167 @@ section.vis div.grafico-d3-container #tooltip {
     z-index: 1; 
 }
 
+
+/* Quadro */
+
+/*
+section.quadro div.mini-header h2 {
+    border-left: 5px solid #004D4D;
+    padding: 5px 0px 5px 10px;
+    font-size: 1rem;
+    color: #004D4D;
+    margin-bottom: 5px;
+}*/
+
+/*section.quadro div.mini-header p {
+    font-size: 0.7rem;
+}*/
+
+section.quadro div.selecao-entidades {
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+    flex-wrap: wrap;
+}
+
+section.quadro div.selecao-entidades select {
+    padding: 6px 12px;
+    font-family: "Merriweather Sans";
+    font-size: 0.75em;
+    border-radius: 4px;
+    margin: 1em 2em;
+}
+/*
+section.quadro div.selecao-entidades select:first-child {
+    margin-right: 2em;
+}
+*/
+
+section.quadro p.container-titulo-card {
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    font-size: 0.8rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section.quadro p.container-titulo-card span {
+    border-width: 3px;
+    padding: 10px;
+    color: ghostwhite;
+}
+
+section.quadro div.card {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    border: 3px solid #999;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section.quadro table {
+    font-size: 0.75rem;
+    border-collapse: collapse;
+    color: #444;
+    margin: 0;
+    width: 300px;
+}
+
+section.quadro table th {
+    text-align: left;
+    font-weight: normal;
+}
+
+section.quadro table td {
+    text-align: right;
+}
+
+section.quadro table td {
+    font-family: "Fira Code";
+}
+
+section.quadro table th.indent{
+    padding-left: 1rem;
+}
+
+section.quadro table td,
+section.quadro table th {
+    padding: 0.25rem;
+}
+
+section.quadro table tr.destaque td,
+section.quadro table tr.destaque th{
+    font-weight: bold;
+}
+
+section.quadro table tr.border-under{
+    border-bottom: 3px solid #d0d0d0;
+}
+
+section.quadro table .space-under>td,
+section.quadro table .space-under>th {
+    padding-bottom: 1rem;
+}
+
+section.quadro table .space-above>td,
+section.quadro table .space-above>th {
+    padding-top: 1rem;
+}
+
+section.quadro .area-grafico {
+    flex-grow: 1;
+    min-width: 300px;
+}
+
+section.quadro .area-grafico p {
+    font-size: 0.75rem;
+    margin: 0 0 10px 80px;
+    padding-top: 0.25rem;
+
+}
+
+section.quadro .container-svg-card {
+    position: relative;
+}
+
+section.quadro .container-svg-card p.y-label {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    padding-right: 10px;
+    font-size: 0.65rem;
+    font-family: "Merriweather Sans";
+}
+
+section.quadro .container-svg-card p.rotulos {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    font-size: 0.65rem;
+    font-family: "Merriweather Sans";
+    text-align: left;
+}
+
 .hidden {
     display: none;
 }
 
+.opaque {
+    opacity: 0;
+}
 
-
+@media (max-width: 1080px) {
+    section.prose aside.conteudo-destaque-lateral,
+    section.prose aside.conteudo-destaque-lateral.left {
+        position: static;
+        right: auto;
+        width: 100%;
+        font-size: 13px;
+        padding: 10px;
+        margin-top: 18px;
+    }
+}
