@@ -1,3 +1,23 @@
+### Contexto
+
+A ideia inicial é contextualizar as garantias concedidas pela União no cenário das dívidas dos entes subnacionais (Estados, Municípios e Distrito Federal). Assim, podemos segmentar o endividamento total dos entes subnacionais em três componentes:
+
+i. a dívida com a União, decorrente do refinanciamento/renegociação/reestruturação da dívida desses entes;
+ii. a dívida com instituições financeiras, sem garantia da União; e
+iii. a dívida com instituições financeiras, com garantia da União mdash que é o foco principal desta história.
+
+Definida essa segmentação, o próximo passo é buscar os dados. Aí temos o seguinte cenário:
+
+* O Sadipem, na opção "CDP", "Baixar o cadastro completo", traz uma tabela "05-dividas-execucao-financeira" que detalha os saldos devedores nas datas-base de cada ente, para cada tipo de dívida. Em tese seria possível obter o valor (i) dessa base.
+
+* O Siconfi traz os demonstrativos da Dívida Consolidada declarados pelos entes em seus RGF, o que permitiria obter também a informação (i). No entanto, esse valor não bate com o obtido do Sadipem.
+
+* Por ocasião da elaboração do Boletim dos Entes Subnacionais, a equipe técnica do Tesouro faz um trabalho de batimento dos dados dos RGF com os dados do Sadipem, mas essencialmente para o Estados. Assim, os dados do boletim seriam os mais confiáveis para a informação (i). No entanto, esses dados tem uma defasagem e só se referem a Estados.
+
+
+
+
+
 ### Observações gerais
 
 Dados apenas de mutuários: 
@@ -27,6 +47,8 @@ Algumas observações:
 "Externas": `externa_total`
 
 ### agrupador_atm_completo
+
+
 
 ### Referências / inspirações
 
