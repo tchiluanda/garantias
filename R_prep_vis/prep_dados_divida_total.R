@@ -26,8 +26,9 @@ tabela_completa <- rbind(tabela_estados, tabela_mun)
 #paste0(unique(tabela_completa$Coluna), "###")
 
 dc <- tabela_completa %>%
-  filter(Conta == "DÍVIDA CONSOLIDADA - DC (I)") %>%
-  filter(Coluna == "SALDO DO EXERCÍCIO ANTERIOR") %>%
-  #filter(Coluna %in% c("Até o 3º Quadrimestre", "Até o 2º Semestre")) %>%
+  #filter(Conta == "DÍVIDA CONSOLIDADA - DC (I)") %>%
+  filter(Conta == "Reestruturação da Dívida de Estados e Municípios") %>%
+  #filter(Coluna == "SALDO DO EXERCÍCIO ANTERIOR") %>%
+  filter(Coluna %in% c("Até o 3º Quadrimestre", "Até o 2º Semestre")) %>%
   group_by(Escopo) %>%
   summarise(Divida_Total = sum(Valor))
