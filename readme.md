@@ -8,11 +8,17 @@ iii. a dívida com instituições financeiras, com garantia da União mdash que 
 
 Definida essa segmentação, o próximo passo é buscar os dados. Aí temos o seguinte cenário:
 
+* (iii) está disponível no Relatório Quadrimestral de Garantias, sem problemas. Só é preciso disponibilizar no CKAN.
+
 * O Sadipem, na opção "CDP", "Baixar o cadastro completo", traz uma tabela "05-dividas-execucao-financeira" que detalha os saldos devedores nas datas-base de cada ente, para cada tipo de dívida. Em tese seria possível obter o valor (i) dessa base.
 
-* O Siconfi traz os demonstrativos da Dívida Consolidada declarados pelos entes em seus RGF, o que permitiria obter também a informação (i). No entanto, esse valor não bate com o obtido do Sadipem.
+* O Siconfi traz os demonstrativos da Dívida Consolidada declarados pelos entes em seus RGF, o que permitiria obter também a informação (i), e de forma tempestiva (para 2019, no caso). Para isso baixamos os arquivos correspondentes às combinações, em "Fibra", "RGF": periodicidade quadrimestral, período 3º quadrimestre, Poder Executivo, Anexo 02, escopo Estados, e, depois, Municípios. Além disso, é preciso usar também a combinação periodicidade semestral, período 2º semestre, Poder Executivo, Anexo 02, escopo Municípios. No entanto, o valor total obtido valor não bate com o obtido do Sadipem, mesmo excluindo o tipo de dívida "Passivo Atuarial" do Sadipem. Obs.: Esse mesmo dado do Siconfi é apresentado no painel https://www.tesourotransparente.gov.br/historias/visao-integrada-das-dividas-da-uniao-dos-estados-do-distrito-federal-e-dos-municipios. Seria uma forma de referenciar o dado a uma fonte mais simples.
 
-* Por ocasião da elaboração do Boletim dos Entes Subnacionais, a equipe técnica do Tesouro faz um trabalho de batimento dos dados dos RGF com os dados do Sadipem, mas essencialmente para o Estados. Assim, os dados do boletim seriam os mais confiáveis para a informação (i). No entanto, esses dados tem uma defasagem e só se referem a Estados.
+* Por ocasião da elaboração do Boletim dos Entes Subnacionais, a equipe técnica do Tesouro faz um trabalho de batimento dos dados dos RGF com os dados do Sadipem, mas essencialmente para o Estados. Assim, os dados do boletim seriam os mais confiáveis para a informação (i). No entanto, esses dados apresentam uma defasagem e só se referem a Estados.
+
+* (i) pode ser obtido do TT. Em última análise, pode-se usar o dado do próprio Anexo 2 do RGF dos entes, na linha "Reestruturação da Dívida de Estados e Municípios". No entanto, o dado do Tesouro mostra um saldo de 640 bilhões, e a DCL, 93 bi (que é o mesmo valor do Sadipem para essa mesma rubrica). Há um grande valor na rubrica "Empréstimos internos", o que deve indicar uma classificação inadequada dos valores por parte dos entes.
+
+
 
 
 
