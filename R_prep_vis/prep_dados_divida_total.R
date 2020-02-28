@@ -1,4 +1,5 @@
 library(tidyverse)
+library(janitor)
 
 
 # Pega os dados -----------------------------------------------------------
@@ -20,3 +21,13 @@ tabela_mun <- rbind(tabela_mun1, tabela_mun2) %>%
          Exercicio = 2019)
 
 tabela_completa <- rbind(tabela_estados, tabela_mun)
+
+#unique(tabela_completa$Conta)
+#paste0(unique(tabela_completa$Coluna), "###")
+
+dc <- tabela_completa %>%
+  filter(Conta == "DÍVIDA CONSOLIDADA - DC (I)") %>%
+  filter(Coluna == "SALDO DO EXERCÍCIO ANTERIOR") %>%
+  #filter(Coluna %in% c("Até o 3º Quadrimestre", "Até o 2º Semestre")) %>%
+  group_by(Escopo) %>%
+  summarise(Divida_Total = sum(Valor))
