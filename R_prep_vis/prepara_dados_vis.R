@@ -8,7 +8,7 @@ library(extrafont)
 #extrafont::font_import()
 loadfonts()
 
-load("R/Garantias.Rdata")
+load("R/Garantias_dez_2019.Rdata")
 
 
 # Dados Bubble Chart ------------------------------------------------------
@@ -28,9 +28,11 @@ dados_vis <- dados_vis_pre %>%
   mutate(rank_classificadores = rank(-total_classificador)) %>%
   right_join(dados_vis_pre)
 
-write.csv(dados_vis, file = "webpage/dados_vis.csv", fileEncoding = "UTF-8")
+write.csv(dados_vis, file = "webpage/dados_vis_garantias.csv", fileEncoding = "UTF-8")
 
-dados_vis %>% group_by(Classificador) %>% summarize(first(total_classificador))
+total_classificador <- dados_vis %>% group_by(Classificador) %>% summarize(first(total_classificador))
+
+save(total_classificador, file = "total_garantias_classificador.RData")
 
 dados_vis %>% filter(rank_geral>=16) %>% group_by() %>% summarise(sum(valor))
 
@@ -76,6 +78,11 @@ quadro <- list(
   mutate(interna_demais = interna_total - interna_cambial)
 
 write.csv(quadro, file = "webpage/dados_quadro.csv", fileEncoding = "UTF-8")
+
+
+# contratos ---------------------------------------------------------------
+
+write.csv(novos_contratos, file = "webpage/contratos.csv", fileEncoding = "UTF-8")
 
 
 # honras ------------------------------------------------------------------
