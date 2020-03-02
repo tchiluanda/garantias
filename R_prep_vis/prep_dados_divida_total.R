@@ -45,12 +45,52 @@ div_uniao_bruto <- read_excel(paste0(caminho, "SALDOS_DEVEDORES_PROGRAMAS_FINANC
 
 div_uniao <- div_uniao_bruto %>%
   select(ATIVO, periodo_interesse_coafi) %>%
-  filter(ATIVO == "Total")
-
+  filter(ATIVO == "Total") %>%
+  rename(Divida_Uniao = periodo_interesse_coafi, 
+         Escopo = ATIVO)
 
 
 # pega os dados divida garantida ------------------------------------------
 
+load("total_garantias_classificador.RData")
+
+div_garantida <- total_classificador %>%
+  rename(Escopo = Classificador,
+         Divida_Garantida = 2) %>%
+  filter(Escopo %in% c("Estados", "Municipios")) %>%
+  mutate(Escopo = if_else(Escopo == "Municipios", "Municípios", Escopo)) %>%
+  janitor::adorn_totals("row")
+
+
+# organiza os dados para a visualizacao -----------------------------------
+
+dividas <- dc %>%
+  left_join(div_uniao) %>%
+  left_join(div_garantida) %>%
+  # isso tudo agora enquanto não temos os valores da Dívida União
+  # aberto por Estados / Municípios... por enquanto estou alocando 
+  # proporcionalmente
+  group_by() %>%
+  mutate(temp_total_Div = sum(Divida_Total)/2,
+         temp_percent_total = Divida_Total / temp_total_Div,
+         temp_total_DivUniao = sum(Divida_Uniao, na.rm = TRUE),
+         Divida_Uniao = if_else(is.na(Divida_Uniao), 
+                               temp_total_DivUniao * temp_percent_total,
+                               Divida_Uniao)) %>%
+  ungroup() %>%
+  mutate(Divida_demais = Divida_Total - Divida_Uniao - Divida_Garantida) %>%
+  select(-starts_with("temp_")) %>%
+  filter(Escopo != "Total") %>%
+  gather(-Escopo, key = tipo_divida, value = valor) %>%
+  filter(tipo_divida != "Divida_Total")
+
+
+# prototipinho da visualizacao --------------------------------------------
+
+ggplot(dividas, aes(x = 1, y = valor, fill = tipo_divida)) + geom_col()
+ggplot(dividas, aes(x = Escopo, y = valor, fill = tipo_divida)) + geom_col()
+ggplot(dividas, aes(x = tipo_divida, y = valor, fill = Escopo)) + geom_col()
+ggplot(dividas, aes(x = tipo_divida, y = valor, fill = Escopo)) + geom_col(position = position_dodge())
 
 
 
