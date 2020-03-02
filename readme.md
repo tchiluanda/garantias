@@ -1,4 +1,25 @@
-### Contexto
+# Projeto Garantias da União
+
+Este texto descreve e documenta principalmente o processo de construção da história das garantias, disponível em
+
+https://tchiluanda.github.io/garantias/
+
+## Estrutura básica
+
+1. Contexto, histórico
+   Visualização: as dívidas de Estados e Municípios
+
+2. As garantias
+   Visualização: saldo das garantias concecidas pela União (bubble chart)
+
+3. As garantias: em detalhes, os contratos
+   Visualização: "card" do ente selecionado, lista de todos os contratos garantidos para este ente. Fazer mapa?
+
+4. O que acontece quando o estado ou o município não paga o empréstimo?
+   Visualização: as honras &mdash streamgraph, transição para novo bubble chart.
+
+
+### 1. Contexto
 
 A ideia inicial é contextualizar as garantias concedidas pela União no cenário das dívidas dos entes subnacionais (Estados, Municípios e Distrito Federal). Assim, podemos segmentar o endividamento total dos entes subnacionais em três componentes:
 
@@ -17,6 +38,36 @@ Definida essa segmentação, o próximo passo é buscar os dados. Aí temos o se
 * Por ocasião da elaboração do Boletim dos Entes Subnacionais, a equipe técnica do Tesouro faz um trabalho de batimento dos dados dos RGF com os dados do Sadipem, mas essencialmente para o Estados. Assim, os dados do boletim seriam os mais confiáveis para a informação (i). No entanto, esses dados apresentam uma defasagem e só se referem a Estados.
 
 * (i) pode ser obtido do TT. Em última análise, pode-se usar o dado do próprio Anexo 2 do RGF dos entes, na linha "Reestruturação da Dívida de Estados e Municípios". No entanto, o dado do Tesouro mostra um saldo de 640 bilhões, e a DCL, 93 bi (que é o mesmo valor do Sadipem para essa mesma rubrica). Há um grande valor na rubrica "Empréstimos internos", o que deve indicar uma classificação inadequada dos valores por parte dos entes.
+
+## Pipeline da análise
+
+### 1. `R_prep_vis/prepara_dados_vis.R`
+
+Consome: 
+* `Garantias.RData` (gerado no processamento do painel de garantias).
+
+Produz:
+* `webpage/dados_vis_garantias.csv`, a ser consumido por `visualizacao.js`.
+
+* `total_garantias_classificador.RData`, a ser consumido por `R_prep_vis/prep_dados_divida_total.R`. (<span style="background-color: goldenrod;">Melhorar:</span> mover dado intermediário para uma pasta específica).
+
+* `webpage/dados_quadro.csv`, a ser consumido por `quadro.js`.
+
+* `webpage/contratos.csv`, a ser consumido por `quadro.js`.
+
+* `webpage/honras.csv`, a ser consumido por `honras.js`.
+
+### 2. `R_prep_vis/prep_dados_divida_total.R`
+
+Consome: 
+* `/R_prep_vis/outros_dados/finbraRGF_2019_estados.csv`
+* `/R_prep_vis/outros_dados/finbraRGF_2019_mun_quad.csv`
+* `/R_prep_vis/outros_dados/finbraRGF_2019_mun_sem.csv`
+* `/R_prep_vis/outros_dados/SALDOS_DEVEDORES_PROGRAMAS_FINANCIAMENTO_GOVERNO_FEDERAL_2020jan.xls`
+* `total_garantias_classificador.RData`
+
+Produz:
+
 
 
 
