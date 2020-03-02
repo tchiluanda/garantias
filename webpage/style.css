@@ -1,3 +1,14 @@
+
+/* Variáveis */
+
+:root {
+    --text-color: #444;
+    --bg-color: #FAFFFF;
+    --main-font: 
+}
+
+/* Estilo geral */
+
 * {
     box-sizing: border-box;
 }
@@ -386,3 +397,5 @@ section.quadro .container-svg-card p.rotulos {
         margin-top: 18px;
     }
 }
+
+/* visualizacao-divida-entes */
