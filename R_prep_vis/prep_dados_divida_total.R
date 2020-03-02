@@ -1,15 +1,19 @@
 library(tidyverse)
 library(janitor)
+library(readxl)
 
 
-# Pega os dados -----------------------------------------------------------
+exercicio_interesse_siconfi <- 2019
+periodo_interesse_coafi <- "Dez/2019"
+
+# pega os dados divida total (siconfi) ------------------------------------
 
 caminho <- "./R_prep_vis/outros_dados/"
 
 tabela_estados <- read.csv2(paste0(caminho, "finbraRGF_2019_estados.csv"), 
                             skip = 5) %>%
   mutate(Escopo    = "Estados",
-         Exercicio = 2019)
+         Exercicio = exercicio_interesse_siconfi)
 
 tabela_mun1 <- read.csv2(paste0(caminho, "finbraRGF_2019_mun_quad.csv"), 
                          skip = 5)
@@ -18,7 +22,7 @@ tabela_mun2 <- read.csv2(paste0(caminho, "finbraRGF_2019_mun_sem.csv"),
 
 tabela_mun <- rbind(tabela_mun1, tabela_mun2) %>%
   mutate(Escopo    = "Municípios",
-         Exercicio = 2019)
+         Exercicio = exercicio_interesse_siconfi)
 
 tabela_completa <- rbind(tabela_estados, tabela_mun)
 
@@ -33,3 +37,21 @@ dc <- tabela_completa %>%
   group_by(Escopo) %>%
   summarise(Divida_Total = sum(Valor)) %>%
   janitor::adorn_totals("row")
+
+
+# pega os dados divida com Uniao (Coafi) ----------------------------------
+
+div_uniao_bruto <- read_excel(paste0(caminho, "SALDOS_DEVEDORES_PROGRAMAS_FINANCIAMENTO_GOVERNO_FEDERAL_2020jan.xls"), skip = 5)
+
+div_uniao <- div_uniao_bruto %>%
+  select(ATIVO, periodo_interesse_coafi) %>%
+  filter(ATIVO == "Total")
+
+
+
+# pega os dados divida garantida ------------------------------------------
+
+
+
+
+
