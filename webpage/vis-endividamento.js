@@ -42,7 +42,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   // escala y
   const y = d3.scaleLinear()
               .range([margin.top, h-margin.bottom])
-              .domain([d3.max(dados, d => d.valor), 0]); 
+              .domain([0, d3.max(dados, d => d.valor)]); 
   
   // escala altura
   const l = d3.scaleLinear()
@@ -84,9 +84,9 @@ d3.csv("dividas_totais.csv").then(function(dados) {
       tipo_divida: dados_total[i].tipo_divida,
       Escopo: dados_total[i].Escopo,
       x_0 : margin.left +  w_liq/4 - bar_width/2,
-      x_1 : margin.left + (w_liq/4)*(x_index) - bar_width/2, //(w_liq/5)*(i+1),
+      x_1 : margin.left + (w_liq/4)*(4 - x_index) - bar_width/2, //(w_liq/5)*(i+1),
       height : l(dados_total[i].valor),
-      y : (i == 0 ? y(0) : dados_vis[i-1].y) - l(dados_total[i].valor)
+      y : i == 0 ? y(0) : dados_vis[i-1].y + l(dados_total[i-1].valor)
     })
   };
 
