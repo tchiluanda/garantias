@@ -33,24 +33,33 @@
         <button id="step-1">Step-1</button>
         <button id="step-2">Step-2</button>
         <button id="step-3">Step-3</button>
+        <button id="step-4">Step-4</button>
+        <button id="step-5">Step-5</button>
     </nav>
-    <div class="steps">
-        <div class="step1"><p>Este gráfico mostra o endividamento total dos Estados e Municípios ao final de 2019.</p></div>
-        <div class="step2"><p>Como dito, podemos dividir esse valor em três grandes componentes:</p></div>
-    </div>
-    <section class="vis-endividamento limited-width">
-        <div class="container-vis-endividamento">
-            <svg id="vis-endividamento">
-
-            </svg>
+    <section id="vis-endividamento-scrolly" class="limited-width">
+        <div class="scrolly">
+            <article class="endividamento-steps">
+                <div id="endividamento-step1">
+                    <p>Este gráfico mostra o endividamento total dos Estados e Municípios ao final de 2019.</p>
+                </div>
+                <div id="endividamento-step2">
+                    <p>Como dito, podemos dividir esse valor em três grandes componentes:</p>
+                </div>
+            </article>
+            <div class="container-vis-endividamento">
+                <figure class="sticky">
+                    <svg id="vis-endividamento">
+                    </svg>
+                </figure>
+            </div>
         </div>
-
     </section>
 </main>
 </body>
 
-<script src="d3.v5.min.js"></script>
+<script src="./external_scripts/d3.v5.min.js"></script>
+<script src="./external_scripts/enter-view.js"></script>
 <script src="vis-endividamento.js"></script>  
-
+<script src="visualizacao.js"></script> 
 
 </html>
