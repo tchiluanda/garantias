@@ -30,7 +30,8 @@ d3.csv("dividas_totais.csv").then(function(dados) {
 
   // filtra, gera uma versão "objetificada"
 
-  const dados_total = dados.filter(d => d.Escopo == "Total");
+  const dados_total = dados.filter(d => d.Escopo != "Total" &&
+                                        d.tipo_divida != "Divida_Total");
   const dados_flat = {};
   for (el of dados) {
     dados_flat[el.tipo_divida] = el.valor;
@@ -41,7 +42,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   // escala y
   const y = d3.scaleLinear()
               .range([margin.top, h-margin.bottom])
-              .domain([0, d3.max(dados, d => d.valor)]); 
+              .domain([d3.max(dados, d => d.valor), 0]); 
   
   // escala altura
   const l = d3.scaleLinear()
@@ -64,29 +65,35 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   ]
 
   mas dá pra automatizar, em termos: */
-
+  const bar_width = 16;
   const dados_vis = [];
 
+  console.table(dados_total);
+  console.log("Y0", y(0), l(dados_total[0].valor));
+  
   for (let i = 0; i < dados_total.length; i++) {
+
+    const x_index = Math.floor(i/2) + 1;
+    //(porque quero distribuir horizontalmente conforme o
+    // tipo de divida, mas para cada tipo vou ter sempre
+    // dois segmentos, "Estados" e "Municipios". então um
+    // pouco de aritmética modular para gerar um novo índice que 
+    // vai ser usado para determinar a posição x das barras
+
     dados_vis.push({
       tipo_divida: dados_total[i].tipo_divida,
-      x_0 : margin.left + w_liq/5,
-      x_1 : margin.left + (w_liq/5)*(i+1),
-      height : l(dados_total[i].valor)
+      Escopo: dados_total[i].Escopo,
+      x_0 : margin.left +  w_liq/4 - bar_width/2,
+      x_1 : margin.left + (w_liq/4)*(x_index) - bar_width/2, //(w_liq/5)*(i+1),
+      height : l(dados_total[i].valor),
+      y : (i == 0 ? y(0) : dados_vis[i-1].y) - l(dados_total[i].valor)
     })
   };
-
-  // agora embutindo as posições y, para ficar um gráfico
-  // waterfall
-  dados_vis[0].y = y(0);
-  dados_vis[1].y = y(0);
-  dados_vis[2].y = y(dados_flat["Divida_Uniao"]);
-  dados_vis[3].y = y(dados_flat["Divida_Uniao"] + dados_flat["Divida_Garantida"]);
 
   console.table(dados_vis);
 
   // só mais um parâmetro: width
-  const bar_width = 30;
+  
 
   // binding
   const bars = $svg_endividamento
@@ -96,10 +103,11 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   console.log(bars);
 
   bars.enter().append("rect")
-    .attr("x", d => d.x_0 - bar_width/2)
+    .attr("x", d => d.x_0)
     .attr("y", d => d.y)
     .attr("height", d => d.height)
-    .attr("width", bar_width);
+    .attr("width", bar_width)
+    .attr("stroke-width", 0);
 
   $svg_endividamento.style("background-color", "cornsilk")
 
@@ -120,7 +128,6 @@ d3.csv("dividas_totais.csv").then(function(dados) {
     .attr("x", d => d.x_0)
     .attr("fill", "goldenrod");
   }
-
 
 
   const reseta = function() {
