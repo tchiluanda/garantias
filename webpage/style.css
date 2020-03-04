@@ -399,3 +399,18 @@ section.quadro .container-svg-card p.rotulos {
 }
 
 /* visualizacao-divida-entes */
+
+div.scrolly {
+    position: relative;
+}
+
+div.scrolly .container-vis-endividamento {
+    position: sticky;
+    top: 20px;
+    z-index: -1;
+}
+
+div.scrolly .endividamento-steps {
+    height: 50vh;
+
+}
