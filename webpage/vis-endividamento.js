@@ -156,17 +156,15 @@ d3.csv("dividas_totais.csv").then(function(dados) {
     }
   };
 
-  const step_final = function() {
-    d3.selectAll("rect")
+  const step_separa = function(direction) {
+    d3.selectAll("rect.d3--endividamento")
       .transition()
       .duration(500)
-      .attr("x", d => d.x_2)
+      .attr("x", d => direction == "down" ? d.x_2 : d.x_1)
       .transition()
       .duration(500)
-      .attr("y", d => d.y_2);
+      .attr("y", d => direction == "down" ? d.y_2 : d.y);
   };
-
-
 
 
   const reseta = function() {
@@ -215,7 +213,10 @@ d3.csv("dividas_totais.csv").then(function(dados) {
           break;  
         case 4:
           step_colore(response.direction);
-          break;                      
+          break; 
+        case 5:
+          step_separa(response.direction);
+          break;                                  
       }
   
 
