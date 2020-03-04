@@ -1,5 +1,5 @@
 const $container_endividamento = d3.select('.container-vis-endividamento');
-const $svg_endividamento           = $container_endividamento.select('#vis-endividamento');
+const $svg_endividamento       = $container_endividamento.select('#vis-endividamento');
 
 const w = $container_endividamento.node().offsetWidth;
 const h = w < 510 ? 500 : 500;
@@ -124,31 +124,36 @@ d3.csv("dividas_totais.csv").then(function(dados) {
     .attr("y", d => d.y)
     .attr("height", d => d.height)
     .attr("width", bar_width)
-    .attr("stroke-width", 0);
+    .attr("stroke-width", 0)
+    .attr("fill", "#444");
 
   $svg_endividamento.style("background-color", "cornsilk")
 
   // movimentando
 
-  const waterfall = function(tipo_divida, direction) {
+  const step_waterfall = function(tipo_divida, direction) {
     const bar_atual = d3.selectAll("rect.d3--endividamento").filter(d => d.tipo_divida == tipo_divida);
     console.log("barra atual", bar_atual);
     bar_atual.transition().duration(500)
     .attr("x", d => direction == "down" ? d.x_1 : d.x_0)
-    .style("fill", d => direction == "down" ? "goldenrod" : "#444");
+    .attr("fill", direction == "down" ? "goldenrod" : "#444");
   }
 
-  const reverte_step = function(tipo_divida) {
-    const bar_atual = d3.selectAll("rect").filter(d => d.tipo_divida == tipo_divida);
-    console.log("barra atual", bar_atual);
-    bar_atual.transition().duration(500)
-    .attr("x", d => d.x_0)
-    .attr("fill", "#333");
-  }
-
-  const step_colore = function() {
-    d3.selectAll("rect").transition().duration(500)
-      .attr("fill", d => d.Escopo == "Estados" ? "dodgerblue" : "firebrick");
+  const step_colore = function(direction) {
+    console.log("Disparei função colore, com a direção", direction);
+    if (direction == "down") {
+      console.log("tô dentro do ramo direction=down")
+      d3.selectAll("rect.d3--endividamento")
+        .transition()
+        .duration(500)
+        .attr("fill", d => d.Escopo == "Estados" ? "dodgerblue" : "firebrick");
+    }
+    else {
+      d3.selectAll("rect.d3--endividamento")
+        .transition()
+        .duration(500)
+        .attr("fill", "#444");   
+    }
   };
 
   const step_final = function() {
@@ -200,14 +205,17 @@ d3.csv("dividas_totais.csv").then(function(dados) {
 
       switch (response.index) {
         case 1:
-          waterfall("Divida_Uniao", response.direction);
+          step_waterfall("Divida_Uniao", response.direction);
           break;
         case 2:
-          waterfall("Divida_Garantida", response.direction);
+          step_waterfall("Divida_Garantida", response.direction);
           break;
         case 3:
-          waterfall("Divida_demais", response.direction);
-          break;          
+          step_waterfall("Divida_demais", response.direction);
+          break;  
+        case 4:
+          step_colore(response.direction);
+          break;                      
       }
   
 
