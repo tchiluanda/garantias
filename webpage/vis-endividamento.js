@@ -119,6 +119,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   console.log(bars);
 
   bars.enter().append("rect")
+    .classed("d3--endividamento", true)
     .attr("x", d => d.x_0)
     .attr("y", d => d.y)
     .attr("height", d => d.height)
@@ -129,12 +130,20 @@ d3.csv("dividas_totais.csv").then(function(dados) {
 
   // movimentando
 
-  const step = function(tipo_divida) {
+  const waterfall = function(tipo_divida, direction) {
+    const bar_atual = d3.selectAll("rect.d3--endividamento").filter(d => d.tipo_divida == tipo_divida);
+    console.log("barra atual", bar_atual);
+    bar_atual.transition().duration(500)
+    .attr("x", d => direction == "down" ? d.x_1 : d.x_0)
+    .style("fill", d => direction == "down" ? "goldenrod" : "#444");
+  }
+
+  const reverte_step = function(tipo_divida) {
     const bar_atual = d3.selectAll("rect").filter(d => d.tipo_divida == tipo_divida);
     console.log("barra atual", bar_atual);
     bar_atual.transition().duration(500)
-    .attr("x", d => d.x_1)
-    .attr("fill", "goldenrod");
+    .attr("x", d => d.x_0)
+    .attr("fill", "#333");
   }
 
   const step_colore = function() {
@@ -152,13 +161,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
       .attr("y", d => d.y_2);
   };
 
-  const reverte_step = function(tipo_divida) {
-    const bar_atual = d3.selectAll("rect").filter(d => d.tipo_divida == tipo_divida);
-    console.log("barra atual", bar_atual);
-    bar_atual.transition().duration(500)
-    .attr("x", d => d.x_0)
-    .attr("fill", "goldenrod");
-  }
+
 
 
   const reseta = function() {
@@ -167,6 +170,52 @@ d3.csv("dividas_totais.csv").then(function(dados) {
     .attr("y", d => d.y)
     .attr("fill", "#333");
   }
+
+  // ze SCROLLER!
+
+  const $steps = d3.selectAll(".endividamento-steps");
+
+  const scroller = scrollama();
+  
+  // setup
+  scroller
+    .setup({
+      step: ".endividamento-steps"
+    })
+    .onStepEnter(response => {
+
+      $steps.classed("step-ativo", (d, i) => (i === response.index));
+      /*$steps
+        .transition()
+        .duration(500)
+        .attr("opacity", function(d,i) {
+          console.log("dentro do scroller, i, response", i, response.index)
+          return (i === response.index ? 1 : 0)
+        });
+      //console.log("Dentro do scroller!", $steps.node()[response.index].attr("opacity"))
+      */
+      //const el = response.element; 
+      //const stepData = el.attr("data-step");
+      console.log("Step Data", response.index, response.direction);
+
+      switch (response.index) {
+        case 1:
+          waterfall("Divida_Uniao", response.direction);
+          break;
+        case 2:
+          waterfall("Divida_Garantida", response.direction);
+          break;
+        case 3:
+          waterfall("Divida_demais", response.direction);
+          break;          
+      }
+  
+
+
+      console.log("Dentro do scroller, el:", el);
+
+    })
+
 
   // escutando os botões
 
