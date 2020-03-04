@@ -1,8 +1,12 @@
 const $container_endividamento = d3.select('.container-vis-endividamento');
 const $svg_endividamento       = $container_endividamento.select('#vis-endividamento');
 
-const w = $container_endividamento.node().offsetWidth;
-const h = w < 510 ? 500 : 500;
+const w_bruto = $container_endividamento.node().offsetWidth;
+const w_endiv = w_bruto >= 600 ? 600 : w_bruto;
+
+const h_endiv = $container_endividamento.node().offsetHeight;
+
+//const h = w < 510 ? 500 : 500;
 
 const margin = {
   top: 20,
@@ -11,11 +15,11 @@ const margin = {
   right: 10
 };
 
-const w_liq = w - margin.left - margin.right;
+const w_liq = w_endiv - margin.left - margin.right;
 
 $svg_endividamento     
-  .attr('width', w)
-  .attr('height', h);
+  .attr('width', w_endiv)
+  .attr('height', h_endiv);
 
 // leitura do arquivo
 
@@ -60,15 +64,22 @@ d3.csv("dividas_totais.csv").then(function(dados) {
 
   // escala y
   const y = d3.scaleLinear()
-              .range([margin.top, h-margin.bottom])
+              .range([margin.top, h_endiv - margin.bottom])
               .domain([0, d3.max(dados, d => d.valor)]); 
   
   // escala altura
   const l = d3.scaleLinear()
-              .range([0, h - margin.bottom - margin.top])
+              .range([0, h_endiv - margin.bottom - margin.top])
               .domain([0, d3.max(dados, d => d.valor)]); 
+
+  // escala cor
+  const cor = d3.scaleOrdinal()
+              .range(["#66c2a5", "#8da0cb", "#80160D", "#004D4D"])
+              .domain(["Estados", "Municípios", "Total", "Destaque"]);
   
   const y_max = y(d3.max(dados, d => d.valor));     
+  const l_max = l(d3.max(dados, d => d.valor));   
+
 
   // constroi uma array com os dados necessarios 
   // para a visualizacao. essa array que vai ser 
@@ -118,25 +129,59 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   
   console.log(bars);
 
-  bars.enter().append("rect")
-    .classed("d3--endividamento", true)
-    .attr("x", d => d.x_0)
-    .attr("y", d => d.y)
-    .attr("height", d => d.height)
-    .attr("width", bar_width)
-    .attr("stroke-width", 0)
-    .attr("fill", "#444");
-
   $svg_endividamento.style("background-color", "cornsilk")
 
-  // movimentando
+  // funções para desenhar
+
+  const abertura = function() {
+    //uma barrona
+    $svg_endividamento
+      .append("rect")
+      .classed("d3--endividamento-total", true)
+      .attr("x", dados_vis[0].x_0)
+      .attr("y", y(0))
+      .attr("height", 0)
+      .attr("width", bar_width)
+      .attr("stroke-width", 0)
+      .attr("fill", cor("Total"))
+      .transition()    
+      .duration(250)
+      .attr("height", l_max);
+
+    //uma linha de referência
+    $svg_endividamento
+      .append("line")
+      .attr("x1", margin.left)
+      .attr("x2", margin.left)
+      .attr("y1", y_max)
+      .attr("y2", y_max)
+      .attr("stroke", "#666")
+      .transition()
+      .delay(250)
+      .duration(200)
+      .attr("x2", margin.left + w_liq);
+    
+    // segmentos de barrinhas
+    bars.enter().append("rect")
+      .classed("d3--endividamento", true)
+      .attr("x", d => d.x_0)
+      .attr("y", d => d.y)
+      .attr("height", d => d.height)
+      .attr("width", bar_width)
+      .attr("stroke-width", 0)
+      .attr("fill", cor("Total"));
+  }
+
+  const remove_barra_total = function() {
+    d3.select(".d3--endividamento-total").remove()
+  };
 
   const step_waterfall = function(tipo_divida, direction) {
     const bar_atual = d3.selectAll("rect.d3--endividamento").filter(d => d.tipo_divida == tipo_divida);
     console.log("barra atual", bar_atual);
     bar_atual.transition().duration(500)
     .attr("x", d => direction == "down" ? d.x_1 : d.x_0)
-    .attr("fill", direction == "down" ? "goldenrod" : "#444");
+    .attr("fill", direction == "down" ? cor("Destaque") : cor("Total"));
   }
 
   const step_colore = function(direction) {
@@ -146,13 +191,13 @@ d3.csv("dividas_totais.csv").then(function(dados) {
       d3.selectAll("rect.d3--endividamento")
         .transition()
         .duration(500)
-        .attr("fill", d => d.Escopo == "Estados" ? "dodgerblue" : "firebrick");
+        .attr("fill", d => cor(d.Escopo));
     }
     else {
       d3.selectAll("rect.d3--endividamento")
         .transition()
         .duration(500)
-        .attr("fill", "#444");   
+        .attr("fill", cor("Destaque"));   
     }
   };
 
@@ -166,13 +211,8 @@ d3.csv("dividas_totais.csv").then(function(dados) {
       .attr("y", d => direction == "down" ? d.y_2 : d.y);
   };
 
-
-  const reseta = function() {
-    d3.selectAll("rect").transition().duration(500)
-    .attr("x", d => d.x_0)
-    .attr("y", d => d.y)
-    .attr("fill", "#333");
-  }
+  abertura();
+  //remove_barra_total();
 
   // ze SCROLLER!
 
@@ -218,12 +258,14 @@ d3.csv("dividas_totais.csv").then(function(dados) {
           step_separa(response.direction);
           break;                                  
       }
-  
-
-
-      console.log("Dentro do scroller, el:", el);
-
     })
+    /*
+    .onStepExit(response => {
+      $steps.filter((d, i) => (i === response.index))
+      .transition()
+      .duration(200)
+      .opacity(0);
+    })*/
 
 
   // escutando os botões

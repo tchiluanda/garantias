@@ -403,33 +403,60 @@ section.quadro .container-svg-card p.rotulos {
 
 /* visualizacao-divida-entes */
 
-div.scrolly {
-    position: relative;
+section#vis-endividamento-scrolly {
+    max-width: 980px;
+    margin: 0 auto;
 }
 
-div.scrolly figure {
-    margin: 0;
+div.scrolly {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+div.scrolly > * {
+    flex: 1;
+}
+
+div.scrolly article {
+    position: relative;
+    max-width: 380px;
 }
 
 div.scrolly .container-vis-endividamento {
     position: sticky;
     top: 20px;
     z-index: -1;
+    height: 500px;
 }
 
-div.scrolly .endividamento-steps {
-    height: 50vh;
+div.scrolly .container-vis-endividamento figure {
+    margin: 0;
+    width: 100%;
+}
+
+
+div.scrolly article .endividamento-steps {
+    height: 500px; /* ficou bem melhor assim fixo. usar css-var? 50vh*/
     opacity: 0;
 }
 
-div.scrolly .endividamento-steps p {
+div.scrolly article .endividamento-steps p {
     border: 1px solid #666;
+    box-shadow: 2px 2px 5px #888;
     background-color: ghostwhite;
     padding: 20px;
     font-weight: 100;
     font-size: 0.85rem;
+    margin: 0 1em;
 }
 
 div.scrolly .endividamento-steps.step-ativo {
-    opacity: 1;
+    opacity: 0.8;
+}
+
+@media (max-width: 880px) {
+    div.scrolly {
+        display: unset;
+    }
 }
