@@ -414,7 +414,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
     .setup({
       step: ".endividamento-steps",
       offset: 0.75,
-      debug: true
+      debug: false
     })
     .onStepEnter(response => {
 
