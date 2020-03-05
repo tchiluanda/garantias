@@ -5,7 +5,7 @@ const w_bruto = $container_endividamento.node().offsetWidth;
 const w_endiv = w_bruto >= 600 ? 600 : w_bruto;
 
 //const h_bruto = $container_endividamento.node().offsetHeight;
-const h_bruto = window.innerHeight / 2; //*0.75
+const h_bruto = window.innerHeight * 0.7
 const h_endiv = h_bruto //>= 500 ? 500 : h_bruto;
 
 // tava com problema no mobile, a imagem estava subindo além
