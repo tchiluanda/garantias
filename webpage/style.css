@@ -8,6 +8,7 @@
     /* cores gráfico endividamento */
     --barra-inativa: #444;
     --barra-ativa: goldenrod;
+    --altura-endiv: 500px;
 }
 
 /* Estilo geral */
@@ -427,7 +428,7 @@ div.scrolly .container-vis-endividamento {
     position: sticky;
     top: 20px;
     z-index: -1;
-    height: 500px;
+    height: var(--altura-endiv);
 }
 
 div.scrolly .container-vis-endividamento figure {
@@ -435,14 +436,23 @@ div.scrolly .container-vis-endividamento figure {
     width: 100%;
 }
 
+/* esses rotulos aqui vão ser criados pelo D3 */
+div.scrolly .container-vis-endividamento div.rotulos-endiv,
+div.scrolly .container-vis-endividamento .rotulos-eixo-endiv {
+    position: absolute;
+    font-size: 0.6rem;
+}
+
+div.scrolly .container-vis-endividamento div.rotulos-endiv > p{
+    margin: 0;
+}
 
 div.scrolly article .endividamento-steps {
-    height: 500px; /* ficou bem melhor assim fixo. usar css-var? 50vh*/
+    height: var(--altura-endiv); /* ficou bem melhor assim fixo. usar css-var? 50vh*/
     opacity: 0;
 }
 
 div.scrolly article .endividamento-steps p {
-    border: 1px solid #666;
     box-shadow: 2px 2px 5px #888;
     background-color: ghostwhite;
     padding: 20px;
