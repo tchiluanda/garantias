@@ -8,7 +8,7 @@
     /* cores gráfico endividamento */
     --barra-inativa: #444;
     --barra-ativa: goldenrod;
-    --altura-endiv: 500px;
+    /*--altura-endiv: 500px;*/
 }
 
 /* Estilo geral */
@@ -430,7 +430,7 @@ div.scrolly .container-vis-endividamento {
     position: sticky;
     top: 20px;
     z-index: -1;
-    height: var(--altura-endiv);
+    /*height: var(--altura-endiv);*/
 }
 
 div.scrolly .container-vis-endividamento figure {
@@ -452,7 +452,7 @@ div.scrolly .container-vis-endividamento .rotulos-barrinhas {
 }
 
 div.scrolly article .endividamento-steps {
-    height: var(--altura-endiv); /* ficou bem melhor assim fixo. usar css-var? 50vh*/
+    /*height: var(--altura-endiv); /* ficou bem melhor assim fixo. usar css-var? 50vh*/
     opacity: 0;
 }
 

@@ -4,7 +4,8 @@ const $svg_endividamento       = $container_endividamento.select('#vis-endividam
 const w_bruto = $container_endividamento.node().offsetWidth;
 const w_endiv = w_bruto >= 600 ? 600 : w_bruto;
 
-const h_bruto = $container_endividamento.node().offsetHeight;
+//const h_bruto = $container_endividamento.node().offsetHeight;
+const h_bruto = window.innerHeight * 0.75;
 const h_endiv = h_bruto >= 500 ? 500 : h_bruto;
 
 // tava com problema no mobile, a imagem estava subindo além
@@ -12,7 +13,9 @@ const h_endiv = h_bruto >= 500 ? 500 : h_bruto;
 // aí usei esse exemplo do Russell
 // https://russellgoldenberg.github.io/scrollama/sticky-side/
 const container_margem_superior = (window.innerHeight - h_endiv)/2;
-$container_endividamento.style("top", container_margem_superior + "px");
+$container_endividamento
+  .style("top", container_margem_superior + "px")
+  .style("height", h_endiv + "px");
 
 // calculada a altura do "viewport", preciso definir as alturas
 // dos elementos que dependem desse valor.
