@@ -7,17 +7,26 @@ const w_endiv = w_bruto >= 600 ? 600 : w_bruto;
 const h_bruto = $container_endividamento.node().offsetHeight;
 const h_endiv = h_bruto >= 500 ? 500 : h_bruto;
 
+// tava com problema no mobile, a imagem estava subindo além
+// do que eu queria. 
+// aí usei esse exemplo do Russell
+// https://russellgoldenberg.github.io/scrollama/sticky-side/
+const container_margem_superior = (window.innerHeight - h_endiv)/2;
+$container_endividamento.style("top", container_margem_superior + "px");
+
 // calculada a altura do "viewport", preciso definir as alturas
 // dos elementos que dependem desse valor.
 // como defini como uma variável, vou atualizar simplesmente
 // essa variável aqui.
 d3.select(":root").style("--altura-endiv", h_endiv + "px");
 
+//console.log("Topper", container_margem_superior, $container_endividamento.style("top"));
+
 const margin = {
   top: 20,
   bottom: 60,
-  left: 10,
-  right: 10
+  left: w_endiv < 600 ? 2 : 10,
+  right: w_endiv < 600 ? 2 : 10
 };
 
 const w_liq = w_endiv - margin.left - margin.right;
@@ -387,9 +396,10 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   // ze SCROLLER!
 
   const $steps = d3.selectAll(".endividamento-steps");
+  //const $figure = $container_endividamento.select("figure");
 
   const scroller = scrollama();
-  
+ 
   // setup
   scroller
     .setup({
