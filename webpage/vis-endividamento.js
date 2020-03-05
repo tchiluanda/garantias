@@ -412,7 +412,9 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   // setup
   scroller
     .setup({
-      step: ".endividamento-steps"
+      step: ".endividamento-steps",
+      offset: 0.66,
+      debug: true
     })
     .onStepEnter(response => {
 
@@ -428,7 +430,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
       */
       //const el = response.element; 
       //const stepData = el.attr("data-step");
-      console.log("Step Data", response.index, response.direction);
+      //console.log("Step Data", response.index, response.direction);
 
       switch (response.index) {
         case 1:
