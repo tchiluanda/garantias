@@ -49,7 +49,7 @@ header img.logo-tt {
 
 main {
     padding: 0 5px;
-    font-family: 'Merriweather Sans', sans-serif;
+    font-family: 'Merriweather', sans-serif;
 }
 
 main header#abertura h1 {
@@ -438,12 +438,14 @@ div.scrolly .container-vis-endividamento figure {
 
 /* esses rotulos aqui vão ser criados pelo D3 */
 div.scrolly .container-vis-endividamento div.rotulos-endiv,
-div.scrolly .container-vis-endividamento .rotulos-eixo-endiv {
+div.scrolly .container-vis-endividamento .rotulos-eixo-endiv,
+div.scrolly .container-vis-endividamento .rotulos-barrinhas {
     position: absolute;
     font-size: 0.6rem;
 }
 
-div.scrolly .container-vis-endividamento div.rotulos-endiv > p{
+div.scrolly .container-vis-endividamento div.rotulos-endiv > p,
+div.scrolly .container-vis-endividamento .rotulos-barrinhas {
     margin: 0;
 }
 

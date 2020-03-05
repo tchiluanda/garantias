@@ -282,10 +282,12 @@ d3.csv("dividas_totais.csv").then(function(dados) {
       .attr("y", d => direction == "down" ? d.y_2 : d.y);
   };
 
-  const mostra_rotulo = function(escopo, tipo_divida, alinhamento) {
-    const pad_rotulo = 10;
-    const largura_rotulo = w_liq/4 - 2*pad_rotulo;
+  ///////////////////////////////////////////
+  // rotulos
+  const pad_rotulo = 10;
+  const largura_rotulo = w_liq/4 - 2*pad_rotulo
 
+  const mostra_rotulo = function(escopo, tipo_divida, alinhamento) {
     dados_rotulo = rotulos[escopo+"_"+tipo_divida];
 
     const div_rotulo = $container_endividamento
@@ -328,7 +330,6 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   }))
 
   const monta_rotulos_eixo = function() {
-    const largura_rotulo = w_liq/4 - 25;
     $container_endividamento
       .selectAll("p.rotulos-eixo-endiv")
       .data(tipos)
@@ -354,10 +355,35 @@ d3.csv("dividas_totais.csv").then(function(dados) {
       .duration(500)
       .style("opacity", 0)
       .remove();
-
   }
 
+  const mostra_rotulos_barrinhas = function(direcao) {
+    const rotulinhos = $container_endividamento
+      .selectAll("p.rotulos-barrinhas");
 
+    rotulinhos.remove();
+
+    if (direcao == "down") {
+      rotulinhos
+        .data(dados_vis)
+        .enter()
+        .append("p")
+        .classed("rotulos-barrinhas", true)
+        .text(d => d.valor_formatado)
+        .style("width", largura_rotulo + "px")
+        .style("color", d => cor(d.Escopo))
+        .style("top", d => "calc(" + (d.y_2 - pad_rotulo/2) + "px - 0.6rem)")
+        .style("left", d => d.Escopo == "Estados" ? d.x_2 + bar_width - largura_rotulo + "px" : d.x_2 + "px")
+        .style("text-align", d => d.Escopo == "Estados" ? "right" : "left")
+        .style("opacity", 0)
+        .transition()
+        .delay(500)
+        .duration(200)
+        .style("opacity", 1);
+    }
+  }
+
+  ////////////////////
   // ze SCROLLER!
 
   const $steps = d3.selectAll(".endividamento-steps");
@@ -421,7 +447,14 @@ d3.csv("dividas_totais.csv").then(function(dados) {
           break;  
         case 5:
           step_colore(response.direction);
-          if(response.direction == "up") remove_rotulos_eixo();
+          if(response.direction == "up") {
+            remove_rotulos_eixo();
+            $container_endividamento.selectAll("p")
+            .transition()
+            .duration(250)
+            .attr("opacity", 0)
+            .remove();
+          }
           break; 
         case 6:
           remove_rotulo("Total", "Divida_Uniao");
@@ -429,6 +462,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
           remove_rotulo("Total", "Divida_demais");
           step_separa(response.direction);
           if(response.direction == "down") monta_rotulos_eixo()
+          mostra_rotulos_barrinhas(response.direction);
           break;                                  
       }
     })
