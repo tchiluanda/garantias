@@ -408,6 +408,7 @@ section.quadro .container-svg-card p.rotulos {
 section#vis-endividamento-scrolly {
     max-width: 980px;
     margin: 0 auto;
+    font-family: "Merriweather Sans";
 }
 
 div.scrolly {
