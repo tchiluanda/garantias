@@ -396,6 +396,10 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   // ze SCROLLER!
 
   const $steps = d3.selectAll(".endividamento-steps");
+  // ajusta tamanho do step conforme código do Russell
+  const stepH = Math.floor(window.innerHeight * 0.75);
+  $steps.style("height", stepH + "px");
+
   //const $figure = $container_endividamento.select("figure");
 
   const scroller = scrollama();
