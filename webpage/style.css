@@ -103,6 +103,7 @@ section.prose span.termo-destaque-lateral {
 section.prose aside.conteudo-destaque-lateral {
     position: absolute;
     font-weight: lighter;
+    font-family: "Merriweather Sans";
     right: calc(50% - 340px - 200px - 20px);
     width: 200px;
     font-size: 12px;
