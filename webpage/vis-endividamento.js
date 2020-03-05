@@ -406,6 +406,8 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   //const $figure = $container_endividamento.select("figure");
 
   const scroller = scrollama();
+
+  scroller.resize();
  
   // setup
   scroller
