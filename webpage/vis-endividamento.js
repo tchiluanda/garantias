@@ -5,7 +5,7 @@ const w_bruto = $container_endividamento.node().offsetWidth;
 const w_endiv = w_bruto >= 600 ? 600 : w_bruto;
 
 //const h_bruto = $container_endividamento.node().offsetHeight;
-const h_bruto = window.innerHeight * 0.7
+const h_bruto = window.innerHeight * 0.8
 const h_endiv = h_bruto //>= 500 ? 500 : h_bruto;
 
 // tava com problema no mobile, a imagem estava subindo além
@@ -400,7 +400,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
 
   const $steps = d3.selectAll(".endividamento-steps");
   // ajusta tamanho do step conforme código do Russell
-  const stepH = Math.floor(window.innerHeight * 0.75);
+  const stepH = Math.floor(window.innerHeight * 0.8);
   $steps.style("height", stepH + "px");
 
   //const $figure = $container_endividamento.select("figure");
@@ -413,7 +413,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   scroller
     .setup({
       step: ".endividamento-steps",
-      offset: 0.66,
+      offset: 0.75,
       debug: true
     })
     .onStepEnter(response => {
