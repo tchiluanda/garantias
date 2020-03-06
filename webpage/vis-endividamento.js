@@ -403,6 +403,9 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   const stepH = Math.floor(window.innerHeight * 0.8);
   $steps.style("height", stepH + "px");
 
+  // cálculo do offset conforme orientação do Russell
+  const midpoint = Math.floor(window.innerHeight * 0.5) + "px";
+
   //const $figure = $container_endividamento.select("figure");
 
   const scroller = scrollama();
@@ -413,7 +416,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   scroller
     .setup({
       step: ".endividamento-steps",
-      offset: 0.75,
+      offset: midpoint,
       debug: false
     })
     .onStepEnter(response => {
