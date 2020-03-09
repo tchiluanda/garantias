@@ -3,7 +3,7 @@ const $svg_endividamento       = $container_endividamento.select('#vis-endividam
 const $steps = d3.selectAll(".endividamento-steps");
 const scroller = scrollama();
 
-let stepH, w_bruto, w_endiv, h_bruto, h_endiv, container_margem_superior;
+let stepH, w_bruto, w_endiv, h_bruto, h_endiv, container_margem_superior, offset_calc;
 
 function handleResize() {
   // ajusta tamanho do step conforme código do Russell
@@ -27,6 +27,8 @@ function handleResize() {
   $container_endividamento
     .style("top", container_margem_superior + "px")
     .style("height", h_endiv + "px");
+
+  offset_calc = Math.floor(window.innerHeight * 0.5) + "px";
 
   // 3. tell scrollama to update new element dimensions
   scroller.resize();
@@ -423,8 +425,8 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   scroller
     .setup({
       step: ".endividamento-steps",
-      offset: 0.75,
-      debug: false
+      offset: offset_calc,
+      debug: true
     })
     .onStepEnter(response => {
 

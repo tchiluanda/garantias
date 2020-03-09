@@ -453,7 +453,8 @@ div.scrolly .container-vis-endividamento .rotulos-barrinhas {
 
 div.scrolly article .endividamento-steps {
     /*height: var(--altura-endiv); /* ficou bem melhor assim fixo. usar css-var? 50vh*/
-    opacity: 0;
+    /*opacity: 0;*/
+    padding: 100px 0px;
 }
 
 div.scrolly article .endividamento-steps p {
@@ -467,6 +468,7 @@ div.scrolly article .endividamento-steps p {
 
 div.scrolly .endividamento-steps.step-ativo {
     opacity: 0.8;
+    /*background-color: goldenrod;*/
 }
 
 @media (max-width: 880px) {
