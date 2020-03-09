@@ -5,6 +5,10 @@ const scroller = scrollama();
 
 let stepH, w_bruto, w_endiv, h_bruto, h_endiv, container_margem_superior, offset_calc;
 
+// o que fez funcionar no celular foi esse código para ficar
+// recalculando as dimensões, conforme o tamanho da janela
+// do navegador.
+
 function handleResize() {
   // ajusta tamanho do step conforme código do Russell
   // tava com problema no mobile, a imagem estava subindo além
@@ -426,7 +430,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
     .setup({
       step: ".endividamento-steps",
       offset: offset_calc,
-      debug: true
+      debug: false
     })
     .onStepEnter(response => {
 
