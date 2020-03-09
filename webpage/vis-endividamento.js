@@ -1,21 +1,38 @@
 const $container_endividamento = d3.select('.container-vis-endividamento');
 const $svg_endividamento       = $container_endividamento.select('#vis-endividamento');
+const $steps = d3.selectAll(".endividamento-steps");
+const scroller = scrollama();
 
-const w_bruto = $container_endividamento.node().offsetWidth;
-const w_endiv = w_bruto >= 600 ? 600 : w_bruto;
+let stepH, w_bruto, w_endiv, h_bruto, h_endiv, container_margem_superior;
 
-//const h_bruto = $container_endividamento.node().offsetHeight;
-const h_bruto = window.innerHeight * 0.8
-const h_endiv = h_bruto //>= 500 ? 500 : h_bruto;
+function handleResize() {
+  // ajusta tamanho do step conforme código do Russell
+  // tava com problema no mobile, a imagem estava subindo além
+  // do que eu queria. 
+  // aí usei esse exemplo do Russell
+  // https://russellgoldenberg.github.io/scrollama/sticky-side/
+  
+  // 1. update height of step elements
+  stepH = Math.floor(window.innerHeight * 0.8);
+  $steps.style("height", stepH + "px");
 
-// tava com problema no mobile, a imagem estava subindo além
-// do que eu queria. 
-// aí usei esse exemplo do Russell
-// https://russellgoldenberg.github.io/scrollama/sticky-side/
-const container_margem_superior = (window.innerHeight - h_endiv)/2;
-$container_endividamento
-  .style("top", container_margem_superior + "px")
-  .style("height", h_endiv + "px");
+  w_bruto = $container_endividamento.node().offsetWidth;
+  w_endiv = w_bruto >= 600 ? 600 : w_bruto;
+
+  //const h_bruto = $container_endividamento.node().offsetHeight;
+  h_bruto = window.innerHeight * 0.8
+  h_endiv = h_bruto //>= 500 ? 500 : h_bruto;
+
+  container_margem_superior = (window.innerHeight - h_endiv)/2;
+  $container_endividamento
+    .style("top", container_margem_superior + "px")
+    .style("height", h_endiv + "px");
+
+  // 3. tell scrollama to update new element dimensions
+  scroller.resize();
+}
+
+handleResize();
 
 // calculada a altura do "viewport", preciso definir as alturas
 // dos elementos que dependem desse valor.
@@ -389,8 +406,8 @@ d3.csv("dividas_totais.csv").then(function(dados) {
         .style("text-align", d => d.Escopo == "Estados" ? "right" : "left")
         .style("opacity", 0)
         .transition()
-        .delay(500)
-        .duration(200)
+        .delay(550)
+        .duration(100)
         .style("opacity", 1);
     }
   }
@@ -398,17 +415,10 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   ////////////////////
   // ze SCROLLER!
 
-  const $steps = d3.selectAll(".endividamento-steps");
-  // ajusta tamanho do step conforme código do Russell
-  const stepH = Math.floor(window.innerHeight * 0.8);
-  $steps.style("height", stepH + "px");
-
   //const $figure = $container_endividamento.select("figure");
 
-  const scroller = scrollama();
+  //const scroller = scrollama();
 
-  scroller.resize();
- 
   // setup
   scroller
     .setup({
@@ -486,7 +496,9 @@ d3.csv("dividas_totais.csv").then(function(dados) {
           mostra_rotulos_barrinhas(response.direction);
           break;                                  
       }
-    })
+    });
+
+  window.addEventListener("resize", debounce(handleResize, 1000));
     /*
     .onStepExit(response => {
       $steps.filter((d, i) => (i === response.index))
