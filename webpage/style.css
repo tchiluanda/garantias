@@ -457,6 +457,10 @@ div.scrolly article .endividamento-steps {
     padding: 100px 0px;
 }
 
+div.scrolly article .endividamento-steps:first-child {
+    padding-top: 0px;
+}
+
 div.scrolly article .endividamento-steps p {
     box-shadow: 2px 2px 5px #888;
     background-color: ghostwhite;
