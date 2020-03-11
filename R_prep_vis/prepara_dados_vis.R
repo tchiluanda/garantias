@@ -87,7 +87,8 @@ lista_contratos <- novos_contratos %>% count(Mutuário)
 write.csv(novos_contratos, file = "webpage/contratos.csv", fileEncoding = "UTF-8")
 
 
-# honras ------------------------------------------------------------------
+
+# honras: dados para viz --------------------------------------------------
 
 honras_simples <- honras %>%
   select(data = `Data de Vencimento`,
@@ -101,19 +102,76 @@ honras_simples <- honras %>%
   as.data.frame() %>%
   mutate(mes = str_pad(month(data), width = 2, pad = "0"),
          ano = year(data),
-         mes_ano = paste0(ano,mes))
+         mes_ano = paste0(ano,mes),
+         mutuario_cat = ifelse(mutuario == "Rio de Janeiro", "Estado do Rio de Janeiro", "Demais entes"))
 
 honras_simples %>% filter(mutuario == "Rio de Janeiro") %>% group_by(mes_ano) %>% count()
 
+contagem_honras_avancado <- honras_simples %>%
+  group_by(Credor) %>%
+  mutate(qde_credor = n()) %>%
+  ungroup() %>%
+  mutate(credor_cat = ifelse(qde_credor < 20, "Demais credores", Credor)) %>%
+  arrange(mes_ano, desc(mutuario_cat)) %>%
+  mutate(data_mes = as.Date(paste(str_sub(mes_ano, 1, 4),
+                                  str_sub(mes_ano, 5, 6),
+                                  "01", sep = "-"))) %>%
+  group_by(data_mes) %>%
+  mutate(pos = row_number()) %>%
+  ungroup()
+
+rank_honras_cat <- contagem_honras_avancado %>%
+  group_by(credor_cat) %>%
+  summarise(soma_credor_cat = sum(valor)) %>%
+  ungroup() %>%
+  mutate(rank_credor_cat = rank(-soma_credor_cat))
+
+rank_honras_tip <- contagem_honras_avancado %>%
+  group_by(tipo_divida) %>%
+  summarise(soma_credor_tip = sum(valor)) %>%
+  ungroup() %>%
+  mutate(rank_credor_tip = rank(-soma_credor_tip)) 
+
+honras_det <- contagem_honras_avancado %>%
+  left_join(rank_honras_cat) %>%
+  left_join(rank_honras_tip)
+
+## para streamgraph
+
+honras_agg <- contagem_honras_avancado %>%
+  group_by(data_mes, mutuario_cat) %>%
+  summarise(valor_mes = sum(valor),
+            qde = n()) %>%
+  ungroup() %>%
+  group_by(mutuario_cat) %>%
+  mutate(valor_acum = cumsum(valor_mes))
+
+## prototipos de plots
+
+#areachart
+ggplot(honras_agg, aes(x = data_mes, y = valor_acum, fill = mutuario_cat)) +
+  geom_area() +
+  theme(legend.position = "bottom")
+
+#unit
+ggplot() +
+  geom_col(data = honras_agg, aes(x = data_mes, y = qde, fill = mutuario_cat)) +
+  geom_point(data = honras_det, aes(x = data_mes, color = mutuario_cat, y = pos)) +  
+  scale_color_manual(values = c("firebrick", "steelblue"))
+
+
+# honras: outros plots e experimentos -------------------------------------
+
+
+
 honras_plot <- honras_simples %>%
-  mutate(mutuario_cat = ifelse(mutuario == "Rio de Janeiro", "rio", "demais")) %>%
   group_by(mes_ano, mutuario, mutuario_cat) %>%
   summarise(valor = sum(valor)) %>%
   ungroup() %>%
   arrange(mes_ano) %>%
   mutate(data = as.Date(paste(str_sub(mes_ano, 1, 4),
-                      str_sub(mes_ano, 5, 6),
-                      "01", sep = "-"))) %>%
+                              str_sub(mes_ano, 5, 6),
+                              "01", sep = "-"))) %>%
   group_by(mutuario, mutuario_cat) %>%
   mutate(total_mutuario = sum(valor)) %>%
   ungroup() %>%
@@ -123,21 +181,13 @@ contagem_honras <- honras_simples %>%
   mutate(mutuario_cat = ifelse(mutuario == "Rio de Janeiro", "rio", "demais")) %>%
   arrange(mes_ano) %>%
   mutate(data_mes = as.Date(paste(str_sub(mes_ano, 1, 4),
-                              str_sub(mes_ano, 5, 6),
-                              "01", sep = "-"))) %>%
+                                  str_sub(mes_ano, 5, 6),
+                                  "01", sep = "-"))) %>%
   group_by(data_mes, mutuario_cat) %>%
   mutate(pos = row_number())
 
-contagem_honras2 <- honras_simples %>%
-  mutate(mutuario_cat = ifelse(mutuario == "Rio de Janeiro", "rio", "demais")) %>%
-  arrange(mes_ano, desc(mutuario_cat)) %>%
-  mutate(data_mes = as.Date(paste(str_sub(mes_ano, 1, 4),
-                                  str_sub(mes_ano, 5, 6),
-                                  "01", sep = "-"))) %>%
-  group_by(data_mes) %>%
-  mutate(pos = row_number())
 
-contagem_honras_simples <- contagem_honras2 %>%
+contagem_honras_simples <- contagem_honras_avancado %>%
   group_by(data_mes, mutuario_cat) %>%
   count()
 
@@ -145,12 +195,12 @@ contagem_honras_simples <- contagem_honras2 %>%
 ggplot(contagem_honras, aes(x = data_mes, y = ifelse(mutuario_cat == "rio", pos, -pos))) + geom_point()
 
 # beeswarm / unitplot de cada honra, empilhados
-ggplot(contagem_honras2, aes(x = data_mes, y = pos, color = mutuario_cat)) + geom_point()
+ggplot(contagem_honras_export, aes(x = data_mes, y = pos, color = mutuario_cat)) + geom_point()
 
 ### vai pro D3
 # barchart contagem + unitplot
 ggplot(contagem_honras_simples, aes(x = data_mes, y = n, fill = mutuario_cat)) + geom_col() + 
-  geom_point(data = contagem_honras2, aes(x = data_mes, y = pos, color = mutuario_cat)) +
+  geom_point(data = contagem_honras_export, aes(x = data_mes, y = pos, color = mutuario_cat)) +
   scale_color_manual(values = c("firebrick", "steelblue"))
 scale_color
 
