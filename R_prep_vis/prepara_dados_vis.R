@@ -101,18 +101,33 @@ honras_simples <- honras %>%
          ano = year(data),
          mes_ano = paste0(ano,mes))
 
+honras_simples %>% filter(mutuario == "Rio de Janeiro") %>% group_by(mes_ano) %>% count()
+
 honras_plot <- honras_simples %>%
-  group_by(mes_ano, mutuario) %>%
+  mutate(mutuario_cat = ifelse(mutuario == "Rio de Janeiro", "rio", "demais")) %>%
+  group_by(mes_ano, mutuario, mutuario_cat) %>%
   summarise(valor = sum(valor)) %>%
   ungroup() %>%
   arrange(mes_ano) %>%
   mutate(data = as.Date(paste(str_sub(mes_ano, 1, 4),
                       str_sub(mes_ano, 5, 6),
                       "01", sep = "-"))) %>%
-  group_by(mutuario) %>%
+  group_by(mutuario, mutuario_cat) %>%
   mutate(total_mutuario = sum(valor)) %>%
   ungroup() %>%
-  mutate(ente = fct_reorder(mutuario, total_mutuario))
+  mutate(ente = fct_reorder(mutuario, total_mutuario)) 
+
+contagem_honras <- honras_simples %>%
+  mutate(mutuario_cat = ifelse(mutuario == "Rio de Janeiro", "rio", "demais")) %>%
+  arrange(mes_ano) %>%
+  mutate(data_mes = as.Date(paste(str_sub(mes_ano, 1, 4),
+                              str_sub(mes_ano, 5, 6),
+                              "01", sep = "-"))) %>%
+  group_by(data_mes, mutuario_cat) %>%
+  mutate(pos = row_number())
+
+# beeswarm / unitplot de cada honra
+ggplot(contagem_honras, aes(x = data_mes, y = ifelse(mutuario_cat == "rio", pos, -pos))) + geom_point()
 
 #%>% filter(!(mutuario %in% c("Rio de Janeiro", "Minas Gerais", "Goiás"))
 
@@ -131,7 +146,30 @@ ggplot(honras_plot, aes(y = valor, x = data)) +
         axis.title = element_blank(),
         panel.grid = element_blank())
 
+honras_plot_acum <- honras_plot %>%
+  arrange(data) %>%
+  group_by(data, mutuario_cat) %>%
+  summarise(valor = sum(valor)) %>%
+  ungroup() %>%
+  group_by(mutuario_cat) %>%
+  mutate(valor_acum = cumsum(valor))
+
+
+honras_plot_acum %>% filter(mutuario != "Rio de Janeiro")
+
+# "streamgraph"
+ggplot(honras_plot_acum, 
+       aes(x = data, 
+           y = ifelse(mutuario_cat == "rio", valor_acum, -valor_acum), 
+           fill = mutuario_cat)) + 
+  geom_line() +
+  geom_area() +
+  geom_col(aes(y = ifelse(mutuario_cat == "rio", valor, -valor)), fill = "goldenrod") +
+  theme_minimal()
+
 ggplot(honras_plot) + geom_histogram(aes(valor), bins = 100)
+
+
 
 summary(honras_plot$valor)
 
