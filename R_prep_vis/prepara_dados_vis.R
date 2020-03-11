@@ -82,6 +82,8 @@ write.csv(quadro, file = "webpage/dados_quadro.csv", fileEncoding = "UTF-8")
 
 # contratos ---------------------------------------------------------------
 
+lista_contratos <- novos_contratos %>% count(Mutuário)
+
 write.csv(novos_contratos, file = "webpage/contratos.csv", fileEncoding = "UTF-8")
 
 
@@ -126,8 +128,32 @@ contagem_honras <- honras_simples %>%
   group_by(data_mes, mutuario_cat) %>%
   mutate(pos = row_number())
 
+contagem_honras2 <- honras_simples %>%
+  mutate(mutuario_cat = ifelse(mutuario == "Rio de Janeiro", "rio", "demais")) %>%
+  arrange(mes_ano, desc(mutuario_cat)) %>%
+  mutate(data_mes = as.Date(paste(str_sub(mes_ano, 1, 4),
+                                  str_sub(mes_ano, 5, 6),
+                                  "01", sep = "-"))) %>%
+  group_by(data_mes) %>%
+  mutate(pos = row_number())
+
+contagem_honras_simples <- contagem_honras2 %>%
+  group_by(data_mes, mutuario_cat) %>%
+  count()
+
 # beeswarm / unitplot de cada honra
 ggplot(contagem_honras, aes(x = data_mes, y = ifelse(mutuario_cat == "rio", pos, -pos))) + geom_point()
+
+# beeswarm / unitplot de cada honra, empilhados
+ggplot(contagem_honras2, aes(x = data_mes, y = pos, color = mutuario_cat)) + geom_point()
+
+### vai pro D3
+# barchart contagem + unitplot
+ggplot(contagem_honras_simples, aes(x = data_mes, y = n, fill = mutuario_cat)) + geom_col() + 
+  geom_point(data = contagem_honras2, aes(x = data_mes, y = pos, color = mutuario_cat)) +
+  scale_color_manual(values = c("firebrick", "steelblue"))
+scale_color
+
 
 #%>% filter(!(mutuario %in% c("Rio de Janeiro", "Minas Gerais", "Goiás"))
 
@@ -165,6 +191,32 @@ ggplot(honras_plot_acum,
   geom_line() +
   geom_area() +
   geom_col(aes(y = ifelse(mutuario_cat == "rio", valor, -valor)), fill = "goldenrod") +
+  theme_minimal()
+
+### vai pro D3
+# area graph
+ggplot(honras_plot_acum, 
+       aes(x = data, 
+           y = valor_acum, 
+           fill = mutuario_cat)) + 
+  geom_area() +
+  theme_minimal()
+
+### vai pro D3
+# barchart
+ggplot(honras_plot_acum, 
+       aes(x = data, 
+           y = valor, 
+           fill = mutuario_cat)) + 
+  geom_col() +
+  theme_minimal()
+
+# barchart_contagem
+ggplot(contagem_honras2, 
+       aes(x = data,
+           fill = mutuario_cat,
+           y = pos)) + 
+  geom_bar() +
   theme_minimal()
 
 ggplot(honras_plot) + geom_histogram(aes(valor), bins = 100)
