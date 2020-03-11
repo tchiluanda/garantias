@@ -214,7 +214,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
         y: mini_dados_vis[0].y_2,
         texto : "",
         valor : valor_formatado(el.valor),
-        cor : cor(el.Escopo)
+        cor : d3.rgb(cor(el.Escopo)).darker()
       }        
     }
   }
@@ -231,7 +231,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
   
   //console.log(bars);
 
-  $svg_endividamento.style("background-color", "cornsilk")
+  //$svg_endividamento.style("background-color", "cornsilk")
 
   // funções para desenhar
 
@@ -297,7 +297,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
       d3.selectAll("rect.d3--endividamento")
         .transition()
         .duration(500)
-        .attr("fill", d => d3.rgb(cor(d.Escopo)).darker());
+        .attr("fill", d => cor(d.Escopo));
     }
     else {
       d3.selectAll("rect.d3--endividamento")
