@@ -297,7 +297,7 @@ d3.csv("dividas_totais.csv").then(function(dados) {
       d3.selectAll("rect.d3--endividamento")
         .transition()
         .duration(500)
-        .attr("fill", d => cor(d.Escopo));
+        .attr("fill", d => d3.rgb(cor(d.Escopo)).darker());
     }
     else {
       d3.selectAll("rect.d3--endividamento")
