@@ -238,7 +238,7 @@ section.vis div.grafico-d3-container #tooltip {
     z-index: 1; 
 }
 
-
+/* /////////////////////////////////////////////////// */
 /* Quadro */
 
 /*
@@ -382,6 +382,15 @@ section.quadro .container-svg-card p.rotulos {
     font-family: "Merriweather Sans";
     text-align: left;
 }
+
+/* tabela de contratos */
+
+section.quadro .lista-projetos {
+    position: relative;
+}
+
+
+/* regras auxiliares */
 
 .hidden {
     display: none;
