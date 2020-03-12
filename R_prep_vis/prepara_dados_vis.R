@@ -75,7 +75,8 @@ quadro <- list(
     str_replace(
       str_replace_all(
         as.character(.), "\\.", ""), ",", "\\."))) %>%
-  mutate(interna_demais = interna_total - interna_cambial)
+  mutate(interna_demais = interna_total - interna_cambial)  %>%
+  arrange(Classificador, Inicio)
 
 write.csv(quadro, file = "webpage/dados_quadro.csv", fileEncoding = "UTF-8")
 
@@ -84,7 +85,21 @@ write.csv(quadro, file = "webpage/dados_quadro.csv", fileEncoding = "UTF-8")
 
 lista_contratos <- novos_contratos %>% count(Mutuário)
 
-write.csv(novos_contratos, file = "webpage/contratos.csv", fileEncoding = "UTF-8")
+arq_contratos <- novos_contratos %>%  
+  mutate(Inicio = rm_accent(`Mutuário`),
+         Classificador = rm_accent(`Tipo Mutuário`)) %>%
+  filter(Inicio %in% dados_vis$Inicio) %>%
+  select(Inicio, 
+         Classificador, 
+         UF, 
+         Credor, 
+         tipo_credor = `Classificação de Credor`,
+         Projeto,
+         data = `Data de Assinatura`,
+         Moeda,
+         valor = `Valor Contratado Original`)
+
+write.csv(arq_contratos, file = "webpage/contratos.csv", fileEncoding = "UTF-8")
 
 novos_contratos %>%
   group_by(`Tipo Mutuário`) %>%
@@ -92,6 +107,27 @@ novos_contratos %>%
   janitor::adorn_totals("row")
 
 dados_vis_pre %>% group_by(Classificador) %>% summarise(sum(valor))
+
+### verificacao
+
+lista_garantias_mutuarios <- dados_vis %>%
+  group_by(Classificador, Inicio) %>%
+  summarise(qde_garantias = n()) %>%
+  ungroup() %>%
+  mutate(tipo = "garantias")
+  
+
+lista_contratos_mutuarios <- novos_contratos %>%
+  mutate(`Mutuário` = rm_accent(`Mutuário`),
+         `Tipo Mutuário` = rm_accent(`Tipo Mutuário`)) %>%
+  group_by(`Tipo Mutuário`, `Mutuário`) %>%
+  summarise(qde_contratos = n()) %>%
+  ungroup() %>%
+  mutate(tipo = "contratos")
+
+lista_unica <- full_join(lista_garantias_mutuarios,
+                         lista_contratos_mutuarios,
+                         by = c("Classificador" = "Tipo Mutuário", "Inicio" = "Mutuário"))
 
 # honras: dados para viz --------------------------------------------------
 
@@ -314,3 +350,54 @@ plot_honras1 <- ggplot(honras_plot, aes(y = ente, x = data, fill = valor)) +
 ggsave(filename = "honras1.png", plot = plot_honras1, width = 4, height = 10, bg = "transparent")
 
 honras_simples %>% group_by(mutuario, tipo_mutuario) %>% summarise(sum(valor), n())
+
+
+
+# uteis -------------------------------------------------------------------
+
+rm_accent <- function(str,pattern="all") {
+  # Rotinas e funções úteis V 1.0
+  # rm.accent - REMOVE ACENTOS DE PALAVRAS
+  # Função que tira todos os acentos e pontuações de um vetor de strings.
+  # Parâmetros:
+  # str - vetor de strings que terão seus acentos retirados.
+  # patterns - vetor de strings com um ou mais elementos indicando quais acentos deverão ser retirados.
+  #            Para indicar quais acentos deverão ser retirados, um vetor com os símbolos deverão ser passados.
+  #            Exemplo: pattern = c("´", "^") retirará os acentos agudos e circunflexos apenas.
+  #            Outras palavras aceitas: "all" (retira todos os acentos, que são "´", "`", "^", "~", "¨", "ç")
+  if(!is.character(str))
+    str <- as.character(str)
+  
+  pattern <- unique(pattern)
+  
+  if(any(pattern=="Ç"))
+    pattern[pattern=="Ç"] <- "ç"
+  
+  symbols <- c(
+    acute = "áéíóúÁÉÍÓÚýÝ",
+    grave = "àèìòùÀÈÌÒÙ",
+    circunflex = "âêîôûÂÊÎÔÛ",
+    tilde = "ãõÃÕñÑ",
+    umlaut = "äëïöüÄËÏÖÜÿ",
+    cedil = "çÇ"
+  )
+  
+  nudeSymbols <- c(
+    acute = "aeiouAEIOUyY",
+    grave = "aeiouAEIOU",
+    circunflex = "aeiouAEIOU",
+    tilde = "aoAOnN",
+    umlaut = "aeiouAEIOUy",
+    cedil = "cC"
+  )
+  
+  accentTypes <- c("´","`","^","~","¨","ç")
+  
+  if(any(c("all","al","a","todos","t","to","tod","todo")%in%pattern)) # opcao retirar todos
+    return(chartr(paste(symbols, collapse=""), paste(nudeSymbols, collapse=""), str))
+  
+  for(i in which(accentTypes%in%pattern))
+    str <- chartr(symbols[i],nudeSymbols[i], str)
+  
+  return(str)
+}
