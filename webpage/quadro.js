@@ -167,7 +167,7 @@ const draw_grafico_card = function(dados_selecionados) {
   d3.select('section.quadro span.titulo-card')
     .text(dados_selecionados.Inicio + ' (' + dados_selecionados.Classificador + ')');
 
-  console.log("Mini dataset", mini_dataset);
+  //console.log("Mini dataset", mini_dataset);
 
 
 }
@@ -177,8 +177,8 @@ const draw_grafico_card = function(dados_selecionados) {
 // *********************
 
 d3.csv("webpage/dados_quadro.csv").then(function(dados) {
-    console.table(dados);
-    console.log(Object.keys(dados[0]));
+    //console.table(dados);
+    //console.log(Object.keys(dados[0]));
     //console.log(d3.keys(dados[0]));
     //console.log(d3.map(dados, d => d.Classificador).keys());
     //console.log(dados
@@ -195,7 +195,7 @@ d3.csv("webpage/dados_quadro.csv").then(function(dados) {
                 }))
       .filter((v, i, a) => a.indexOf(v) === i);
 
-    console.table(entidades_classificadores);
+    //console.table(entidades_classificadores);
 
     // popular os <select>
 
@@ -247,7 +247,7 @@ d3.csv("webpage/dados_quadro.csv").then(function(dados) {
         const valor_selecionado = $menu_entidade.property("value");
         
         const dados_filtrados = dados.filter(d => d.Classificador + d.Inicio == valor_selecionado)[0];
-        console.log("dados", dados_filtrados);
+        //console.log("dados", dados_filtrados);
 
         // exibe o quadr0
         d3.select('section.quadro div.card')

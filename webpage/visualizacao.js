@@ -33,8 +33,7 @@ const ncol_rank = w < 510 ? 2 : 5;
 
 // lists/arrays with the two categories that will be used
 // as criteria for spreading out the bubbles
-const lista_tipos = ["Estados", "Bancos Federais", "Municípios", "Estatais Federais", 
-"Entidades Estaduais Controladas", "Empresas Privatizadas"];
+const lista_tipos = ["Estados", "Bancos Federais", "Municipios", "Entidades Estaduais Controladas", "Estatais Federais"];
 
 const lista_rank = d3.range(qde_rank-1).map(d => d+1);
 lista_rank.push("Demais");
@@ -50,11 +49,17 @@ const generate_groups_coordinates = function(list, ncol) {
     w_cell: w / ncol,
     h_cell: h / nrow // (1)
   }
+  const elementos_sobrando = list.length % ncol;
+  const ajuste = (ncol - elementos_sobrando) * (obj.w_cell/2);
+  console.log("ajuste", ajuste)
+
   list.forEach(function(d,i) {     
     coord_i = i % ncol;
-    coord_j = Math.floor(i/ncol)
+    coord_j = Math.floor(i/ncol);
+    const pad = (elementos_sobrando > 0) & (coord_j + 1 == nrow) ? ajuste : 0;
+
     return (obj[d] = {
-            x_cell: d == "Demais" ? w/2 : w/(ncol*2) + (w*coord_i)/ncol,
+            x_cell: d == "Demais" ? w/2 : w/(ncol*2) + (w*coord_i)/ncol + pad,
             y_cell: h/(nrow*2) + (h*coord_j)/nrow,
             line_number: coord_j
             })
@@ -70,7 +75,7 @@ const tipos = generate_groups_coordinates(lista_tipos, ncol_tipos);
 const ranks = generate_groups_coordinates(lista_rank, ncol_rank);
 
 //console.log("Ranks: ", ranks);
-//console.log("Tipos: ", tipos);
+console.log("Tipos: ", tipos);
 
 // function to format the values
 
@@ -105,7 +110,7 @@ const fillColor = d3.scaleOrdinal()
 // the bubble will have a (random) start position, before
 // the force layout starts to act.
 
-d3.csv("webpage/(old) dados_vis.csv", function(d) {
+d3.csv("webpage/dados_vis_garantias.csv", function(d) {
     return {
         classificador: d.Classificador,
         entidade: d.Inicio,
@@ -176,17 +181,19 @@ d3.csv("webpage/(old) dados_vis.csv", function(d) {
 
     const subtotals = d3.map(dados, d => d.valor_classificador).keys();
     const classificadores = d3.map(dados, d => d.classificador).keys();
+    console.log(classificadores, "classificadores")
+    console.log("tipos", tipos)
 
     const labels_tipos_com_valores = [];
     classificadores.forEach(
-      (d, i) => labels_tipos_com_valores[i] = {
+      (d, i) => {console.log(d);labels_tipos_com_valores[i] = {
         classificador: d,
         value: subtotals[i],
         x_label : tipos[d].x_cell - tipos.w_cell/2,
         //y_label : tipos[d].y_cell + tipos.h_cell/2 - 50,
         w_label : tipos.w_cell,
         line_number : tipos[d].line_number
-      }
+      }}
     );
 
     const linhas_tipos = d3.map(labels_tipos_com_valores, d => d.line_number).keys();
