@@ -86,7 +86,12 @@ lista_contratos <- novos_contratos %>% count(Mutuário)
 
 write.csv(novos_contratos, file = "webpage/contratos.csv", fileEncoding = "UTF-8")
 
+novos_contratos %>%
+  group_by(`Tipo Mutuário`) %>%
+  summarise(sum(`Saldo Devedor`), sum(`Saldo a Desembolsar`)) %>%
+  janitor::adorn_totals("row")
 
+dados_vis_pre %>% group_by(Classificador) %>% summarise(sum(valor))
 
 # honras: dados para viz --------------------------------------------------
 
