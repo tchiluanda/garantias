@@ -281,12 +281,13 @@ section.quadro p.container-titulo-card {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    font-family: "Merriweather Sans";
 }
 
 section.quadro p.container-titulo-card span {
     border-width: 3px;
     padding: 10px;
-    color: ghostwhite;
+    color: #FAFFFF;
 }
 
 section.quadro div.card {
