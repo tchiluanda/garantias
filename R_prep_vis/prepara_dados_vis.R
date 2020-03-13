@@ -194,6 +194,28 @@ ggplot(honras_agg, aes(x = data_mes, y = valor_acum, fill = mutuario_cat)) +
   geom_area() +
   theme(legend.position = "bottom")
 
+#barchart agregado
+ggplot(honras_agg, aes(x = data_mes, y = valor_acum, fill = mutuario_cat)) +
+  geom_col() +
+  theme(legend.position = "bottom")
+
+#areachart mensal
+ggplot(honras_agg, aes(x = data_mes, y = valor_mes, fill = mutuario_cat)) +
+  geom_area() +
+  theme(legend.position = "bottom")
+
+#barchart mensal
+ggplot(honras_agg, aes(x = data_mes, y = valor_mes, fill = mutuario_cat)) +
+  geom_col() +
+  theme(legend.position = "bottom")
+
+#areachart qde
+ggplot(honras_agg, aes(x = data_mes, y = qde, fill = mutuario_cat)) +
+  geom_area() +
+  geom_point(data = honras_det, aes(x = data_mes, color = mutuario_cat, y = pos)) +  
+  scale_color_manual(values = c("firebrick", "steelblue"))
+  theme(legend.position = "bottom")
+
 #unit
 ggplot() +
   geom_col(data = honras_agg, aes(x = data_mes, y = qde, fill = mutuario_cat)) +
