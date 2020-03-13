@@ -255,7 +255,7 @@ d3.csv("webpage/dados_quadro.csv").then(function(dados) {
 
         // atualiza tabela
 
-        const $campos_de_valor = d3.selectAll("section.quadro table td");
+        const $campos_de_valor = d3.selectAll("section.quadro .card table td");
         //console.log($campos_de_valor);
 
         $campos_de_valor._groups[0].forEach(function(d) {
