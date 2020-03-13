@@ -3,6 +3,9 @@ const $svg_endividamento       = $container_endividamento.select('#vis-endividam
 const $steps = d3.selectAll(".endividamento-steps");
 const scroller = scrollama();
 
+// municipios #f8ac08
+// estados #028063
+
 let stepH, w_bruto, w_endiv, h_bruto, h_endiv, container_margem_superior, offset_calc;
 
 // o que fez funcionar no celular foi esse código para ficar
