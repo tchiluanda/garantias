@@ -389,6 +389,40 @@ section.quadro .lista-projetos {
     position: relative;
 }
 
+section.quadro .lista-projetos table {
+    width: 100%;
+}
+
+section.quadro .lista-projetos thead {
+    font-family: "Merriweather Sans"; /*devia usar variaveis aqui*/
+    font-size: 0.65rem;
+}
+
+section.quadro .lista-projetos thead th {
+    font-weight: bold;
+}
+
+section.quadro .lista-projetos tbody td {
+    text-align: left;
+    font-size: 0.65rem;
+}
+
+section.quadro .lista-projetos tbody tr {
+    background-color: #e9e9e9;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+section.quadro .lista-projetos tbody td.tab-projeto {
+    min-width: 160px;
+}
+
+section.quadro .lista-projetos table .tab-credor,
+section.quadro .lista-projetos table .tab-moeda,
+section.quadro .lista-projetos table .tab-valor {
+    text-align: right;
+}
+
+
 
 /* regras auxiliares */
 
