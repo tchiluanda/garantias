@@ -238,7 +238,7 @@ section.vis div.grafico-d3-container #tooltip {
     z-index: 1; 
 }
 
-
+/* /////////////////////////////////////////////////// */
 /* Quadro */
 
 /*
@@ -382,6 +382,54 @@ section.quadro .container-svg-card p.rotulos {
     font-family: "Merriweather Sans";
     text-align: left;
 }
+
+/* tabela de contratos */
+
+section.quadro .lista-projetos {
+    position: relative;
+}
+
+section.quadro .lista-projetos table {
+    width: 100%;
+}
+
+section.quadro .lista-projetos thead {
+    font-family: "Merriweather Sans"; /*devia usar variaveis aqui*/
+    font-size: 0.65rem;
+    border-bottom: 1px solid #d0d0d0;
+    vertical-align: bottom;
+}
+
+section.quadro .lista-projetos thead th {
+    font-weight: bold;
+}
+
+section.quadro .lista-projetos tbody td {
+    text-align: left;
+    font-size: 0.65rem;
+}
+
+section.quadro .lista-projetos tbody tr {
+    border-bottom: 1px solid #d0d0d0;
+}
+
+section.quadro .lista-projetos tbody tr:nth-child(odd) {
+    background-color: #D1E8E1; /*#e9e9e9;*/
+}
+
+section.quadro .lista-projetos tbody td.tab-projeto {
+    min-width: 160px;
+}
+
+section.quadro .lista-projetos table .tab-credor,
+section.quadro .lista-projetos table .tab-moeda,
+section.quadro .lista-projetos table .tab-valor {
+    text-align: right;
+}
+
+
+
+/* regras auxiliares */
 
 .hidden {
     display: none;
