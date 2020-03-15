@@ -97,7 +97,9 @@ arq_contratos <- novos_contratos %>%
          Projeto,
          data = `Data de Assinatura`,
          Moeda,
-         valor = `Valor Contratado Original`)
+         valor = `Valor Contratado Original`) %>%
+  mutate(data_date = lubridate::dmy(data)) %>%
+  arrange(Classificador, Inicio, data_date)
 
 write.csv(arq_contratos, file = "webpage/contratos.csv", fileEncoding = "UTF-8")
 
@@ -186,6 +188,11 @@ honras_agg <- contagem_honras_avancado %>%
   ungroup() %>%
   group_by(mutuario_cat) %>%
   mutate(valor_acum = cumsum(valor_mes))
+
+## exporta
+
+write.csv(honras_det, file = "webpage/dados_honras_det.csv", fileEncoding = "UTF-8")
+write.csv(honras_agg, file = "webpage/dados_honras_agg.csv", fileEncoding = "UTF-8")
 
 ## prototipos de plots
 
