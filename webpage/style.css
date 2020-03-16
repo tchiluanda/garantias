@@ -530,3 +530,68 @@ div.scrolly .endividamento-steps.step-ativo {
         display: unset;
     }
 }
+
+/* visualizacao-honras */
+
+section#vis-honras-scrolly {
+    max-width: 680px;
+    margin: 0 auto;
+    font-family: "Merriweather Sans";
+}
+
+section#vis-honras-scrolly > div.scrolly {
+    position: relative;
+    display: unset;
+}
+
+div.scrolly article {
+    position: relative;
+    max-width: 380px;
+    margin: 0 auto;
+}
+
+div.scrolly .container-vis-honras {
+    position: sticky;
+    top: 20px;
+    z-index: -1;
+    margin: 0;
+    width: 100%;
+}
+
+/* esses rotulos aqui vão ser criados pelo D3 */
+div.scrolly .container-vis-honras div.rotulos-endiv,
+div.scrolly .container-vis-honras .rotulos-eixo-endiv,
+div.scrolly .container-vis-honras .rotulos-barrinhas {
+    position: absolute;
+    font-size: 0.6rem;
+}
+
+div.scrolly .container-vis-honras div.rotulos-endiv > p,
+div.scrolly .container-vis-honras .rotulos-barrinhas {
+    margin: 0;
+}
+
+div.scrolly article .honras-steps {
+    /*height: var(--altura-endiv); /* ficou bem melhor assim fixo. usar css-var? 50vh*/
+    opacity: 1;
+    padding: 100px 0px;
+}
+
+div.scrolly article .honras-steps:first-child {
+    padding-top: 0px;
+}
+
+div.scrolly article .honras-steps p {
+    box-shadow: 2px 2px 5px #888;
+    background-color: ghostwhite;
+    padding: 20px;
+    font-weight: 100;
+    font-size: 0.85rem;
+    margin: 0 1em;
+    line-height: 1.6;
+}
+
+div.scrolly .honras-steps.step-ativo {
+    opacity: 0.8;
+    /*background-color: goldenrod;*/
+}
