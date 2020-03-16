@@ -77,6 +77,12 @@ const ranks = generate_groups_coordinates(lista_rank, ncol_rank);
 //console.log("Ranks: ", ranks);
 console.log("Tipos: ", tipos);
 
+// formatação tooltips bolhas
+
+const formata_vlr_tooltip = function(val){
+  return "R$ "+formataBR(val/1e6)+" mi"
+}
+
 
 
 // scales: color
@@ -96,7 +102,7 @@ const fillColor = d3.scaleOrdinal()
 // the bubble will have a (random) start position, before
 // the force layout starts to act.
 
-d3.csv("webpage/dados_vis_garantias.csv", function(d) {
+d3.csv("webpage/dados/dados_vis_garantias.csv", function(d) {
     return {
         classificador: d.Classificador,
         entidade: d.Inicio,

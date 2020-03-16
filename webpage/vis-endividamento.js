@@ -66,7 +66,7 @@ $svg_endividamento
 
 // leitura do arquivo
 
-d3.csv("dividas_totais.csv").then(function(dados) {
+d3.csv("dados/dividas_totais.csv").then(function(dados) {
   
   // pre processa algumas coisas
   for (el of dados) {

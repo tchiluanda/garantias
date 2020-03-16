@@ -24,12 +24,6 @@ const valor_formatado = function(x) {
   }
 }
 
-// formatação tooltips bolhas
-
-const formata_vlr_tooltip = function(val){
-  return "R$ "+formataBR(val/1e6)+" mi"
-}
-
 // função debounce para dar um atraso na chamada do resize
 // https://davidwalsh.name/function-debounce
 const debounce = function(func, wait, immediate) {

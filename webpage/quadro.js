@@ -176,7 +176,7 @@ const draw_grafico_card = function(dados_selecionados) {
 // PARTE 2 - Leitura dos dados e inicio
 // *********************
 
-d3.csv("webpage/dados_quadro.csv").then(function(dados) {
+d3.csv("webpage/dados/dados_quadro.csv").then(function(dados) {
     //console.table(dados);
     //console.log(Object.keys(dados[0]));
     //console.log(d3.keys(dados[0]));
