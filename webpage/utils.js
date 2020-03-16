@@ -1,27 +1,34 @@
-  // funcaozinha para gerar rotulos
+// funcaozinha para gerar rotulos
 
-  const localeBrasil = {
-    "decimal": ",",
-    "thousands": ".",
-    "grouping": [3],
-    "currency": ["R$", ""]};
+const localeBrasil = {
+  "decimal": ",",
+  "thousands": ".",
+  "grouping": [3],
+  "currency": ["R$", ""]};
 
-  const formataBR = d3.formatDefaultLocale(localeBrasil).format(",.1f");
+const formataBR   = d3.formatDefaultLocale(localeBrasil).format(",.0f");
+const formataBR_1 = d3.formatDefaultLocale(localeBrasil).format(",.1f");
 
-  const multiplos = [1, 1e3, 1e6, 1e9, 1e12];
-  const sufixo    = ["", "mil", "mi", "bi", "tri"];
-  const obj_mult = multiplos.map((d,i) => ({
-    valor: d,
-    sufixo: sufixo[i]
-  }));
-  //console.log("objeto multiplos", obj_mult)
+const multiplos = [1, 1e3, 1e6, 1e9, 1e12];
+const sufixo    = ["", "mil", "mi", "bi", "tri"];
+const obj_mult = multiplos.map((d,i) => ({
+  valor: d,
+  sufixo: sufixo[i]
+}));
+//console.log("objeto multiplos", obj_mult)
 
-  const valor_formatado = function(x) {
-    for (mult of obj_mult) {
-      const val = x/mult.valor;
-      if (val < 1000) return formataBR(val) + " " + mult.sufixo;
-    }
+const valor_formatado = function(x) {
+  for (mult of obj_mult) {
+    const val = x/mult.valor;
+    if (val < 1000) return formataBR_1(val) + " " + mult.sufixo;
   }
+}
+
+// formatação tooltips bolhas
+
+const formata_vlr_tooltip = function(val){
+  return "R$ "+formataBR(val/1e6)+" mi"
+}
 
 // função debounce para dar um atraso na chamada do resize
 // https://davidwalsh.name/function-debounce

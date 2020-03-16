@@ -77,21 +77,7 @@ const ranks = generate_groups_coordinates(lista_rank, ncol_rank);
 //console.log("Ranks: ", ranks);
 console.log("Tipos: ", tipos);
 
-// function to format the values
 
-// formatação valores
-    
-const localeBrasil = {
-    "decimal": ",",
-    "thousands": ".",
-    "grouping": [3],
-    "currency": ["R$", ""]};
-
-const formataBR = d3.formatDefaultLocale(localeBrasil).format(",.0f");
-
-const formata_vlr_tooltip = function(val){
-    return "R$ "+formataBR(val/1e6)+" mi"
-}
 
 // scales: color
 
