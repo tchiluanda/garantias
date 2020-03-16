@@ -1,12 +1,12 @@
-const $container_endividamento = d3.select('.container-vis-endividamento');
-const $svg_endividamento       = $container_endividamento.select('#vis-endividamento');
-const $steps = d3.selectAll(".endividamento-steps");
-const scroller = scrollama();
+const $container_honras = d3.select('.container-vis-honras');
+const $svg_honras       = $container_honras.select('#vis-honras');
+const $steps_honras     = d3.selectAll(".honras-steps");
+const scroller_honras   = scrollama();
 
 // municipios #f8ac08
 // estados #028063
 
-let stepH, w_bruto, w_endiv, h_bruto, h_endiv, container_margem_superior, offset_calc;
+let stepH, w_bruto, w_honras, h_bruto, h_honras, container_margem_superior, offset_calc;
 
 // o que fez funcionar no celular foi esse código para ficar
 // recalculando as dimensões, conforme o tamanho da janela
@@ -21,24 +21,24 @@ function handleResize() {
   
   // 1. update height of step elements
   stepH = Math.floor(window.innerHeight * 0.8);
-  $steps.style("height", stepH + "px");
+  $steps_honras.style("height", stepH + "px");
 
-  w_bruto = $container_endividamento.node().offsetWidth;
-  w_endiv = w_bruto >= 600 ? 600 : w_bruto;
+  w_bruto = $container_honras.node().offsetWidth;
+  w_honras = w_bruto >= 600 ? 600 : w_bruto;
 
   //const h_bruto = $container_endividamento.node().offsetHeight;
   h_bruto = window.innerHeight * 0.8
-  h_endiv = h_bruto //>= 500 ? 500 : h_bruto;
+  h_honras = h_bruto //>= 500 ? 500 : h_bruto;
 
-  container_margem_superior = (window.innerHeight - h_endiv)/2;
-  $container_endividamento
+  container_margem_superior = (window.innerHeight - h_honras)/2;
+  $container_honras
     .style("top", container_margem_superior + "px")
-    .style("height", h_endiv + "px");
+    .style("height", h_honras + "px");
 
   offset_calc = Math.floor(window.innerHeight * 0.5) + "px";
 
   // 3. tell scrollama to update new element dimensions
-  scroller.resize();
+  scroller_honras.resize();
 }
 
 handleResize();
@@ -47,24 +47,32 @@ handleResize();
 // dos elementos que dependem desse valor.
 // como defini como uma variável, vou atualizar simplesmente
 // essa variável aqui.
-d3.select(":root").style("--altura-endiv", h_endiv + "px");
+//d3.select(":root").style("--altura-honras", h_endiv + "px");
 
 //console.log("Topper", container_margem_superior, $container_endividamento.style("top"));
 
-const margin = {
+const margin_honras = {
   top: 20,
   bottom: 60,
-  left: w_endiv < 600 ? 2 : 10,
-  right: w_endiv < 600 ? 2 : 10
+  left: w_honras < 600 ? 2 : 10,
+  right: w_honras < 600 ? 2 : 10
 };
 
-const w_liq = w_endiv - margin.left - margin.right;
+const w_liq_honras = w_honras - margin_honras.left - margin_honras.right;
 
-$svg_endividamento     
+$svg_honras     
   .attr('width', w_endiv)
   .attr('height', h_endiv);
 
 // leitura do arquivo
+
+Promise.all([
+  d3.csv("dados/honras_agg.csv"),
+  d3.csv("dados/honras_Det.csv"),
+]).then(function(files) {
+  // files[0] will contain file1.csv
+  // files[1] will contain file2.csv
+})
 
 d3.csv("dados/dividas_totais.csv").then(function(dados) {
   
@@ -125,8 +133,8 @@ d3.csv("dados/dividas_totais.csv").then(function(dados) {
     dados_vis.push({
       tipo_divida: dados_total[i].tipo_divida,
       Escopo: dados_total[i].Escopo,
-      x_0 : margin.left +  w_liq/4 - bar_width/2,
-      x_1 : margin.left + (w_liq/4)*(4 - x_index) - bar_width/2, //(w_liq/5)*(i+1),
+      x_0 : margin.left +  w_liq_honras/4 - bar_width/2,
+      x_1 : margin.left + (w_liq_honras/4)*(4 - x_index) - bar_width/2, //(w_liq_honras/5)*(i+1),
       height : l(dados_total[i].valor),
       valor_formatado : valor_formatado(dados_total[i].valor),
       y : i == 0 ? y(0) : dados_vis[i-1].y + l(dados_total[i-1].valor)
@@ -235,7 +243,7 @@ d3.csv("dados/dividas_totais.csv").then(function(dados) {
     $svg_endividamento
       .append("line")
       .attr("x1", margin.left)
-      .attr("x2", margin.left + w_liq)
+      .attr("x2", margin.left + w_liq_honras)
       .attr("y1", y_max)
       .attr("y2", y_max)
       .attr("stroke", "transparent")
@@ -300,7 +308,7 @@ d3.csv("dados/dividas_totais.csv").then(function(dados) {
   ///////////////////////////////////////////
   // rotulos
   const pad_rotulo = 10;
-  const largura_rotulo = w_liq/4 - 2*pad_rotulo
+  const largura_rotulo = w_liq_honras/4 - 2*pad_rotulo
 
   const mostra_rotulo = function(escopo, tipo_divida, alinhamento) {
     dados_rotulo = rotulos[escopo+"_"+tipo_divida];
