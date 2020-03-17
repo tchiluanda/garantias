@@ -87,7 +87,7 @@ Promise.all([
   //console.log(honras_agg[0]);
   //console.table(files[1]);
 
-
+  // ver isso aqui depois: https://observablehq.com/@d3/stacked-area-chart-via-d3-group
   //gera um série para cada categoria de mutuário (mutuario_cat)
   //e tipo de valor 
   const gera_series_formato_stack = function(dados, categoria, tipo_valor, lista_datas) {
@@ -143,6 +143,7 @@ Promise.all([
     // console.log(series);
   }
 
+
   // obtem uma lista de datas
   const lista_datas = d3.map(honras_agg, d => d.data_mes).keys();
 
@@ -168,7 +169,44 @@ Promise.all([
   const serie_mes_stack = stack(serie_mes);
   const serie_qde_stack = stack(serie_qde);
 
-  console.log(serie_acum_stack, serie_mes_stack, serie_qde_stack)
+  // console.log(serie_acum_stack, serie_mes_stack, serie_qde_stack)
+  // escalas
+
+  //// x - tempo
+  const PERIODO = d3.extent(honras_agg, d => d.data_mes);
+  
+  const x = d3.scaleTime()
+              .domain(PERIODO)
+              .range([margin_honras.left, w_honras-margin_honras.right])
+
+  //// y - valores
+  const range_y = [margin_honras.top, h_honras - margin_honras.bottom];
+
+  const y_acu = d3.scaleLinear()
+                  .range(range_y)
+                  .domain([0, d3.max(honras_agg, d => d.valor_acum)]);
+
+  //// cores
+  const cor = d3.scaleOrdinal()
+                .range(d3.schemeCategory10)
+                .domain([categorias]);  
+
+  // gerador de area
+  const area = d3.area()
+                 .x(d => x(d.data.data_mes))
+                 .y0(d => y_acu(d[0]))
+                 .y1(d => y_acu(d[1]));
+
+  console.log(" ", [margin_honras.left, w_honras-margin_honras.right]);
+  console.log("serie stack", serie_acum_stack);
+  console.log("area aplicada", area(serie_acum_stack[0]));
+
+  $svg_honras.selectAll("path.honras-area-cum")
+             .data(serie_acum_stack)
+             .enter()
+             .append("path")
+             .attr("d", area)
+             .attr("fill", ({key}) => cor(key));
 
 
 
@@ -187,9 +225,6 @@ Promise.all([
               .domain([0, d3.max(dados, d => d.valor)]); 
 
   // escala cor
-  const cor = d3.scaleOrdinal()
-              .range(["#66c2a5", "#8da0cb", "#80160D", "#004D4D"])
-              .domain(["Estados", "Municípios", "Total", "Destaque"]);
   
   const y_max = y(d3.max(dados, d => d.valor));     
   const l_max = l(d3.max(dados, d => d.valor));   
