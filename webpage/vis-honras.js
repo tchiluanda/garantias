@@ -82,8 +82,78 @@ Promise.all([
     el.data_mes = d3.timeParse("%Y-%m-%d")(el.data_mes);
   }
 
+  let teste = honras_agg.slice(0,10);
+
   console.log(honras_agg[0]);
   //console.table(files[1]);
+
+
+  //gera um série para cada categoria de mutuário (mutuario_cat)
+  const lista_datas = d3.map(honras_agg, d => d.data_mes).keys();
+  console.log(lista_datas);
+
+  const gera_series_formato_stack = function(dados, categoria, tipo_valor, lista_datas) {
+    //obtem uma lista unica das categorias selecionadas
+    const lista_categorias = d3.map(dados, d => d[categoria]).keys();
+    console.log(lista_categorias);
+    
+    //inicializa o objeto que vai receber as series
+    const obj_series = {};
+
+    //para cada categoria daquela lista
+    for (cat of lista_categorias) {
+      // gera uma array filtrada
+      const dados_filtrados = dados.filter(d => d[categoria] == cat);
+      
+      // o problema é que as arrays vão ter tamanhos
+      // diferentes, pq nem todas as categorias apresentam
+      // valores para todos os meses. então vamoms gerar,
+      // para cada categoria, um objeto série com pares
+      // data : valor_desejado
+
+      // se tiver certeza que as arrays terão o mesmo tamanho,
+      // poderia simplesmente combinar esses arrays com um loop mais simples
+
+      const dados_filt_obj = {};
+
+      for (el of dados_filtrados) {
+        dados_filt_obj[el.data_mes] = el[tipo_valor];
+      }
+      // leva esse objeto série criado para o objetão que
+      // guarda todas as séries
+      obj_series[cat] = dados_filt_obj;
+    }
+
+    const series = [];
+
+    // aquele momento em q vc percebe q está fazendo 
+    // algo tão complexo e sabe que nunca mais vai 
+    // conseguir entender o que foi feito aqui... :/
+    // era (bem) mais fácil ter gerado três csv's já arrumadinhos
+    // no R...
+
+    for (data of lista_datas) {
+      const elemento = {};
+      elemento["data_mes"] = data;
+      for (cat of lista_categorias) {
+        elemento[cat] = obj_series[cat][data];
+      }
+      series.push(elemento)
+    }
+
+    return(series)
+    // console.log(series);
+  }
+
+  const serie_acum = gera_series_formato_stack(honras_agg, "mutuario_cat", "valor_acum", lista_datas);
+  const serie_mes  = gera_series_formato_stack(honras_agg, "mutuario_cat", "valor_mes",  lista_datas);
+  const serie_qde = gera_series_formato_stack(honras_agg, "mutuario_cat", "qde", lista_datas);
+
+  console.table(serie_acum);
+  console.table(serie_mes);
+  console.table(serie_qde);
+
+  /////// continua aqui. criar os stacks.
 
 
   // filtra
