@@ -4,6 +4,7 @@ library(stringr)
 library(viridis)
 library(colorspace)
 library(extrafont)
+library(padr)
 
 #extrafont::font_import()
 loadfonts()
@@ -191,8 +192,17 @@ honras_agg <- contagem_honras_avancado %>%
   summarise(valor_mes = sum(valor),
             qde = n()) %>%
   ungroup() %>%
+  gather(valor_mes, qde, key = "tipo_valor", value = "valor") %>% #(1)
+  spread(mutuario_cat, value = valor) %>%
+  pad(by = "data_mes", interval = "month") %>%
+  gather(-c(data_mes, tipo_valor), key = mutuario_cat, value = valor) %>%
+  spread(tipo_valor, value = valor) %>%
+  replace_na(list(qde = 0, valor_mes = 0)) %>%
   group_by(mutuario_cat) %>%
   mutate(valor_acum = cumsum(valor_mes))
+
+#(1): faço essa combinação de gathers e spread para "preencher" os valores
+#     de todas as categorias para todos os meses.
 
 
 
