@@ -75,6 +75,7 @@ Promise.all([
 
   const honras_agg = files[0];
 
+  //para formatar os valores
   for (el of honras_agg) {
     el.valor_acum = +el.valor_acum;
     el.valor_mes = +el.valor_mes;
@@ -82,16 +83,13 @@ Promise.all([
     el.data_mes = d3.timeParse("%Y-%m-%d")(el.data_mes);
   }
 
-  let teste = honras_agg.slice(0,10);
-
-  console.log(honras_agg[0]);
+  //let teste = honras_agg.slice(0,10);
+  //console.log(honras_agg[0]);
   //console.table(files[1]);
 
 
   //gera um série para cada categoria de mutuário (mutuario_cat)
-  const lista_datas = d3.map(honras_agg, d => d.data_mes).keys();
-  console.log(lista_datas);
-
+  //e tipo de valor 
   const gera_series_formato_stack = function(dados, categoria, tipo_valor, lista_datas) {
     //obtem uma lista unica das categorias selecionadas
     const lista_categorias = d3.map(dados, d => d[categoria]).keys();
@@ -124,7 +122,7 @@ Promise.all([
       obj_series[cat] = dados_filt_obj;
     }
 
-    const series = [];
+    const serie = [];
 
     // aquele momento em q vc percebe q está fazendo 
     // algo tão complexo e sabe que nunca mais vai 
@@ -138,22 +136,40 @@ Promise.all([
       for (cat of lista_categorias) {
         elemento[cat] = obj_series[cat][data];
       }
-      series.push(elemento)
+      serie.push(elemento)
     }
 
-    return(series)
+    return(serie)
     // console.log(series);
   }
+
+  // obtem uma lista de datas
+  const lista_datas = d3.map(honras_agg, d => d.data_mes).keys();
 
   const serie_acum = gera_series_formato_stack(honras_agg, "mutuario_cat", "valor_acum", lista_datas);
   const serie_mes  = gera_series_formato_stack(honras_agg, "mutuario_cat", "valor_mes",  lista_datas);
   const serie_qde = gera_series_formato_stack(honras_agg, "mutuario_cat", "qde", lista_datas);
 
-  console.table(serie_acum);
-  console.table(serie_mes);
-  console.table(serie_qde);
+  //console.table(serie_acum);
+  //console.table(serie_mes);
+  //console.table(serie_qde);
 
-  /////// continua aqui. criar os stacks.
+  // definindo a ordem das categorias
+  const categorias = ["Estado do Rio de Janeiro", "Minas Gerais", "Demais entes"];
+
+  // cria a função de stack com essa lista de categorias
+  const stack = d3.stack()
+    .keys(categorias)
+    .order(d3.stackOrderNone)
+    .offset(d3.stackOffsetNone);
+  
+  // cria as versões stacked das series
+  const serie_acum_stack = stack(serie_acum);
+  const serie_mes_stack = stack(serie_mes);
+  const serie_qde_stack = stack(serie_qde);
+
+  console.log(serie_acum_stack, serie_mes_stack, serie_qde_stack)
+
 
 
   // filtra
