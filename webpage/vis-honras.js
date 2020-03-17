@@ -61,31 +61,30 @@ const margin_honras = {
 const w_liq_honras = w_honras - margin_honras.left - margin_honras.right;
 
 $svg_honras     
-  .attr('width', w_endiv)
-  .attr('height', h_endiv);
+  .attr('width', w_honras)
+  .attr('height', h_honras);
 
 // leitura do arquivo
 
 Promise.all([
-  d3.csv("dados/honras_agg.csv"),
-  d3.csv("dados/honras_Det.csv"),
+  d3.csv("dados/dados_honras_agg.csv"),
+  d3.csv("dados/dados_honras_det.csv"),
 ]).then(function(files) {
   // files[0] will contain file1.csv
   // files[1] will contain file2.csv
-})
 
-d3.csv("dados/dividas_totais.csv").then(function(dados) {
-  
-  // pre processa algumas coisas
-  for (el of dados) {
-    el.valor = +el.valor;
+  const honras_agg = files[0];
+
+  for (el of honras_agg) {
+    el.valor_acum = +el.valor_acum;
+    el.valor_mes = +el.valor_mes;
+    el.qde = +el.qde;
+    el.data_mes = d3.timeParse("%Y-%m-%d")(el.data_mes);
   }
 
-  //console.table(dados);
+  console.log(honras_agg[0]);
+  //console.table(files[1]);
 
-
-
-  console.table(dados);
 
   // filtra
   const dados_total = dados.filter(d => d.Escopo != "Total" &&
