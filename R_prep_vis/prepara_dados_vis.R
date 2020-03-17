@@ -146,7 +146,12 @@ honras_simples <- honras %>%
   mutate(mes = str_pad(month(data), width = 2, pad = "0"),
          ano = year(data),
          mes_ano = paste0(ano,mes),
-         mutuario_cat = ifelse(mutuario == "Rio de Janeiro", "Estado do Rio de Janeiro", "Demais entes"))
+         mutuario_cat = case_when(
+           mutuario == "Rio de Janeiro" ~ "Estado do Rio de Janeiro",
+           mutuario == "Minas Gerais" ~ "Minas Gerais",
+           TRUE ~ "Demais entes"),
+         estados = if_else(tipo_mutuario == "Municípios", "Municípios", mutuario))
+          
 
 honras_simples %>% filter(mutuario == "Rio de Janeiro") %>% group_by(mes_ano) %>% count()
 
@@ -189,6 +194,8 @@ honras_agg <- contagem_honras_avancado %>%
   group_by(mutuario_cat) %>%
   mutate(valor_acum = cumsum(valor_mes))
 
+
+
 ## exporta
 
 write.csv(honras_det, file = "webpage/dados_honras_det.csv", fileEncoding = "UTF-8")
@@ -196,10 +203,29 @@ write.csv(honras_agg, file = "webpage/dados_honras_agg.csv", fileEncoding = "UTF
 
 ## prototipos de plots
 
+#small multiples
+small <- honras_simples %>%
+  mutate(data_mes = as.Date(paste(str_sub(mes_ano, 1, 4),
+                                  str_sub(mes_ano, 5, 6),
+                                  "01", sep = "-"))) %>%
+  group_by(estados, data_mes) %>%
+  summarise(valor = sum(valor)) %>%
+  ungroup() %>%
+  mutate(valor_ac = cumsum(valor))
+
+ggplot(small, aes(x = data_mes, y = valor)) +
+  geom_line() +
+  facet_wrap(~estados) +
+  scale_y_continuous(labels = function(x){format(x/1e6, big.mark = ".", 
+                                                 decimal.mark = ",")}) +
+  theme_minimal()
+
 #areachart
 ggplot(honras_agg, aes(x = data_mes, y = valor_acum, fill = mutuario_cat)) +
   geom_area() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom") + 
+  scale_y_continuous(labels = function(x){format(x/1e6, big.mark = ".", 
+                                                  decimal.mark = ",")})
 
 #barchart agregado
 ggplot(honras_agg, aes(x = data_mes, y = valor_acum, fill = mutuario_cat)) +
