@@ -166,7 +166,7 @@ Promise.all([
   const stack = d3.stack()
     .keys(categorias)
     .order(d3.stackOrderNone)
-    .offset(d3.stackOffsetNone);
+    .offset(d3.stackOffsetSilhouette); //d3.stackOffsetNone
   
   // cria as versões stacked das series
   const serie_acum_stack = stack(serie_acum);
@@ -205,7 +205,7 @@ Promise.all([
 
   const y_acu = d3.scaleLinear()
                   .range(range_y)
-                  .domain([0, obtem_maximo_serie(serie_acum)]);
+                  .domain([-obtem_maximo_serie(serie_acum)/2, obtem_maximo_serie(serie_acum)/2]);
 
   //// cores
   const cor = d3.scaleOrdinal()
