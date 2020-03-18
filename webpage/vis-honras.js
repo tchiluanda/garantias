@@ -24,7 +24,7 @@ function handleResize() {
   $steps_honras.style("height", stepH + "px");
 
   w_bruto = $container_honras.node().offsetWidth;
-  w_honras = w_bruto >= 600 ? 600 : w_bruto;
+  w_honras = w_bruto //>= 600 ? 600 : w_bruto;
 
   //const h_bruto = $container_endividamento.node().offsetHeight;
   h_bruto = window.innerHeight * 0.8
@@ -54,8 +54,8 @@ handleResize();
 const margin_honras = {
   top: 20,
   bottom: 60,
-  left: w_honras < 600 ? 2 : 10,
-  right: w_honras < 600 ? 2 : 10
+  left: w_honras < 600 ? 10 : 20,
+  right: w_honras < 600 ? 10 : 20
 };
 
 const w_liq_honras = w_honras - margin_honras.left - margin_honras.right;
@@ -80,7 +80,7 @@ Promise.all([
     el.valor_acum = +el.valor_acum;
     el.valor_mes = +el.valor_mes;
     el.qde = +el.qde;
-    el.data_mes = d3.timeParse("%Y-%m-%d")(el.data_mes);
+    //el.data_mes = d3.timeParse("%Y-%m-%d")(el.data_mes);
   }
 
   //let teste = honras_agg.slice(0,10);
@@ -90,10 +90,10 @@ Promise.all([
   // ver isso aqui depois: https://observablehq.com/@d3/stacked-area-chart-via-d3-group
   //gera um série para cada categoria de mutuário (mutuario_cat)
   //e tipo de valor 
-  const gera_series_formato_stack = function(dados, categoria, tipo_valor, lista_datas) {
+  function gera_series_formato_stack(dados, categoria, tipo_valor, lista_datas) {
     //obtem uma lista unica das categorias selecionadas
     const lista_categorias = d3.map(dados, d => d[categoria]).keys();
-    console.log(lista_categorias);
+    //console.log(lista_categorias);
     
     //inicializa o objeto que vai receber as series
     const obj_series = {};
@@ -132,7 +132,9 @@ Promise.all([
 
     for (data of lista_datas) {
       const elemento = {};
-      elemento["data_mes"] = data;
+      // deixei para converter a data aqui, porque ela estava
+      // vindo como string
+      elemento["data_mes"] = d3.timeParse("%Y-%m-%d")(data);
       for (cat of lista_categorias) {
         elemento[cat] = obj_series[cat][data];
       }
@@ -151,7 +153,9 @@ Promise.all([
   const serie_mes  = gera_series_formato_stack(honras_agg, "mutuario_cat", "valor_mes",  lista_datas);
   const serie_qde = gera_series_formato_stack(honras_agg, "mutuario_cat", "qde", lista_datas);
 
+  //console.log(lista_datas)
   //console.table(serie_acum);
+  //console.table(honras_agg)
   //console.table(serie_mes);
   //console.table(serie_qde);
 
@@ -172,24 +176,55 @@ Promise.all([
   // console.log(serie_acum_stack, serie_mes_stack, serie_qde_stack)
   // escalas
 
+
   //// x - tempo
-  const PERIODO = d3.extent(honras_agg, d => d.data_mes);
-  
+  // para começar de janeiro...
+  const primeira_data = (honras_agg[0].data_mes).slice(0,4)+"-01-01"
+  const PERIODO = [d3.timeParse("%Y-%m-%d")(primeira_data), //d3.extent(serie_acum, d => d.data_mes);
+                   d3.max(serie_acum, d => d.data_mes)];
+  const PERIODO2 = d3.extent(serie_acum, d => d.data_mes);
+  //console.log(PERIODO);
+
   const x = d3.scaleTime()
               .domain(PERIODO)
               .range([margin_honras.left, w_honras-margin_honras.right])
 
   //// y - valores
-  const range_y = [margin_honras.top, h_honras - margin_honras.bottom];
+  
+  function obtem_maximo_serie(serie) {
+    const lista_maximos = [];
+    for (cat of categorias) {
+      const maximo_coluna = d3.max(serie, d => d[cat]);
+      lista_maximos.push(maximo_coluna);
+    }
+    return d3.sum(lista_maximos);  
+  }
+
+
+  const range_y = [h_honras - margin_honras.bottom, margin_honras.top];
 
   const y_acu = d3.scaleLinear()
                   .range(range_y)
-                  .domain([0, d3.max(honras_agg, d => d.valor_acum)]);
+                  .domain([0, obtem_maximo_serie(serie_acum)]);
 
   //// cores
   const cor = d3.scaleOrdinal()
                 .range(d3.schemeCategory10)
-                .domain([categorias]);  
+                .domain([categorias]); 
+                
+  // eixos
+  //// x
+  let eixo_x = d3.axisBottom()
+        .scale(x)
+
+  // se a largura não for suficiente,
+  // usa apenas os anos nos ticks
+
+  if (w_honras < 520)
+      eixo_x = eixo_x.tickFormat(d => formataData_Anos(d));
+  else
+      eixo_x = eixo_x.tickFormat(d => formataData(d))
+                     .ticks(d3.timeMonth.every(6));
 
   // gerador de area
   const area = d3.area()
@@ -197,9 +232,27 @@ Promise.all([
                  .y0(d => y_acu(d[0]))
                  .y1(d => y_acu(d[1]));
 
-  console.log(" ", [margin_honras.left, w_honras-margin_honras.right]);
-  console.log("serie stack", serie_acum_stack);
-  console.log("area aplicada", area(serie_acum_stack[0]));
+  const line = d3.line()
+                 .x(d => x(d.data_mes))
+                 .y(d => y_acu(d["Demais entes"]));
+
+    
+
+  //console.log("Componentes escala x", x.domain(), x.range()) 
+  //console.log("x", x(serie_acum[0].data_mes))
+  //console.log("x", x(honras_agg[0].data_mes))
+  //console.log("testa componentes linha", serie_acum.map(d => [d.data_mes, x(d.data_mes),
+  //                                 y_acu(d["Demais entes"])]));
+  
+  // $svg_honras.select("path")
+  //            .datum(serie_acum)
+  //            .enter()
+  //            .append("path")
+  //            .attr("d", line);
+
+  //console.log(" ", [margin_honras.left, w_honras-margin_honras.right]);
+  //console.log("serie stack", serie_acum_stack);
+  //console.log("area aplicada", area(serie_acum_stack[0]));
 
   $svg_honras.selectAll("path.honras-area-cum")
              .data(serie_acum_stack)
@@ -207,6 +260,16 @@ Promise.all([
              .append("path")
              .attr("d", area)
              .attr("fill", ({key}) => cor(key));
+
+          // inclui eixo
+
+  $svg_honras.append("g") 
+          .attr("class", "axis x-axis")
+          .attr("transform", "translate(0," + (h_honras - margin_honras.bottom) + ")")
+          .attr("opacity", 1)
+          .call(eixo_x);
+
+
 
 
 
