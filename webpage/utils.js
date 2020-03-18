@@ -6,6 +6,18 @@ const localeBrasil = {
   "grouping": [3],
   "currency": ["R$", ""]};
 
+//https://cdn.jsdelivr.net/npm/d3-time-format@2/locale/pt-BR.json
+const localeDataBrasil = {
+  "dateTime": "%A, %e de %B de %Y. %X",
+  "date": "%d/%m/%Y",
+  "time": "%H:%M:%S",
+  "periods": ["AM", "PM"],
+  "days": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+  "shortDays": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+  "months": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+  "shortMonths": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+}
+
 const formataBR   = d3.formatDefaultLocale(localeBrasil).format(",.0f");
 const formataBR_1 = d3.formatDefaultLocale(localeBrasil).format(",.1f");
 
@@ -23,6 +35,16 @@ const valor_formatado = function(x) {
     if (val < 1000) return formataBR_1(val) + " " + mult.sufixo;
   }
 }
+
+// datas
+
+d3.timeFormatDefaultLocale(localeDataBrasil);
+
+const formataData = d3.timeFormat("%b %Y");
+console.log(formataData(new Date))
+const formataData_Anos = d3.timeFormat("%Y");
+
+
 
 // função debounce para dar um atraso na chamada do resize
 // https://davidwalsh.name/function-debounce
