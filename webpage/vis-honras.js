@@ -54,7 +54,7 @@ handleResize();
 const margin_honras = {
   top: 20,
   bottom: 60,
-  left: w_honras < 600 ? 10 : 20,
+  left: w_honras < 600 ? 20 : 40,
   right: w_honras < 600 ? 10 : 20
 };
 
@@ -74,6 +74,9 @@ Promise.all([
   // files[1] will contain file2.csv
 
   const honras_agg = files[0];
+  const honras_det = files[1];
+
+  console.log(honras_det[0])
 
   //para formatar os valores
   for (el of honras_agg) {
@@ -179,9 +182,30 @@ Promise.all([
   const serie_mes_stack = stack(serie_mes);
   const serie_qde_stack = stack(serie_qde);
 
-  // console.log(serie_acum_stack, serie_mes_stack, serie_qde_stack)
-  // escalas
+  const serie_acum_total = serie_acum.map(d => ({
+    "data_mes" : d.data_mes,
+    "valor"    : d["Demais entes"] + 
+               d["Estado do Rio de Janeiro"] +
+               d["Minas Gerais"]
+  }));
 
+  //console.table(serie_acum_total);
+
+  //console.log(serie_acum_stack)//, serie_mes_stack, serie_qde_stack)
+
+  //////////////// anotações
+
+  // primeira honra
+  const ponto_primeira_honra = {
+    "x" : d3.timeParse("%Y-%m-%d")(honras_det[0].data_mes),
+    "y" : honras_det[0].valor
+  }
+
+
+
+
+
+  /////////////////////////////// escalas
 
   //// x - tempo
   // para começar de janeiro...
@@ -237,6 +261,13 @@ Promise.all([
       eixo_x = eixo_x.tickFormat(d => formataData(d))
                      .ticks(d3.timeMonth.every(6));
 
+  //// y
+
+  let eixo_y_ac = d3.axisLeft()
+                    .scale(y_acu)
+                    .tickFormat(d => formataBR(d/1e9));
+
+
   // gerador de area
   const area = d3.area()
                  .x(d => x(d.data.data_mes))
@@ -247,10 +278,16 @@ Promise.all([
                  .x(d => x(d.data.data_mes))
                  .y0(d => y_acu_stream(d[0]))
                  .y1(d => y_acu_stream(d[1]));                 
-
+  
+  // gerador de linha para o total               
   const line = d3.line()
                  .x(d => x(d.data_mes))
-                 .y(d => y_acu(d["Demais entes"]));
+                 .y(d => y_acu(d.valor));
+
+  const linha = line(serie_acum_total);  
+  const area_rio = area(serie_acum_stack[0]);       
+
+  //console.log(line(serie_acum_total));
 
     
 
@@ -269,6 +306,111 @@ Promise.all([
   //console.log(" ", [margin_honras.left, w_honras-margin_honras.right]);
   //console.log("serie stack", serie_acum_stack);
   //console.log("area aplicada", area(serie_acum_stack[0]));
+  
+  // const primeira_linha = $svg_honras
+  //   .selectAll("path")
+  //   .datum(serie_acum_total)
+  //   .enter()
+  //   .append("path")
+  //   .classed("d3-honras-linha-inicial", true)
+  //   .attr("d", line);
+
+  const primeira_linha = $svg_honras
+    .append("path")
+    .classed("d3-honras-linha-inicial", true)
+    .attr("d", linha)
+    .attr("fill", "none")
+    .attr("stroke", "#333")
+    .attr("stroke-width", 2);
+
+  console.log(primeira_linha);
+
+  //////////////////////////////// eixos
+  // inclui eixo x
+
+  $svg_honras.append("g") 
+          .attr("class", "axis x-axis")
+          .attr("transform", "translate(0," + (h_honras - margin_honras.bottom) + ")")
+          .call(eixo_x);
+
+  // inclui eixo y
+  $svg_honras.append("g") 
+          .attr("class", "axis y-axis")
+          .attr("transform", "translate(" + margin_honras.left + ",0)")
+          .call(eixo_y_ac);
+
+  $svg_honras.select(".y-axis .tick:last-of-type text").clone()
+          .attr("x", 5)
+          .attr("text-anchor", "start")
+          .style("font-weight", "bold")
+          .text("Valores acumulados")
+
+  // $svg_honras.append("text")
+  //         .attr("class", "titulo-eixo")
+  //         .attr("y", margin_honras.top)
+  //         .attr("x", margin_honras.left)
+  //         .attr("text-anchor", "middle")
+  //         .text("R$ mi")
+  
+
+
+  ///////////// cria os elementos visuais
+  // cria o ponto da primeira honra.
+  const primeira_honra = $svg_honras
+    .append("circle")
+    .classed("d3-honras-step-1", true)
+    .attr("cx", x(ponto_primeira_honra.x))
+    .attr("cy", y_acu(ponto_primeira_honra.y))
+    .attr("r", 2)
+    .attr("stroke", "#444")
+    .attr("opacity", 0);
+
+  const primeira_honra2 = primeira_honra.clone()
+    .attr("r", 50)
+    .attr("stroke", "firebrick")
+    .attr("stroke-width", 3)
+    .attr("fill", "none");
+
+  const grafico_rio = $svg_honras
+    .append("path")
+    .classed("d3-honras-step-2", true)
+    .attr("d", area_rio)
+    .attr("fill", "steelblue")
+    .attr("opacity", 0);
+
+  const duracao = 500;
+
+  function aparece(seletor) {
+    d3.selectAll(seletor)
+      .transition()
+      .duration(duracao)
+      .attr("opacity", 1);
+  }
+
+  function desaparece(seletor) {
+    d3.selectAll(seletor)
+      .transition()
+      .duration(duracao)
+      .attr("opacity", 0)
+  }
+
+  function desenha_step1(direcao) {
+    console.log("disparei", direcao)
+    if (direcao == "down") {
+      aparece(".d3-honras-step-1");
+      primeira_honra2
+        .transition()
+        .delay(duracao)
+        .duration(duracao/2)
+        .attr("r", 7);
+    } else if (direcao == "up") {
+      desaparece(".d3-honras-step-1")
+      primeira_honra2
+        .attr("r", 50);
+    }
+  }
+
+  //aparece(".d3-honras-step-1");
 
   function draw_step0() {
     $svg_honras.selectAll("path.honras-area-cum")
@@ -280,7 +422,7 @@ Promise.all([
              .attr("fill", ({key}) => cor(key));
   }
 
-  function draw_step1() {
+  function draw_step2() {
     $svg_honras.selectAll("path.honras-area-cum")
              .data(serie_acum_stack)
              .transition()
@@ -289,21 +431,12 @@ Promise.all([
              .attr("fill", ({key}) => cor(key));
   }
 
-  //.transition()
-  //.duration(1500)
 
-  // inclui eixo
 
-  $svg_honras.append("g") 
-          .attr("class", "axis x-axis")
-          .attr("transform", "translate(0," + (h_honras - margin_honras.bottom) + ")")
-          .attr("opacity", 1)
-          .call(eixo_x);
-
-  draw_step0();
+  //draw_step0();
   d3.select("button").on("click", function() {
     console.log("oi!")
-    draw_step1()
+    //draw_step1()
 
     //draw_step1()
   });
@@ -342,17 +475,11 @@ Promise.all([
 
       switch (response.index) {
         case 1:
-          draw_step1();
+          console.log("step1", response.direction);
+          desenha_step1(response.direction);
           break;
         case 2:
-          step_waterfall("Divida_Uniao", response.direction);
-          if (response.direction == "down") {
-            mostra_rotulo("Total", "Divida_Uniao", "right");
-            remove_rotulo("Total", "Divida_Total");
-            remove_barra_total();
-          } else {
-            remove_rotulo("Total", "Divida_Uniao");
-          }
+          aparece(".d3-honras-step-2");
           break;
         case 3:
           step_waterfall("Divida_Garantida", response.direction);
