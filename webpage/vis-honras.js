@@ -284,7 +284,8 @@ Promise.all([
   // usa apenas os anos nos ticks
 
   if (w_honras < 520)
-      eixo_x = eixo_x.tickFormat(d => formataData_Anos(d));
+      eixo_x = eixo_x.tickFormat(d => formataData_Anos(d))
+                     .ticks(d3.timeYear.every(1));
   else
       eixo_x = eixo_x.tickFormat(d => formataData(d))
                      .ticks(d3.timeMonth.every(6));
