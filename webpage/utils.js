@@ -44,6 +44,18 @@ const formataData = d3.timeFormat("%b %Y");
 console.log(formataData(new Date))
 const formataData_Anos = d3.timeFormat("%Y");
 
+// para gerar arco para anotações
+function gera_arco(x1,y1,x2,y2) {
+  xmin = Math.min(x1,x2);
+  xmax = Math.max(x1,x2);
+  ymin = Math.min(y1,y2);
+  xb = xmax - Math.abs(x2-x1)/6;
+  yb = ymin + Math.abs(y2-y1)/6;
+  path = "M" + x1 + "," + y1 + " Q" + xb + "," + yb + " " + x2 + "," + y2;
+  console.log(path)
+  return path;
+}
+
 
 
 // função debounce para dar um atraso na chamada do resize
