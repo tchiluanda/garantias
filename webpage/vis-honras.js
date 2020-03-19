@@ -208,6 +208,15 @@ Promise.all([
     "y" : serie_acum[serie_acum.length - 1]["Estado do Rio de Janeiro"]
   };
 
+  const valor_total_rio = {
+    "valor" : valor_formatado(ponto_total_rio.y),
+    "percent" : Math.round(100*ponto_total_rio.y / serie_acum_total[serie_acum_total.length-1].valor, 0)
+  }
+
+  d3.select("#honras-total-rio").text(valor_total_rio.valor);
+  d3.select("#honras-total-rio-pct").text(valor_total_rio.percent);
+
+
 
 
 
@@ -401,6 +410,22 @@ Promise.all([
     .attr("stroke-width", 3)
     .attr("fill", "none");
 
+  // cria o ponto do valor final do rio.
+  const final_rio = $svg_honras
+    .append("circle")
+    .classed("d3-honras-step-2", true)
+    .attr("cx", x(ponto_total_rio.x))
+    .attr("cy", y_acu(ponto_total_rio.y))
+    .attr("r", 2)
+    .attr("stroke", "#444")
+    .attr("opacity", 0);
+
+  const final_rio2 = final_rio.clone()
+    .attr("r", 50)
+    .attr("stroke", "firebrick")
+    .attr("stroke-width", 3)
+    .attr("fill", "none");
+
   // const grafico_rio = $svg_honras
   //   .append("path")
   //   .classed("d3-honras-step-2", true)
@@ -410,9 +435,10 @@ Promise.all([
 
   const duracao = 500;
 
-  function aparece(seletor) {
+  function aparece(seletor, delay) {
     d3.selectAll(seletor)
       .transition()
+      .delay(delay)
       .duration(duracao)
       .attr("opacity", 1);
   }
@@ -427,7 +453,7 @@ Promise.all([
   function desenha_step1(direcao) {
     console.log("disparei", direcao)
     if (direcao == "down") {
-      aparece(".d3-honras-step-1");
+      aparece(".d3-honras-step-1", 0);
       primeira_honra2
         .transition()
         .delay(duracao)
@@ -444,45 +470,24 @@ Promise.all([
     console.log("disparei", direcao)
     if (direcao == "down") {
       $svg_honras.select(".d3-honras-area-Est").attr("fill", d => cor(d.key));
-      aparece(".d3-honras-step-2");
+      aparece("path.d3-honras-step-2", 0);
+      aparece("circle.d3-honras-step-2", duracao);
+      final_rio2
+        .transition()
+        .delay(duracao*2)
+        .duration(duracao/2)
+        .attr("r", 7);
+
     } else if (direcao == "up") {
       desaparece(".d3-honras-step-2")
-      area_empilhada.attr("fill", ({key}) => cor(key))
+      area_empilhada
+        .attr("fill", "#999")
+        .attr("stroke", "#999")
     }
   }
 
-  //aparece(".d3-honras-step-1");
-
-  function draw_step0() {
-    $svg_honras.selectAll("path.honras-area-cum")
-             .data(serie_acum_stack_stream)
-             .enter()
-             .append("path")
-             .classed("honras-area-cum", true)
-             .attr("d", area_stream)
-             .attr("fill", ({key}) => cor(key));
-  }
-
-  function draw_step2() {
-    $svg_honras.selectAll("path.honras-area-cum")
-             .data(serie_acum_stack)
-             .transition()
-             .duration(1500)
-             .attr("d", area)
-             .attr("fill", ({key}) => cor(key));
-  }
-
-
-
-  //draw_step0();
-  d3.select("button").on("click", function() {
-    console.log("oi!")
-    //draw_step1()
-
-    //draw_step1()
-  });
-  
-
+  console.log(ponto_total_rio)
+  console.log(serie_acum_total)
 
   ////////////////////
   // ze SCROLLER!
