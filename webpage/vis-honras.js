@@ -27,7 +27,7 @@ function handleResize() {
   w_honras = w_bruto //>= 600 ? 600 : w_bruto;
 
   //const h_bruto = $container_endividamento.node().offsetHeight;
-  h_bruto = window.innerHeight * 0.8
+  h_bruto = window.innerHeight * 0.7
   h_honras = h_bruto //>= 500 ? 500 : h_bruto;
 
   container_margem_superior = (window.innerHeight - h_honras)/2;
@@ -55,7 +55,7 @@ const margin_honras = {
   top: 20,
   bottom: 60,
   left: w_honras < 600 ? 20 : 40,
-  right: w_honras < 600 ? 10 : 20
+  right: w_honras < 600 ? 20 : 40
 };
 
 const w_liq_honras = w_honras - margin_honras.left - margin_honras.right;
@@ -194,33 +194,6 @@ Promise.all([
 
   //console.log(serie_acum_stack)//, serie_mes_stack, serie_qde_stack)
 
-  //////////////// anotações
-
-  // primeira honra
-  const ponto_primeira_honra = {
-    "x" : d3.timeParse("%Y-%m-%d")(honras_det[0].data_mes),
-    "y" : honras_det[0].valor
-  };
-
-  // ultimo valor rio de janeiro
-  const ponto_total_rio = {
-    "x" : serie_acum[serie_acum.length - 1].data_mes,
-    "y" : serie_acum[serie_acum.length - 1]["Estado do Rio de Janeiro"]
-  };
-
-  const valor_total_rio = {
-    "valor" : valor_formatado(ponto_total_rio.y),
-    "percent" : Math.round(100*ponto_total_rio.y / serie_acum_total[serie_acum_total.length-1].valor, 0)
-  }
-
-  d3.select("#honras-total-rio").text(valor_total_rio.valor);
-  d3.select("#honras-total-rio-pct").text(valor_total_rio.percent);
-
-
-
-
-
-
   /////////////////////////////// escalas
 
   //// x - tempo
@@ -260,12 +233,20 @@ Promise.all([
 
   //// cores
   const cor = d3.scaleOrdinal()
-                .range(d3.schemeCategory10)
+                .range(["#ffb14e",
+                "#ea5f94",
+                "#9d02d7"])
                 .domain([categorias]); 
+  console.log("aqui", cor.range());
+
+  const cinza = "#999";
   
-  const cor_so_rio = cor.range([d3.schemeCategory10[0], "#444", "#444"]);
-  
-  const cor_rio_mg = cor.range([d3.schemeCategory10[0], d3.schemeCategory10[1], "#444"]);
+  //let cor_so_rio = cor;
+  //cor_so_rio.range(["#ffb14e", cinza, cinza]);
+  //console.log("aqui, depois de ajustar cor_so_rio", cor.range());
+  //let cor_rio_mg = cor;
+  //cor_rio_mg.range(["#ffb14e", "#ea5f94", cinza]);
+  //console.log(cor.range(), cor_so_rio.range())
   //console.log(categorias.map(d => cor_so_rio(d)));
 
   //// nomes das classes
@@ -370,11 +351,38 @@ Promise.all([
   //         .attr("x", margin_honras.left)
   //         .attr("text-anchor", "middle")
   //         .text("R$ mi")
-  
+
+
+  //////////////// anotações
+
+  // primeira honra
+  const ponto_primeira_honra = {
+    "x" : d3.timeParse("%Y-%m-%d")(honras_det[0].data_mes),
+    "y" : honras_det[0].valor
+  };
+
+  // ultimo valor rio de janeiro
+  const ponto_total_rio = {
+    "x" : serie_acum[serie_acum.length - 1].data_mes,
+    "y" : serie_acum[serie_acum.length - 1]["Estado do Rio de Janeiro"]
+  };
+
+  const valor_total_rio = {
+    "valor" : valor_formatado(ponto_total_rio.y),
+    "percent" : Math.round(100*ponto_total_rio.y / serie_acum_total[serie_acum_total.length-1].valor, 0)
+  }
+
+  d3.select("#honras-total-rio").text(valor_total_rio.valor);
+  d3.select("#honras-total-rio-pct").text(valor_total_rio.percent);
+  d3.select("#d3-honras-nome-rio").style("color", cor("Estado do Rio de Janeiro"));
+  d3.select("#d3-honras-nome-mg").style("color", cor("Minas Gerais"));
+
+  // gera_arco definida em "utils.js"
+
 
 
   ///////////// cria os elementos visuais
-
+  
   const primeira_linha = $svg_honras
     .append("path")
     .classed("d3-honras-linha-inicial", true)
@@ -390,8 +398,8 @@ Promise.all([
     .attr("class", d => "d3-honras-area-" + d.key.slice(0,3))
     .attr("d", area)
     .classed("d3-honras-step-2", true)
-    .attr("fill", "#999")
-    .attr("stroke", "#999")
+    .attr("fill", cinza)
+    .attr("stroke", cinza)
     .attr("opacity", 0);
 
 
@@ -426,6 +434,18 @@ Promise.all([
     .attr("stroke", "firebrick")
     .attr("stroke-width", 3)
     .attr("fill", "none");
+
+  //texto do valor final do rio
+  const valor_final_rio = $svg_honras
+    .append("text")
+    .classed("d3-honras-anotacao-valor-rio", true)
+    .attr("x", x(ponto_total_rio.x) + 1)
+    .attr("y", y_acu(ponto_total_rio.y) - 10)
+    .text(valor_total_rio.valor)
+    .attr("text-anchor", "left")
+    .style("font-weight", "bold")
+    .style("font-size", ".7rem")
+    .attr("opacity", 0);
 
   // const grafico_rio = $svg_honras
   //   .append("path")
@@ -472,6 +492,7 @@ Promise.all([
     if (direcao == "down") {
       $svg_honras.select(".d3-honras-area-Est").attr("fill", d => cor(d.key));
       aparece("path.d3-honras-step-2", 0);
+      aparece("text.d3-honras-anotacao-valor-rio", duracao)
       aparece("circle.d3-honras-step-2", duracao);
       final_rio2
         .transition()
@@ -480,10 +501,32 @@ Promise.all([
         .attr("r", 7);
 
     } else if (direcao == "up") {
-      desaparece(".d3-honras-step-2")
+      desaparece(".d3-honras-step-2");
+      desaparece("text.d3-honras-anotacao-valor-rio");
+      final_rio2
+        .attr("r", 50);
       area_empilhada
-        .attr("fill", "#999")
-        .attr("stroke", "#999")
+        .attr("fill", cinza)
+        .attr("stroke", cinza)
+    }
+  }
+
+  function desenha_step3(direcao) {
+    console.log("disparei", direcao)
+    if (direcao == "down") {
+      $svg_honras
+        .select(".d3-honras-area-Min")
+        .transition()
+        .duration(duracao)
+        .attr("fill", function(d) {console.log("dentro do fill", d, d.key, cor(d.key));
+                                   return cor(d.key)})//d => cor_rio_mg(d.key));
+
+    } else if (direcao == "up") {
+      $svg_honras
+        .select(".d3-honras-area-Min")
+        .transition()
+        .duration(duracao)
+        .attr("fill", cinza);
     }
   }
 
@@ -530,9 +573,9 @@ Promise.all([
           desenha_step2(response.direction);
           break;
         case 3:
-          step_waterfall("Divida_Garantida", response.direction);
-          if (response.direction == "down") mostra_rotulo("Total", "Divida_Garantida", "right")
-          else remove_rotulo("Total", "Divida_Garantida");
+          desaparece("circle.d3-honras-step-2");
+          desaparece("text.d3-honras-anotacao-valor-rio");
+          desenha_step3(response.direction)
           break;
         case 4:
           step_waterfall("Divida_demais", response.direction);
