@@ -190,6 +190,7 @@ Promise.all([
   }));
 
   //console.table(serie_acum_total);
+  console.log(serie_acum)
 
   //console.log(serie_acum_stack)//, serie_mes_stack, serie_qde_stack)
 
@@ -199,7 +200,13 @@ Promise.all([
   const ponto_primeira_honra = {
     "x" : d3.timeParse("%Y-%m-%d")(honras_det[0].data_mes),
     "y" : honras_det[0].valor
-  }
+  };
+
+  // ultimo valor rio de janeiro
+  const ponto_total_rio = {
+    "x" : serie_acum[serie_acum.length - 1].data_mes,
+    "y" : serie_acum[serie_acum.length - 1]["Estado do Rio de Janeiro"]
+  };
 
 
 
@@ -246,6 +253,18 @@ Promise.all([
   const cor = d3.scaleOrdinal()
                 .range(d3.schemeCategory10)
                 .domain([categorias]); 
+  
+  const cor_so_rio = cor.range([d3.schemeCategory10[0], "#444", "#444"]);
+  
+  const cor_rio_mg = cor.range([d3.schemeCategory10[0], d3.schemeCategory10[1], "#444"]);
+  //console.log(categorias.map(d => cor_so_rio(d)));
+
+  //// nomes das classes
+  // const nomes = d3.scaleOrdinal()
+  //                  .range(["rio", "mg", "demais"])
+  //                  .domain([categorias]);
+
+  //                  console.log(categorias, categorias.map(d => nomes(d)));
                 
   // eixos
   //// x
@@ -315,16 +334,6 @@ Promise.all([
   //   .classed("d3-honras-linha-inicial", true)
   //   .attr("d", line);
 
-  const primeira_linha = $svg_honras
-    .append("path")
-    .classed("d3-honras-linha-inicial", true)
-    .attr("d", linha)
-    .attr("fill", "none")
-    .attr("stroke", "#333")
-    .attr("stroke-width", 2);
-
-  console.log(primeira_linha);
-
   //////////////////////////////// eixos
   // inclui eixo x
 
@@ -355,6 +364,27 @@ Promise.all([
 
 
   ///////////// cria os elementos visuais
+
+  const primeira_linha = $svg_honras
+    .append("path")
+    .classed("d3-honras-linha-inicial", true)
+    .attr("d", linha)
+    .attr("fill", "none")
+    .attr("stroke", "#333")
+    .attr("stroke-width", 2);
+
+  const area_empilhada = $svg_honras.selectAll("path.d3-honras-step-2")
+    .data(serie_acum_stack)
+    .enter()
+    .append("path")
+    .attr("class", d => "d3-honras-area-" + d.key.slice(0,3))
+    .attr("d", area)
+    .classed("d3-honras-step-2", true)
+    .attr("fill", "#999")
+    .attr("stroke", "#999")
+    .attr("opacity", 0);
+
+
   // cria o ponto da primeira honra.
   const primeira_honra = $svg_honras
     .append("circle")
@@ -371,12 +401,12 @@ Promise.all([
     .attr("stroke-width", 3)
     .attr("fill", "none");
 
-  const grafico_rio = $svg_honras
-    .append("path")
-    .classed("d3-honras-step-2", true)
-    .attr("d", area_rio)
-    .attr("fill", "steelblue")
-    .attr("opacity", 0);
+  // const grafico_rio = $svg_honras
+  //   .append("path")
+  //   .classed("d3-honras-step-2", true)
+  //   .attr("d", area_rio)
+  //   .attr("fill", "steelblue")
+  //   .attr("opacity", 0);
 
   const duracao = 500;
 
@@ -407,6 +437,17 @@ Promise.all([
       desaparece(".d3-honras-step-1")
       primeira_honra2
         .attr("r", 50);
+    }
+  }
+
+  function desenha_step2(direcao) {
+    console.log("disparei", direcao)
+    if (direcao == "down") {
+      $svg_honras.select(".d3-honras-area-Est").attr("fill", d => cor(d.key));
+      aparece(".d3-honras-step-2");
+    } else if (direcao == "up") {
+      desaparece(".d3-honras-step-2")
+      area_empilhada.attr("fill", ({key}) => cor(key))
     }
   }
 
@@ -479,7 +520,8 @@ Promise.all([
           desenha_step1(response.direction);
           break;
         case 2:
-          aparece(".d3-honras-step-2");
+          desaparece(".d3-honras-step-1");
+          desenha_step2(response.direction);
           break;
         case 3:
           step_waterfall("Divida_Garantida", response.direction);
