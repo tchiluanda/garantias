@@ -237,9 +237,14 @@ Promise.all([
                 "#ea5f94",
                 "#9d02d7"])
                 .domain([categorias]); 
-  console.log("aqui", cor.range());
 
   const cinza = "#999";
+
+  const cor_so_rio = d3.scaleOrdinal()
+                        .range([cinza,
+                                "#ea5f94",
+                                cinza])
+                        .domain([categorias]); 
   
   //let cor_so_rio = cor;
   //cor_so_rio.range(["#ffb14e", cinza, cinza]);
@@ -600,7 +605,7 @@ Promise.all([
   function desenha_step2(direcao) {
     console.log("disparei", direcao)
     if (direcao == "down") {
-      aparece(area_empilhada, duracao);
+      aparece(area_empilhada, duracao, true);
       aparece("path.d3-honras-arco-Est", duracao*2);
       aparece("p.d3-honras-arco-Est", duracao*2, false);
       $svg_honras
@@ -635,21 +640,18 @@ Promise.all([
     if (direcao == "down") {
       aparece(arcos_tracos, duracao);
       aparece(arcos_labels, duracao, false);      
-      $svg_honras
-        .select(".d3-honras-area-Min")
+      area_empilhada
         .transition()
         .duration(duracao)
-        .attr("fill", function(d) {console.log("dentro do fill", d, d.key, cor(d.key));
-                                   return cor(d.key)})//d => cor_rio_mg(d.key));
+        .attr("fill", d => cor(d.key))//d => cor_rio_mg(d.key));
 
     } else if (direcao == "up") {
       desaparece(arcos_tracos);
       desaparece(arcos_labels, false);    
-      $svg_honras
-        .select(".d3-honras-area-Min")
+      area_empilhada
         .transition()
         .duration(duracao)
-        .attr("fill", cinza);
+        .attr("fill", d => cor_so_rio(d.key));
     }
   }
 
@@ -697,7 +699,6 @@ Promise.all([
           desaparece(".d3-honras-step-1");
           desaparece("line.d3-anotacao-step-1");
           desaparece(label_primeira_honra, false);
-
           desenha_step2(response.direction);
           break;
         case 3:
