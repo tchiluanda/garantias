@@ -76,6 +76,13 @@ function gera_grid(svg_ref, step) {
       .attr("font-size", 8)
       .attr("font-weight", 100)
       .style("color", "lime");
+    selecao.append("text")
+      .attr("x", tick)
+      .attr("y", 40)
+      .text(Math.round(100*tick/w, 0) + "w")
+      .attr("font-size", 8)
+      .attr("font-weight", 100)
+      .style("color", "lime");
   }
   for (let tick = 0; tick <= h; tick += step) {
     selecao.append("line")
@@ -89,6 +96,12 @@ function gera_grid(svg_ref, step) {
       .attr("x", 10)
       .attr("y", tick)
       .text(tick)
+      .attr("font-size", 8)
+      .style("color", "lime");
+    selecao.append("text")
+      .attr("x", 30)
+      .attr("y", tick)
+      .text(Math.round(100*tick/h, 0) + "h")
       .attr("font-size", 8)
       .style("color", "lime");
   }
