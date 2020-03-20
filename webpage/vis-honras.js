@@ -407,6 +407,7 @@ Promise.all([
   const label_primeira_honra = $container_honras
     .append("p")
     .classed("labels-honras", true)
+    .classed("d3-anotacao-step-1", true)
     .style("top", y_acu(6e9) - 3 + "px")
     .style("left", x(ponto_primeira_honra.x) -3 + "px")
     .style("text-align", "left")
@@ -416,15 +417,16 @@ Promise.all([
   
   const linha_ref_primeira_honra = $svg_honras
     .append("line")
+    .classed("d3-anotacao-step-1", true)
     .attr("x1", x(ponto_primeira_honra.x))
     .attr("x2", x(ponto_primeira_honra.x))
     .attr("y1", y_acu(6e9) + label_primeira_honra.node().getBoundingClientRect().height)
-    .attr("y2", y_acu(ponto_primeira_honra.y))
+    .attr("y2", y_acu(6e9) + label_primeira_honra.node().getBoundingClientRect().height)
     .attr("stroke", "firebrick")
     .attr("stroke-dasharray", 2)
     .style("opacity", 0);
 
-
+    y_acu(ponto_primeira_honra.y)
   // cria o ponto da primeira honra.
   const primeira_honra = $svg_honras
     .append("circle")
@@ -479,7 +481,9 @@ Promise.all([
   const duracao = 500;
 
   function aparece(seletor, delay) {
-    d3.selectAll(seletor)
+    // testa se foi passada uma seleção ou um seletor (css)
+    const selecao = typeof(seletor) === "object" ? seletor : d3.selectAll(seletor);
+    selecao    
       .transition()
       .delay(delay)
       .duration(duracao)
@@ -487,7 +491,9 @@ Promise.all([
   }
 
   function desaparece(seletor) {
-    d3.selectAll(seletor)
+    // testa se foi passada uma seleção ou um seletor (css)
+    const selecao = typeof(seletor) === "object" ? seletor : d3.selectAll(seletor);
+    selecao 
       .transition()
       .duration(duracao)
       .attr("opacity", 0)
@@ -502,6 +508,7 @@ Promise.all([
         .delay(duracao)
         .duration(duracao/2)
         .attr("r", 7);
+      aparece()
     } else if (direcao == "up") {
       desaparece(".d3-honras-step-1")
       primeira_honra2
