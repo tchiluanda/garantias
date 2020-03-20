@@ -382,6 +382,7 @@ Promise.all([
 
 
   ///////////// cria os elementos visuais
+  
 
    
   const primeira_linha = $svg_honras
@@ -574,6 +575,8 @@ Promise.all([
 
   console.log(ponto_total_rio)
   console.log(serie_acum_total)
+
+  gera_grid($svg_honras, 20);
 
   ////////////////////
   // ze SCROLLER!

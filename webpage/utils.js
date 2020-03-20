@@ -56,6 +56,44 @@ function gera_arco(x1,y1,x2,y2) {
   return path;
 }
 
+function gera_grid(svg_ref, step) {
+  const w = svg_ref.attr("width");
+  const h = svg_ref.attr("height");
+  console.log("svg dimensions", w, h);
+  const selecao = svg_ref.append("g").classed("grid-help", true);
+  for (let tick = 0; tick <= w; tick += step) {
+    selecao.append("line")
+      .attr("x1", tick)
+      .attr("x2", tick)
+      .attr("y1", 0)
+      .attr("y2", h)
+      .attr("stroke-width", 1)
+      .attr("stroke", "lime");
+    selecao.append("text")
+      .attr("x", tick)
+      .attr("y", 20)
+      .text(tick)
+      .attr("font-size", 8)
+      .attr("font-weight", 100)
+      .style("color", "lime");
+  }
+  for (let tick = 0; tick <= h; tick += step) {
+    selecao.append("line")
+      .attr("x1", 0)
+      .attr("x2", w)
+      .attr("y1", tick)
+      .attr("y2", tick)
+      .attr("stroke-width", 1)
+      .attr("stroke", "lime");
+    selecao.append("text")
+      .attr("x", 10)
+      .attr("y", tick)
+      .text(tick)
+      .attr("font-size", 8)
+      .style("color", "lime");
+  }
+}
+
 
 
 // função debounce para dar um atraso na chamada do resize
