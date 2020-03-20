@@ -558,6 +558,14 @@ div.scrolly .container-vis-honras {
     width: 100%;
 }
 
+div.scrolly .container-vis-honras p.labels-honras {
+    position: absolute;
+    font-family: "Merriweather Sans";
+    font-size: .7rem;
+    margin: 0;
+    font-style: italic;
+}
+
 div.scrolly svg#vis-honras .axis line,
 div.scrolly svg#vis-honras .axis path {
     stroke: #555;

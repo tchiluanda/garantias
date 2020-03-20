@@ -382,7 +382,8 @@ Promise.all([
 
 
   ///////////// cria os elementos visuais
-  
+
+   
   const primeira_linha = $svg_honras
     .append("path")
     .classed("d3-honras-linha-inicial", true)
@@ -401,6 +402,27 @@ Promise.all([
     .attr("fill", cinza)
     .attr("stroke", cinza)
     .attr("opacity", 0);
+
+  // label primeira honra
+  const label_primeira_honra = $container_honras
+    .append("p")
+    .classed("labels-honras", true)
+    .style("top", y_acu(6e9) - 3 + "px")
+    .style("left", x(ponto_primeira_honra.x) -3 + "px")
+    .style("text-align", "left")
+    .style("color", "firebrick")
+    .text("30/04/2016")
+    .style("opacity", 0);
+  
+  const linha_ref_primeira_honra = $svg_honras
+    .append("line")
+    .attr("x1", x(ponto_primeira_honra.x))
+    .attr("x2", x(ponto_primeira_honra.x))
+    .attr("y1", y_acu(6e9) + label_primeira_honra.node().getBoundingClientRect().height)
+    .attr("y2", y_acu(ponto_primeira_honra.y))
+    .attr("stroke", "firebrick")
+    .attr("stroke-dasharray", 2)
+    .style("opacity", 0);
 
 
   // cria o ponto da primeira honra.
