@@ -558,13 +558,7 @@ div.scrolly .container-vis-honras {
     width: 100%;
 }
 
-div.scrolly .container-vis-honras p.labels-honras {
-    position: absolute;
-    font-family: "Merriweather Sans";
-    font-size: .7rem;
-    margin: 0;
-    font-style: italic;
-}
+
 
 div.scrolly svg#vis-honras .axis line,
 div.scrolly svg#vis-honras .axis path {
@@ -577,12 +571,20 @@ div.scrolly svg#vis-honras .axis text {
     color: #555;
 }
 
+div.scrolly svg#vis-honras path.honras-arco-anotacao {
+    fill: none;
+    stroke: #333;
+    stroke-dasharray: 2;
+    stroke-width: 1;
+}
+
 /* esses rotulos aqui vão ser criados pelo D3 */
-div.scrolly .container-vis-honras div.rotulos-endiv,
-div.scrolly .container-vis-honras .rotulos-eixo-endiv,
-div.scrolly .container-vis-honras .rotulos-barrinhas {
+div.scrolly .container-vis-honras p.labels-honras {
     position: absolute;
-    font-size: 0.6rem;
+    font-family: "Merriweather Sans";
+    font-size: .7rem;
+    margin: 0;
+    font-style: italic;
 }
 
 div.scrolly .container-vis-honras div.rotulos-endiv > p,

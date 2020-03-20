@@ -372,6 +372,41 @@ Promise.all([
     "percent" : Math.round(100*ponto_total_rio.y / serie_acum_total[serie_acum_total.length-1].valor, 0)
   }
 
+  const infos_arcos = [
+    {
+      "key": "Estado do Rio de Janeiro",
+      "ponto_inicial" : {
+        "x" : 0.26*w_honras, 
+        "y" : 0.58*h_honras 
+      },
+      "ponto_final" : {
+        "x" : 0.44*w_honras, 
+        "y" : 0.77*h_honras
+      }
+    },
+    {
+      "key": "Minas Gerais",
+      "ponto_inicial" : {
+        "x" : 0.65*w_honras, 
+        "y" : 0.31*h_honras 
+      },
+      "ponto_final" : {
+        "x" : 0.76*w_honras, 
+        "y" : 0.39*h_honras
+      }
+    },
+    {
+      "key": "Demais entes",
+      "ponto_inicial" : {
+        "x" : 0.79*w_honras, 
+        "y" : 0.15*h_honras 
+      },
+      "ponto_final" : {
+        "x" : 0.85*w_honras, 
+        "y" : 0.21*h_honras
+      }
+    }];
+
   d3.select("#honras-total-rio").text(valor_total_rio.valor);
   d3.select("#honras-total-rio-pct").text(valor_total_rio.percent);
   d3.select("#d3-honras-nome-rio").style("color", cor("Estado do Rio de Janeiro"));
@@ -379,11 +414,7 @@ Promise.all([
 
   // gera_arco definida em "utils.js"
 
-
-
   ///////////// cria os elementos visuais
-  
-
    
   const primeira_linha = $svg_honras
     .append("path")
@@ -403,6 +434,46 @@ Promise.all([
     .attr("fill", cinza)
     .attr("stroke", cinza)
     .attr("opacity", 0);
+
+  // labels arcos
+  const arcos_tracos = $svg_honras
+    .selectAll("path.d3-honras-arco")
+    .data(infos_arcos)
+    .enter()
+    .append("path")
+    .attr("class", d => "d3-honras-arco-" + d.key.slice(0,3))
+    .classed("honras-arco-anotacao", true)
+    .classed("d3-honras-arcos", true)    
+    .attr("d", d => gera_arco(d.ponto_inicial.x, 
+                              d.ponto_inicial.y,
+                              d.ponto_final.x,
+                              d.ponto_final.y))
+    .attr("opacity", 0);
+
+  const arcos_labels = $container_honras
+    .selectAll("p.d3-honras-arco")
+    .data(infos_arcos)
+    .enter()  
+    .append("p")
+    .attr("class", d => "d3-honras-arco-" + d.key.slice(0,3))
+    .classed("labels-honras", true)
+    .classed("d3-honras-arcos", true) // para remover todos no proximo step
+    .style("max-width", d => d.ponto_inicial.x/2 + "px")
+    .style("top", d => d.ponto_inicial.y + "px")
+    .style("left", d => d.ponto_inicial.x + "px")
+    .style("text-align", "right")
+    .style("color", d => cor(d.key))
+    .text(d => d.key)
+    .style("opacity", 0);
+
+  // labels arcos: ajusta posições
+         // usando vanilla para poder usar o .forEach
+  arcos_labels.nodes().forEach(element => {
+    const dims = element.getBoundingClientRect();
+    console.log("DIMS", dims);
+    element.style.transform = "translate(-" + dims.width + "px, -" + dims.height/2 + "px)";
+  });
+
 
   // label primeira honra
   const label_primeira_honra = $container_honras
@@ -529,10 +600,13 @@ Promise.all([
   function desenha_step2(direcao) {
     console.log("disparei", direcao)
     if (direcao == "down") {
-      aparece("path.d3-honras-step-2", 0);
+      aparece(area_empilhada, duracao);
+      aparece("path.d3-honras-arco-Est", duracao*2);
+      aparece("p.d3-honras-arco-Est", duracao*2, false);
       $svg_honras
         .select(".d3-honras-area-Est")
         .transition()
+        .delay(duracao*2)
         .duration(duracao)
         .attr("fill", d => cor(d.key));
       aparece("text.d3-honras-anotacao-valor-rio", duracao)
@@ -546,6 +620,8 @@ Promise.all([
     } else if (direcao == "up") {
       desaparece(".d3-honras-step-2");
       desaparece("text.d3-honras-anotacao-valor-rio");
+      desaparece("path.d3-honras-arco-Est");
+      desaparece("p.d3-honras-arco-Est", false);
       final_rio2
         .attr("r", 50);
       area_empilhada
@@ -557,6 +633,8 @@ Promise.all([
   function desenha_step3(direcao) {
     console.log("disparei", direcao)
     if (direcao == "down") {
+      aparece(arcos_tracos, duracao);
+      aparece(arcos_labels, duracao, false);      
       $svg_honras
         .select(".d3-honras-area-Min")
         .transition()
@@ -565,6 +643,8 @@ Promise.all([
                                    return cor(d.key)})//d => cor_rio_mg(d.key));
 
     } else if (direcao == "up") {
+      desaparece(arcos_tracos);
+      desaparece(arcos_labels, false);    
       $svg_honras
         .select(".d3-honras-area-Min")
         .transition()
@@ -626,7 +706,8 @@ Promise.all([
           desenha_step3(response.direction)
           break;
         case 4:
-          step_waterfall("Divida_demais", response.direction);
+          desaparece(arcos_tracos);
+          desaparece(arcos_labels, false);    
           if (response.direction == "down") mostra_rotulo("Total", "Divida_demais", "left");
           else remove_rotulo("Total", "Divida_demais");
           break;  
