@@ -656,7 +656,7 @@ Promise.all([
   console.log(ponto_total_rio)
   console.log(serie_acum_total)
 
-  gera_grid($svg_honras, 20);
+  //gera_grid($svg_honras, 20);
 
   ////////////////////
   // ze SCROLLER!
