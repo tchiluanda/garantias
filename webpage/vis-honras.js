@@ -424,9 +424,8 @@ Promise.all([
     .attr("y2", y_acu(6e9) + label_primeira_honra.node().getBoundingClientRect().height)
     .attr("stroke", "firebrick")
     .attr("stroke-dasharray", 2)
-    .style("opacity", 0);
+    .attr("opacity", 0);
 
-    y_acu(ponto_primeira_honra.y)
   // cria o ponto da primeira honra.
   const primeira_honra = $svg_honras
     .append("circle")
@@ -454,7 +453,7 @@ Promise.all([
     .attr("opacity", 0);
 
   const final_rio2 = final_rio.clone()
-    .attr("r", 50)
+    .attr("r", margin_honras.right - 3)
     .attr("stroke", "firebrick")
     .attr("stroke-width", 3)
     .attr("fill", "none");
@@ -480,37 +479,47 @@ Promise.all([
 
   const duracao = 500;
 
-  function aparece(seletor, delay) {
+  function aparece(seletor, delay, svg = true) {
     // testa se foi passada uma seleção ou um seletor (css)
     const selecao = typeof(seletor) === "object" ? seletor : d3.selectAll(seletor);
     selecao    
       .transition()
       .delay(delay)
-      .duration(duracao)
-      .attr("opacity", 1);
+      .duration(duracao);
+    if (svg) selecao.attr("opacity", 1);
+    else selecao.style("opacity", 1)
   }
 
-  function desaparece(seletor) {
+  function desaparece(seletor, svg = true) {
     // testa se foi passada uma seleção ou um seletor (css)
     const selecao = typeof(seletor) === "object" ? seletor : d3.selectAll(seletor);
     selecao 
       .transition()
-      .duration(duracao)
-      .attr("opacity", 0)
+      .duration(duracao);
+    if (svg) selecao.attr("opacity", 0);
+    else selecao.style("opacity", 0)
   }
 
   function desenha_step1(direcao) {
     console.log("disparei", direcao)
     if (direcao == "down") {
       aparece(".d3-honras-step-1", 0);
+      aparece("line.d3-anotacao-step-1", 0);
+      aparece(label_primeira_honra, duracao, svg = false);
       primeira_honra2
         .transition()
         .delay(duracao)
-        .duration(duracao/2)
+        .duration(duracao)
         .attr("r", 7);
-      aparece()
+      linha_ref_primeira_honra
+        .transition()
+        .duration(duracao)
+        .attr("y2", y_acu(ponto_primeira_honra.y));
+
     } else if (direcao == "up") {
-      desaparece(".d3-honras-step-1")
+      desaparece(".d3-honras-step-1");
+      desaparece("line.d3-anotacao-step-1");
+      desaparece(label_primeira_honra, svg = false);
       primeira_honra2
         .attr("r", 50);
     }
@@ -519,14 +528,18 @@ Promise.all([
   function desenha_step2(direcao) {
     console.log("disparei", direcao)
     if (direcao == "down") {
-      $svg_honras.select(".d3-honras-area-Est").attr("fill", d => cor(d.key));
       aparece("path.d3-honras-step-2", 0);
+      $svg_honras
+        .select(".d3-honras-area-Est")
+        .transition()
+        .duration(duracao)
+        .attr("fill", d => cor(d.key));
       aparece("text.d3-honras-anotacao-valor-rio", duracao)
       aparece("circle.d3-honras-step-2", duracao);
       final_rio2
         .transition()
         .delay(duracao*2)
-        .duration(duracao/2)
+        .duration(duracao)
         .attr("r", 7);
 
     } else if (direcao == "up") {
@@ -599,6 +612,9 @@ Promise.all([
           break;
         case 2:
           desaparece(".d3-honras-step-1");
+          desaparece("line.d3-anotacao-step-1");
+          desaparece(label_primeira_honra, false);
+
           desenha_step2(response.direction);
           break;
         case 3:
