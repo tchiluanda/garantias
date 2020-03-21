@@ -227,10 +227,11 @@ Promise.all([
                   .domain([0, obtem_maximo_serie(serie_acum)]);
 
 
-  const y_acu_stream = d3.scaleLinear()
-                  .range(range_y)
-                  .domain([-obtem_maximo_serie(serie_acum)/2, obtem_maximo_serie(serie_acum)/2]);
 
+
+  const y_mens = d3.scaleLinear()
+                   .range(range_y)
+                   .domain([0, obtem_maximo_serie(serie_mes)]);
   //// cores
   const cor = d3.scaleOrdinal()
                 .range(["#ffb14e",
@@ -282,6 +283,10 @@ Promise.all([
                     .scale(y_acu)
                     .tickFormat(d => formataBR(d/1e9));
 
+  let eixo_y_me = d3.axisLeft()
+                    .scale(y_mens)
+                    .tickFormat(d => formataBR(d/1e6));                    
+
 
   // gerador de area
   const area = d3.area()
@@ -289,10 +294,10 @@ Promise.all([
                  .y0(d => y_acu(d[0]))
                  .y1(d => y_acu(d[1]));
 
-  const area_stream = d3.area()
+  const area_mes = d3.area()
                  .x(d => x(d.data.data_mes))
-                 .y0(d => y_acu_stream(d[0]))
-                 .y1(d => y_acu_stream(d[1]));                 
+                 .y0(d => y_mens(d[0]))
+                 .y1(d => y_mens(d[1]));                 
   
   // gerador de linha para o total               
   const line = d3.line()
@@ -339,7 +344,7 @@ Promise.all([
           .call(eixo_x);
 
   // inclui eixo y
-  $svg_honras.append("g") 
+  const eixo_y = $svg_honras.append("g") 
           .attr("class", "axis y-axis")
           .attr("transform", "translate(" + margin_honras.left + ",0)")
           .call(eixo_y_ac);
@@ -348,7 +353,8 @@ Promise.all([
           .attr("x", 5)
           .attr("text-anchor", "start")
           .style("font-weight", "bold")
-          .text("Valores acumulados")
+          .classed("d3-honras-titulo-eixoY", true)
+          .text("Valores acumulados");
 
   // $svg_honras.append("text")
   //         .attr("class", "titulo-eixo")
@@ -655,6 +661,51 @@ Promise.all([
     }
   }
 
+  function desenha_step4(direcao) {
+    if (direcao == "down") {
+      $svg_honras.selectAll("path.d3-honras-step-2")
+        .data(serie_mes_stack)
+        .transition()
+        .duration(duracao)
+        .attr("d", area_mes);
+      
+      eixo_y
+        .transition()
+        .duration(duracao)
+        .call(eixo_y_me);
+
+      $svg_honras.select(".y-axis .tick:last-of-type text").clone()
+        .attr("x", 5)
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .classed("d3-honras-titulo-eixoY", true)
+        .text("Valores mensais");
+
+    } else if (direcao == "up") {
+
+      $svg_honras.selectAll("path.d3-honras-step-2")
+        .data(serie_acum_stack)
+        .transition()
+        .duration(duracao)
+        .attr("d", area);
+
+      eixo_y
+        .transition()
+        .duration(duracao)
+        .call(eixo_y_ac);
+
+      $svg_honras.select(".y-axis .tick:last-of-type text").clone()
+        .attr("x", 5)
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .classed("d3-honras-titulo-eixoY", true)
+        .text("Valores acumulados");
+
+
+    }
+    
+  }
+
   console.log(ponto_total_rio)
   console.log(serie_acum_total)
 
@@ -709,27 +760,7 @@ Promise.all([
         case 4:
           desaparece(arcos_tracos);
           desaparece(arcos_labels, false);    
-          if (response.direction == "down") mostra_rotulo("Total", "Divida_demais", "left");
-          else remove_rotulo("Total", "Divida_demais");
-          break;  
-        case 5:
-          step_colore(response.direction);
-          if(response.direction == "up") {
-            remove_rotulos_eixo();
-            $container_endividamento.selectAll("p")
-            .transition()
-            .duration(250)
-            .attr("opacity", 0)
-            .remove();
-          }
-          break; 
-        case 6:
-          remove_rotulo("Total", "Divida_Uniao");
-          remove_rotulo("Total", "Divida_Garantida");
-          remove_rotulo("Total", "Divida_demais");
-          step_separa(response.direction);
-          if(response.direction == "down") monta_rotulos_eixo()
-          mostra_rotulos_barrinhas(response.direction);
+          desenha_step4(response.direction)
           break;                                  
       }
     });
