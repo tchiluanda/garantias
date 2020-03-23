@@ -182,6 +182,8 @@ Promise.all([
   const serie_mes_stack = stack(serie_mes);
   const serie_qde_stack = stack(serie_qde);
 
+  console.log("serie mes stack", serie_mes_stack);
+
   const serie_acum_total = serie_acum.map(d => ({
     "data_mes" : d.data_mes,
     "valor"    : d["Demais entes"] + 
@@ -435,7 +437,8 @@ Promise.all([
     .attr("stroke", "#333")
     .attr("stroke-width", 2);
 
-  const area_empilhada = $svg_honras.selectAll("path.d3-honras-step-2")
+  const area_empilhada = $svg_honras
+    .selectAll("path.d3-honras-step-2")
     .data(serie_acum_stack)
     .enter()
     .append("path")
@@ -445,6 +448,27 @@ Promise.all([
     .attr("fill", cinza)
     .attr("stroke", cinza)
     .attr("opacity", 0);
+
+  const honras_larg_barra = w_liq_honras/serie_mes.length * 0.75;
+
+  const barras_mensais = $svg_honras
+    .append("g")
+    .selectAll("g.d3-honras-barras-mensais")
+    .data(serie_mes_stack)
+    .enter()
+    .append("g")
+      .classed("d3-honras-barras-mensais", true)
+      .attr("fill", d => cor(d.key))
+    .selectAll("rect.d3-honras-barras-mensais")
+    .data(d => d)
+    .enter()
+    .append("rect")
+      .classed("d3-honras-barras-mensais", true)
+      .attr("x", (d, i) => x(d.data.data_mes) - honras_larg_barra/2)
+      .attr("y", y_mens(0))
+      .attr("height", 0)
+      .attr("width", honras_larg_barra)
+      .attr("opacity", 0);
 
   // labels arcos
   const arcos_tracos = $svg_honras
@@ -560,6 +584,8 @@ Promise.all([
   //   .attr("fill", "steelblue")
   //   .attr("opacity", 0);
 
+  ////////////////// funçoes para desenhar os steps
+
   const duracao = 500;
 
   function aparece(seletor, delay, svg = true) {
@@ -667,7 +693,12 @@ Promise.all([
         .data(serie_mes_stack)
         .transition()
         .duration(duracao)
-        .attr("d", area_mes);
+        .attr("d", area_mes)
+        .transition()
+        .duration(duracao)
+        .attr("opacity", 0);
+
+      desaparece(primeira_linha);        
       
       eixo_y
         .transition()
@@ -681,13 +712,24 @@ Promise.all([
         .classed("d3-honras-titulo-eixoY", true)
         .text("Valores mensais");
 
+      barras_mensais
+        .attr("opacity", 1)
+        .transition()
+        .delay(duracao)
+        .duration(duracao)
+        .attr("y", d => y_mens(d[1]))
+        .attr("height", d => y_mens(d[0]) - y_mens(d[1]));
+
     } else if (direcao == "up") {
 
       $svg_honras.selectAll("path.d3-honras-step-2")
         .data(serie_acum_stack)
         .transition()
         .duration(duracao)
-        .attr("d", area);
+        .attr("d", area)
+        .attr("opacity", 1);
+
+      aparece(primeira_linha);
 
       eixo_y
         .transition()
@@ -700,6 +742,13 @@ Promise.all([
         .style("font-weight", "bold")
         .classed("d3-honras-titulo-eixoY", true)
         .text("Valores acumulados");
+
+      barras_mensais
+        .attr("opacity", 0)
+        .transition()
+        .duration(duracao)
+        .attr("y", y_mens(0))
+        .attr("height", 0);
 
 
     }
