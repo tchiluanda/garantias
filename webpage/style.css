@@ -578,6 +578,11 @@ div.scrolly svg#vis-honras path.honras-arco-anotacao {
     stroke-width: 1;
 }
 
+/*
+div.scrolly svg#vis-honras rect.honras-retangulo-cortina {
+    fill: var(--bg-color);
+}*/
+
 /* esses rotulos aqui vão ser criados pelo D3 */
 div.scrolly .container-vis-honras p.labels-honras {
     position: absolute;

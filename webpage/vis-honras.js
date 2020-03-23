@@ -309,64 +309,7 @@ Promise.all([
   const linha = line(serie_acum_total);  
   const area_rio = area(serie_acum_stack[0]);       
 
-  //console.log(line(serie_acum_total));
-
-    
-
-  //console.log("Componentes escala x", x.domain(), x.range()) 
-  //console.log("x", x(serie_acum[0].data_mes))
-  //console.log("x", x(honras_agg[0].data_mes))
-  //console.log("testa componentes linha", serie_acum.map(d => [d.data_mes, x(d.data_mes),
-  //                                 y_acu(d["Demais entes"])]));
-  
-  // $svg_honras.select("path")
-  //            .datum(serie_acum)
-  //            .enter()
-  //            .append("path")
-  //            .attr("d", line);
-
-  //console.log(" ", [margin_honras.left, w_honras-margin_honras.right]);
-  //console.log("serie stack", serie_acum_stack);
-  //console.log("area aplicada", area(serie_acum_stack[0]));
-  
-  // const primeira_linha = $svg_honras
-  //   .selectAll("path")
-  //   .datum(serie_acum_total)
-  //   .enter()
-  //   .append("path")
-  //   .classed("d3-honras-linha-inicial", true)
-  //   .attr("d", line);
-
-  //////////////////////////////// eixos
-  // inclui eixo x
-
-  $svg_honras.append("g") 
-          .attr("class", "axis x-axis")
-          .attr("transform", "translate(0," + (h_honras - margin_honras.bottom) + ")")
-          .call(eixo_x);
-
-  // inclui eixo y
-  const eixo_y = $svg_honras.append("g") 
-          .attr("class", "axis y-axis")
-          .attr("transform", "translate(" + margin_honras.left + ",0)")
-          .call(eixo_y_ac);
-
-  $svg_honras.select(".y-axis .tick:last-of-type text").clone()
-          .attr("x", 5)
-          .attr("text-anchor", "start")
-          .style("font-weight", "bold")
-          .classed("d3-honras-titulo-eixoY", true)
-          .text("Valores acumulados");
-
-  // $svg_honras.append("text")
-  //         .attr("class", "titulo-eixo")
-  //         .attr("y", margin_honras.top)
-  //         .attr("x", margin_honras.left)
-  //         .attr("text-anchor", "middle")
-  //         .text("R$ mi")
-
-
-  //////////////// anotações
+  //////////////// dados para as anotações
 
   // primeira honra
   const ponto_primeira_honra = {
@@ -429,14 +372,6 @@ Promise.all([
 
   ///////////// cria os elementos visuais
    
-  const primeira_linha = $svg_honras
-    .append("path")
-    .classed("d3-honras-linha-inicial", true)
-    .attr("d", linha)
-    .attr("fill", "none")
-    .attr("stroke", "#333")
-    .attr("stroke-width", 2);
-
   const area_empilhada = $svg_honras
     .selectAll("path.d3-honras-step-2")
     .data(serie_acum_stack)
@@ -445,9 +380,50 @@ Promise.all([
     .attr("class", d => "d3-honras-area-" + d.key.slice(0,3))
     .attr("d", area)
     .classed("d3-honras-step-2", true)
-    .attr("fill", cinza)
-    .attr("stroke", cinza)
+    .attr("fill", "#FAFFFF")//cinza)
+    .attr("stroke", "none")
     .attr("opacity", 0);
+
+  // const retangulo_cortina = $svg_honras
+  //   .append("rect")
+  //   .classed("honras-retangulo-cortina", true)
+  //   .attr("x", x(ponto_primeira_honra.x))
+  //   .attr("y", y_acu(obtem_maximo_serie(serie_acum)))
+  //   .attr("height", y_acu(0) - y_acu(obtem_maximo_serie(serie_acum)))
+  //   .attr("width", w_liq_honras - margin_honras.left + 3);
+  
+  // eixos
+  // inclui eixo x
+
+  $svg_honras
+    .append("g") 
+      .attr("class", "axis x-axis")
+      .attr("transform", "translate(0," + (h_honras - margin_honras.bottom) + ")")
+    .call(eixo_x);
+
+  // inclui eixo y
+  const eixo_y = $svg_honras
+    .append("g") 
+      .attr("class", "axis y-axis")
+      .attr("transform", "translate(" + margin_honras.left + ",0)")
+    .call(eixo_y_ac);
+
+  $svg_honras
+    .select(".y-axis .tick:last-of-type text").clone()
+      .attr("x", 5)
+      .attr("text-anchor", "start")
+      .style("font-weight", "bold")
+      .classed("d3-honras-titulo-eixoY", true)
+      .text("Valores acumulados");
+  
+
+  const primeira_linha = $svg_honras
+    .append("path")
+    .classed("d3-honras-linha-inicial", true)
+    .attr("d", linha)
+    .attr("fill", "none")
+    .attr("stroke", "#333")
+    .attr("stroke-width", 2);    
 
   const honras_larg_barra = w_liq_honras/serie_mes.length;
 
@@ -590,19 +566,20 @@ Promise.all([
 
   function aparece(seletor, delay, svg = true) {
     // testa se foi passada uma seleção ou um seletor (css)
-    const selecao = typeof(seletor) === "object" ? seletor : d3.selectAll(seletor);
-    selecao    
+    let selecao = typeof(seletor) === "object" ? seletor : d3.selectAll(seletor);
+    selecao = selecao    
       .transition()
       .delay(delay)
       .duration(duracao);
     if (svg) selecao.attr("opacity", 1);
     else selecao.style("opacity", 1)
+    console.log("to no aparece, meu seletor foi ", seletor, "minha selecação foi", selecao);
   }
 
   function desaparece(seletor, svg = true) {
     // testa se foi passada uma seleção ou um seletor (css)
-    const selecao = typeof(seletor) === "object" ? seletor : d3.selectAll(seletor);
-    selecao 
+    let selecao = typeof(seletor) === "object" ? seletor : d3.selectAll(seletor);
+    selecao = selecao 
       .transition()
       .duration(duracao);
     if (svg) selecao.attr("opacity", 0);
@@ -613,7 +590,11 @@ Promise.all([
     console.log("disparei", direcao)
     if (direcao == "down") {
       aparece(".d3-honras-step-1", 0);
-      aparece("line.d3-anotacao-step-1", 0);
+      linha_ref_primeira_honra
+        .attr("opacity", 1)
+        .transition()
+        .duration(duracao)
+        .attr("y2", y_acu(ponto_primeira_honra.y));
       aparece(label_primeira_honra, duracao, svg = false);
       primeira_honra2
         .transition()
@@ -621,9 +602,7 @@ Promise.all([
         .duration(duracao)
         .attr("r", 7);
       linha_ref_primeira_honra
-        .transition()
-        .duration(duracao)
-        .attr("y2", y_acu(ponto_primeira_honra.y));
+
 
     } else if (direcao == "up") {
       desaparece(".d3-honras-step-1");
@@ -635,24 +614,33 @@ Promise.all([
   }
 
   function desenha_step2(direcao) {
-    console.log("disparei", direcao)
+    console.log("disparei step2", direcao)
     if (direcao == "down") {
-      aparece(area_empilhada, duracao, true);
-      aparece("path.d3-honras-arco-Est", duracao*2);
-      aparece("p.d3-honras-arco-Est", duracao*2, false);
+      aparece(area_empilhada, 0, true);
+      aparece("path.d3-honras-arco-Est", delay = duracao*1.5);
+      aparece("p.d3-honras-arco-Est", delay = duracao*1.5, false);
       $svg_honras
         .select(".d3-honras-area-Est")
         .transition()
-        .delay(duracao*2)
+        .delay(duracao)
         .duration(duracao)
         .attr("fill", d => cor(d.key));
       aparece("text.d3-honras-anotacao-valor-rio", duracao)
-      aparece("circle.d3-honras-step-2", duracao);
+      aparece(final_rio, duracao);
       final_rio2
         .transition()
         .delay(duracao*2)
         .duration(duracao)
+        .attr("opacity", 1)
+        .transition()
+        .delay(duracao)
+        .duration(duracao)
         .attr("r", 7);
+
+      // retangulo_cortina
+      //   .transition()
+      //   .duration(duracao * 2)
+      //   .attr("x", w_liq_honras + margin_honras.left);
 
     } else if (direcao == "up") {
       desaparece(".d3-honras-step-2");
