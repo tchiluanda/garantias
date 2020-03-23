@@ -76,7 +76,7 @@ Promise.all([
   const honras_agg = files[0];
   const honras_det = files[1];
 
-  console.log(honras_det[0])
+  //console.log(honras_det[0])
 
   //para formatar os valores
   for (el of honras_agg) {
@@ -182,7 +182,7 @@ Promise.all([
   const serie_mes_stack = stack(serie_mes);
   const serie_qde_stack = stack(serie_qde);
 
-  console.log("serie mes stack", serie_mes_stack);
+  //console.log("serie mes stack", serie_mes_stack);
 
   const serie_acum_total = serie_acum.map(d => ({
     "data_mes" : d.data_mes,
@@ -192,7 +192,7 @@ Promise.all([
   }));
 
   //console.table(serie_acum_total);
-  console.log(serie_acum)
+  //console.log(serie_acum)
 
   //console.log(serie_acum_stack)//, serie_mes_stack, serie_qde_stack)
 
@@ -228,12 +228,14 @@ Promise.all([
                   .range(range_y)
                   .domain([0, obtem_maximo_serie(serie_acum)]);
 
-
-
-
   const y_mens = d3.scaleLinear()
                    .range(range_y)
                    .domain([0, obtem_maximo_serie(serie_mes)]);
+
+  const y_qde  = d3.scaleLinear()
+                   .range(range_y)
+                   .domain([0, obtem_maximo_serie(serie_qde)]);                   
+      
   //// cores
   const cor = d3.scaleOrdinal()
                 .range(["#ffb14e",
@@ -287,7 +289,10 @@ Promise.all([
 
   let eixo_y_me = d3.axisLeft()
                     .scale(y_mens)
-                    .tickFormat(d => formataBR(d/1e6));                    
+                    .tickFormat(d => formataBR(d/1e6));
+                    
+  let eixo_y_qd = d3.axisLeft()
+                    .scale(y_qde);                     
 
 
   // gerador de area
@@ -427,7 +432,7 @@ Promise.all([
 
   const honras_larg_barra = w_liq_honras/serie_mes.length;
 
-  const barras_mensais = $svg_honras
+  let barras_mensais = $svg_honras
     .append("g")
     .selectAll("g.d3-honras-barras-mensais")
     .data(serie_mes_stack)
@@ -481,7 +486,7 @@ Promise.all([
          // usando vanilla para poder usar o .forEach
   arcos_labels.nodes().forEach(element => {
     const dims = element.getBoundingClientRect();
-    console.log("DIMS", dims);
+    //console.log("DIMS", dims);
     element.style.transform = "translate(-" + dims.width + "px, -" + dims.height/2 + "px)";
   });
 
@@ -573,7 +578,7 @@ Promise.all([
       .duration(duracao);
     if (svg) selecao.attr("opacity", 1);
     else selecao.style("opacity", 1)
-    console.log("to no aparece, meu seletor foi ", seletor, "minha selecação foi", selecao);
+    //console.log("to no aparece, meu seletor foi ", seletor, "minha selecação foi", selecao);
   }
 
   function desaparece(seletor, svg = true) {
@@ -587,7 +592,7 @@ Promise.all([
   }
 
   function desenha_step1(direcao) {
-    console.log("disparei", direcao)
+    //console.log("disparei", direcao)
     if (direcao == "down") {
       aparece(".d3-honras-step-1", 0);
       linha_ref_primeira_honra
@@ -595,7 +600,7 @@ Promise.all([
         .transition()
         .duration(duracao)
         .attr("y2", y_acu(ponto_primeira_honra.y));
-      aparece(label_primeira_honra, duracao, svg = false);
+      aparece(label_primeira_honra, 0, svg = false);
       primeira_honra2
         .transition()
         .delay(duracao)
@@ -614,7 +619,7 @@ Promise.all([
   }
 
   function desenha_step2(direcao) {
-    console.log("disparei step2", direcao)
+    //console.log("disparei step2", direcao)
     if (direcao == "down") {
       aparece(area_empilhada, 0, true);
       aparece("path.d3-honras-arco-Est", delay = duracao*1.5);
@@ -656,7 +661,7 @@ Promise.all([
   }
 
   function desenha_step3(direcao) {
-    console.log("disparei", direcao)
+    //console.log("disparei", direcao)
     if (direcao == "down") {
       aparece(arcos_tracos, duracao);
       aparece(arcos_labels, duracao, false);      
@@ -708,6 +713,8 @@ Promise.all([
         .duration(duracao * 1.5)
         .attr("width", honras_larg_barra * .75);
 
+        console.log(barras_mensais)
+
 
     } else if (direcao == "up") {
 
@@ -734,14 +741,54 @@ Promise.all([
 
       barras_mensais
         .attr("opacity", 0);
+    }
+  }
+
+  function desenha_step5(direcao) {
+    if (direcao == "down") {    
+      
+      eixo_y
+        .transition()
+        .duration(duracao)
+        .call(eixo_y_qd);     
+
+      barras_mensais = $svg_honras
+        .selectAll("g.d3-honras-barras-mensais")
+        .data(serie_qde_stack)
+        .selectAll("rect.d3-honras-barras-mensais")
+        .data(d => d)
+        .transition()
+        .duration(duracao)
+        .attr("y", d => y_qde(d[1]))
+        .attr("height", d => y_qde(d[0]) - y_qde(d[1]));
+
+
+    } else if (direcao == "up") {
+
+      console.log("oi eu")
+
+      eixo_y
+        .transition()
+        .duration(duracao)
+        .call(eixo_y_me);
+
+      barras_mensais = $svg_honras
+        .selectAll("g.d3-honras-barras-mensais")
+        .data(serie_mes_stack)
+        .selectAll("rect.d3-honras-barras-mensais")
+        .data(d => d)
+        .transition()
+        .duration(duracao)
+        .attr("y", d => y_mens(d[1]))
+        .attr("height", d => y_mens(d[0]) - y_mens(d[1]));
 
 
     }
     
   }
 
-  console.log(ponto_total_rio)
-  console.log(serie_acum_total)
+  //console.log(ponto_total_rio)
+  //console.log(serie_acum_total)
 
   //gera_grid($svg_honras, 20);
 
@@ -795,7 +842,11 @@ Promise.all([
           desaparece(arcos_tracos);
           desaparece(arcos_labels, false);    
           desenha_step4(response.direction)
-          break;                                  
+          break;    
+        case 5:  
+          desenha_step5(response.direction)
+          break;   
+          
       }
     });
 
