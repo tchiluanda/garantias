@@ -449,7 +449,7 @@ Promise.all([
     .attr("stroke", cinza)
     .attr("opacity", 0);
 
-  const honras_larg_barra = w_liq_honras/serie_mes.length * 0.75;
+  const honras_larg_barra = w_liq_honras/serie_mes.length;
 
   const barras_mensais = $svg_honras
     .append("g")
@@ -465,8 +465,8 @@ Promise.all([
     .append("rect")
       .classed("d3-honras-barras-mensais", true)
       .attr("x", (d, i) => x(d.data.data_mes) - honras_larg_barra/2)
-      .attr("y", y_mens(0))
-      .attr("height", 0)
+      .attr("y", d => y_mens(d[1]))
+      .attr("height", d => y_mens(d[0]) - y_mens(d[1]))
       .attr("width", honras_larg_barra)
       .attr("opacity", 0);
 
@@ -713,12 +713,13 @@ Promise.all([
         .text("Valores mensais");
 
       barras_mensais
+        .transition()
+        .duration(duracao)
         .attr("opacity", 1)
         .transition()
-        .delay(duracao)
-        .duration(duracao)
-        .attr("y", d => y_mens(d[1]))
-        .attr("height", d => y_mens(d[0]) - y_mens(d[1]));
+        .duration(duracao * 1.5)
+        .attr("width", honras_larg_barra * .75);
+
 
     } else if (direcao == "up") {
 
@@ -744,11 +745,7 @@ Promise.all([
         .text("Valores acumulados");
 
       barras_mensais
-        .attr("opacity", 0)
-        .transition()
-        .duration(duracao)
-        .attr("y", y_mens(0))
-        .attr("height", 0);
+        .attr("opacity", 0);
 
 
     }
