@@ -451,6 +451,22 @@ Promise.all([
       .attr("width", honras_larg_barra)
       .attr("opacity", 0);
 
+  // as BOLHAS!
+  console.log(honras_det.columns);
+
+  const bolhas_honras = $svg_honras
+    .selectAll("circle")
+    .data(honras_det)
+    .enter()
+    .append("circle")
+    .classed("d3-honras-bolhas", true)
+    .attr("cx", d => x(d3.timeParse("%Y-%m-%d")(d.data_mes)))
+    .attr("cy", d => y_qde(d.pos))
+    .attr("r", honras_larg_barra * 0.75 / 2)
+    .attr("fill", d => cor(d.mutuario_cat))
+    .attr("opacity", 0);
+
+
   // labels arcos
   const arcos_tracos = $svg_honras
     .selectAll("path.d3-honras-arco")
@@ -781,10 +797,7 @@ Promise.all([
         .duration(duracao)
         .attr("y", d => y_mens(d[1]))
         .attr("height", d => y_mens(d[0]) - y_mens(d[1]));
-
-
     }
-    
   }
 
   //console.log(ponto_total_rio)
