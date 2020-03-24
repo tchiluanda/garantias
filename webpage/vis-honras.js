@@ -373,7 +373,14 @@ Promise.all([
   d3.select("#d3-honras-nome-rio").style("color", cor("Estado do Rio de Janeiro"));
   d3.select("#d3-honras-nome-mg").style("color", cor("Minas Gerais"));
 
-  // gera_arco definida em "utils.js"
+  ///////////// dados para as bolhas!
+
+  console.log("testa funcao", group_by_sum(honras_det, "Credor", "valor", true));
+
+  // const nodes = honras_det.map(d => {
+
+  // })
+
 
   ///////////// cria os elementos visuais
    
@@ -470,6 +477,7 @@ Promise.all([
 
 
   // labels arcos
+  // funcao gera_arco definida em "utils.js"
   const arcos_tracos = $svg_honras
     .selectAll("path.d3-honras-arco")
     .data(infos_arcos)

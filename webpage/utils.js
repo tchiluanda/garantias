@@ -56,23 +56,27 @@ const group_by_sum = function(objeto, coluna_categoria, coluna_valor, ordena_dec
     const subtotal_categoria = d3.sum(objeto.filter(d => d[coluna_categoria] === cat), d => d[coluna_valor]);
     resultado.push({"categoria" : cat,
                     "subtotal"  : subtotal_categoria});   
+  }
+  if (ordena_decrescente) resultado.sort((a,b) => b.subtotal - a.subtotal);
+  return resultado;
 }
-  return resultado;}
 
-const group_by_sum_vanilla = function(objeto, coluna_categoria, coluna_valor) {
-    const resultado = []; 
-    const categorias_unicas = objeto
-                                .map(d => d[coluna_categoria])
-                                .filter((v, i, a) => a.indexOf(v) === i);
-    for (cat of categorias_unicas) {
-      const soma = objeto
-                      .filter(d => d[coluna_categoria] === cat)
-                      .map(d => d[coluna_valor])
-                      .reduce((valor_acum, valor_atual) => valor_acum + valor_atual);
-      resultado.push({"categoria" : cat,
-                      "subtotal"  : soma});   
- }
-    return resultado;}
+const group_by_sum_vanilla = function(objeto, coluna_categoria, coluna_valor, ordena_decrescente = false) {
+  const resultado = []; 
+  const categorias_unicas = objeto
+                              .map(d => d[coluna_categoria])
+                              .filter((v, i, a) => a.indexOf(v) === i);
+  for (cat of categorias_unicas) {
+    const soma = objeto
+                    .filter(d => d[coluna_categoria] === cat)
+                    .map(d => d[coluna_valor])
+                    .reduce((valor_acum, valor_atual) => valor_acum + valor_atual);
+    resultado.push({"categoria" : cat,
+                    "subtotal"  : soma});   
+  }
+  if (ordena_decrescente) resultado.sort((a,b) => b.subtotal - a.subtotal)
+  return resultado;
+}
 
 // para gerar arco para anotações
 
