@@ -161,7 +161,8 @@ contagem_honras_avancado <- honras_simples %>%
   mutate(qde_credor = n()) %>%
   ungroup() %>%
   mutate(credor_cat = ifelse(qde_credor < 20, "Demais credores", Credor)) %>%
-  arrange(mes_ano, desc(mutuario_cat)) %>%
+  #arrange(mes_ano, desc(mutuario_cat)) %>%
+  arrange(mes_ano, match(mutuario_cat, c("Estado do Rio de Janeiro", "Minas Gerais", "Demais entes"))) %>%
   mutate(data_mes = as.Date(paste(str_sub(mes_ano, 1, 4),
                                   str_sub(mes_ano, 5, 6),
                                   "01", sep = "-"))) %>%
@@ -208,8 +209,8 @@ honras_agg <- contagem_honras_avancado %>%
 
 ## exporta
 
-write.csv(honras_det, file = "webpage/dados_honras_det.csv", fileEncoding = "UTF-8")
-write.csv(honras_agg, file = "webpage/dados_honras_agg.csv", fileEncoding = "UTF-8")
+write.csv(honras_det, file = "webpage/dados/dados_honras_det.csv", fileEncoding = "UTF-8")
+write.csv(honras_agg, file = "webpage/dados/dados_honras_agg.csv", fileEncoding = "UTF-8")
 
 ## prototipos de plots
 
