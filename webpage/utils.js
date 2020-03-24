@@ -44,7 +44,38 @@ const formataData = d3.timeFormat("%b %Y");
 console.log(formataData(new Date))
 const formataData_Anos = d3.timeFormat("%Y");
 
+// para fazer um 
+// group_by(categoria = coluna_categoria) %>% 
+//   summarise(subtotal = sum(coluna_valor))
+// :)
+
+const group_by_sum = function(objeto, coluna_categoria, coluna_valor, ordena_decrescente = false) {
+  const resultado = []; 
+  const categorias_unicas = d3.map(objeto, d => d[coluna_categoria]).keys();
+  for (cat of categorias_unicas) {
+    const subtotal_categoria = d3.sum(objeto.filter(d => d[coluna_categoria] === cat), d => d[coluna_valor]);
+    resultado.push({"categoria" : cat,
+                    "subtotal"  : subtotal_categoria});   
+}
+  return resultado;}
+
+const group_by_sum_vanilla = function(objeto, coluna_categoria, coluna_valor) {
+    const resultado = []; 
+    const categorias_unicas = objeto
+                                .map(d => d[coluna_categoria])
+                                .filter((v, i, a) => a.indexOf(v) === i);
+    for (cat of categorias_unicas) {
+      const soma = objeto
+                      .filter(d => d[coluna_categoria] === cat)
+                      .map(d => d[coluna_valor])
+                      .reduce((valor_acum, valor_atual) => valor_acum + valor_atual);
+      resultado.push({"categoria" : cat,
+                      "subtotal"  : soma});   
+ }
+    return resultado;}
+
 // para gerar arco para anotações
+
 function gera_arco(x1,y1,x2,y2) {
   xmin = Math.min(x1,x2);
   xmax = Math.max(x1,x2);
