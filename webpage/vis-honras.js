@@ -768,7 +768,14 @@ Promise.all([
       eixo_y
         .transition()
         .duration(duracao)
-        .call(eixo_y_qd);     
+        .call(eixo_y_qd);   
+      
+      $svg_honras.select(".y-axis .tick:last-of-type text").clone()
+        .attr("x", 5)
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .classed("d3-honras-titulo-eixoY", true)
+        .text("Quantidade");
 
       barras_mensais = $svg_honras
         .selectAll("g.d3-honras-barras-mensais")
