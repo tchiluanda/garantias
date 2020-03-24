@@ -186,6 +186,8 @@ honras_det <- contagem_honras_avancado %>%
   left_join(rank_honras_cat) %>%
   left_join(rank_honras_tip)
 
+honras_det %>% group_by(Credor) %>% summarise(soma = sum(valor), qde = n()) %>% arrange(desc(soma))
+
 ## para streamgraph
 
 honras_agg <- contagem_honras_avancado %>%
