@@ -454,6 +454,8 @@ Promise.all([
   // as BOLHAS!
   console.log(honras_det.columns);
 
+  const honras_raio_inicial = honras_larg_barra * 0.75 / 2
+
   const bolhas_honras = $svg_honras
     .selectAll("circle")
     .data(honras_det)
@@ -461,8 +463,8 @@ Promise.all([
     .append("circle")
     .classed("d3-honras-bolhas", true)
     .attr("cx", d => x(d3.timeParse("%Y-%m-%d")(d.data_mes)))
-    .attr("cy", d => y_qde(d.pos))
-    .attr("r", honras_larg_barra * 0.75 / 2)
+    .attr("cy", d => y_qde(d.pos) + honras_raio_inicial)
+    .attr("r", honras_raio_inicial)
     .attr("fill", d => cor(d.mutuario_cat))
     .attr("opacity", 0);
 
@@ -800,6 +802,26 @@ Promise.all([
     }
   }
 
+  function desenha_step6(direcao) {
+    if (direcao == "down") {
+      
+      // barras_mensais
+      $svg_honras
+        .selectAll("rect.d3-honras-barras-mensais")
+        .transition()
+        .duration(duracao)
+        .attr("width", 0);
+
+      bolhas_honras
+        .transition()
+        .duration(duracao)
+        .attr("opacity", 1);
+
+    } else if (direcao == "up") {
+
+    } 
+  }
+
   //console.log(ponto_total_rio)
   //console.log(serie_acum_total)
 
@@ -859,7 +881,9 @@ Promise.all([
         case 5:  
           desenha_step5(response.direction)
           break;   
-          
+        case 6:  
+          desenha_step6(response.direction)
+          break;             
       }
     });
 
