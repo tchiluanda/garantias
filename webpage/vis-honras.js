@@ -251,6 +251,17 @@ Promise.all([
                                 cinza])
                         .domain([categorias]); 
   
+  // raio bubbles
+  const maior_honra = d3.max(honras_det, d => +d.valor);
+  console.log("Maior honra", maior_honra);
+
+
+  const r_honras = d3.scaleSqrt()
+    .range([2, 35])  // 45
+    .domain([0, maior_honra]);
+
+  
+  
   //let cor_so_rio = cor;
   //cor_so_rio.range(["#ffb14e", cinza, cinza]);
   //console.log("aqui, depois de ajustar cor_so_rio", cor.range());
@@ -377,6 +388,24 @@ Promise.all([
 
   console.log("testa funcao", group_by_sum(honras_det, "Credor", "valor", true));
 
+  const centro_bolhas_honras = {
+    x : w_liq_honras / 2 + margin_honras.left,
+    y : margin_honras.top + (h_honras - margin_honras.top - margin_honras.bottom) / 2 
+  }
+
+  const honras_larg_barra = w_liq_honras/serie_mes.length;
+
+  const honras_raio_inicial = honras_larg_barra * 0.75 / 2
+
+  // se a gente não inicializar atributos "x" e "y" para os dados
+  // que serão passados como "nodes", os nodes vão parecer surgir
+  // do nada (de x = 0 e y = 0, na verdade)
+  honras_det.forEach(d => {
+    d["x"] = x(d3.timeParse("%Y-%m-%d")(d.data_mes));
+    d["y"] = y_qde(d.pos) + honras_raio_inicial;
+  })
+
+
   // const nodes = honras_det.map(d => {
 
   // })
@@ -437,8 +466,6 @@ Promise.all([
     .attr("stroke", "#333")
     .attr("stroke-width", 2);    
 
-  const honras_larg_barra = w_liq_honras/serie_mes.length;
-
   let barras_mensais = $svg_honras
     .append("g")
     .selectAll("g.d3-honras-barras-mensais")
@@ -461,11 +488,11 @@ Promise.all([
   // as BOLHAS!
   console.log(honras_det.columns);
 
-  const honras_raio_inicial = honras_larg_barra * 0.75 / 2
-
-  const bolhas_honras = $svg_honras
+    let bolhas_honras = $svg_honras
     .selectAll("circle")
-    .data(honras_det)
+    .data(honras_det);
+
+  const bolhas_honras_enter = bolhas_honras
     .enter()
     .append("circle")
     .classed("d3-honras-bolhas", true)
@@ -475,6 +502,7 @@ Promise.all([
     .attr("fill", d => cor(d.mutuario_cat))
     .attr("opacity", 0);
 
+  bolhas_honras = bolhas_honras.merge(bolhas_honras_enter);
 
   // labels arcos
   // funcao gera_arco definida em "utils.js"
@@ -590,6 +618,33 @@ Promise.all([
   //   .attr("d", area_rio)
   //   .attr("fill", "steelblue")
   //   .attr("opacity", 0);
+
+
+  /////////////// simulação!
+
+  const magnitudeForca = 0.03;
+  const carga = function(d) {
+    return -Math.pow(r_honras(d.valor), 2.0) * magnitudeForca;
+  }
+
+  const atualiza_bolhas_honras = function() {
+    bolhas_honras
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+  }
+
+  const simulacao = d3.forceSimulation()
+    .velocityDecay(0.2)
+    .force('x', d3.forceX().strength(magnitudeForca).x(centro_bolhas_honras.x))
+    .force('y', d3.forceY().strength(magnitudeForca).y(centro_bolhas_honras.y))
+    .force('charge', d3.forceManyBody().strength(carga))
+    .on('tick', atualiza_bolhas_honras);
+
+  simulacao.stop();
+  // vamos "religar" a simulação na hora certa, dentro da função
+  // de desenhar o respctivo step.
+  simulacao.nodes(honras_det);
+
 
   ////////////////// funçoes para desenhar os steps
 
@@ -837,6 +892,29 @@ Promise.all([
     } 
   }
 
+  function desenha_step7(direcao) {
+    if (direcao == "down") {
+
+      bolhas_honras
+        .transition()
+        .duration(2*duracao)
+        .attr("r", d => r_honras(d.valor) - 1)
+        .attr("stroke", d => d3.rgb(cor(d.mutuario_cat)).darker())
+        .attr("stroke-width", 1);
+
+      desaparece("g.axis");
+
+      //d3.selectAll("g.axis").attr("opacity", 0)
+      
+      simulacao.force('x', d3.forceX().strength(magnitudeForca).x(centro_bolhas_honras.x));
+      simulacao.force('y', d3.forceY().strength(magnitudeForca).y(centro_bolhas_honras.y));
+    
+      // @v4 We can reset the alpha value and restart the simulation
+      simulacao.alpha(1).restart();
+
+    } 
+  }
+
   //console.log(ponto_total_rio)
   //console.log(serie_acum_total)
 
@@ -898,7 +976,10 @@ Promise.all([
           break;   
         case 6:  
           desenha_step6(response.direction)
-          break;             
+          break;   
+        case 7:  
+          desenha_step7(response.direction)
+          break;                        
       }
     });
 
