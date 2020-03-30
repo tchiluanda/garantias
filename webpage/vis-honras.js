@@ -425,24 +425,30 @@ Promise.all([
     d["y"] = y_qde(d.pos) + honras_raio_inicial;
   })
 
-  const subtotais_estados = group_by_sum(honras_det, "estados", "valor", true);
-  // na mão mesmo pq o tempo está curto
-  const pos_estados = {};
-  const pos_estados_xs = [1.5/4, 3/4,
-                          2/6, 1/2, 4/6,
-                          2/8, 3.5/8, 4.5/8, 6/8];
-  const pos_estados_ys = [1/4, 1/4,
-                          3.5/8, 3.5/8, 3.5/8,
-                          6/8, 6/8, 6/8, 6/8];                          
-                        
-  subtotais_estados.forEach((d,i) => {
-    pos_estados[d.categoria] = 
-    {
-        "rotulo" : valor_formatado(d.subtotal),
-        "x"      : pos_estados_xs[i] * w_honras,
-        "y"      : pos_estados_ys[i] * h_honras
-    }
-  });
+  function honras_gera_subconjunto(nome_coluna, vetor_pos_x, vetor_pos_y) {
+    const subtotais_coluna = group_by_sum(honras_det, nome_coluna, "valor", true);
+
+    const dados_coluna = {};
+    subtotais_coluna.forEach((d,i) => {
+    dados_coluna[d.categoria] = 
+      {
+          "rotulo" : valor_formatado(d.subtotal),
+          "x"      : vetor_pos_x[i] * w_honras,
+          "y"      : vetor_pos_y[i] * h_honras
+      }
+    }); 
+
+    return dados_coluna;
+  }
+
+  pos_estados = honras_gera_subconjunto(
+    "estados",
+    [1.5/4,   3/4,
+       2/6,   1/2,   4/6,
+       2/8, 3.5/8, 4.5/8, 6/8],
+    [1/4  ,   1/4,
+     3.5/8, 3.5/8, 3.5/8,
+       6/8,   6/8,   6/8, 6/8])
 
   console.log(pos_estados);
 
