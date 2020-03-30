@@ -446,7 +446,7 @@ Promise.all([
     [1.5/4,   3/4,
        2/6,   1/2,   4/6,
        2/8, 3.5/8, 4.5/8, 6/8],
-    [1/4  ,   1/4,
+    [  1/4,   1/4,
      3.5/8, 3.5/8, 3.5/8,
        6/8,   6/8,   6/8, 6/8])
 
@@ -606,6 +606,18 @@ Promise.all([
     .text(d => "R$ " + pos_tipo_divida[d].rotulo);
 
   // por estados
+
+  let pos_labels_estados_y = [
+    0.40, 0.40,
+    0.66, 0.66, 0.66,
+    0.9 ,  0.9, 0.9 , 0.9
+  ];
+
+  let pos_labels_estados_x = [
+    0.35, 0.82,
+    0.29, 0.56, 0.74,
+    0.21, 0.44, 0.59 , 0.79
+  ];
   
   const honras_label_estados = $container_honras
     .selectAll("div.subtotais-estados")
@@ -614,8 +626,8 @@ Promise.all([
     .append("div")
     .classed("subtotais-estados", true)
     .style("opacity", 0)
-    .style("left", d => pos_estados[d].x - largura_labels/2 + "px")
-    .style("top", d => pos_estados[d].y * 1.4 + "px")
+    .style("left", (d,i) => pos_labels_estados_x[i]*w_honras - largura_labels/2 + "px")
+    .style("top", (d,i) => pos_labels_estados_y[i]*h_honras + "px")
     .style("width", `${largura_labels}px`)
     .classed("subtotais", true);
 

@@ -642,3 +642,9 @@ div.scrolly .honras-steps.step-ativo {
     opacity: 0.8;
     /*background-color: goldenrod;*/
 }
+
+@media (max-width: 400px) {
+    div.scrolly .container-vis-honras .subtotais.subtotais-estados {
+        font-size: 0.5rem;
+    }
+}
