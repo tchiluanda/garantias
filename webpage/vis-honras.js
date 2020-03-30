@@ -257,9 +257,21 @@ Promise.all([
 
 
   const r_honras = d3.scaleSqrt()
-    .range([2, 35])  // 45
+    .range([2, (w_liq_honras*2/3)/15])  // 45
     .domain([0, maior_honra]);
 
+  const soma_areas =
+  honras_det
+    .map(d => r_honras(+d.valor))
+    .reduce((acumulador, valor_atual) => acumulador + valor_atual*valor_atual,
+          initialValue = 0);
+
+
+  const raio_total = Math.sqrt(soma_areas);
+
+  console.log(2*raio_total, w_liq_honras, 2*raio_total/w_liq_honras);
+        
+  
   
   
   //let cor_so_rio = cor;
