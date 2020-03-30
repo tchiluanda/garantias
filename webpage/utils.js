@@ -87,7 +87,7 @@ function gera_arco(x1,y1,x2,y2) {
   xb = xmax - Math.abs(x2-x1)/6;
   yb = ymin + Math.abs(y2-y1)/6;
   path = "M" + x1 + "," + y1 + " Q" + xb + "," + yb + " " + x2 + "," + y2;
-  console.log(path)
+  //console.log(path)
   return path;
 }
 
