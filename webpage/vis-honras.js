@@ -441,7 +441,7 @@ Promise.all([
     return dados_coluna;
   }
 
-  pos_estados = honras_gera_subconjunto(
+  const pos_estados = honras_gera_subconjunto(
     "estados",
     [1.5/4,   3/4,
        2/6,   1/2,   4/6,
@@ -450,7 +450,12 @@ Promise.all([
      3.5/8, 3.5/8, 3.5/8,
        6/8,   6/8,   6/8, 6/8])
 
-  console.log(pos_estados);
+  
+  const pos_tipo_divida = honras_gera_subconjunto(
+    "tipo_divida",
+    [1.5/4,   3/4],
+    [1/2,   1/2])
+  console.log(Object.keys(pos_estados), pos_tipo_divida);
 
 
 
@@ -559,6 +564,8 @@ Promise.all([
 
   const largura_labels = 150;
 
+  // total
+
   const honras_label_total = $container_honras
     .append("div")
     .style("opacity", 0)
@@ -574,6 +581,53 @@ Promise.all([
     .append("p")
     .classed("labels-honras-valor", true)
     .text("R$ " + valor_formatado(total_honras));
+
+  // interna e externa
+
+  const honras_label_tipo_divida = $container_honras
+    .selectAll("div.subtotais-tipo")
+    .data(Object.keys(pos_tipo_divida))
+    .enter()
+    .append("div")
+    .classed("subtotais-tipo", true)
+    .style("opacity", 0)
+    .style("left", d => pos_tipo_divida[d].x - largura_labels/2 + "px")
+    .style("top", d => pos_tipo_divida[d].y + h_honras/3 + "px")
+    .style("width", `${largura_labels}px`)
+    .classed("subtotais", true);
+
+  honras_label_tipo_divida
+    .append("p")
+    .text(d => d);
+
+  honras_label_tipo_divida
+    .append("p")
+    .classed("labels-honras-valor", true)
+    .text(d => "R$ " + pos_tipo_divida[d].rotulo);
+
+  // por estados
+  
+  const honras_label_estados = $container_honras
+    .selectAll("div.subtotais-estados")
+    .data(Object.keys(pos_estados))
+    .enter()
+    .append("div")
+    .classed("subtotais-estados", true)
+    .style("opacity", 0)
+    .style("left", d => pos_estados[d].x - largura_labels/2 + "px")
+    .style("top", d => pos_estados[d].y * 1.4 + "px")
+    .style("width", `${largura_labels}px`)
+    .classed("subtotais", true);
+
+  honras_label_estados
+    .append("p")
+    .text(d => d);
+
+  honras_label_estados
+    .append("p")
+    .classed("labels-honras-valor", true)
+    .text(d => "R$ " + pos_estados[d].rotulo);
+  
   
 
   // labels arcos
@@ -995,12 +1049,29 @@ Promise.all([
   function desenha_step8(direcao) {
     if (direcao == "down") {
     
+      simulacao.force('x', d3.forceX().strength(magnitudeForca).x(d => pos_tipo_divida[d.tipo_divida].x));
+      simulacao.force('y', d3.forceY().strength(magnitudeForca).y(centro_bolhas_honras.y));
+    
+      // se não dá esse restart, as bolhas não se movem
+      // com "vontade"
+      simulacao.alpha(1).restart();
+      desaparece(honras_label_total, false);
+      aparece(honras_label_tipo_divida, 0, false);
+    } 
+
+  }
+
+  function desenha_step9(direcao) {
+    if (direcao == "down") {
+    
       simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_estados[d.estados].x));
       simulacao.force('y', d3.forceY().strength(d => d.estados == "Rio de Janeiro" ? magnitudeForca*3 : magnitudeForca*1.5).y(d => pos_estados[d.estados].y));
     
       // se não dá esse restart, as bolhas não se movem
       // com "vontade"
       simulacao.alpha(1).restart();
+      desaparece(honras_label_tipo_divida, false);
+      aparece(honras_label_estados, 0, false);
     } 
 
   }
@@ -1075,7 +1146,10 @@ Promise.all([
           break;   
         case 8:  
           desenha_step8(response.direction)
-          break;                       
+          break;     
+        case 9:  
+          desenha_step9(response.direction)
+          break;   
       }
     });
 

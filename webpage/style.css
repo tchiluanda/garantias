@@ -599,6 +599,11 @@ div.scrolly .container-vis-honras .subtotais {
     margin: 0;
 }
 
+div.scrolly .container-vis-honras .subtotais.subtotais-tipo,
+div.scrolly .container-vis-honras .subtotais.subtotais-estados {
+    font-size: 0.7rem;
+}
+
 div.scrolly .container-vis-honras .subtotais p {
     margin: 0;
 }
