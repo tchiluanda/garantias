@@ -289,7 +289,7 @@ Promise.all([
 
   //                  console.log(categorias, categorias.map(d => nomes(d)));
                 
-  // eixos
+  ////////////////////////// eixos
   //// x
   let eixo_x = d3.axisBottom()
         .scale(x)
@@ -318,6 +318,7 @@ Promise.all([
                     .scale(y_qde);                     
 
 
+  //////////////////////// geradores 
   // gerador de area
   const area = d3.area()
                  .x(d => x(d.data.data_mes))
@@ -424,10 +425,33 @@ Promise.all([
     d["y"] = y_qde(d.pos) + honras_raio_inicial;
   })
 
+  const subtotais_estados = group_by_sum(honras_det, "estados", "valor", true);
+  // na mão mesmo pq o tempo está curto
+  const pos_estados = {};
+  const pos_estados_xs = [1.5/4, 3/4,
+                          2/6, 1/2, 4/6,
+                          2/8, 3.5/8, 4.5/8, 6/8];
+  const pos_estados_ys = [1/4, 1/4,
+                          3.5/8, 3.5/8, 3.5/8,
+                          6/8, 6/8, 6/8, 6/8];                          
+                        
+  subtotais_estados.forEach((d,i) => {
+    pos_estados[d.categoria] = 
+    {
+        "rotulo" : valor_formatado(d.subtotal),
+        "x"      : pos_estados_xs[i] * w_honras,
+        "y"      : pos_estados_ys[i] * h_honras
+    }
+  });
 
-  // const nodes = honras_det.map(d => {
+  console.log(pos_estados);
 
-  // })
+
+
+
+
+
+
 
 
   ///////////// cria os elementos visuais
@@ -959,12 +983,24 @@ Promise.all([
 
 
       aparece(honras_label_total, 0, false);
-
-
-
-
     } 
   }
+
+  function desenha_step8(direcao) {
+    if (direcao == "down") {
+    
+      simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_estados[d.estados].x));
+      simulacao.force('y', d3.forceY().strength(d => d.estados == "Rio de Janeiro" ? magnitudeForca*3 : magnitudeForca*1.5).y(d => pos_estados[d.estados].y));
+    
+      // se não dá esse restart, as bolhas não se movem
+      // com "vontade"
+      simulacao.alpha(1).restart();
+    } 
+
+  }
+
+  console.log("h", h_honras)
+
 
   //console.log(ponto_total_rio)
   //console.log(serie_acum_total)
@@ -1030,7 +1066,10 @@ Promise.all([
           break;   
         case 7:  
           desenha_step7(response.direction)
-          break;                        
+          break;   
+        case 8:  
+          desenha_step8(response.direction)
+          break;                       
       }
     });
 
