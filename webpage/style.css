@@ -558,8 +558,6 @@ div.scrolly .container-vis-honras {
     width: 100%;
 }
 
-
-
 div.scrolly svg#vis-honras .axis line,
 div.scrolly svg#vis-honras .axis path {
     stroke: #555;
@@ -590,6 +588,24 @@ div.scrolly .container-vis-honras p.labels-honras {
     font-size: .7rem;
     margin: 0;
     font-style: italic;
+}
+
+div.scrolly .container-vis-honras .subtotais {
+    position: absolute;
+    font-family: "Merriweather Sans";
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+}
+
+div.scrolly .container-vis-honras .subtotais p {
+    margin: 0;
+}
+
+div.scrolly .container-vis-honras .subtotais p.labels-honras-valor {
+    margin: 0;
+    font-weight: normal;
 }
 
 div.scrolly .container-vis-honras div.rotulos-endiv > p,

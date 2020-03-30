@@ -339,11 +339,16 @@ Promise.all([
 
   //////////////// dados para as anotações
 
-  // primeira honra
+  // posicao primeira honra
   const ponto_primeira_honra = {
     "x" : d3.timeParse("%Y-%m-%d")(honras_det[0].data_mes),
     "y" : honras_det[0].valor
   };
+
+  // total de honras
+  const total_honras = honras_det
+    .map(d => +d.valor)
+    .reduce((ac, atual) => ac + atual);
 
   // ultimo valor rio de janeiro
   const ponto_total_rio = {
@@ -351,11 +356,13 @@ Promise.all([
     "y" : serie_acum[serie_acum.length - 1]["Estado do Rio de Janeiro"]
   };
 
+  // valor total do rio
   const valor_total_rio = {
     "valor" : valor_formatado(ponto_total_rio.y),
     "percent" : Math.round(100*ponto_total_rio.y / serie_acum_total[serie_acum_total.length-1].valor, 0)
   }
 
+  // posições para arcos
   const infos_arcos = [
     {
       "key": "Estado do Rio de Janeiro",
@@ -445,7 +452,7 @@ Promise.all([
   //   .attr("height", y_acu(0) - y_acu(obtem_maximo_serie(serie_acum)))
   //   .attr("width", w_liq_honras - margin_honras.left + 3);
   
-  // eixos
+  ///////  eixos
   // inclui eixo x
 
   $svg_honras
@@ -469,6 +476,7 @@ Promise.all([
       .classed("d3-honras-titulo-eixoY", true)
       .text("Valores acumulados");
   
+  //////// demais elementos
 
   const primeira_linha = $svg_honras
     .append("path")
@@ -515,6 +523,28 @@ Promise.all([
     .attr("opacity", 0);
 
   bolhas_honras = bolhas_honras.merge(bolhas_honras_enter);
+
+
+  ///// labels bolhas
+
+  const largura_labels = 150;
+
+  const honras_label_total = $container_honras
+    .append("div")
+    .style("opacity", 0)
+    .style("left", centro_bolhas_honras.x - largura_labels/2 + "px")
+    .style("top", h_honras - margin_honras.bottom + "px")
+    .style("width", `${largura_labels}px`)
+    .classed("subtotais", true);
+
+  honras_label_total
+    .append("p")
+    .text("Total honrado pela União");
+  honras_label_total  
+    .append("p")
+    .classed("labels-honras-valor", true)
+    .text("R$ " + valor_formatado(total_honras));
+  
 
   // labels arcos
   // funcao gera_arco definida em "utils.js"
@@ -683,6 +713,9 @@ Promise.all([
     if (svg) selecao.attr("opacity", 0);
     else selecao.style("opacity", 0)
   }
+
+
+  // desenha steps
 
   function desenha_step1(direcao) {
     //console.log("disparei", direcao)
@@ -921,8 +954,14 @@ Promise.all([
       simulacao.force('x', d3.forceX().strength(magnitudeForca).x(centro_bolhas_honras.x));
       simulacao.force('y', d3.forceY().strength(magnitudeForca).y(centro_bolhas_honras.y));
     
-      // @v4 We can reset the alpha value and restart the simulation
+      // reset alpha, reinicia simulação
       simulacao.alpha(1).restart();
+
+
+      aparece(honras_label_total, 0, false);
+
+
+
 
     } 
   }
