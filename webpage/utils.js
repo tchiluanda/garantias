@@ -95,6 +95,11 @@ function gera_grid(svg_ref, step) {
   const w = svg_ref.attr("width");
   const h = svg_ref.attr("height");
   console.log("svg dimensions", w, h);
+
+  const grid_color = "limegreen";
+  const vertical_color = "tomato";
+  const horizontal_color = "dodgerblue";
+
   const selecao = svg_ref.append("g").classed("grid-help", true);
   for (let tick = 0; tick <= w; tick += step) {
     selecao.append("line")
@@ -103,21 +108,21 @@ function gera_grid(svg_ref, step) {
       .attr("y1", 0)
       .attr("y2", h)
       .attr("stroke-width", 1)
-      .attr("stroke", "lime");
+      .attr("stroke", grid_color);
     selecao.append("text")
       .attr("x", tick)
-      .attr("y", 20)
+      .attr("y", step)
       .text(tick)
       .attr("font-size", 8)
       .attr("font-weight", 100)
-      .style("color", "lime");
+      .attr("fill", horizontal_color);
     selecao.append("text")
       .attr("x", tick)
-      .attr("y", 40)
+      .attr("y", 2*step)
       .text(Math.round(100*tick/w, 0) + "w")
       .attr("font-size", 8)
       .attr("font-weight", 100)
-      .style("color", "lime");
+      .attr("fill", horizontal_color);
   }
   for (let tick = 0; tick <= h; tick += step) {
     selecao.append("line")
@@ -128,17 +133,19 @@ function gera_grid(svg_ref, step) {
       .attr("stroke-width", 1)
       .attr("stroke", "lime");
     selecao.append("text")
-      .attr("x", 10)
+      .attr("x", step)
       .attr("y", tick + 8)
       .text(tick)
       .attr("font-size", 8)
-      .style("color", "lime");
+      .attr("text-anchor", "end")
+      .attr("fill", vertical_color);
     selecao.append("text")
-      .attr("x", 30)
+      .attr("x", step*2)
       .attr("y", tick + 8)
       .text(Math.round(100*tick/h, 0) + "h")
       .attr("font-size", 8)
-      .style("color", "lime");
+      .attr("text-anchor", "end")
+      .attr("fill", vertical_color);
   }
 }
 
