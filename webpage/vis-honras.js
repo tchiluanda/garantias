@@ -443,17 +443,17 @@ Promise.all([
 
   const pos_estados = honras_gera_subconjunto(
     "estados",
-    [1.5/4,   3/4,
-       2/6,   1/2,   4/6,
-       2/8, 3.5/8, 4.5/8, 6/8],
+    [1.5/4,   2.5/4,
+       2/6,   0.95/2,   4/6,
+       2/8, 3.5/8, 4.8/8, 6.5/8],
     [  1/4,   1/4,
-     3.5/8, 3.5/8, 3.5/8,
-       6/8,   6/8,   6/8, 6/8])
+     3.5/8, 3.7/8, 4/8,
+       6/8,   6/8,   6/8, 6.2/8])
 
   
   const pos_tipo_divida = honras_gera_subconjunto(
     "tipo_divida",
-    [1.5/4,   3/4],
+    [1.5/4,   2.5/4],
     [1/2,   1/2]);
 
   const pos_credor_cat = honras_gera_subconjunto(
@@ -519,7 +519,7 @@ Promise.all([
       .attr("text-anchor", "start")
       .style("font-weight", "bold")
       .classed("d3-honras-titulo-eixoY", true)
-      .text("Valores acumulados");
+      .text("Valores acumulados (R$ bi)");
   
   //////// demais elementos
 
@@ -594,6 +594,10 @@ Promise.all([
 
   // interna e externa
 
+  let pos_labels_tipos_x = [
+    1.5/4, 3/4
+  ]
+
   const honras_label_tipo_divida = $container_honras
     .selectAll("div.subtotais-tipo")
     .data(Object.keys(pos_tipo_divida))
@@ -601,7 +605,7 @@ Promise.all([
     .append("div")
     .classed("subtotais-tipo", true)
     .style("opacity", 0)
-    .style("left", d => pos_tipo_divida[d].x - largura_labels/2 + "px")
+    .style("left", (d,i) => pos_labels_tipos_x[i]*w_honras - largura_labels/2 + "px")
     .style("top", d => pos_tipo_divida[d].y + h_honras/3 + "px")
     .style("width", `${largura_labels}px`)
     .classed("subtotais", true);
@@ -624,9 +628,9 @@ Promise.all([
   ];
 
   let pos_labels_estados_x = [
-    0.35, 0.82,
-    0.29, 0.56, 0.74,
-    0.21, 0.44, 0.59 , 0.79
+    0.35, 0.71,
+    0.29, 0.53, 0.74,
+    0.21, 0.44, 0.63 , 0.86
   ];
   
   const honras_label_estados = $container_honras
@@ -804,7 +808,7 @@ Promise.all([
 
   /////////////// simulação!
 
-  const magnitudeForca = 0.03;
+  const magnitudeForca = 0.04;
   const carga = function(d) {
     return -Math.pow(r_honras(d.valor), 2.0) * magnitudeForca;
   }
