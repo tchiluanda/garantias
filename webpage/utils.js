@@ -129,13 +129,13 @@ function gera_grid(svg_ref, step) {
       .attr("stroke", "lime");
     selecao.append("text")
       .attr("x", 10)
-      .attr("y", tick)
+      .attr("y", tick + 8)
       .text(tick)
       .attr("font-size", 8)
       .style("color", "lime");
     selecao.append("text")
       .attr("x", 30)
-      .attr("y", tick)
+      .attr("y", tick + 8)
       .text(Math.round(100*tick/h, 0) + "h")
       .attr("font-size", 8)
       .style("color", "lime");
