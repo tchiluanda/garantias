@@ -454,8 +454,18 @@ Promise.all([
   const pos_tipo_divida = honras_gera_subconjunto(
     "tipo_divida",
     [1.5/4,   3/4],
-    [1/2,   1/2])
-  console.log(Object.keys(pos_estados), pos_tipo_divida);
+    [1/2,   1/2]);
+
+  const pos_credor_cat = honras_gera_subconjunto(
+    "credor_cat",
+    [1/2, 1/4, 3/4,
+     1.5/4, 2.5/4,
+     1.5/4, 2.5/4],
+    [1/4, 1/4, 1/4,
+     1/2, 1/2,
+     2.8/4, 2.8/4]);
+
+  console.log(group_by_sum(honras_det, "credor_cat", "valor", true));
 
 
 
@@ -639,7 +649,41 @@ Promise.all([
     .append("p")
     .classed("labels-honras-valor", true)
     .text(d => "R$ " + pos_estados[d].rotulo);
-  
+
+  // por credor
+
+  let pos_labels_credores_y = [
+    0.39, 0.39, 0.39,
+    0.68, 0.68,
+    0.9 ,  0.9
+  ];
+
+  let pos_labels_credores_x = [
+    0.5, 0.16, 0.83, 
+    0.33, 0.68,
+    0.32, 0.66
+  ];
+
+  const honras_label_credores = $container_honras
+    .selectAll("div.subtotais-credores")
+    .data(Object.keys(pos_credor_cat))
+    .enter()
+    .append("div")
+    .classed("subtotais-credores", true)
+    .style("opacity", 0)
+    .style("left", (d,i) => pos_labels_credores_x[i]*w_honras - largura_labels/2 + "px")
+    .style("top", (d,i) => pos_labels_credores_y[i]*h_honras + "px")
+    .style("width", `${largura_labels}px`)
+    .classed("subtotais", true);
+
+  honras_label_credores
+    .append("p")
+    .text(d => d);
+
+  honras_label_credores
+    .append("p")
+    .classed("labels-honras-valor", true)
+    .text(d => "R$ " + pos_credor_cat[d].rotulo);    
   
 
   // labels arcos
@@ -1088,6 +1132,21 @@ Promise.all([
 
   }
 
+  function desenha_step10(direcao) {
+    if (direcao == "down") {
+    
+      simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_credor_cat[d.credor_cat].x));
+      simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(d => pos_credor_cat[d.credor_cat].y));
+    
+      // se não dá esse restart, as bolhas não se movem
+      // com "vontade"
+      simulacao.alpha(1).restart();
+      desaparece(honras_label_estados, false);
+      aparece(honras_label_credores, 0, false);
+    } 
+
+  }
+
   console.log("h", h_honras)
 
 
@@ -1161,7 +1220,10 @@ Promise.all([
           break;     
         case 9:  
           desenha_step9(response.direction)
-          break;   
+          break; 
+        case 10:  
+          desenha_step10(response.direction)
+          break;  
       }
     });
 

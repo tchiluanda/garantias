@@ -600,7 +600,8 @@ div.scrolly .container-vis-honras .subtotais {
 }
 
 div.scrolly .container-vis-honras .subtotais.subtotais-tipo,
-div.scrolly .container-vis-honras .subtotais.subtotais-estados {
+div.scrolly .container-vis-honras .subtotais.subtotais-estados,
+div.scrolly .container-vis-honras .subtotais.subtotais-credores {
     font-size: 0.7rem;
 }
 
@@ -644,7 +645,8 @@ div.scrolly .honras-steps.step-ativo {
 }
 
 @media (max-width: 400px) {
-    div.scrolly .container-vis-honras .subtotais.subtotais-estados {
+    div.scrolly .container-vis-honras .subtotais.subtotais-estados,
+    div.scrolly .container-vis-honras .subtotais.subtotais-credores {
         font-size: 0.5rem;
     }
 }
