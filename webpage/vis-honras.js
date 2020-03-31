@@ -547,7 +547,7 @@ Promise.all([
       .attr("x", (d, i) => x(d.data.data_mes) - honras_larg_barra/2)
       .attr("y", d => y_mens(d[1]))
       .attr("height", d => y_mens(d[0]) - y_mens(d[1]))
-      .attr("width", honras_larg_barra)
+      .attr("width", 1)
       .attr("opacity", 0);
 
   // as BOLHAS!
@@ -572,7 +572,8 @@ Promise.all([
 
   ///// labels bolhas
 
-  const largura_labels = 150;
+  const largura_labels = w_honras/4;
+  const ajuste_mobile = w_honras < 400 ? 20 : 0;
 
   // total
 
@@ -580,7 +581,7 @@ Promise.all([
     .append("div")
     .style("opacity", 0)
     .style("left", centro_bolhas_honras.x - largura_labels/2 + "px")
-    .style("top", h_honras - margin_honras.bottom + "px")
+    .style("top", h_honras - margin_honras.bottom - ajuste_mobile + "px")
     .style("width", `${largura_labels}px`)
     .classed("subtotais", true);
 
@@ -606,7 +607,7 @@ Promise.all([
     .classed("subtotais-tipo", true)
     .style("opacity", 0)
     .style("left", (d,i) => pos_labels_tipos_x[i]*w_honras - largura_labels/2 + "px")
-    .style("top", d => pos_tipo_divida[d].y + h_honras/3 + "px")
+    .style("top", d => pos_tipo_divida[d].y + h_honras/3 - ajuste_mobile + "px")
     .style("width", `${largura_labels}px`)
     .classed("subtotais", true);
 
@@ -641,7 +642,7 @@ Promise.all([
     .classed("subtotais-estados", true)
     .style("opacity", 0)
     .style("left", (d,i) => pos_labels_estados_x[i]*w_honras - largura_labels/2 + "px")
-    .style("top", (d,i) => pos_labels_estados_y[i]*h_honras + "px")
+    .style("top", (d,i) => pos_labels_estados_y[i]*h_honras - ajuste_mobile + "px")
     .style("width", `${largura_labels}px`)
     .classed("subtotais", true);
 
@@ -676,7 +677,7 @@ Promise.all([
     .classed("subtotais-credores", true)
     .style("opacity", 0)
     .style("left", (d,i) => pos_labels_credores_x[i]*w_honras - largura_labels/2 + "px")
-    .style("top", (d,i) => pos_labels_credores_y[i]*h_honras + "px")
+    .style("top", (d,i) => pos_labels_credores_y[i]*h_honras - ajuste_mobile + "px")
     .style("width", `${largura_labels}px`)
     .classed("subtotais", true);
 
