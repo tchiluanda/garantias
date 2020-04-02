@@ -1031,29 +1031,27 @@ Promise.all([
 
     } else if (direcao == "up") {
 
-      $svg_honras.selectAll("path.d3-honras-step-2")
-        .data(serie_acum_stack)
-        .transition()
-        .duration(duracao)
-        .attr("d", area)
-        .attr("opacity", 1);
+        eixo_y
+          .transition()
+          .duration(duracao)
+          .call(eixo_y_me);
 
-      aparece(primeira_linha);
+        $svg_honras.select(".y-axis .tick:last-of-type text").clone()
+          .attr("x", 5)
+          .attr("text-anchor", "start")
+          .style("font-weight", "bold")
+          .classed("d3-honras-titulo-eixoY", true)
+          .text("Valores mensais");
 
-      eixo_y
-        .transition()
-        .duration(duracao)
-        .call(eixo_y_ac);
-
-      $svg_honras.select(".y-axis .tick:last-of-type text").clone()
-        .attr("x", 5)
-        .attr("text-anchor", "start")
-        .style("font-weight", "bold")
-        .classed("d3-honras-titulo-eixoY", true)
-        .text("Valores acumulados");
-
-      barras_mensais
-        .attr("opacity", 0);
+        barras_mensais = $svg_honras
+          .selectAll("g.d3-honras-barras-mensais")
+          .data(serie_mes_stack)
+          .selectAll("rect.d3-honras-barras-mensais")
+          .data(d => d)
+          .transition()
+          .duration(duracao)
+          .attr("y", d => y_mens(d[1]))
+          .attr("height", d => y_mens(d[0]) - y_mens(d[1]));
     }
   }
 
