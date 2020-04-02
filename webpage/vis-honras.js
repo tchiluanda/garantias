@@ -993,6 +993,7 @@ Promise.all([
   }
 
   function desenha_step4(direcao) {
+    // transição de valores acumulados p/ mensais
     if (direcao == "down") {
       $svg_honras.selectAll("path.d3-honras-step-2")
         .data(serie_mes_stack)
@@ -1057,6 +1058,9 @@ Promise.all([
   }
 
   function desenha_step5(direcao) {
+    // transição para quantidade
+
+
     if (direcao == "down") {    
       
       eixo_y
@@ -1083,13 +1087,19 @@ Promise.all([
 
 
     } else if (direcao == "up") {
-
-      console.log("oi eu")
+      // volta para valores mensais
 
       eixo_y
         .transition()
         .duration(duracao)
         .call(eixo_y_me);
+
+      $svg_honras.select(".y-axis .tick:last-of-type text").clone()
+        .attr("x", 5)
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .classed("d3-honras-titulo-eixoY", true)
+        .text("Valores mensais");
 
       barras_mensais = $svg_honras
         .selectAll("g.d3-honras-barras-mensais")
