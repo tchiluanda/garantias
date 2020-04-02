@@ -886,6 +886,9 @@ Promise.all([
       desaparece(label_primeira_honra, svg = false);
       primeira_honra2
         .attr("r", 50);
+      desaparece(area_empilhada);
+      desaparece("p.d3-honras-area-Est", false);
+      desaparece("path.d3-honras-area-Est");
     }
   }
 
@@ -1096,8 +1099,8 @@ Promise.all([
 
       //d3.selectAll("g.axis").attr("opacity", 0)
       
-      simulacao.force('x', d3.forceX().strength(magnitudeForca).x(centro_bolhas_honras.x));
-      simulacao.force('y', d3.forceY().strength(magnitudeForca).y(centro_bolhas_honras.y));
+      simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(centro_bolhas_honras.x));
+      simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(centro_bolhas_honras.y));
     
       // reset alpha, reinicia simulação
       simulacao.alpha(1).restart();
@@ -1110,8 +1113,8 @@ Promise.all([
   function desenha_step8(direcao) {
     if (direcao == "down") {
     
-      simulacao.force('x', d3.forceX().strength(magnitudeForca).x(d => pos_tipo_divida[d.tipo_divida].x));
-      simulacao.force('y', d3.forceY().strength(magnitudeForca).y(centro_bolhas_honras.y));
+      simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_tipo_divida[d.tipo_divida].x));
+      simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(centro_bolhas_honras.y));
     
       // se não dá esse restart, as bolhas não se movem
       // com "vontade"
@@ -1172,7 +1175,7 @@ Promise.all([
     .setup({
       step: ".honras-steps",
       offset: offset_calc,
-      debug: false
+      debug: true
     })
     .onStepEnter(response => {
 
