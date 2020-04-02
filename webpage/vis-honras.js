@@ -788,16 +788,17 @@ Promise.all([
     .attr("fill", "none");
 
   //texto do valor final do rio
-  const valor_final_rio = $svg_honras
-    .append("text")
+  const valor_final_rio = $container_honras
+    .append("p")
+    .classed("labels-honras", true)
     .classed("d3-honras-anotacao-valor-rio", true)
-    .attr("x", x(ponto_total_rio.x) + 1)
-    .attr("y", y_acu(ponto_total_rio.y) - 10)
+    .style("right", margin_honras.right + "px")
+    .style("top", y_acu(ponto_total_rio.y) - 20 + "px")
     .text(valor_total_rio.valor)
-    .attr("text-anchor", "left")
+    .style("text-align", "right")
     .style("font-weight", "bold")
-    .style("font-size", ".7rem")
-    .attr("opacity", 0);
+    .style("font-style", "normal")
+    .style("opacity", 0);
 
   // const grafico_rio = $svg_honras
   //   .append("path")
@@ -862,6 +863,10 @@ Promise.all([
 
   // desenha steps
 
+  //// próxima vez fazer algo mais inteligente,
+  //// ficou muito manual e repetivo o controle
+  //// do que aparece e desaparece nos ups e downs
+
   function desenha_step1(direcao) {
     //console.log("disparei", direcao)
     if (direcao == "down") {
@@ -881,14 +886,15 @@ Promise.all([
 
 
     } else if (direcao == "up") {
-      desaparece(".d3-honras-step-1");
-      desaparece("line.d3-anotacao-step-1");
-      desaparece(label_primeira_honra, svg = false);
-      primeira_honra2
-        .attr("r", 50);
-      desaparece(area_empilhada);
-      desaparece("p.d3-honras-area-Est", false);
-      desaparece("path.d3-honras-area-Est");
+      desaparece(".d3-honras-step-2");
+      desaparece("p.d3-honras-anotacao-valor-rio", false);
+      desaparece("path.d3-honras-arco-Est");
+      desaparece("p.d3-honras-arco-Est", false);
+      final_rio2
+        .attr("r", margin_honras.right - 3);
+      area_empilhada
+        .attr("fill", "#FAFFFF")
+        .attr("stroke", "none")
     }
   }
 
@@ -904,7 +910,7 @@ Promise.all([
         .delay(duracao)
         .duration(duracao)
         .attr("fill", d => cor(d.key));
-      aparece("text.d3-honras-anotacao-valor-rio", duracao)
+      aparece("p.d3-honras-anotacao-valor-rio", duracao, false)
       aparece(final_rio, duracao);
       final_rio2
         .transition()
@@ -922,15 +928,16 @@ Promise.all([
       //   .attr("x", w_liq_honras + margin_honras.left);
 
     } else if (direcao == "up") {
-      desaparece(".d3-honras-step-2");
-      desaparece("text.d3-honras-anotacao-valor-rio");
-      desaparece("path.d3-honras-arco-Est");
-      desaparece("p.d3-honras-arco-Est", false);
-      final_rio2
-        .attr("r", 50);
-      area_empilhada
-        .attr("fill", cinza)
-        .attr("stroke", cinza)
+        desaparece(arcos_tracos);
+        desaparece(arcos_labels, false);      
+        area_empilhada
+          .transition()
+          .duration(duracao)
+          .attr("fill", d => d.key == "Estado do Rio de Janeiro" ? cor(d.key) : "none")//d => cor_rio_mg(d.key));
+        aparece("path.d3-honras-arco-Est", 0);
+        aparece("p.d3-honras-arco-Est", 0, false);
+        aparece("p.d3-honras-anotacao-valor-rio", 0, false)
+        aparece(final_rio, 0);
     }
   }
 
@@ -942,16 +949,26 @@ Promise.all([
       area_empilhada
         .transition()
         .duration(duracao)
-        .attr("fill", d => cor(d.key))//d => cor_rio_mg(d.key));
+        .attr("fill", d => cor(d.key));
 
     } else if (direcao == "up") {
-      desaparece(arcos_tracos);
-      desaparece(arcos_labels, false);    
-      area_empilhada
-        .transition()
-        .duration(duracao)
-        .attr("fill", d => cor_so_rio(d.key));
-    }
+      // desaparece(arcos_tracos);
+      // desaparece(arcos_labels, false);    
+      // area_empilhada
+      //   .transition()
+      //   .duration(duracao)
+      //   .attr("fill", d => cor_so_rio(d.key));
+        $svg_honras.select(".y-axis .tick:last-of-type text")
+          .text("Valores acumulados");
+
+        barras_mensais
+          .transition()
+          .duration(duracao * 1.5)
+          .attr("width", 1)
+          .transition()
+          .duration(duracao)
+          .attr("opacity", 1)
+      }
   }
 
   function desenha_step4(direcao) {
@@ -962,6 +979,7 @@ Promise.all([
         .duration(duracao)
         .attr("d", area_mes)
         .transition()
+        .delay(duracao)
         .duration(duracao)
         .attr("opacity", 0);
 
@@ -981,10 +999,12 @@ Promise.all([
 
       barras_mensais
         .transition()
+        .delay(duracao)
         .duration(duracao)
         .attr("opacity", 1)
         .transition()
-        .duration(duracao * 1.5)
+        .delay(duracao/2)
+        .duration(duracao)
         .attr("width", honras_larg_barra * .75);
 
         console.log(barras_mensais)
@@ -1206,7 +1226,7 @@ Promise.all([
           break;
         case 3:
           desaparece("circle.d3-honras-step-2");
-          desaparece("text.d3-honras-anotacao-valor-rio");
+          desaparece("p.d3-honras-anotacao-valor-rio", false);
           desenha_step3(response.direction)
           break;
         case 4:
