@@ -544,7 +544,7 @@ Promise.all([
     .enter()
     .append("rect")
       .classed("d3-honras-barras-mensais", true)
-      .attr("x", (d, i) => x(d.data.data_mes) - honras_larg_barra/2)
+      .attr("x", (d, i) => x(d.data.data_mes))// - honras_larg_barra/2)
       .attr("y", d => y_mens(d[1]))
       .attr("height", d => y_mens(d[0]) - y_mens(d[1]))
       .attr("width", 1)
@@ -952,22 +952,43 @@ Promise.all([
         .attr("fill", d => cor(d.key));
 
     } else if (direcao == "up") {
-      // desaparece(arcos_tracos);
-      // desaparece(arcos_labels, false);    
-      // area_empilhada
-      //   .transition()
-      //   .duration(duracao)
-      //   .attr("fill", d => cor_so_rio(d.key));
-        $svg_honras.select(".y-axis .tick:last-of-type text")
-          .text("Valores acumulados");
 
-        barras_mensais
-          .transition()
-          .duration(duracao * 1.5)
-          .attr("width", 1)
-          .transition()
-          .duration(duracao)
-          .attr("opacity", 1)
+      $svg_honras.selectAll("path.d3-honras-step-2")
+        .data(serie_acum_stack)
+        .transition()
+        .duration(duracao)
+        .attr("opacity", 1)
+        .transition()
+        .delay(duracao)
+        .duration(duracao)
+        .attr("d", area);
+
+      barras_mensais
+        .transition()    
+        .duration(duracao)
+        .attr("width", 1)
+        .attr("x", (d => x(d.data.data_mes)))
+        .transition()
+        .delay(duracao)
+        .duration(duracao)
+        .attr("opacity", 0)
+
+      aparece(arcos_tracos, duracao*2);
+      aparece(arcos_labels, duracao*2, false);  
+
+      aparece(primeira_linha, duracao*2);        
+    
+      eixo_y
+        .transition()
+        .duration(duracao)
+        .call(eixo_y_ac);
+
+      $svg_honras.select(".y-axis .tick:last-of-type text").clone()
+        .attr("x", 5)
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .classed("d3-honras-titulo-eixoY", true)
+        .text("Valores acumulados");
       }
   }
 
@@ -983,6 +1004,16 @@ Promise.all([
         .duration(duracao)
         .attr("opacity", 0);
 
+      barras_mensais
+        .transition()
+        .duration(duracao)
+        .attr("opacity", 1)
+        .transition()
+        .delay(duracao)
+        .duration(duracao)
+        .attr("width", honras_larg_barra * .75)
+        .attr("x", (d => x(d.data.data_mes) - honras_larg_barra*.75/2));
+
       desaparece(primeira_linha);        
       
       eixo_y
@@ -996,19 +1027,6 @@ Promise.all([
         .style("font-weight", "bold")
         .classed("d3-honras-titulo-eixoY", true)
         .text("Valores mensais");
-
-      barras_mensais
-        .transition()
-        .delay(duracao)
-        .duration(duracao)
-        .attr("opacity", 1)
-        .transition()
-        .delay(duracao/2)
-        .duration(duracao)
-        .attr("width", honras_larg_barra * .75);
-
-        console.log(barras_mensais)
-
 
     } else if (direcao == "up") {
 
