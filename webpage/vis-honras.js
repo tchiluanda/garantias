@@ -1087,34 +1087,19 @@ Promise.all([
     } else if (direcao == "up") {
       // volta para valores mensais
 
-      eixo_y
-        .transition()
-        .duration(duracao)
-        .call(eixo_y_me);
-
-      $svg_honras.select(".y-axis .tick:last-of-type text").clone()
-        .attr("x", 5)
-        .attr("text-anchor", "start")
-        .style("font-weight", "bold")
-        .classed("d3-honras-titulo-eixoY", true)
-        .text("Valores mensais");
-
-      barras_mensais = $svg_honras
-        .selectAll("g.d3-honras-barras-mensais")
-        .data(serie_mes_stack)
+      $svg_honras
         .selectAll("rect.d3-honras-barras-mensais")
-        .data(d => d)
         .transition()
         .duration(duracao)
-        .attr("y", d => y_mens(d[1]))
-        .attr("height", d => y_mens(d[0]) - y_mens(d[1]));
+        .attr("width", honras_larg_barra * .75);
+
+      desaparece(bolhas_honras);
     }
   }
 
   function desenha_step6(direcao) {
-    if (direcao == "down") {
-      
-      // barras_mensais
+    if (direcao == "down") {      
+      // transição para pontos
       $svg_honras
         .selectAll("rect.d3-honras-barras-mensais")
         .transition()
