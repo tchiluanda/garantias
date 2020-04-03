@@ -86,8 +86,7 @@ Promise.all([
     //el.data_mes = d3.timeParse("%Y-%m-%d")(el.data_mes);
   }
 
-  //let teste = honras_agg.slice(0,10);
-  //console.log(honras_agg[0]);
+  console.log("Estrutura honras_agg:", honras_agg.columns, honras_agg[0]);
   //console.table(files[1]);
 
   // ver isso aqui depois: https://observablehq.com/@d3/stacked-area-chart-via-d3-group
@@ -346,6 +345,15 @@ Promise.all([
     "y" : honras_det[0].valor
   };
 
+  // totais por ano
+  const honras_tot = honras_agg
+    .filter(d => d.data_mes.substr(5,2) === "12")
+    .map(d => ({"ano"   : d.data_mes.substr(0,4),
+                "valor" : d.valor_acum}));
+  
+  const totais_anos = group_by_sum(honras_tot, "ano", "valor");
+  console.log({totais_anos});
+
   // total de honras
   const total_honras = honras_det
     .map(d => +d.valor)
@@ -409,7 +417,7 @@ Promise.all([
 
   ///////////// dados para as bolhas!
 
-  console.log("testa funcao", group_by_sum(honras_det, "Credor", "valor", true));
+  //console.log("testa funcao", group_by_sum(honras_det, "Credor", "valor", true));
 
   const centro_bolhas_honras = {
     x : w_liq_honras / 2 + margin_honras.left,
@@ -541,7 +549,33 @@ Promise.all([
     .attr("d", linha)
     .attr("fill", "none")
     .attr("stroke", "#333")
-    .attr("stroke-width", 2);    
+    .attr("stroke-width", 2);   
+    
+  const pontos_totais_anos = $svg_honras
+    .selectAll("circle.d3-honras-ptos-totais-ano")
+    .data(totais_anos)
+    .enter()
+    .append("circle")
+      .classed("d3-honras-ptos-totais-ano", true)
+      .attr("fill", "firebrick")
+      .attr("r", 4)
+      .attr("cx", d => x(new Date(d.categoria + "-12-01")))
+      .attr("cy", d => y_acu(d.subtotal))
+      .attr("opacity", 0)
+
+  const labels_totais_anos = $container_honras
+    .selectAll("p.d3-honras-ptos-totais-ano")
+    .data(totais_anos)
+    .enter()
+    .append("p")
+      .classed("d3-honras-ptos-totais-ano", true)
+      .classed("labels-honras", true)
+      .style("color", "firebrick")
+      .style("text-align", "right")
+      .style("right", d => (w_honras - x(new Date(d.categoria + "-12-01")) + 7) + "px")
+      .style("bottom", d => h_honras - y_acu(d.subtotal) + "px")
+      .html(d => '<strong style="font-style: normal">'+d.categoria+"</strong></br>" + valor_formatado(d.subtotal))
+      .style("opacity", 0);
 
   let barras_mensais = $svg_honras
     .append("g")

@@ -77,6 +77,10 @@ div.scrolly .container-vis-honras p.labels-honras {
     font-style: italic;
 }
 
+/*div.scrolly .container-vis-honras p.d3-honras-ptos-totais-ano {
+    font-style: normal;
+}*/
+
 div.scrolly .container-vis-honras .subtotais {
     position: absolute;
     font-family: "Merriweather Sans";
