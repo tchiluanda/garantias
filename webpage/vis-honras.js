@@ -918,7 +918,7 @@ Promise.all([
   }
 
   function desenha_step2(direcao) {
-    //console.log("disparei step2", direcao)
+    // Destaque Rio
     if (direcao == "down") {
       aparece(area_empilhada, 0, true);
       aparece("path.d3-honras-arco-Est", delay = duracao*1.5);
@@ -933,7 +933,7 @@ Promise.all([
       aparece(final_rio, duracao);
       final_rio2
         .transition()
-        .delay(duracao*2)
+        .delay(duracao)
         .duration(duracao)
         .attr("opacity", 1)
         .transition()
@@ -982,7 +982,7 @@ Promise.all([
         .duration(duracao)
         .attr("d", area);
 
-      barras_mensais
+      $svg_honras.selectAll("rect.d3-honras-barras-mensais")
         .transition()    
         .duration(duracao)
         .attr("width", 1)
@@ -1143,7 +1143,8 @@ Promise.all([
         .attr("r", honras_raio_inicial)
         .attr("stroke-width", 0);
 
-      aparece("g.axis");
+      aparece("g.axis", 0);
+      desaparece(honras_label_total, false);
     
     } 
   }
