@@ -561,7 +561,7 @@ Promise.all([
       .attr("r", 4)
       .attr("cx", d => x(new Date(d.categoria + "-12-01")))
       .attr("cy", d => y_acu(d.subtotal))
-      .attr("opacity", 0)
+      .attr("opacity", 0);
 
   const labels_totais_anos = $container_honras
     .selectAll("p.d3-honras-ptos-totais-ano")
@@ -927,9 +927,40 @@ Promise.all([
   //// ficou muito manual e repetivo o controle
   //// do que aparece e desaparece nos ups e downs
 
+  function desenha_step0(direcao) {
+    if (direcao == "down"){
+      d3.selectAll("p.d3-honras-ptos-totais-ano")
+        .transition()
+        .duration(duracao)
+        .delay((d,i) => duracao/1.5*i)
+        .style("opacity", 1);
+
+      d3.selectAll("circle.d3-honras-ptos-totais-ano")
+        .transition()
+        .duration(duracao)
+        .delay((d,i) => duracao/1.5*i)
+        .attr("opacity", 1);
+    }
+    else {
+      console.log("step 0", direcao);
+      linha_ref_primeira_honra.attr("opacity", 0);
+      label_primeira_honra.style("opacity", 0);
+      primeira_honra.attr("opacity", 0);
+      primeira_honra2.attr("r", 50);
+      primeira_honra2.attr("opacity", 0);
+      //pontos_totais_anos.attr("opacity", 0);
+      //labels_totais_anos.style("opacity", 0);
+
+    }
+  }
+  
+  
   function desenha_step1(direcao) {
     //console.log("disparei", direcao)
     if (direcao == "down") {
+      desaparece("p.d3-honras-ptos-totais-ano", false);
+      desaparece("circle.d3-honras-ptos-totais-ano");
+
       aparece(".d3-honras-step-1", 0);
       linha_ref_primeira_honra
         .attr("opacity", 1)
@@ -942,7 +973,6 @@ Promise.all([
         .delay(duracao)
         .duration(duracao)
         .attr("r", 7);
-      linha_ref_primeira_honra
 
 
     } else if (direcao == "up") {
@@ -952,6 +982,8 @@ Promise.all([
       desaparece("p.d3-honras-arco-Est", false);
       final_rio2
         .attr("r", margin_honras.right - 3);
+      primeira_honra2
+        .attr("r", 50);
       area_empilhada
         .attr("fill", "#FAFFFF")
         .attr("stroke", "none")
@@ -1335,6 +1367,9 @@ Promise.all([
       //console.log("Step Data", response.index, response.direction);
 
       switch (response.index) {
+        case 0:
+          desenha_step0(response.direction);
+          break;
         case 1:
           console.log("step1", response.direction);
           desenha_step1(response.direction);
