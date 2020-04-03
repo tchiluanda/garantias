@@ -67,8 +67,8 @@ $svg_honras
 // leitura do arquivo
 
 Promise.all([
-  d3.csv("dados/dados_honras_agg.csv"),
-  d3.csv("dados/dados_honras_det.csv"),
+  d3.csv("../webpage/dados/dados_honras_agg.csv"),
+  d3.csv("../webpage/dados/dados_honras_det.csv"),
 ]).then(function(files) {
   // files[0] will contain file1.csv
   // files[1] will contain file2.csv

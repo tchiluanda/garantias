@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137891614-4"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-137891614-4');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Garantias</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet" text="GARANTIAS?">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../webpage/style.css">
+    <link rel="stylesheet" href="../webpage/style_honras.css">
+</head>
+
+<body>
+
+<header class="logo">
+        <img class="logo-tt" src="tt-logo-int.png" alt="logo do Tesouro Nacional Transparente">
+</header>
+
+<main>
+    <header id="honras-abertura" class="limited-width">
+        <h1>As Honras de Garantias</h1>        
+        <p><em>Essa é a parte 2 de uma série de 3 textos sobre as Garantias Concedidas pela União. </br>Veja a Parte 1. Veja a Parte 3.</em></p>
+    </header>
+    <section class="prose limited-width">
+        <p>Esse é o momento em que o desconforto da dívida, de fato, chega à União e, bem provável, às pessoas. Quando quem pegou o dinheiro emprestado não consegue pagar, a União, como garantidora desse empréstimo, é obrigada a <strong>honrar</strong> os compromissos financeiros assumidos pelo <strong>mutuário</strong>, aquele que tomou emprestado, com o <strong>credor</strong>, aquele que emprestou. É o que chamamos de <em>honras de garantia</em>. E por que importa a você acompanhar isso?</p>
+
+        <p>Se por um lado é verdade que o endividamento aumenta a capacidade de investimento de um governo hoje, por outro lado ele compromete as ações futuras desse mesmo governo, devido ao pagamento dos compromissos financeiros assumidos pela dívida. Quando os governos começam a ter dificuldade em arcar com esses compromissos, é um primeiro sinal de alerta de que algum problema pode estar ocorrendo com as finanças da sua cidade, do seus estado. E a falta de recurso traz consequências nada agradáveis para você.</p>
+
+        <p>E não estamos falando apenas da redução dos investimentos, ou seja, da falta de expansão e de melhoria na infraestrutura pública, mas também da destinação de recursos para manter alguns serviços básicos, tais como saúde, educação e segurança, funcionando plenamente para todos nós. Mais ainda, o desequilíbrio das contas de um governo pode levar ao parcelamento dos salários dos servidores e à suspensão de pagamento de fornecedores, como já se pode observar em administrações públicas no Brasil. Ou seja, de alguma forma, esse desconforto chegará até você.</p>
+
+        <p>Melhor seria se pudéssemos nos antecipar a tudo isso e reverter esse ciclo vicioso. Por isso, importa acompanhar o histórico de honra de garantias efetuados pela União, pois a frequência com que isso ocorre e os valores da inadimplência dos governos com as entidades financeiras podem dar indícios de que esse desequilíbrio fiscal pode, em seguida, afetar a sociedade.</p>
+
+        <p>Vá rolando a página para conhecer alguns dados sobre o histórico das honras de garantias realizadas pela União até o final de 2019. Ou seja, os pagamentos que a União efetuou a credores de alguns Estados e Municípios em razão da inadimplência.</p>
+    </section>
+    <section id="vis-honras-scrolly">
+        <div class="scrolly">
+            <figure class="container-vis-honras sticky">
+                <svg id="vis-honras">
+                </svg>
+            </figure>             
+            <article class="container-honras-steps limited-width">   
+                <div class="honras-steps">
+                    <p>O gráfico mostra a evolução dos pagamentos <strong>acumulados</strong> feitos pela União para honrar o pagamento de dívidas garantidas.</p>
+                </div>                
+                <div class="honras-steps">
+                    <p>A primeira vez em que a União precisou honrar o pagamento de uma dívida garantida foi no dia 30 de abril de 2016. O Estado do Rio de Janeiro havia deixado de pagar uma parcela de R$ 30,2 milhões de reais referente a um empréstimo contratado junto à Agência Francesa de Desenvolvimento. Como a União era garantidora do contrato, o Tesouro Nacional efetuou o pagamento do valor devido ao credor.</p>
+                </div>
+                <div class="honras-steps">
+                    <p>Desse dia em diante, em razão de graves dificuldades financeiras, o Estado do <strong id="d3-honras-nome-rio">Rio de Janeiro</strong> deixaria de pagar as parcelas de diversos contratos de empréstimos garantidos pela União, levando o Tesouro Nacional a honrar esses valores junto aos credores do estado. No total, até dezembro de 2019, o Tesouro pagou R$ <strong id="honras-total-rio"></strong> aos credores do Rio de Janeiro, o que representa <strong id="honras-total-rio-pct"></strong>% do total pago pela União no período.</p>
+                </div>
+                <div class="honras-steps">
+                    <p>A partir de 2018, o Tesouro Nacional também passou a honrar valores expressivos de contratos de empréstimos não pagos pelo Estado de <strong id="d3-honras-nome-mg"Minas Gerais>Minas Gerais</strong>. Esses valores cresceram significativamente em 2019, quando liminares obtidas no Supremo Tribunal Federal suspenderam a execução das contragarantias por parte da União.</p>
+                </div>       
+                <div class="honras-steps">
+                    <p>Esse crescimento dos pagamentos para honrar empréstimos não pagos por Minas Gerais em 2019 fica mais claro visualizando os valores mensais...</p>
+                </div>    
+                <div class="honras-steps">
+                    <p>O gráfico agora mostra a quantidade de pagamentos que o Tesouro Nacional fez, mês a mês.</p>
+                </div>   
+                <div class="honras-steps">
+                    <p>Finalmente, cada pagamento, cada honra de garantia efetuada pela União está representada por um círculo no gráfico. Foram efetuados <em><span id="d3-honras-qde-pgtos"></span> pagamentos</em> nesse período, de 2016 até o final de 2019.</p>
+                </div>  
+                <div class="honras-steps">
+                    <p>Agora, os tamanhos dos círculos estão proporcionais aos valores de cada um dos pagamentos. Juntos, esses pagamentos somaram <em>R$ <span id="d3-honras-valor-total"></span></em>.</p>
+                </div> 
+                <div class="honras-steps">
+                    <p>Podemos dividir esses pagamentos entre aqueles que se referiam a dívidas internas ou externas.</p>
+                </div>   
+                <div class="honras-steps">
+                    <p>Agora evidenciamos os pagamentos feitos pela União em nome de cada estado. Os municípios, em razão de seu valor menos expressivo, foram agrupados.</p>
+                </div>   
+                <div class="honras-steps">
+                    <p>Por fim, separamos os pagamentos conforme o credor da dívida.</p>
+                </div>                      
+            </article>           
+
+        </div>
+    </section>
+    <section class="prose limited-width">
+        <p>As garantias honradas são um indício, mas não o único sinal que nos alerta para um eventual problema de caixa nos entes públicos. Até porque empréstimos garantidos pela União não são a única maneira que os estados e municípios possuem para se endividar. Por isso, é útil saber o tamanho desse tipo de endividamento no total de dívidas desses estados e municípios.</p>
+        <p>Quer ver agora?</p>
+    </section>
+</main>
+</body>
+
+<script src="../webpage/external_scripts/intersection-observer.js"></script>
+<script src="../webpage/external_scripts/scrollama.js"></script>
+<script src="../webpage/external_scripts/d3.v5.min.js"></script>
+<script src="../webpage/external_scripts/enter-view.js"></script>
+<script src="../webpage/vis-honras.js"></script>  
+<script src="../webpage/utils.js"></script>  
+
+</html>
