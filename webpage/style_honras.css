@@ -1,22 +1,27 @@
 /* visualizacao-honras */
 
 main #honras-abertura h1 {
-    color: #80160D; /*#E32C10; teal*/
-    /*color: #1e1e1e;*/
-    font-family: "Merriweather";
+    color: #004D4D; /*#1e1e1e;*/
+    font-family: "Bungee";
     text-align: center;
     font-size: 4rem;
     font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0;
 }
+
+/*main #honras-abertura h1 span {
+    color: #80160D; 
+}*/
 
 main #honras-abertura p {
     color: #1e1e1e;
     font-family: "Merriweather Sans";
     text-align: center;
     font-weight: 100;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.5;
-    margin: 2rem auto 3rem auto;
+    margin: 1.5rem auto 2rem auto;
     max-width: 400px;
 }
 

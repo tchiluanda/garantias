@@ -22,6 +22,9 @@ function handleResize() {
   // 1. update height of step elements
   stepH = Math.floor(window.innerHeight * 0.8);
   $steps_honras.style("height", stepH + "px");
+  $steps_honras.nodes()[$steps_honras.nodes().length-1].style.height = stepH/2 + "px";
+
+
 
   w_bruto = $container_honras.node().offsetWidth;
   w_honras = w_bruto //>= 600 ? 600 : w_bruto;
@@ -1322,7 +1325,18 @@ Promise.all([
       simulacao.alpha(1).restart();
       desaparece(honras_label_estados, false);
       aparece(honras_label_credores, 0, false);
+      // d3.select("article.container-honras-steps .honras-steps:last-child")
+      //   .transition()
+      //   .duration(duracao*3)
+      //   .style("opacity", 0);
     } 
+
+    // else {
+    //   // d3.select("article.container-honras-steps .honras-steps:last-child")
+    //   // .transition()
+    //   // .duration(duracao/2)
+    //   // .style("opacity", 1);
+    // }
 
   }
 
