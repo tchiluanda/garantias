@@ -562,7 +562,11 @@ Promise.all([
   // as BOLHAS!
   console.log(honras_det.columns);
 
-    let bolhas_honras = $svg_honras
+  let container_bolhas_honras = $svg_honras
+    .append("g")
+    .classed("d3-honras-container-bolhas", true);
+
+  let bolhas_honras = d3.select("g.d3-honras-container-bolhas")
     .selectAll("circle")
     .data(honras_det);
 
@@ -1024,7 +1028,10 @@ Promise.all([
         .duration(duracao)
         .attr("opacity", 0);
 
-      barras_mensais
+
+      // pq não funciona chamar "barras_mensais"?
+      $svg_honras
+        .selectAll("rect.d3-honras-barras-mensais")
         .transition()
         .duration(duracao)
         .attr("opacity", 1)
@@ -1062,7 +1069,7 @@ Promise.all([
           .classed("d3-honras-titulo-eixoY", true)
           .text("Valores mensais");
 
-        barras_mensais = $svg_honras
+        $svg_honras
           .selectAll("g.d3-honras-barras-mensais")
           .data(serie_mes_stack)
           .selectAll("rect.d3-honras-barras-mensais")
@@ -1092,7 +1099,7 @@ Promise.all([
         .classed("d3-honras-titulo-eixoY", true)
         .text("Quantidade");
 
-      barras_mensais = $svg_honras
+      $svg_honras
         .selectAll("g.d3-honras-barras-mensais")
         .data(serie_qde_stack)
         .selectAll("rect.d3-honras-barras-mensais")
