@@ -73,6 +73,9 @@ Produz:
 
 
 
+### Simulação
+
+A simulação vai gerar valores de "x" e "y" para os nodes que foram passados para ela. Para manter a constância do objeto, é importante iniciar esses valores x e y dos nodes com as posições onde estarão as bolhas quando a simulação for iniciada (nesse caso, a posição das bolhas no dot plot).
 
 
 
