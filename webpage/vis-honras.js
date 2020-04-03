@@ -399,10 +399,13 @@ Promise.all([
       }
     }];
 
+  // informações para os textos dos steps
   d3.select("#honras-total-rio").text(valor_total_rio.valor);
   d3.select("#honras-total-rio-pct").text(valor_total_rio.percent);
   d3.select("#d3-honras-nome-rio").style("color", cor("Estado do Rio de Janeiro"));
   d3.select("#d3-honras-nome-mg").style("color", cor("Minas Gerais"));
+  d3.select("#d3-honras-qde-pgtos").text(honras_det.length);
+  d3.select("#d3-honras-valor-total").text(valor_formatado(total_honras));
 
   ///////////// dados para as bolhas!
 
@@ -1272,12 +1275,14 @@ Promise.all([
 
   //const scroller = scrollama();
 
+  console.log("honras", honras_det.length)
+
   // setup
   scroller_honras
     .setup({
       step: ".honras-steps",
       offset: offset_calc,
-      debug: true
+      debug: false
     })
     .onStepEnter(response => {
 
