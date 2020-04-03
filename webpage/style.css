@@ -533,6 +533,26 @@ div.scrolly .endividamento-steps.step-ativo {
 
 /* visualizacao-honras */
 
+main #honras-abertura h1 {
+    color: #80160D; /*#E32C10; teal*/
+    /*color: #1e1e1e;*/
+    font-family: "Merriweather";
+    text-align: center;
+    font-size: 4.5rem;
+    font-weight: 900;
+}
+
+main #honras-abertura p {
+    color: #1e1e1e;
+    font-family: "Merriweather Sans";
+    text-align: center;
+    font-weight: 100;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 2rem auto 3rem auto;
+    max-width: 400px;
+}
+
 section#vis-honras-scrolly {
     max-width: 680px;
     margin: 0 auto;
