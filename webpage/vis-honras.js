@@ -417,13 +417,22 @@ Promise.all([
 
   const honras_raio_inicial = honras_larg_barra * 0.75 / 2
 
-  // se a gente não inicializar atributos "x" e "y" para os dados
-  // que serão passados como "nodes", os nodes vão parecer surgir
-  // do nada (de x = 0 e y = 0, na verdade)
-  honras_det.forEach(d => {
-    d["x"] = x(d3.timeParse("%Y-%m-%d")(d.data_mes));
-    d["y"] = y_qde(d.pos) + honras_raio_inicial;
-  })
+  // estou levando esse trecho pra dentro do step que
+  // vai reiniciar a simulação, para tratar os casos em que
+  // o usuário (grande amigo! :/ ) chega na parte das bolhas
+  // e faz um scroll up, voltando para o dot plot.
+  // nesse caso, se ele fizer um scroll down de novo, voltando
+  // para o primeiro force-layout, as posições x e y das bolhas
+  // serão as últimas que foram calculadas, e perderemos 
+  // object constancy
+
+  // // se a gente não inicializar atributos "x" e "y" para os dados
+  // // que serão passados como "nodes", os nodes vão parecer surgir
+  // // do nada (de x = 0 e y = 0, na verdade)
+  // honras_det.forEach(d => {
+  //   d["x"] = x(d3.timeParse("%Y-%m-%d")(d.data_mes));
+  //   d["y"] = y_qde(d.pos) + honras_raio_inicial;
+  // })
 
   function honras_gera_subconjunto(nome_coluna, vetor_pos_x, vetor_pos_y) {
     const subtotais_coluna = group_by_sum(honras_det, nome_coluna, "valor", true);
@@ -815,6 +824,9 @@ Promise.all([
     return -Math.pow(r_honras(d.valor), 2.0) * magnitudeForca;
   }
 
+  // essa é a função do tick, que vai efetivamente pegar
+  // os valores x e y que foram atualizados pela simulação
+  // e vai atribuir esses valores às posições cx e cy das bolhas
   const atualiza_bolhas_honras = function() {
     bolhas_honras
       .attr("cx", d => d.x)
@@ -833,6 +845,13 @@ Promise.all([
   // de desenhar o respctivo step.
   simulacao.nodes(honras_det);
 
+
+  ///// teste: se eu altero honras_det, automaticamente
+  // simulacao.nodes() é alterada?
+  honras_det[0]["novo"] = "Olha eu!"
+  console.log("Teste nodes", honras_det[0], simulacao.nodes()[0]);
+  // sim! essa propriedade nova aparece em nodes! ou seja, simulation.nodes() cria
+  // um binding entre os nodes e o dado!
 
   ////////////////// funçoes para desenhar os steps
 
@@ -1100,6 +1119,8 @@ Promise.all([
   function desenha_step6(direcao) {
     if (direcao == "down") {      
       // transição para pontos
+
+      // barras mensais
       $svg_honras
         .selectAll("rect.d3-honras-barras-mensais")
         .transition()
@@ -1113,11 +1134,46 @@ Promise.all([
 
     } else if (direcao == "up") {
 
+      simulacao.stop();
+      bolhas_honras
+        .transition()
+        .duration(duracao)
+        .attr("cx", d => x(d3.timeParse("%Y-%m-%d")(d.data_mes)))
+        .attr("cy", d => y_qde(d.pos) + honras_raio_inicial)
+        .attr("r", honras_raio_inicial)
+        .attr("stroke-width", 0);
+
+      aparece("g.axis");
+    
     } 
   }
 
   function desenha_step7(direcao) {
     if (direcao == "down") {
+
+      // normalmente, eu teria iniciado essas posições
+      // lá em cima, mas como é um scroller, o usuário
+      // pode voltar para o passo anterior e depois 
+      // passar mais uma vez por aqui. por isso, preciso
+      // inicializar aqui as posições iniciais de x e y
+      // antes da simulação, para cada vez que o usuário
+      // passar por este step, descendo. essas posições
+      // iniciais correspondem às posições das bolhas no
+      // dotplot. caso contrário, o último x,y armazenado
+      // seria as últimas posições calculadas pela simulação,
+      // e as posições saltariam do grid
+      // do dotplot direto para a posição final da simulação,
+      // perdendo o object constancy.
+      // interessante que estou atualizando o
+      // próprio dataset que foi passado como .nodes().
+      // mas, depois de simulacao.nodes(dataset), é como
+      // se fosse criado um "binding" entre os nodes e o
+      // dataset!
+
+      honras_det.forEach(d => {
+        d["x"] = x(d3.timeParse("%Y-%m-%d")(d.data_mes));
+        d["y"] = y_qde(d.pos) + honras_raio_inicial;
+      })
 
       bolhas_honras
         .transition()
@@ -1126,48 +1182,55 @@ Promise.all([
         .attr("stroke", d => d3.rgb(cor(d.mutuario_cat)).darker())
         .attr("stroke-width", 1);
 
-      desaparece("g.axis");
+      desaparece("g.axis"); 
+    }
+    else {
+      desaparece(honras_label_tipo_divida, false);
+    }
 
-      //d3.selectAll("g.axis").attr("opacity", 0)
-      
-      simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(centro_bolhas_honras.x));
-      simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(centro_bolhas_honras.y));
-    
-      // reset alpha, reinicia simulação
-      simulacao.alpha(1).restart();
+    simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(centro_bolhas_honras.x));
+    simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(centro_bolhas_honras.y));
+    // reset alpha, reinicia simulação
+    simulacao.alpha(1).restart();
+  
+    aparece(honras_label_total, 0, false);
 
-
-      aparece(honras_label_total, 0, false);
-    } 
   }
 
   function desenha_step8(direcao) {
+    // por tipo  
+    simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_tipo_divida[d.tipo_divida].x));
+    simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(centro_bolhas_honras.y));
+  
+    // se não dá esse restart, as bolhas não se movem
+    // com "vontade"
+    simulacao.alpha(1).restart();
+
     if (direcao == "down") {
-    
-      simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_tipo_divida[d.tipo_divida].x));
-      simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(centro_bolhas_honras.y));
-    
-      // se não dá esse restart, as bolhas não se movem
-      // com "vontade"
-      simulacao.alpha(1).restart();
       desaparece(honras_label_total, false);
-      aparece(honras_label_tipo_divida, 0, false);
-    } 
+    } else {
+      desaparece(honras_label_estados, false);
+    }
+
+    aparece(honras_label_tipo_divida, 0, false);
 
   }
 
   function desenha_step9(direcao) {
-    if (direcao == "down") {
+    // por estado
+
     
-      simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_estados[d.estados].x));
-      simulacao.force('y', d3.forceY().strength(d => d.estados == "Rio de Janeiro" ? magnitudeForca*3 : magnitudeForca*1.5).y(d => pos_estados[d.estados].y));
-    
-      // se não dá esse restart, as bolhas não se movem
-      // com "vontade"
-      simulacao.alpha(1).restart();
-      desaparece(honras_label_tipo_divida, false);
-      aparece(honras_label_estados, 0, false);
-    } 
+    simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_estados[d.estados].x));
+    simulacao.force('y', d3.forceY().strength(d => d.estados == "Rio de Janeiro" ? magnitudeForca*3 : magnitudeForca*1.5).y(d => pos_estados[d.estados].y));
+  
+    // se não dá esse restart, as bolhas não se movem
+    // com "vontade"
+    simulacao.alpha(1).restart();
+
+    if (direcao == "down") desaparece(honras_label_tipo_divida, false);
+    else desaparece(honras_label_credores, false);
+
+    aparece(honras_label_estados, 0, false);
 
   }
 
