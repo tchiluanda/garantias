@@ -4,10 +4,11 @@ main #honras-abertura h1 {
     color: #004D4D; /*#1e1e1e;*/
     font-family: "Bungee";
     text-align: center;
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 900;
+    max-width: 400px;
     line-height: 1;
-    margin-bottom: 0;
+    margin: 2rem auto 0 auto;
 }
 
 /*main #honras-abertura h1 span {
