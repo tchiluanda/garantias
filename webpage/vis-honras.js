@@ -1011,7 +1011,7 @@ Promise.all([
         .attr("text-anchor", "start")
         .style("font-weight", "bold")
         .classed("d3-honras-titulo-eixoY", true)
-        .text("Valores acumulados");
+        .text("Valores acumulados (R$ bi)");
       }
   }
 
@@ -1053,7 +1053,7 @@ Promise.all([
         .attr("text-anchor", "start")
         .style("font-weight", "bold")
         .classed("d3-honras-titulo-eixoY", true)
-        .text("Valores mensais");
+        .text("Valores mensais (R$ mi)");
 
     } else if (direcao == "up") {
 
@@ -1067,7 +1067,7 @@ Promise.all([
           .attr("text-anchor", "start")
           .style("font-weight", "bold")
           .classed("d3-honras-titulo-eixoY", true)
-          .text("Valores mensais");
+          .text("Valores mensais (R$ mi)");
 
         $svg_honras
           .selectAll("g.d3-honras-barras-mensais")
