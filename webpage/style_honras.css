@@ -4,7 +4,7 @@ main #honras-abertura h1 {
     color: #004D4D; /*#1e1e1e;*/
     font-family: "Bungee";
     text-align: center;
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 900;
     max-width: 400px;
     line-height: 1;
@@ -146,4 +146,7 @@ div.scrolly .honras-steps.step-ativo {
     div.scrolly .container-vis-honras .subtotais.subtotais-credores {
         font-size: 0.5rem;
     }
+
+    main #honras-abertura h1 {
+        font-size: 3rem;
 }
