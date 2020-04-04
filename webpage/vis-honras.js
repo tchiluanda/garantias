@@ -871,10 +871,18 @@ Promise.all([
   // essa é a função do tick, que vai efetivamente pegar
   // os valores x e y que foram atualizados pela simulação
   // e vai atribuir esses valores às posições cx e cy das bolhas
+  
+  //let k = 0; // tinha incluído isso aqui para
+  // ver quantos ticks são chamados em cada
+  // reinício da simulação. com os parâmetros padrão, dá 300.
+  // isso estava escrito na documentação.
+  
   const atualiza_bolhas_honras = function() {
     bolhas_honras
       .attr("cx", d => d.x)
       .attr("cy", d => d.y)
+    //k = k + 1;
+    //console.log(k)
   }
 
   const simulacao = d3.forceSimulation()
@@ -882,7 +890,13 @@ Promise.all([
     .force('x', d3.forceX().strength(magnitudeForca).x(centro_bolhas_honras.x))
     .force('y', d3.forceY().strength(magnitudeForca).y(centro_bolhas_honras.y))
     .force('charge', d3.forceManyBody().strength(carga))
+    .alphaMin([0.2]) // (1)
     .on('tick', atualiza_bolhas_honras);
+
+  // (1) : a simulação roda até que o alpha (default: 1) seja menor do
+  // que o alphaMin. O alphaMin padrão é 0.001, o que dá
+  // 300 ticks. com alphaMin 0.01, foram 200 ticks, e rodou bem.
+  // com 0.1, foram 100, e tb rodou bem.
 
   simulacao.stop();
   // vamos "religar" a simulação na hora certa, dentro da função
