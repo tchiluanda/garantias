@@ -890,7 +890,7 @@ Promise.all([
     .force('x', d3.forceX().strength(magnitudeForca).x(centro_bolhas_honras.x))
     .force('y', d3.forceY().strength(magnitudeForca).y(centro_bolhas_honras.y))
     .force('charge', d3.forceManyBody().strength(carga))
-    .alphaMin([0.2]) // (1)
+    .alphaMin([0.3]) // (1)
     .on('tick', atualiza_bolhas_honras);
 
   // (1) : a simulação roda até que o alpha (default: 1) seja menor do
