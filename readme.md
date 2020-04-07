@@ -1,10 +1,10 @@
 # Projeto Garantias da União
 
-Este texto descreve e documenta principalmente o processo de construção da história das garantias, disponível em
+Este texto descreve e procura documentar, principalmente, o processo de construção da história das garantias, disponível em
 
 https://tchiluanda.github.io/garantias/
 
-## Estrutura básica
+## Estrutura básica - idéia original
 
 1. Contexto, histórico
    Visualização: as dívidas de Estados e Municípios
@@ -109,6 +109,13 @@ Algumas observações:
 
 ### agrupador_atm_completo
 
+### Licões aprendidas (D3/Web)
+
+Usar um arquivo `.js` para cada viz. Já tinha resolvido fazer isso, e aquela mini conversa com a Amber Thomas confirmou que é uma boa prática.
+
+Juntar todas as funções comuns a pelo menos dois `.js` num arquivo à parte, que aqui chamei de `utils.js`.
+
+Separar os estilos em um `.css` geral, e outros específicos para cada viz. Ajuda a deixar o negócio gerenciável.
 
 
 ### Referências / inspirações
