@@ -187,6 +187,10 @@ section.anexo {
     font-size: 0.8rem;
 }
 
+section.anexo img {
+    width: 100%;
+}
+
 
 section.vis {
     max-width: 900px;
