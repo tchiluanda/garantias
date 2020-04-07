@@ -419,13 +419,17 @@ section.quadro .lista-projetos tbody tr:nth-child(odd) {
 }
 
 section.quadro .lista-projetos tbody td.tab-projeto {
-    min-width: 160px;
+    min-width: 140px;
 }
 
 section.quadro .lista-projetos table .tab-credor,
 section.quadro .lista-projetos table .tab-moeda,
 section.quadro .lista-projetos table .tab-valor {
     text-align: right;
+}
+
+section.quadro .lista-projetos table .tab-data {
+    min-width: 4.5rem;
 }
 
 

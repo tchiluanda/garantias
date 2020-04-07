@@ -73,7 +73,7 @@ $svg_card
   .attr('width', w_svg_card)
   .attr('height', h_svg_card);
 
-const draw_grafico_card = function(dados_selecionados) {
+function draw_grafico_card(dados_selecionados) {
   
   const mini_dataset = periodos_maturacao["rotulos"]
     .map( (d,i) => ({
@@ -172,6 +172,98 @@ const draw_grafico_card = function(dados_selecionados) {
 
 }
 
+const $tabela_projetos = d3.select(".lista-projetos table");
+
+console.log("selecao", $tabela_projetos.selectAll("thead, tbody"))
+
+function monta_tabela_projetos(dados_selecionados) {
+  if (dados_selecionados.length == 0) {
+    d3.select("#sem-projetos").classed("hidden", false);
+    $tabela_projetos
+      .selectAll("thead, tbody")
+        .classed("hidden", true);
+    console.log("Tô no if");
+
+
+  } else {
+
+    const dados_classes = {
+      "Projeto"   : "tab-projeto",
+      "Credor"    : "tab-credor",
+      "Moeda"     : "tab-moeda",
+      "valor"     : "tab-valor",
+      "data_date" : "tab-data"
+    };
+    // esse objeto serve para estabelecer uma correlação, um mapeamento das colunas da tabela orginal com as classes que representarão as colunas da tabela html. 
+
+    const colunas_de_interesse = Object.keys(dados_classes);
+
+    const dados_aninhados = dados_selecionados.map(
+      function(d) {
+        const elemento = [];
+        colunas_de_interesse.forEach(
+          function(coluna) {
+            //elemento.push({[coluna]: d[coluna]});
+            elemento.push({"coluna": coluna,
+                           "conteudo": d[coluna]});
+          });
+        elemento["id_projeto"] = d[""]; // (1)
+        return elemento;
+      });
+      //(1) : isso pra gerar um "key" para ser usada
+      // no data binding logo adiante.
+
+
+    console.log("Dados aninhados", dados_aninhados);
+
+    // espero que ninguém além de um futuro eu esteja
+    // lendo, mas fiquei orgulhoso dessa minha
+    // solução para popular a tabela... de repente
+    // até é o padrão, mas fiquei com preguiça de 
+    // procurar, preferi pensar e tentar primeiro, e 
+    // acabou funcionando. usei uma
+    // lógica parecida com a de gráficos stacked, ou
+    // seja, usar uma versão "aninhada" do dataset,
+    // que foi o que construí acima.
+
+    // cada linha da tabela de projetos (a tabela que está sendo importada) é um elemento da array, sendo que cada um desses elementos é composto de uma outra array, em que cada elemento, por sua vez, representa uma coluna da linha de dado que será apresentada na tabela html.
+
+    d3.select("#sem-projetos").classed("hidden", true);
+
+    $tabela_projetos
+      .selectAll("thead, tbody")
+        .classed("hidden", false);
+
+    let tab_projetos = $tabela_projetos
+      .select("tbody")
+      .selectAll("tr")
+      .data(dados_aninhados, d => d.id_projeto);
+
+    console.log("tab_projetos", tab_projetos)
+
+    const tab_projetos_enter = tab_projetos
+      .enter()
+      .append("tr")
+      .selectAll("td")
+      .data(d => d)
+      .enter()
+      .append("td")
+      .attr("class", d => dados_classes[d.coluna])
+      .text(d => d.coluna != "valor" ? d.conteudo : valor_formatado(+d.conteudo));
+
+    tab_projetos
+      .exit()
+      .remove();
+      
+    tab_projetos = tab_projetos.merge(tab_projetos_enter);
+
+    console.log(tab_projetos);
+
+  }
+
+
+}
+
 // *********************
 // PARTE 2 - Leitura dos dados e inicio
 // *********************
@@ -182,6 +274,9 @@ Promise.all([
 ]).then(function(files) {
 
   const dados = files[0];
+  const projetos = files[1];
+
+  console.log(projetos.columns, projetos[0]);
     //console.table(dados);
     //console.log(Object.keys(dados[0]));
     //console.log(d3.keys(dados[0]));
@@ -275,6 +370,15 @@ Promise.all([
         });
 
         draw_grafico_card(dados_filtrados);
+        
+
+        // agora a tabela de projetos
+
+        const projetos_filtrados = projetos.filter(d => d.Classificador + d.Inicio == valor_selecionado);
+        
+        console.table(projetos_filtrados);
+
+        monta_tabela_projetos(projetos_filtrados);
 
         
 
