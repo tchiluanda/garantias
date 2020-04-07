@@ -269,8 +269,8 @@ function monta_tabela_projetos(dados_selecionados) {
 // *********************
 
 Promise.all([
-  d3.csv("../webpage/dados/dados_quadro.csv"),
-  d3.csv("../webpage/dados/contratos.csv"),
+  d3.csv("./webpage/dados/dados_quadro.csv"),
+  d3.csv("./webpage/dados/contratos.csv"),
 ]).then(function(files) {
 
   const dados = files[0];
