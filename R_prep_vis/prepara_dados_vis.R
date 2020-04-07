@@ -84,25 +84,48 @@ write.csv(quadro, file = "webpage/dados_quadro.csv", fileEncoding = "UTF-8")
 
 # contratos ---------------------------------------------------------------
 
-lista_contratos <- novos_contratos %>% count(Mutuário)
+#lista_contratos <- novos_contratos %>% count(Mutuário)
+contratos <- read.csv2("Garantias_Dados/Dez2019/InfCadastrais 31dez2019.csv", 
+                       skip = 10, stringsAsFactors = FALSE)
 
-arq_contratos <- novos_contratos %>%  
+# arq_contratos <- novos_contratos %>%  
+#   mutate(Inicio = rm_accent(`Mutuário`),
+#          Classificador = rm_accent(`Tipo Mutuário`)) %>%
+#   filter(Inicio %in% dados_vis$Inicio) %>%
+#   select(Inicio, 
+#          Classificador, 
+#          UF, 
+#          Credor, 
+#          tipo_credor = `Classificação de Credor`,
+#          Projeto,
+#          data = `Data de Assinatura`,
+#          Moeda,
+#          valor = `Valor Contratado Original`) %>%
+#   mutate(data_date = lubridate::dmy(data)) %>%
+#   arrange(Classificador, Inicio, data_date)
+  
+arq_contratos <- contratos %>%  
   mutate(Inicio = rm_accent(`Mutuário`),
-         Classificador = rm_accent(`Tipo Mutuário`)) %>%
+         Classificador = rm_accent(`Tipo.Mutuário`)) %>%
   filter(Inicio %in% dados_vis$Inicio) %>%
   select(Inicio, 
          Classificador, 
          UF, 
          Credor, 
-         tipo_credor = `Classificação de Credor`,
+         tipo_credor = `Classificação.de.Credor`,
          Projeto,
-         data = `Data de Assinatura`,
-         Moeda,
-         valor = `Valor Contratado Original`) %>%
-  mutate(data_date = lubridate::dmy(data)) %>%
-  arrange(Classificador, Inicio, data_date)
+         data = `Data.de.Assinatura`,
+         Moeda = `Moeda.de.Origem`,
+         valor = `Valor.Contratado.Original`) %>%
+  mutate(data_date = lubridate::dmy(data),
+         valor = as.numeric(
+           str_replace(str_replace_all(valor, "\\.", ""),
+                       ",", "."))) %>%
+  arrange(Classificador, Inicio, desc(data_date))
 
-write.csv(arq_contratos, file = "webpage/contratos.csv", fileEncoding = "UTF-8")
+write.csv(arq_contratos, file = "webpage/dados/contratos.csv", fileEncoding = "UTF-8")
+
+arq_contratos %>% count(Inicio, sort = TRUE)
 
 novos_contratos %>%
   group_by(`Tipo Mutuário`) %>%

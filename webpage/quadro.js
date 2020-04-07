@@ -192,7 +192,7 @@ function monta_tabela_projetos(dados_selecionados) {
       "Credor"    : "tab-credor",
       "Moeda"     : "tab-moeda",
       "valor"     : "tab-valor",
-      "data_date" : "tab-data"
+      "data"      : "tab-data"
     };
     // esse objeto serve para estabelecer uma correlação, um mapeamento das colunas da tabela orginal com as classes que representarão as colunas da tabela html. 
 
