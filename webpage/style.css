@@ -104,7 +104,7 @@ section.prose aside.conteudo-destaque-lateral {
     position: absolute;
     font-weight: lighter;
     font-family: "Merriweather Sans";
-    right: calc(50% - 340px - 200px - 20px);
+    right: calc(50% - 340px - 200px - 0.5rem);
     width: 200px;
     font-size: 12px;
     background-color: #D1E8E1;
@@ -115,7 +115,7 @@ section.prose aside.conteudo-destaque-lateral {
 section.prose aside.conteudo-destaque-lateral.left {
     position: absolute;
     font-weight: lighter;
-    left: calc(50% - 340px - 200px - 20px);
+    left: calc(50% - 340px - 200px - 10px);
     width: 200px;
     font-size: 12px;
     background-color: #D1E8E1;
@@ -177,6 +177,7 @@ section.prose p.nota a:hover{
 section.vis {
     max-width: 900px;
     margin: 0 auto;
+    margin-top: 1rem;
 }
 
 section.vis nav.controle-vis {
@@ -258,6 +259,11 @@ section.quadro div.mini-header h2 {
 /*section.quadro div.mini-header p {
     font-size: 0.7rem;
 }*/
+
+section.quadro p,
+section.quadro h3 {
+    padding: 0 0.5rem;
+}
 
 section.quadro div.selecao-entidades {
     display: flex;
@@ -449,7 +455,7 @@ section.quadro .lista-projetos table .tab-data {
     opacity: 0;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1110px) {
     section.prose aside.conteudo-destaque-lateral,
     section.prose aside.conteudo-destaque-lateral.left {
         position: static;
