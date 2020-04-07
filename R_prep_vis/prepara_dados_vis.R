@@ -120,7 +120,8 @@ arq_contratos <- contratos %>%
   mutate(data_date = lubridate::dmy(data),
          valor = as.numeric(
            str_replace(str_replace_all(valor, "\\.", ""),
-                       ",", "."))) %>%
+                       ",", ".")),
+         Projeto = str_replace_all(Projeto, "¿", "-")) %>%
   arrange(Classificador, Inicio, desc(data_date))
 
 write.csv(arq_contratos, file = "webpage/dados/contratos.csv", fileEncoding = "UTF-8")
