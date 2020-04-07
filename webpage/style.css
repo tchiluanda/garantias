@@ -123,6 +123,11 @@ section.prose aside.conteudo-destaque-lateral.left {
     top: 0; /*só funciona se o pai for relative */
 }
 
+section.prose aside.conteudo-destaque-lateral.bottom {
+    bottom: 0;
+    top: unset;
+}
+
 section.prose aside.conteudo-destaque-lateral h4 {
     margin-top: 0;
 }
