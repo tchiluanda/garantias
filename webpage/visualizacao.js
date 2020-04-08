@@ -271,14 +271,14 @@ d3.csv("webpage/dados/dados_vis_garantias.csv", function(d) {
         .append("strong")
         .text("Total de Garantias")
         .style("font-size", "1.5em")
-        .style("color", "#004D4D");
+        .style("color", "#1C5B80");
 
       labels_geral
         .append("p")
         .append("strong")
         .text("concedidas pela União")
         .style("font-size", "1.5em")
-        .style("color", "#004D4D");
+        .style("color", "#1C5B80");
 
       labels_geral
         .append("p")
