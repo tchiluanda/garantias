@@ -142,8 +142,9 @@ section.prose figure.plot-container img {
 
 section.prose figure.plot-container h3.plot-title,
 section.quadro div.mini-header h3 {
-    border-left: 5px solid var(--cor-titulo);
-    padding-left: 15px;
+    /*border-left: 5px solid var(--cor-titulo);
+    padding-left: 15px;*/
+    margin-top: 2rem;
     font-size: 18px;
     color: #333;
     margin-bottom: 5px;
