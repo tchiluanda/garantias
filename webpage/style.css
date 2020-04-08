@@ -4,6 +4,10 @@
 :root {
     --text-color: #444;
     --bg-color: #FAFFFF;
+    --cor-caixas: #D1E8E1;
+    --cor-escura: #1C5B80;
+    --cor-titulo: #80160D;
+    --cor-links: #ffde59;
     --main-font: 
     /* cores gráfico endividamento */
     --barra-inativa: #444;
@@ -19,16 +23,16 @@
 
 body {
     margin: 0;
-    background-color: #FAFFFF; /* lightcyan */
-    color: #444;
+    background-color: var(--bg-color); /* lightcyan */
+    color: var(--text-color);
     /*font-size: 0.9rem;*/
 }
 
 header.logo {
     width: 100%;
-    background-color: #004D4D;
+    background-color: var(--cor-escura);
     padding: 10px;
-    box-shadow: 0 0 5px 1px #004D4D;
+    box-shadow: 0 0 5px 1px var(--cor-escura);
     margin: 0;
 }
 
@@ -56,7 +60,7 @@ main header#abertura h1 {
     font-family: 'Bungee', serif;
     text-align: center;
     font-size: 3.5rem;
-    color: #80160D; /*#E32C10; teal*/
+    color: var(--cor-titulo); /*#E32C10; teal*/
     line-height: 1.3;
     /*text-shadow: 2px 2px 2px #E69E73;*/
     margin-bottom: 0;
@@ -68,7 +72,7 @@ main header#abertura p {
     font-weight: 100;
     text-align: center;
     font-size: 1rem;
-    color: #004D4D; /*#E32C10; teal*/
+    color: var(--cor-escura); /*#E32C10; teal*/
     line-height: 1.5;
     margin: 2rem auto 2rem auto;
     max-width: 400px;
@@ -83,13 +87,13 @@ main header#abertura p.riscado {
 /* fiz isso aqui abaixo para o highlight ficar um pouco mais estreito */
 
 section.prose {
-    color: #444;
+    color: var(--text-color);
     line-height: 1.5;
     padding: 0 0.5rem;
 }
 
 section.prose h2 {
-    color: #004D4D;
+    color: var(--cor-escura);
 }
 
 section.prose div.container-grupo-com-quadro {
@@ -97,7 +101,7 @@ section.prose div.container-grupo-com-quadro {
 }
 
 section.prose span.termo-destaque-lateral {
-    background-color: #D1E8E1;
+    background-color: var(--cor-caixas);
 }
 
 section.prose aside.conteudo-destaque-lateral {
@@ -107,20 +111,14 @@ section.prose aside.conteudo-destaque-lateral {
     right: calc(50% - 340px - 200px - 0.5rem);
     width: 200px;
     font-size: 12px;
-    background-color: #D1E8E1;
+    background-color: var(--cor-caixas);
     padding: 10px;
     top: 0; /*só funciona se o pai for relative */
 }
 
 section.prose aside.conteudo-destaque-lateral.left {
-    position: absolute;
-    font-weight: lighter;
     left: calc(50% - 340px - 200px - 10px);
-    width: 200px;
-    font-size: 12px;
-    background-color: #D1E8E1;
-    padding: 10px;
-    top: 0; /*só funciona se o pai for relative */
+    right: unset;
 }
 
 section.prose aside.conteudo-destaque-lateral.bottom {
@@ -144,7 +142,7 @@ section.prose figure.plot-container img {
 
 section.prose figure.plot-container h3.plot-title,
 section.quadro div.mini-header h3 {
-    border-left: 5px solid #80160D;
+    border-left: 5px solid var(--cor-titulo);
     padding-left: 15px;
     font-size: 18px;
     color: #333;
@@ -181,8 +179,8 @@ section.prose:last-child {
 
 section.anexo {
     padding-top: 1rem;
-    background-color: #004D4D;
-    color: #FAFFFF;
+    background-color: var(--cor-escura);
+    color: var(--bg-color);
     font-family: "Merriweather Sans";
     font-weight: 100;
     font-size: 0.8rem;
@@ -192,7 +190,7 @@ section.anexo {
 section.anexo h3 {
     display: inline-block;
     padding-bottom: 0.4rem;
-    border-bottom: 0.1rem solid #FAFFFF;
+    border-bottom: 0.1rem solid var(--bg-color);
 }
 
 section.anexo .imagens {
@@ -205,7 +203,7 @@ section.anexo .imagens img {
 }
 
 section.anexo a {
-    color: #ffde59;
+    color: var(--cor-links);
 }
 
 
@@ -235,13 +233,13 @@ section.vis nav.controle-vis button:focus {
 
 
 section.vis nav.controle-vis button.selected {
-    border-bottom: 5px solid #004D4D;
-    color: #004D4D;
+    border-bottom: 5px solid var(--cor-escura);
+    color: var(--cor-escura);
     font-weight: bold;
 }
 
 section.vis nav.controle-vis button:hover {
-    border-bottom: 5px solid #004D4D;
+    border-bottom: 5px solid var(--cor-escura);
 }
 
 section.vis div.grafico-d3-container {
@@ -270,9 +268,9 @@ section.vis div.grafico-d3-container #tooltip {
     font-size: 10px;
     width: 180px;
     height: auto;
-    background-color: ghostwhite;
-    color: #004D4D;
-    border: 1px solid #004D4D;
+    background-color: var(--bg-color);
+    color: var(--cor-escura);
+    border: 1px solid var(--cor-escura);
     padding: 3px 6px;
     box-shadow: 2px 2px 5px #888;
     pointer-events: none;   
