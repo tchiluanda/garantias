@@ -205,8 +205,8 @@ section.anexo .imagens img {
 
 section.anexo img.logo-tchiluanda {
     display: block;
-    width: 2rem; 
-    margin: 0 auto;
+    width: 4rem; 
+    margin: 2rem auto 0 auto;
 }
 
 section.anexo a {
