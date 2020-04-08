@@ -56,7 +56,7 @@ main {
     font-family: 'Merriweather', sans-serif;
 }
 
-main header#abertura h1 {
+main header.abertura h1 {
     font-family: 'Bungee', serif;
     text-align: center;
     font-size: 3.5rem;
@@ -67,7 +67,7 @@ main header#abertura h1 {
     margin-top: 3rem;
 }
 
-main header#abertura p {
+main header.abertura p {
     font-family: 'Fira Code', serif;
     font-weight: 100;
     text-align: center;
@@ -78,7 +78,7 @@ main header#abertura p {
     max-width: 400px;
 }
 
-main header#abertura p.riscado {
+main header.abertura p.riscado {
     text-decoration: line-through;
     margin-bottom: 0;
 
@@ -167,6 +167,7 @@ section.anexo {
     font-family: "Merriweather Sans";
     font-weight: 100;
     font-size: 0.8rem;
+    padding: 0 0.5rem;
     padding-bottom: 2rem;
 }
 
@@ -221,81 +222,12 @@ section.anexo a {
     }
 }
 
-/* visualizacao-divida-entes */
+@media (max-width: 400px) {
+    main .abertura h1 {
+        font-size: 3rem;
+    }
 
-section#vis-endividamento-scrolly {
-    max-width: 980px;
-    margin: 0 auto;
-    font-family: "Merriweather Sans";
-}
-
-div.scrolly {
-    position: relative;
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-div.scrolly > * {
-    flex: 1;
-}
-
-div.scrolly article {
-    position: relative;
-    max-width: 380px;
-}
-
-div.scrolly .container-vis-endividamento {
-    position: sticky;
-    top: 20px;
-    z-index: -1;
-    /*height: var(--altura-endiv);*/
-}
-
-div.scrolly .container-vis-endividamento figure {
-    margin: 0;
-    width: 100%;
-}
-
-/* esses rotulos aqui vão ser criados pelo D3 */
-div.scrolly .container-vis-endividamento div.rotulos-endiv,
-div.scrolly .container-vis-endividamento .rotulos-eixo-endiv,
-div.scrolly .container-vis-endividamento .rotulos-barrinhas {
-    position: absolute;
-    font-size: 0.6rem;
-}
-
-div.scrolly .container-vis-endividamento div.rotulos-endiv > p,
-div.scrolly .container-vis-endividamento .rotulos-barrinhas {
-    margin: 0;
-}
-
-div.scrolly article .endividamento-steps {
-    /*height: var(--altura-endiv); /* ficou bem melhor assim fixo. usar css-var? 50vh*/
-    opacity: 0;
-    padding: 100px 0px;
-}
-
-div.scrolly article .endividamento-steps:first-child {
-    padding-top: 0px;
-}
-
-div.scrolly article .endividamento-steps p {
-    box-shadow: 2px 2px 5px #888;
-    background-color: ghostwhite;
-    padding: 20px;
-    font-weight: 100;
-    font-size: 0.85rem;
-    margin: 0 1em;
-    line-height: 1.6;
-}
-
-div.scrolly .endividamento-steps.step-ativo {
-    opacity: 0.8;
-    /*background-color: goldenrod;*/
-}
-
-@media (max-width: 880px) {
-    div.scrolly {
-        display: unset;
+    section.anexo .imagens img {
+        width: 100%;
     }
 }
