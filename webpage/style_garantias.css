@@ -1,0 +1,69 @@
+section.vis {
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+section.vis nav.controle-vis {
+    display: flex;
+    justify-content: center;
+}
+
+section.vis nav.controle-vis button {
+    padding: 0.4em 0.5em;
+    margin-right: 0.5em;
+    background: none;
+    border: none;
+    border-bottom: 5px solid transparent;;
+    font-family: "Merriweather Sans", sans-serif;
+}
+
+section.vis nav.controle-vis button:focus {
+    outline: none;
+}
+
+
+section.vis nav.controle-vis button.selected {
+    border-bottom: 5px solid var(--cor-escura);
+    color: var(--cor-escura);
+    font-weight: bold;
+}
+
+section.vis nav.controle-vis button:hover {
+    border-bottom: 5px solid var(--cor-escura);
+}
+
+section.vis div.grafico-d3-container {
+    position: relative;
+}
+
+section.vis div.grafico-d3-container .label {
+    position: absolute;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-align: center;
+}
+
+section.vis div.grafico-d3-container .label p {
+    margin: 0 0 .25em 0;
+}
+
+section.vis div.grafico-d3-container .label p.valor,
+section.vis div.grafico-d3-container .label p.tipo,
+section.vis div.grafico-d3-container .label .texto-rank  {
+    font-size: 0.7em;
+}
+
+section.vis div.grafico-d3-container #tooltip {
+    position: absolute;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 10px;
+    width: 180px;
+    height: auto;
+    background-color: var(--bg-color);
+    color: var(--cor-escura);
+    border: 1px solid var(--cor-escura);
+    padding: 3px 6px;
+    box-shadow: 2px 2px 5px #888;
+    pointer-events: none;   
+    z-index: 1; 
+}
