@@ -167,8 +167,7 @@ section.anexo {
     font-family: "Merriweather Sans";
     font-weight: 100;
     font-size: 0.8rem;
-    padding: 0 0.5rem;
-    padding-bottom: 2rem;
+    padding: 2rem 0.5rem;
 }
 
 section.anexo h3 {
@@ -223,7 +222,7 @@ section.anexo a {
 }
 
 @media (max-width: 400px) {
-    main .abertura h1 {
+    main header.abertura h1 {
         font-size: 3rem;
     }
 
