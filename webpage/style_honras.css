@@ -1,7 +1,16 @@
 /* visualizacao-honras */
 
+:root {
+    --text-color: #444;
+    --cor-caixas :#D1EEFF; /*#D1E8E1; #85D2FF*/
+    --cor-escura: #806F2D; /*004d4d*/
+    --cor-titulo: #80160D;
+    --cor-links: #ffde59;
+}
+
+/*
 main #honras-abertura h1 {
-    color: #004D4D; /*#1e1e1e;*/
+    color: #004D4D; 
     font-family: "Bungee";
     text-align: center;
     font-size: 4rem;
@@ -10,10 +19,6 @@ main #honras-abertura h1 {
     line-height: 1;
     margin: 2rem auto 0 auto;
 }
-
-/*main #honras-abertura h1 span {
-    color: #80160D; 
-}*/
 
 main #honras-abertura p {
     color: #1e1e1e;
@@ -25,6 +30,7 @@ main #honras-abertura p {
     margin: 1.5rem auto 2rem auto;
     max-width: 400px;
 }
+*/
 
 section#vis-honras-scrolly {
     max-width: 680px;
@@ -146,7 +152,4 @@ div.scrolly .honras-steps.step-ativo {
     div.scrolly .container-vis-honras .subtotais.subtotais-credores {
         font-size: 0.5rem;
     }
-
-    main #honras-abertura h1 {
-        font-size: 3rem;
 }
