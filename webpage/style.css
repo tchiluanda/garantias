@@ -184,11 +184,28 @@ section.anexo {
     background-color: #004D4D;
     color: #FAFFFF;
     font-family: "Merriweather Sans";
+    font-weight: 100;
     font-size: 0.8rem;
+    padding-bottom: 2rem;
 }
 
-section.anexo img {
-    width: 100%;
+section.anexo h3 {
+    display: inline-block;
+    padding-bottom: 0.4rem;
+    border-bottom: 0.1rem solid #FAFFFF;
+}
+
+section.anexo .imagens {
+    display: flex;
+    justify-content: space-around;
+}
+
+section.anexo .imagens img {
+    width: 70%;
+}
+
+section.anexo a {
+    color: #ffde59;
 }
 
 
