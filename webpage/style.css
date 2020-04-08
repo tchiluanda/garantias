@@ -71,7 +71,7 @@ main header#abertura p {
     font-family: 'Fira Code', serif;
     font-weight: 100;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: var(--cor-escura); /*#E32C10; teal*/
     line-height: 1.5;
     margin: 2rem auto 2rem auto;
@@ -195,6 +195,7 @@ section.anexo h3 {
 
 section.anexo .imagens {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
@@ -202,9 +203,17 @@ section.anexo .imagens img {
     width: 70%;
 }
 
+section.anexo img.logo-tchiluanda {
+    display: block;
+    width: 2rem; 
+    margin: 0 auto;
+}
+
 section.anexo a {
     color: var(--cor-links);
 }
+
+
 
 
 section.vis {
