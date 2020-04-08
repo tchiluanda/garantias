@@ -4,8 +4,8 @@
 :root {
     --text-color: #444;
     --bg-color: #FAFFFF;
-    --cor-caixas: #D1E8E1;
-    --cor-escura: #1C5B80;
+    --cor-caixas :#D1EEFF; /*#D1E8E1; #85D2FF*/
+    --cor-escura: #1C5B80; /*004d4d*/
     --cor-titulo: #80160D;
     --cor-links: #ffde59;
     --main-font: 
@@ -60,7 +60,7 @@ main header#abertura h1 {
     font-family: 'Bungee', serif;
     text-align: center;
     font-size: 3.5rem;
-    color: var(--cor-titulo); /*#E32C10; teal*/
+    color: var(--cor-escura); /*#E32C10; teal*/
     line-height: 1.3;
     /*text-shadow: 2px 2px 2px #E69E73;*/
     margin-bottom: 0;
@@ -460,7 +460,7 @@ section.quadro .lista-projetos tbody tr {
 }
 
 section.quadro .lista-projetos tbody tr:nth-child(odd) {
-    background-color: #D1E8E1; /*#e9e9e9;*/
+    background-color: var(--cor-caixas); /*#e9e9e9;*/
 }
 
 section.quadro .lista-projetos tbody td.tab-projeto {
