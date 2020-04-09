@@ -57,7 +57,7 @@ handleResize();
 const margin_honras = {
   top: 20,
   bottom: 60,
-  left: w_honras < 600 ? 20 : 40,
+  left: w_honras < 600 ? 25 : 40,
   right: w_honras < 600 ? 20 : 40
 };
 
