@@ -185,6 +185,7 @@ section.anexo .imagens {
 }
 
 section.anexo .imagens img {
+    margin-top: 1rem;
     width: 70%;
 }
 
