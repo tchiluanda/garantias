@@ -66,7 +66,7 @@ $svg_endividamento
 
 // leitura do arquivo
 
-d3.csv("dados/dividas_totais.csv").then(function(dados) {
+d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
   
   // pre processa algumas coisas
   for (el of dados) {
@@ -74,8 +74,6 @@ d3.csv("dados/dividas_totais.csv").then(function(dados) {
   }
 
   //console.table(dados);
-
-
 
   console.table(dados);
 
@@ -273,7 +271,7 @@ d3.csv("dados/dividas_totais.csv").then(function(dados) {
   const step_colore = function(direction) {
     //console.log("Disparei função colore, com a direção", direction);
     if (direction == "down") {
-      console.log("tô dentro do ramo direction=down")
+      //console.log("tô dentro do ramo direction=down")
       d3.selectAll("rect.d3--endividamento")
         .transition()
         .duration(500)
@@ -328,7 +326,7 @@ d3.csv("dados/dividas_totais.csv").then(function(dados) {
 
   const remove_rotulo = function(escopo, tipo_divida) {
     $container_endividamento
-      .select(".rotulos-"+escopo+tipo_divida)
+      .selectAll(".rotulos-"+escopo+tipo_divida)
       .transition()
       .duration(500)
       .style("opacity", 0)
@@ -429,7 +427,7 @@ d3.csv("dados/dividas_totais.csv").then(function(dados) {
       //console.log("Step Data", response.index, response.direction);
 
       switch (response.index) {
-        case 1:
+        case 0:
           abertura();
           if (response.direction == "down") {
             mostra_rotulo("Total", "Divida_Total", "left")
@@ -442,6 +440,7 @@ d3.csv("dados/dividas_totais.csv").then(function(dados) {
               .remove();
           } 
           break;
+        case 1:
         case 2:
           step_waterfall("Divida_Uniao", response.direction);
           if (response.direction == "down") {
