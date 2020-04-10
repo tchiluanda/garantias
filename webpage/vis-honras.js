@@ -20,8 +20,9 @@ function handleResize() {
   // https://russellgoldenberg.github.io/scrollama/sticky-side/
   
   // 1. update height of step elements
-  stepH = Math.floor(window.innerHeight * 0.8);
-  $steps_honras.style("height", stepH + "px");
+  stepH = Math.floor(window.innerHeight * 1);
+  $steps_honras.style("height", Math.floor(stepH) + "px");
+  // faz o último step ser metade do tamanho.
   $steps_honras.nodes()[$steps_honras.nodes().length-1].style.height = stepH/2 + "px";
 
 
@@ -913,7 +914,7 @@ Promise.all([
 
   ////////////////// funçoes para desenhar os steps
 
-  const duracao = 500;
+  const duracao = 200;
 
   function aparece(seletor, delay, svg = true) {
     // testa se foi passada uma seleção ou um seletor (css)
@@ -1230,7 +1231,7 @@ Promise.all([
       simulacao.stop();
       bolhas_honras
         .transition()
-        .duration(duracao)
+        .duration(duracao*3)
         .attr("cx", d => x(d3.timeParse("%Y-%m-%d")(d.data_mes)))
         .attr("cy", d => y_qde(d.pos) + honras_raio_inicial)
         .attr("r", honras_raio_inicial)
