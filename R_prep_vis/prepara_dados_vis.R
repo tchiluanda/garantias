@@ -12,6 +12,17 @@ loadfonts()
 load("R/Garantias_dez_2019.Rdata")
 
 
+# investigacao honras x contratos -----------------------------------------
+
+honras_unicas <- honras %>%
+  count(`Nome do Contrato`)
+
+teste <- novos_contratos %>% left_join(honras_unicas)
+
+teste %>% filter(!is.na(n)) %>% count()
+
+honras_unicas %>% left_join(novos_contratos) %>% filter(is.na(`Mutuário`))
+
 # Dados Bubble Chart ------------------------------------------------------
 
 dados_vis_pre <- agrupador_total %>%
@@ -442,6 +453,9 @@ plot_honras1 <- ggplot(honras_plot, aes(y = ente, x = data, fill = valor)) +
 ggsave(filename = "honras1.png", plot = plot_honras1, width = 4, height = 10, bg = "transparent")
 
 honras_simples %>% group_by(mutuario, tipo_mutuario) %>% summarise(sum(valor), n())
+
+
+
 
 
 
