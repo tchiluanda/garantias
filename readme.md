@@ -160,6 +160,17 @@ https://www.tesouro.fazenda.gov.br/pt/-/concessao-de-garantia-pela-uniao
 https://www.tesourotransparente.gov.br/visualizacao/painel-de-operacoes-de-credito
 
 
+### Evoluções
+
+Lista
+* mostrar na tabela as que foram honrados, e já fazer o gancho para a próxima parte.
+
+* fiz um teste, quais honras não aparecem na lista de contratos: Conta A, do Rio.
+
+Honras
+
+* Mostrar as honras feitas?
+* Mostrar de quando eram os empréstimos que foram pagos?
 
 ### Resolver
 
