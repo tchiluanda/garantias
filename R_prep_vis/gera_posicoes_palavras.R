@@ -2,7 +2,7 @@ library(tidyverse)
 library(readxl)
 library(jsonlite)
 
-grid <- read_excel("grid_letras.xlsx", sheet = "grid_export")
+grid <- read_excel("./R_prep_vis/grid_letras.xlsx", sheet = "export_honras")
 
 new_grid <- as.data.frame(grid[,-1])
 
@@ -33,13 +33,15 @@ gera_grid <- function(grid_inicial) {
 
 
 exportar <- gera_grid(new_grid)
+exportar_copy <- exportar[1:(825-757),]
 
-exportar <- bind_rows(exportar, exportar, exportar, exportar)
-exportar <- exportar[1:146,] %>%
+exportar <- bind_rows(exportar, exportar_copy)
+exportar <- exportar[1:825-757,] %>%
   mutate(nome = paste("bolha", row_number()))
 
-ggplot(exportar, aes(x = x, y = y)) + geom_point() 
-jsonlite::write_json(exportar, "grid_temp.json")
+ggplot(exportar, aes(x = x, y = y)) + geom_point()  + scale_y_reverse()
+jsonlite::write_json(exportar, "grid_honras.json")
+write.csv(exportar, file = "grid_honras.csv")
 
 ## experimentos
 
