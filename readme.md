@@ -175,6 +175,10 @@ Honras
 ### Resolver
 
 Tooltip passando do limite no celular
+Explicações card. Explicar que o valor é o saldo em 31/12/2019. Que a tabela mostra o valor original.
+
+Explicitar que a pessoa pode clicar nas opções para visualizar o total / por tipo / rank.
+
 
 
 
