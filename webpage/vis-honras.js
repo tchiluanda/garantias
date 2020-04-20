@@ -90,7 +90,7 @@ Promise.all([
     //el.data_mes = d3.timeParse("%Y-%m-%d")(el.data_mes);
   }
 
-  console.log("Estrutura honras_agg:", honras_agg.columns, honras_agg[0]);
+  //console.log("Estrutura honras_agg:", honras_agg.columns, honras_agg[0]);
   //console.table(files[1]);
 
   // ver isso aqui depois: https://observablehq.com/@d3/stacked-area-chart-via-d3-group
@@ -256,7 +256,7 @@ Promise.all([
   
   // raio bubbles
   const maior_honra = d3.max(honras_det, d => +d.valor);
-  console.log("Maior honra", maior_honra);
+  //console.log("Maior honra", maior_honra);
 
 
   const r_honras = d3.scaleSqrt()
@@ -272,7 +272,7 @@ Promise.all([
 
   const raio_total = Math.sqrt(soma_areas);
 
-  console.log(2*raio_total, w_liq_honras, 2*raio_total/w_liq_honras);
+  //console.log(2*raio_total, w_liq_honras, 2*raio_total/w_liq_honras);
         
   
   
@@ -356,7 +356,7 @@ Promise.all([
                 "valor" : d.valor_acum}));
   
   const totais_anos = group_by_sum(honras_tot, "ano", "valor");
-  console.log({totais_anos});
+  //console.log({totais_anos});
 
   // total de honras
   const total_honras = honras_det
@@ -489,7 +489,7 @@ Promise.all([
      1/2, 1/2,
      2.8/4, 2.8/4]);
 
-  console.log(group_by_sum(honras_det, "credor_cat", "valor", true));
+  //console.log(group_by_sum(honras_det, "credor_cat", "valor", true));
 
 
 
@@ -601,7 +601,7 @@ Promise.all([
       .attr("opacity", 0);
 
   // as BOLHAS!
-  console.log(honras_det.columns);
+  //console.log(honras_det.columns);
 
   let container_bolhas_honras = $svg_honras
     .append("g")
@@ -891,7 +891,7 @@ Promise.all([
     .force('x', d3.forceX().strength(magnitudeForca).x(centro_bolhas_honras.x))
     .force('y', d3.forceY().strength(magnitudeForca).y(centro_bolhas_honras.y))
     .force('charge', d3.forceManyBody().strength(carga))
-    .alphaMin([0.3]) // (1)
+    .alphaMin(0.3) // (1)
     .on('tick', atualiza_bolhas_honras);
 
   // (1) : a simulação roda até que o alpha (default: 1) seja menor do
@@ -907,8 +907,8 @@ Promise.all([
 
   ///// teste: se eu altero honras_det, automaticamente
   // simulacao.nodes() é alterada?
-  honras_det[0]["novo"] = "Olha eu!"
-  console.log("Teste nodes", honras_det[0], simulacao.nodes()[0]);
+  //honras_det[0]["novo"] = "Olha eu!"
+  //console.log("Teste nodes", honras_det[0], simulacao.nodes()[0]);
   // sim! essa propriedade nova aparece em nodes! ou seja, simulation.nodes() cria
   // um binding entre os nodes e o dado!
 
@@ -960,7 +960,7 @@ Promise.all([
         .attr("opacity", 1);
     }
     else {
-      console.log("step 0", direcao);
+      //console.log("step 0", direcao);
       linha_ref_primeira_honra.attr("opacity", 0);
       label_primeira_honra.style("opacity", 0);
       primeira_honra.attr("opacity", 0);
@@ -1355,7 +1355,7 @@ Promise.all([
 
   }
 
-  console.log("h", h_honras)
+  //console.log("h", h_honras)
 
 
   //console.log(ponto_total_rio)
@@ -1370,7 +1370,7 @@ Promise.all([
 
   //const scroller = scrollama();
 
-  console.log("honras", honras_det.length)
+  //console.log("honras", honras_det.length)
 
   // setup
   scroller_honras
@@ -1400,7 +1400,7 @@ Promise.all([
           desenha_step0(response.direction);
           break;
         case 1:
-          console.log("step1", response.direction);
+          //console.log("step1", response.direction);
           desenha_step1(response.direction);
           break;
         case 2:
