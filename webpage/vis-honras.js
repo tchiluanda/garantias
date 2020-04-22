@@ -82,7 +82,7 @@ Promise.all([
   const honras_det = files[1];
   const grid       = files[2];
 
-  console.table(grid)
+  //console.table(grid)
   
   //console.log(honras_det[0])
 
@@ -942,7 +942,7 @@ Promise.all([
 
   ////////////////// funçoes para desenhar os steps
 
-  const duracao = 200;
+  const duracao = 400;
 
   function aparece(seletor, delay, svg = true) {
     // testa se foi passada uma seleção ou um seletor (css)
@@ -1256,17 +1256,17 @@ Promise.all([
 
     } else if (direcao == "up") {
 
-      simulacao.stop();
+      
       bolhas_honras
         .transition()
-        .duration(duracao*3)
+        .duration(duracao*1.5)
         .attr("cx", d => x(d3.timeParse("%Y-%m-%d")(d.data_mes)))
         .attr("cy", d => y_qde(d.pos) + honras_raio_inicial)
         .attr("r", honras_raio_inicial)
         .attr("stroke-width", 0);
 
       aparece("g.axis", 0);
-      desaparece(honras_label_total, false);
+
     
     } 
   }
@@ -1274,16 +1274,18 @@ Promise.all([
   function desenha_step7(direcao) {
     if (direcao == "down") {
       //console.log(x_grid(+grid[32].x));
-      console.log(x_grid.range(), x_grid.domain(), "y",
-      y_grid.range(), y_grid.domain())
-      bolhas_honras
-        .transition()
-        .duration(duracao)
-        .attr("cx", (d,i) => x_grid(+grid[i].x))
-        .attr("cy", (d,i) => y_grid(+grid[i].y))
+      desaparece("g.axis"); 
     } else {
-
+      simulacao.stop();
+      desaparece(honras_label_total, false);
     }
+    bolhas_honras
+    .transition()
+    .duration(duracao*1.5)
+    .attr("cx", (d,i) => x_grid(+grid[i].x))
+    .attr("cy", (d,i) => y_grid(+grid[i].y))
+    .attr("r", honras_raio_inicial)
+    .attr("stroke-width", 0);
   }
 
   function desenha_step8(direcao) {
@@ -1319,8 +1321,6 @@ Promise.all([
         .attr("r", d => r_honras(d.valor) - 1)
         .attr("stroke", d => d3.rgb(cor(d.mutuario_cat)).darker())
         .attr("stroke-width", 1);
-
-        desaparece("g.axis"); 
     }
     else {
       desaparece(honras_label_tipo_divida, false);
