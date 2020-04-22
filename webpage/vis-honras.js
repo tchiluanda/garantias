@@ -73,13 +73,17 @@ $svg_honras
 Promise.all([
   d3.csv("../webpage/dados/dados_honras_agg.csv"),
   d3.csv("../webpage/dados/dados_honras_det.csv"),
+  d3.csv("../webpage/dados/grid_honras.csv")
 ]).then(function(files) {
   // files[0] will contain file1.csv
   // files[1] will contain file2.csv
 
   const honras_agg = files[0];
   const honras_det = files[1];
+  const grid       = files[2];
 
+  console.table(grid)
+  
   //console.log(honras_det[0])
 
   //para formatar os valores
@@ -238,6 +242,29 @@ Promise.all([
   const y_qde  = d3.scaleLinear()
                    .range(range_y)
                    .domain([0, obtem_maximo_serie(serie_qde)]);                   
+
+  // grid
+  const max_grid_y = d3.max(grid, d => +d.y);
+  const max_grid_x = d3.max(grid, d => +d.x);
+
+  let range_grid_x, range_grid_y;
+  const h_liq_honras = h_honras - margin_honras.top - margin_honras.bottom;
+
+  if (h_liq_honras < w_liq_honras) {
+    range_grid_x = [0,w_honras-10];//x.range();//[w_honras/2 - h_liq_honras/2, w_honras/2 + h_liq_honras/2];
+    range_grid_y = [margin_honras.top, h_honras - margin_honras.bottom];
+  } else {
+    range_grid_x = [0,w_honras-10];//x.range();
+    range_grid_y = [h_honras/2 - w_liq_honras/2, h_honras/2 + w_liq_honras/2];    
+  }
+  
+  const y_grid = d3.scaleLinear()
+                   .range(range_grid_y)
+                   .domain([0, max_grid_y]);
+
+  const x_grid = d3.scaleLinear()
+                  .range(range_grid_x)
+                  .domain([0, max_grid_x]);
       
   //// cores
   const cor = d3.scaleOrdinal()
@@ -431,6 +458,7 @@ Promise.all([
   const honras_larg_barra = w_liq_honras/serie_mes.length;
 
   const honras_raio_inicial = honras_larg_barra * 0.75 / 2
+  console.log(honras_raio_inicial, "raio inicial")
 
   // estou levando esse trecho pra dentro do step que
   // vai reiniciar a simulação, para tratar os casos em que
@@ -1245,6 +1273,21 @@ Promise.all([
 
   function desenha_step7(direcao) {
     if (direcao == "down") {
+      //console.log(x_grid(+grid[32].x));
+      console.log(x_grid.range(), x_grid.domain(), "y",
+      y_grid.range(), y_grid.domain())
+      bolhas_honras
+        .transition()
+        .duration(duracao)
+        .attr("cx", (d,i) => x_grid(+grid[i].x))
+        .attr("cy", (d,i) => y_grid(+grid[i].y))
+    } else {
+
+    }
+  }
+
+  function desenha_step8(direcao) {
+    if (direcao == "down") {
 
       // normalmente, eu teria iniciado essas posições
       // lá em cima, mas como é um scroller, o usuário
@@ -1265,9 +1308,9 @@ Promise.all([
       // se fosse criado um "binding" entre os nodes e o
       // dataset!
 
-      honras_det.forEach(d => {
-        d["x"] = x(d3.timeParse("%Y-%m-%d")(d.data_mes));
-        d["y"] = y_qde(d.pos) + honras_raio_inicial;
+      honras_det.forEach((d,i) => {
+        d["x"] = x_grid(+grid[i].x);
+        d["y"] = y_grid(+grid[i].y);
       })
 
       bolhas_honras
@@ -1277,7 +1320,7 @@ Promise.all([
         .attr("stroke", d => d3.rgb(cor(d.mutuario_cat)).darker())
         .attr("stroke-width", 1);
 
-      desaparece("g.axis"); 
+        desaparece("g.axis"); 
     }
     else {
       desaparece(honras_label_tipo_divida, false);
@@ -1292,7 +1335,7 @@ Promise.all([
 
   }
 
-  function desenha_step8(direcao) {
+  function desenha_step9(direcao) {
     // por tipo  
     simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_tipo_divida[d.tipo_divida].x));
     simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(centro_bolhas_honras.y));
@@ -1311,7 +1354,7 @@ Promise.all([
 
   }
 
-  function desenha_step9(direcao) {
+  function desenha_step10(direcao) {
     // por estado
 
     
@@ -1329,7 +1372,7 @@ Promise.all([
 
   }
 
-  function desenha_step10(direcao) {
+  function desenha_step11(direcao) {
     if (direcao == "down") {
     
       simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_credor_cat[d.credor_cat].x));
@@ -1436,6 +1479,9 @@ Promise.all([
           break; 
         case 10:  
           desenha_step10(response.direction)
+          break;  
+        case 11:  
+          desenha_step11(response.direction)
           break;  
       }
     });
