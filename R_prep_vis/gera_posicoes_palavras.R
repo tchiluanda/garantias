@@ -2,7 +2,7 @@ library(tidyverse)
 library(readxl)
 library(jsonlite)
 
-grid <- read_excel("./R_prep_vis/grid_letras.xlsx", sheet = "export_honras")
+grid <- read_excel("./R_prep_vis/grid_letras.xlsx", sheet = "export_honras_2")
 
 new_grid <- as.data.frame(grid[,-1])
 
@@ -33,7 +33,7 @@ gera_grid <- function(grid_inicial) {
 
 
 exportar <- gera_grid(new_grid)
-exportar_copy <- exportar[1:(825-757),]
+exportar_copy <- exportar[1:(825-797),]
 
 exportar <- bind_rows(exportar, exportar_copy)
 exportar <- exportar[1:825-757,] %>%
