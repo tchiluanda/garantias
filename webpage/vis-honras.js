@@ -442,7 +442,7 @@ Promise.all([
   d3.select("#honras-total-rio").text(valor_total_rio.valor);
   d3.select("#honras-total-rio-pct").text(valor_total_rio.percent);
   d3.select("#d3-honras-nome-rio").style("color", cor("Estado do Rio de Janeiro"));
-  d3.select("#d3-honras-nome-mg").style("color", cor("Minas Gerais"));
+  d3.selectAll(".d3-honras-nome-mg").style("color", cor("Minas Gerais"));
   d3.select("#d3-honras-qde-pgtos").text(honras_det.length);
   d3.select("#d3-honras-valor-total").text(valor_formatado(total_honras));
 
@@ -942,7 +942,7 @@ Promise.all([
 
   ////////////////// funçoes para desenhar os steps
 
-  const duracao = 400;
+  const duracao = 200;
 
   function aparece(seletor, delay, svg = true) {
     // testa se foi passada uma seleção ou um seletor (css)
@@ -1259,7 +1259,7 @@ Promise.all([
       
       bolhas_honras
         .transition()
-        .duration(duracao*1.5)
+        .duration(duracao*3)
         .attr("cx", d => x(d3.timeParse("%Y-%m-%d")(d.data_mes)))
         .attr("cy", d => y_qde(d.pos) + honras_raio_inicial)
         .attr("r", honras_raio_inicial)
@@ -1281,7 +1281,7 @@ Promise.all([
     }
     bolhas_honras
     .transition()
-    .duration(duracao*1.5)
+    .duration(duracao*3)
     .attr("cx", (d,i) => x_grid(+grid[i].x))
     .attr("cy", (d,i) => y_grid(+grid[i].y))
     .attr("r", honras_raio_inicial)
