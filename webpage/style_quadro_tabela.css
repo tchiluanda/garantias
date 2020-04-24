@@ -155,6 +155,16 @@ section.quadro .lista-projetos {
     position: relative;
 }
 
+section.quadro .lista-projetos p.lista-projetos-aviso {
+    font-family: "Merriweather Sans";
+    font-size: 0.7rem;
+    color: #777;
+}
+
+section.quadro .lista-projetos p#sem-projetos {
+    font-style: italic;
+}
+
 section.quadro .lista-projetos table {
     width: 100%;
 }
