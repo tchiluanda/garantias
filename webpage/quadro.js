@@ -319,7 +319,7 @@ Promise.all([
       .classed("populados", true)
       .property("value", d => d.classificador + d.entidade)
       .text(function(d) {
-        if (d.entidade == "Rio de Janeiro" || d.entidade == "São Paulo")
+        if (d.entidade == "Rio de Janeiro" || d.entidade == "Sao Paulo")
           return (d.entidade + " (" + d.classificador.substring(0, d.classificador.length-1) + ")")
         else
           return d.entidade});
