@@ -197,6 +197,7 @@ function monta_tabela_projetos(dados_selecionados) {
     // esse objeto serve para estabelecer uma correlação, um mapeamento das colunas da tabela orginal com as classes que representarão as colunas da tabela html. 
 
     const colunas_de_interesse = Object.keys(dados_classes);
+    //console.log("Colunas selecionados", dados_selecionados);
 
     const dados_aninhados = dados_selecionados.map(
       function(d) {
@@ -208,6 +209,7 @@ function monta_tabela_projetos(dados_selecionados) {
                            "conteudo": d[coluna]});
           });
         elemento["id_projeto"] = d[""]; // (1)
+        elemento["houve_honra"] = d["honras"] != "NA";
         return elemento;
       });
       //(1) : isso pra gerar um "key" para ser usada
@@ -244,6 +246,7 @@ function monta_tabela_projetos(dados_selecionados) {
     const tab_projetos_enter = tab_projetos
       .enter()
       .append("tr")
+      .classed("houve_honra", d => d.houve_honra)
       .selectAll("td")
       .data(d => d)
       .enter()
