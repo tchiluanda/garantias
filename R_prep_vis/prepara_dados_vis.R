@@ -38,7 +38,10 @@ dados_vis <- dados_vis_pre %>%
   summarise(total_classificador = sum(valor)) %>%
   ungroup() %>%
   mutate(rank_classificadores = rank(-total_classificador)) %>%
-  right_join(dados_vis_pre)
+  right_join(dados_vis_pre) %>%
+  mutate(Classificador = ifelse(Classificador == "Entidades Estaduais Controladas",
+                                "Entidades Controladas",
+                                Classificador))
 
 write.csv(dados_vis, file = "webpage/dados_vis_garantias.csv", fileEncoding = "UTF-8")
 
@@ -87,7 +90,10 @@ quadro <- list(
     str_replace(
       str_replace_all(
         as.character(.), "\\.", ""), ",", "\\."))) %>%
-  mutate(interna_demais = interna_total - interna_cambial)  %>%
+  mutate(interna_demais = interna_total - interna_cambial,
+         Classificador = ifelse(Classificador == "Entidades Estaduais Controladas",
+                                "Entidades Controladas",
+                                Classificador))  %>%
   arrange(Classificador, Inicio)
 
 write.csv(quadro, file = "webpage/dados_quadro.csv", fileEncoding = "UTF-8")
@@ -134,7 +140,10 @@ arq_contratos <- contratos %>%
          valor = as.numeric(
            str_replace(str_replace_all(valor, "\\.", ""),
                        ",", ".")),
-         Projeto = str_replace_all(Projeto, "¿", "-")) %>%
+         Projeto = str_replace_all(Projeto, "¿", "-"),
+         Classificador = ifelse(Classificador == "Entidades Estaduais Controladas",
+                                "Entidades Controladas",
+                                Classificador)) %>%
   arrange(Classificador, Inicio, desc(data_date))
 
 # (1) isso pq o arquivo de contratos traz coisas que foram feitas em 2020, então

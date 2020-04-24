@@ -33,7 +33,7 @@ const ncol_rank = w < 510 ? 2 : 5;
 
 // lists/arrays with the two categories that will be used
 // as criteria for spreading out the bubbles
-const lista_tipos = ["Estados", "Bancos Federais", "Municipios", "Entidades Estaduais Controladas", "Estatais Federais"];
+const lista_tipos = ["Estados", "Bancos Federais", "Municipios", "Entidades Controladas", "Estatais Federais"];
 
 const lista_rank = d3.range(qde_rank-1).map(d => d+1);
 lista_rank.push("Demais");
