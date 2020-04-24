@@ -118,13 +118,15 @@ contratos <- read.csv2("Garantias_Dados/Dez2019/InfCadastrais 31dez2019.csv",
 arq_contratos <- contratos %>%  
   mutate(Inicio = rm_accent(`Mutuário`),
          Classificador = rm_accent(`Tipo.Mutuário`)) %>%
-  filter(Inicio %in% dados_vis$Inicio) %>%
+  filter(Inicio %in% dados_vis$Inicio) %>% # (1)
+  left_join(honras_unicas, by = c("Nome.do.Contrato" = "Nome do Contrato")) %>%
   select(Inicio, 
          Classificador, 
          UF, 
          Credor, 
          tipo_credor = `Classificação.de.Credor`,
          Projeto,
+         honras = n,
          data = `Data.de.Assinatura`,
          Moeda = `Moeda.de.Origem`,
          valor = `Valor.Contratado.Original`) %>%
@@ -134,6 +136,9 @@ arq_contratos <- contratos %>%
                        ",", ".")),
          Projeto = str_replace_all(Projeto, "¿", "-")) %>%
   arrange(Classificador, Inicio, desc(data_date))
+
+# (1) isso pq o arquivo de contratos traz coisas que foram feitas em 2020, então
+# achei melhor cortar. acho.
 
 write.csv(arq_contratos, file = "webpage/dados/contratos.csv", fileEncoding = "UTF-8")
 
