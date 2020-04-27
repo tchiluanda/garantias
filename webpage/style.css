@@ -199,6 +199,11 @@ section.anexo a {
     color: var(--cor-links);
 }
 
+p.caption {
+    font-family: "Merriweather Sans";
+    font-size: 0.7rem;
+    color: #777;
+}
 
 
 

@@ -83,6 +83,7 @@
                 <p>Total das garantias concedidas pela União: <span id="tooltip-valor"></span></p>
             </div>
         </div> 
+        <p class="caption limited-width">Os valores representam os saldos em dezembro de 2019. Fonte: Relatório Quadrimestral de Operações de Crédito Garantidas (RQG) do 3º quadrimestre de 2019.</p>
          
     </section>
 
@@ -104,6 +105,24 @@
     <section class="quadro">
         <div class="mini-header limited-width">
             <h3 class="plot-title">Quadro: resumo dos principais valores</h2>
+            <p>Algumas definições importantes de termos que serão apresentados no quadro:</p>
+            <dl class="quadro-definicoes">
+                <dt>ATM</dt>
+                <dd>do inglês <dfn>average time to maturity</dfn>, representa a média dos prazos de vencimento da dívida do mutuário.</dd>
+
+                <dt>Custo médio</dt>
+                <dd>é o custo médio com o qual o mutuário teve de arcar para manter sua dívida nos últimos doze meses, sendo uma taxa medida em percentual ao ano.</dd>
+
+                <dt>Interna</dt>
+                <dd>são as operações garantidas com origem do financiamento em credores internos e dívida denominada em reais.</dd>
+
+                <dt>Internas Cambiais</dt>
+                <dd>são as operações garantidas internas (em reais, portanto), com correção da dívida pela variação da taxa de câmbio.</dd>
+
+                <dt>Externa</dt>
+                <dd>são as operações garantidas com origem do financiamento em credores externos e dívida denominada em moeda estrangeira.</dd>
+            </dl>
+
             <p>Escolha o mutuário desejado. Se preferir, filtre por tipo de mutuário primeiro</p>
             <div class="selecao-entidades">
                 <select name="menu-classificador" id="menu-classificador">
@@ -113,10 +132,8 @@
                 <select name="menu-entidade" id="menu-entidade">
                     <option value="">--Escolha a entidade--</option>
                 </select>
-            </div>
-            <dl class="quadro-definicoes">
-                <p>Algumas definições importantes.</p>
-            </div>
+            </div>               
+
         </div>
         <p class="container-titulo-card"><span class="titulo-card"></span></p>
         <div class="card opaque">
@@ -161,7 +178,8 @@
         </div>
         <div class="mini-header lista-projetos limited-width">
             <h3>Os empréstimos desse mutuário garantidos pela União</h3>
-            <p class="lista-projetos-aviso">Os projetos marcados com uma borda <span style="color: crimson;">colorida</span> tiveram uma ou mais parcelas não pagas pelo mutuário, que foram <em>honradas</em> pelo Tesouro Nacional &mdash; esse é o assunto da próxima parte desta história.</p>
+            <p class="caption">Os valores mostrados na tabela são os valores originais do contrato. O total pode divergir dos valores do quadro acima, em que são exibidos os saldos atualizados ao final de 2019.</p>
+            <p class="caption">Os projetos marcados com uma borda <span style="color: crimson;">colorida</span> tiveram uma ou mais parcelas não pagas pelo mutuário, parcelas que foram <em>honradas</em> pelo Tesouro Nacional &mdash; esse é o assunto da próxima parte desta história.</p>
             <p id="sem-projetos">Não há projetos para esse mutuário.</p>
             <table>    
                 <thead class="hidden">
@@ -208,7 +226,7 @@
 
             <p><strong>Relatório Mensal de Garantias Honradas (RMGH)</strong> – apresenta mensalmente o montante honrado pela União, devido a inadimplências de mutuários em operações de crédito garantidas.</p>
 
-            <p>As últimas edições desses relatórios estão disponíveis <a href="http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas">nesta página</a>.</p>
+            <p>As últimas edições desses relatórios estão disponíveis <a href="http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas" target="__blank">nesta página</a>.</p>
 
             <p>Além disso, o Relatório de Gestão Fiscal do Poder Executivo Federal, um relatório exigido pela Lei de Responsabilidade Fiscal, traz um demonstrativo de Garantias Concedidas. Todos os relatórios quadrimestrais estão disponíveis no site do Tesouro Nacional, <a href="https://www.tesouro.fazenda.gov.br/demonstrativos-fiscais#RGF" target = "_blank">neste link</a>.</p>
 
