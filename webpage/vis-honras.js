@@ -997,6 +997,17 @@ Promise.all([
       //pontos_totais_anos.attr("opacity", 0);
       //labels_totais_anos.style("opacity", 0);
 
+      // para resetar as coisas caso a pessoa dê um "control+home" no final da página
+      // especificamente, a área do gráfico de área e a posição das bolhas.
+      $svg_honras.selectAll("path.d3-honras-step-2")
+        .data(serie_acum_stack)
+        .attr("d", area);
+
+      d3.selectAll("circle.d3-honras-bolhas")
+        .attr("cx", d => x(d3.timeParse("%Y-%m-%d")(d.data_mes)))
+        .attr("cy", d => y_qde(d.pos) + honras_raio_inicial)
+        .attr("r", honras_raio_inicial);
+
     }
   }
   
