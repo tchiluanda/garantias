@@ -6,6 +6,13 @@
     --cor-escura: #806F2D; /*004d4d*/
     --cor-titulo: #80160D;
     --cor-links: #ffde59;
+    --cor-caixas: #FFEDA6; /* que lindo isso aqui, 
+    pela ordem dos arquivos, como esse style vem depois
+    do style principal, posso simplesmente dar um override
+    no nome da variável. ele vai aplicar a regra definida
+    no estilo principal, mas quando for computar a cor, ele
+    vai ver o último valor que foi definido, o que
+    está aqui neste estilo! */
 }
 
 /*
