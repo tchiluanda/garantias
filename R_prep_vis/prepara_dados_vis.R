@@ -11,6 +11,7 @@ loadfonts()
 
 load("R_prep_vis/Garantias_dez_2019.Rdata")
 
+nomes_honras <- names(honras)
 
 # investigacao honras x contratos -----------------------------------------
 
@@ -183,6 +184,18 @@ lista_unica <- full_join(lista_garantias_mutuarios,
 
 # honras: dados para viz --------------------------------------------------
 
+honras <- read.csv2("./R_prep_vis/outros_dados/relatorio_honras_atrasos.csv",
+                    skip = 10, stringsAsFactors = FALSE)
+
+names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato", 
+                   "Credor", "Classificação do Credor", "Mutuário", "Tipo de Mutuário", 
+                   "Processo PGFN", "Status", "Data Limite da União", "Data Regularização do Atraso", 
+                   "Moeda de Origem", "Total no Vencimento (Moeda de Origem)", "Honra - Principal (Moeda de Origem)", 
+                   "Honra - Juros/Encargos (Moeda de Origem)", "Honra - Mora (Moeda de Origem)", 
+                   "Honra - Total (Moeda de Origem)", "Honra - Principal (R$)", 
+                   "Honra Juros/Encargos (R$)", "Honra - Mora (R$)", "Honra - Total (R$)", 
+                   "Ano Regularização", "Mês Regularização", "X24")
+
 honras_simples <- honras %>%
   select(data = `Data de Vencimento`,
          tipo_divida = `Tipo de Dívida`,
@@ -193,18 +206,33 @@ honras_simples <- honras %>%
          `Status`,
          valor = `Honra - Total (R$)`) %>%
   as.data.frame() %>%
-  mutate(mes = str_pad(month(data), width = 2, pad = "0"),
+  mutate(data = dmy(data),
+         mes = str_pad(month(data), width = 2, pad = "0"),
          ano = year(data),
          mes_ano = paste0(ano,mes),
          mutuario_cat = case_when(
            mutuario == "Rio de Janeiro" ~ "Estado do Rio de Janeiro",
            mutuario == "Minas Gerais" ~ "Minas Gerais",
            TRUE ~ "Demais entes"),
-         estados = if_else(tipo_mutuario == "Municípios", "Municípios", mutuario))
+         #estados = if_else(tipo_mutuario == "Municípios", "Municípios", mutuario),
+         valor = as.numeric(
+           str_replace(
+             str_replace_all(as.character(valor), "\\.", ""), 
+             ",", "\\.")))
           
-
+# consultas on the fly
 honras_simples %>% filter(mutuario == "Rio de Janeiro") %>% group_by(mes_ano) %>% count()
+honras_simples %>% group_by(mutuario) %>% summarise(v = sum(valor)) %>% arrange(desc(v)) %>%
+  ggplot(aes(x = v, y = reorder(mutuario, v))) + geom_col()
 
+honras_simples %>% 
+  group_by(mutuario) %>% 
+  summarise(v = sum(valor)) %>% 
+  arrange(desc(v)) %>%
+  filter(rank(-v)>11) %>%
+  group_by() %>% summarise(sum(v))
+
+# contagem e posições
 contagem_honras_avancado <- honras_simples %>%
   group_by(Credor) %>%
   mutate(qde_credor = n()) %>%
@@ -219,6 +247,8 @@ contagem_honras_avancado <- honras_simples %>%
   mutate(pos = row_number()) %>%
   ungroup()
 
+# não precisa disso. mas preciso dos top estados/municipios para criar um "demais",
+# e recriar a variável "estado".
 rank_honras_cat <- contagem_honras_avancado %>%
   group_by(credor_cat) %>%
   summarise(soma_credor_cat = sum(valor)) %>%
