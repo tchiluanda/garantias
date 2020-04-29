@@ -9,7 +9,7 @@ library(padr)
 #extrafont::font_import()
 loadfonts()
 
-load("R/Garantias_dez_2019.Rdata")
+load("R_prep_vis/Garantias_dez_2019.Rdata")
 
 
 # investigacao honras x contratos -----------------------------------------
@@ -43,11 +43,11 @@ dados_vis <- dados_vis_pre %>%
                                 "Entidades Controladas",
                                 Classificador))
 
-write.csv(dados_vis, file = "webpage/dados_vis_garantias.csv", fileEncoding = "UTF-8")
+write.csv(dados_vis, file = "webpage/dados/dados_vis_garantias.csv", fileEncoding = "UTF-8")
 
 total_classificador <- dados_vis %>% group_by(Classificador) %>% summarize(first(total_classificador))
 
-save(total_classificador, file = "total_garantias_classificador.RData")
+save(total_classificador, file = "./R_prep_vis/outros_dados/total_garantias_classificador.RData")
 
 dados_vis %>% filter(rank_geral>=16) %>% group_by() %>% summarise(sum(valor))
 
@@ -96,7 +96,7 @@ quadro <- list(
                                 Classificador))  %>%
   arrange(Classificador, Inicio)
 
-write.csv(quadro, file = "webpage/dados_quadro.csv", fileEncoding = "UTF-8")
+write.csv(quadro, file = "webpage/dados/dados_quadro.csv", fileEncoding = "UTF-8")
 
 
 # contratos ---------------------------------------------------------------

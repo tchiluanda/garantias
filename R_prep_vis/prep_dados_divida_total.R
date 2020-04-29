@@ -52,7 +52,7 @@ div_uniao <- div_uniao_bruto %>%
 
 # pega os dados divida garantida ------------------------------------------
 
-load("total_garantias_classificador.RData")
+load(paste0(caminho, "total_garantias_classificador.RData"))
 
 div_garantida <- total_classificador %>%
   rename(Escopo = Classificador,
