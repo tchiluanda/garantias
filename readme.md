@@ -4,7 +4,11 @@ Este texto descreve e procura documentar, principalmente, o processo de constru�
 
 https://tchiluanda.github.io/garantias/
 
-## Estrutura básica - idéia original
+Caso você esteja apenas em busca dos dados (como disse o [pessoal do Estadão](https://github.com/estadao/basometro): "Eu só quero acessar os dados, nem sei o que tô fazendo aqui nesse site"), dê uma olhada [aqui](webpage/dados/readme.md).
+
+## Estrutura básica 
+
+### Idéia original
 
 1. Contexto, histórico
    Visualização: as dívidas de Estados e Municípios
@@ -19,7 +23,7 @@ https://tchiluanda.github.io/garantias/
    Visualização: as honras &mdash streamgraph, transição para novo bubble chart.
 
 
-### 1. Contexto
+#### O contexto
 
 A ideia inicial é contextualizar as garantias concedidas pela União no cenário das dívidas dos entes subnacionais (Estados, Municípios e Distrito Federal). Assim, podemos segmentar o endividamento total dos entes subnacionais em três componentes:
 
@@ -39,47 +43,57 @@ Definida essa segmentação, o próximo passo é buscar os dados. Aí temos o se
 
 * (i) pode ser obtido do TT. Em última análise, pode-se usar o dado do próprio Anexo 2 do RGF dos entes, na linha "Reestruturação da Dívida de Estados e Municípios". No entanto, o dado do Tesouro mostra um saldo de 640 bilhões, e a DCL, 93 bi (que é o mesmo valor do Sadipem para essa mesma rubrica). Há um grande valor na rubrica "Empréstimos internos", o que deve indicar uma classificação inadequada dos valores por parte dos entes.
 
+### A estrutura final
+
+No final, as visualizações acabaram ficando bastante complexas (duas delas acabaram ficando no formato de scrollytelling). Além disso a história ficou comprida, então resolvemos fragmentá-la em três partes mais curtinhas e encadeadas, mas com algum grau de independência entre si. 
+
+Primeira parte: As Garantias Concedidas pela União
+
+https://tchiluanda.github.io/garantias/
+
+
+Segunda parte: As honras de garantias
+
+https://tchiluanda.github.io/garantias/honras/
+
+ 
+Terceira parte: Uma visão geral das dívidas de Estados e Municípios
+
+https://tchiluanda.github.io/garantias/dividas/
+
+
 ## Pipeline da análise
 
 ### 1. `R_prep_vis/prepara_dados_vis.R`
 
 Consome: 
-* `Garantias.RData` (gerado no processamento do painel de garantias).
+* `Garantias_dez_2019.RData` (gerado no processamento do painel de garantias).
 
 Produz:
-* `webpage/dados_vis_garantias.csv`, a ser consumido por `visualizacao.js`.
+* [`webpage/dados/dados_vis_garantias.csv`](webpage/dados/dados_vis_garantias.csv), a ser consumido por [`webpage/visualizacao.js`](webpage/visualizacao.js), a visualização da Parte 1 (gráfico de bolhas).
 
-* `total_garantias_classificador.RData`, a ser consumido por `R_prep_vis/prep_dados_divida_total.R`. (<span style="background-color: goldenrod;">Melhorar:</span> mover dado intermediário para uma pasta específica).
+* [`/R_prep_vis/outros_dados/total_garantias_classificador.RData`](/R_prep_vis/outros_dados/total_garantias_classificador.RData), a ser consumido por [`R_prep_vis/prep_dados_divida_total.R`](R_prep_vis/prep_dados_divida_total.R). (<span style="background-color: goldenrod;">Melhorar:</span> mover dado intermediário para uma pasta específica), que vai preparar os dados para a visualização da Parte 3 (ver próximo tópico)
 
-* `webpage/dados_quadro.csv`, a ser consumido por `quadro.js`.
+* [`webpage/dados/dados_quadro.csv`](webpage/dados/dados_quadro.csv), a ser consumido por [`webpage/quadro.js`](webpage/quadro.js), a visualização da Parte 1 (card das entidades, com o gráfico de barras).
 
-* `webpage/contratos.csv`, a ser consumido por `quadro.js`.
+* [`webpage/dados/contratos.csv`](webpage/dados/contratos.csv), a ser consumido por [`webpage/quadro.js`](webpage/quadro.js), a tabela da Parte 1.
 
-* `webpage/honras.csv`, a ser consumido por `honras.js`.
+* [`webpage/dados/honras_det.csv`](webpage/dados/honras_det.csv) e [`webpage/dados/honras_agg.csv`](webpage/dados/honras_agg.csv), a ser consumido por [`webpage/honras.js`](webpage/honras.js), a visualização da Parte 2.
 
 ### 2. `R_prep_vis/prep_dados_divida_total.R`
 
 Consome: 
-* `/R_prep_vis/outros_dados/finbraRGF_2019_estados.csv`
-* `/R_prep_vis/outros_dados/finbraRGF_2019_mun_quad.csv`
-* `/R_prep_vis/outros_dados/finbraRGF_2019_mun_sem.csv`
-* `/R_prep_vis/outros_dados/SALDOS_DEVEDORES_PROGRAMAS_FINANCIAMENTO_GOVERNO_FEDERAL_2020jan.xls`
-* `total_garantias_classificador.RData`
+* [`R_prep_vis/outros_dados/finbraRGF_2019_estados.csv`](R_prep_vis/outros_dados/finbraRGF_2019_estados.csv)
+* [`R_prep_vis/outros_dados/finbraRGF_2019_mun_quad.csv`](R_prep_vis/outros_dados/finbraRGF_2019_mun_quad.csv)
+* [`R_prep_vis/outros_dados/finbraRGF_2019_mun_sem.csv`](R_prep_vis/outros_dados/finbraRGF_2019_mun_sem.csv)
+* [`R_prep_vis/outros_dados/SALDOS_DEVEDORES_PROGRAMAS_FINANCIAMENTO_GOVERNO_FEDERAL_2020jan.xls`](R_prep_vis/outros_dados/SALDOS_DEVEDORES_PROGRAMAS_FINANCIAMENTO_GOVERNO_FEDERAL_2020jan.xls)
+* [`R_prep_vis/outros_dados/total_garantias_classificador.RData`](R_prep_vis/outros_dados/total_garantias_classificador.RData)
 
 Produz:
-* `webpage/dividas_totais.csv`
+* [`webpage/dados/dividas_totais.csv`](webpage/dados/dividas_totais.csv), a ser consumido por [`webpage/vis-endividamento.js`](webpage/vis-endividamento.js)
 
 
-
-
-
-### Simulação
-
-A simulação vai gerar valores de "x" e "y" para os nodes que foram passados para ela. Para manter a constância do objeto, é importante iniciar esses valores x e y dos nodes com as posições onde estarão as bolhas quando a simulação for iniciada (nesse caso, a posição das bolhas no dot plot).
-
-
-
-### Observações gerais
+## Observações sobre os dados do `garantias_dez_2019.RData`
 
 Dados apenas de mutuários: 
 
@@ -92,7 +106,7 @@ Estão em [garantias.RData](./R/garantias.RData).
 
 Em falta: 
 
-* Novos contratos 
+* Novos contratos (tem arquivo próprio, ver a seção de Pipeline da Análise)
 * Capag
 
 Classificador `Garantias Total` nos demais dfs equivale ao classificador `Todas` em `agrupador_total`.
@@ -109,16 +123,25 @@ Algumas observações:
 
 ### agrupador_atm_completo
 
-### Licões aprendidas (D3/Web)
+## Licões aprendidas (D3/Web)
 
-Usar um arquivo `.js` para cada viz. Já tinha resolvido fazer isso, e aquela mini conversa com a Amber Thomas confirmou que é uma boa prática.
+Para a construção das páginas, utilizamos HTML, CSS, JS e D3 escritos à mão, sem frameworks.
 
-Juntar todas as funções comuns a pelo menos dois `.js` num arquivo à parte, que aqui chamei de `utils.js`.
+Algo que facilitou foi usar um arquivo `.js` para cada viz. Já tinha resolvido fazer isso, e aquela mini conversa com a Amber Thomas no Slack confirmou que é uma boa prática.
 
-Separar os estilos em um `.css` geral, e outros específicos para cada viz. Ajuda a deixar o negócio gerenciável.
+Juntar todas as funções comuns a pelo menos dois `.js` num arquivo à parte, que aqui chamei de [`webpage/utils.js`](webpage/utils.js).
 
+Separar os estilos em um `.css` geral, e outros específicos para cada viz. Ajuda a deixar o negócio gerenciável. E ajuda a se valer da *cascade* para soluções bem interessantes, com regras mais concisas e elegantes.
 
-### Referências / inspirações
+### Force-Layout
+
+A simulação vai gerar valores de "x" e "y" para os nodes que foram passados para ela. Para manter a constância do objeto, é importante iniciar esses valores x e y dos nodes com as posições onde estarão as bolhas quando a simulação for iniciada (nesse caso, a posição das bolhas no dot plot).
+
+### Scrollytelling
+
+Usamos o [scrollama](https://github.com/russellgoldenberg/scrollama), do Russell. 
+
+## Referências / inspirações
 
 Tabelas como essa daqui:
 https://pudding.cool/2018/08/wiki-death/
@@ -135,7 +158,7 @@ Streamgraph para honras
 ![](streamgraph_hflip_shorter.svg)
 
 
-### Páginas relacionadas dentro do site
+## Páginas relacionadas dentro do site
 
 http://tesouro.gov.br/web/stn/portal-de-garantias-da-uniao
 
@@ -160,12 +183,12 @@ https://www.tesouro.fazenda.gov.br/pt/-/concessao-de-garantia-pela-uniao
 https://www.tesourotransparente.gov.br/visualizacao/painel-de-operacoes-de-credito
 
 
-### Evoluções
+## Evoluções
 
 Lista
-* mostrar na tabela as que foram honrados, e já fazer o gancho para a próxima parte.
+* mostrar na tabela as que foram honrados, e já fazer o gancho para a próxima parte. [ok]
 
-* fiz um teste, quais honras não aparecem na lista de contratos: Conta A, do Rio.
+* fiz um teste, quais honras não aparecem na lista de contratos: Conta A, do Rio. [ok]
 
 Honras
 
@@ -177,7 +200,7 @@ Honras
 Tooltip passando do limite no celular
 Explicações card. Explicar que o valor é o saldo em 31/12/2019. Que a tabela mostra o valor original.
 
-Explicitar que a pessoa pode clicar nas opções para visualizar o total / por tipo / rank.
+Explicitar que a pessoa pode clicar nas opções para visualizar o total / por tipo / rank?
 
 
 
