@@ -225,7 +225,7 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
       .attr("stroke-width", 0)
       .attr("fill", cor("Total"))
       .transition()    
-      .duration(500)
+      .duration(200)
       .attr("y", y(0))
       .attr("height", l_max);
 
@@ -238,7 +238,7 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
       .attr("y2", y_max)
       .attr("stroke", "transparent")
       .transition()
-      .duration(500)
+      .duration(200)
       .attr("stroke", "#333")
     
     // segmentos de barrinhas
@@ -252,7 +252,7 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
       .attr("fill", cor("Total"))
       .attr("opacity", 0)
       .transition()
-      .delay(500)
+      .delay(200)
       .attr("opacity", 1);
   }
 
@@ -263,7 +263,7 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
   const step_waterfall = function(tipo_divida, direction) {
     const bar_atual = d3.selectAll("rect.d3--endividamento").filter(d => d.tipo_divida == tipo_divida);
     //console.log("barra atual", bar_atual);
-    bar_atual.transition().duration(500)
+    bar_atual.transition().duration(200)
     .attr("x", d => direction == "down" ? d.x_1 : d.x_0)
     .attr("fill", direction == "down" ? cor("Destaque") : cor("Total"));
   }
@@ -274,13 +274,13 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
       //console.log("tô dentro do ramo direction=down")
       d3.selectAll("rect.d3--endividamento")
         .transition()
-        .duration(500)
+        .duration(200)
         .attr("fill", d => cor(d.Escopo));
     }
     else {
       d3.selectAll("rect.d3--endividamento")
         .transition()
-        .duration(500)
+        .duration(200)
         .attr("fill", cor("Destaque"));   
     }
   };
@@ -288,10 +288,10 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
   const step_separa = function(direction) {
     d3.selectAll("rect.d3--endividamento")
       .transition()
-      .duration(500)
+      .duration(200)
       .attr("x", d => direction == "down" ? d.x_2 : d.x_1)
       .transition()
-      .duration(500)
+      .duration(200)
       .attr("y", d => direction == "down" ? d.y_2 : d.y);
   };
 
@@ -321,14 +321,14 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
       .append("p")
       .text(dados_rotulo.valor);
 
-    div_rotulo.transition().duration(500).style("opacity", 1);
+    div_rotulo.transition().duration(200).style("opacity", 1);
   }
 
   const remove_rotulo = function(escopo, tipo_divida) {
     $container_endividamento
       .selectAll(".rotulos-"+escopo+tipo_divida)
       .transition()
-      .duration(500)
+      .duration(200)
       .style("opacity", 0)
       .remove();
   }
@@ -357,7 +357,7 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
       .style("text-align", "center")
       .style("opacity", 0)
       .transition()
-      .duration(500)
+      .duration(200)
       .style("opacity", 1);
   }
 
@@ -365,7 +365,7 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
     $container_endividamento
       .selectAll("p.rotulos-eixo-endiv")
       .transition()
-      .duration(500)
+      .duration(200)
       .style("opacity", 0)
       .remove();
   }
@@ -390,7 +390,7 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
         .style("text-align", d => d.Escopo == "Estados" ? "right" : "left")
         .style("opacity", 0)
         .transition()
-        .delay(550)
+        .delay(250)
         .duration(100)
         .style("opacity", 1);
     }
@@ -435,7 +435,7 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
             remove_rotulo("Total", "Divida_Total");
             $svg_endividamento.selectAll("*")
               .transition()
-              .duration(250)
+              .duration(200)
               .attr("opacity", 0)
               .remove();
           } 
@@ -467,7 +467,7 @@ d3.csv("../webpage/dados/dividas_totais.csv").then(function(dados) {
             remove_rotulos_eixo();
             $container_endividamento.selectAll("p")
             .transition()
-            .duration(250)
+            .duration(200)
             .attr("opacity", 0)
             .remove();
           }
