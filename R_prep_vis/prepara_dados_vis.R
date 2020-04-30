@@ -308,7 +308,7 @@ length(unique(honras_det$mutuario))
 
 ggplot(honras_det, aes(y = pos, x = data_mes)) + geom_point()
 
-honras_det %>% group_by(tipo_divida) %>% summarise(sum(valor))
+honras_det %>% group_by(mutuario) %>% summarise(sum(valor)) %>% arrange(desc(`sum(valor)`))
 
 View(honras_det %>% count(data_mes))
 

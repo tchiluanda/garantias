@@ -41,7 +41,7 @@ exportar <- exportar[1:825-757,] %>%
 
 ggplot(exportar, aes(x = x, y = y)) + geom_point()  + scale_y_reverse()
 jsonlite::write_json(exportar, "grid_honras.json")
-write.csv(exportar[1:950,], file = "webpage/dados/grid_honras.csv")
+write.csv(exportar, file = "webpage/dados/grid_honras.csv")
 
 ## experimentos
 
