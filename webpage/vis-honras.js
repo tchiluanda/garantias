@@ -163,7 +163,7 @@ Promise.all([
   const serie_mes  = gera_series_formato_stack(honras_agg, "mutuario_cat", "valor_mes",  lista_datas);
   const serie_qde =  gera_series_formato_stack(honras_agg, "mutuario_cat", "qde", lista_datas);
 
-  console.log(serie_qde)
+  //console.log(serie_qde)
 
   //console.log(lista_datas)
   //console.table(serie_acum);
@@ -378,7 +378,7 @@ Promise.all([
   };
 
   // totais por ano
-  console.log(honras_agg[0])
+  //console.log(honras_agg[0])
   const honras_tot = honras_agg
     .filter(d => d.data_mes.substr(5,2) === "12" || d.data_mes === "2020-04-01") // inclui data na mão para abril
     .map(d => ({"ano"   : d.data_mes.substr(0,4) === "2020" ? "2020(abr)" : d.data_mes.substr(0,4),
@@ -460,7 +460,7 @@ Promise.all([
   const honras_larg_barra = w_liq_honras/serie_mes.length;
 
   const honras_raio_inicial = honras_larg_barra * 0.75 / 2
-  console.log(honras_raio_inicial, "raio inicial")
+  //console.log(honras_raio_inicial, "raio inicial")
 
   // estou levando esse trecho pra dentro do step que
   // vai reiniciar a simulação, para tratar os casos em que
@@ -506,7 +506,7 @@ Promise.all([
         4.5/8,      4.5/8,   4.7/8,
         6.2/8,      6.2/8,   6.2/8, 6.4/8])
 
-  console.log("Pos estados", pos_estados)
+  //console.log("Pos estados", pos_estados)
 
   
   const pos_tipo_divida = honras_gera_subconjunto(

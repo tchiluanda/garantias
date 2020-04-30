@@ -41,7 +41,7 @@ const valor_formatado = function(x) {
 d3.timeFormatDefaultLocale(localeDataBrasil);
 
 const formataData = d3.timeFormat("%b %Y");
-console.log(formataData(new Date))
+//console.log(formataData(new Date))
 const formataData_Anos = d3.timeFormat("%Y");
 
 // para fazer um 
