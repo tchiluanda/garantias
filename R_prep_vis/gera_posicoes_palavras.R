@@ -2,7 +2,7 @@ library(tidyverse)
 library(readxl)
 library(jsonlite)
 
-grid <- read_excel("./R_prep_vis/grid_letras.xlsx", sheet = "export_honras3")
+grid <- read_excel("./R_prep_vis/grid_letras.xlsx", sheet = "export_honras_2")
 
 new_grid <- as.data.frame(grid[,-1])
 
@@ -41,7 +41,7 @@ exportar <- exportar[1:825-757,] %>%
 
 ggplot(exportar, aes(x = x, y = y)) + geom_point()  + scale_y_reverse()
 jsonlite::write_json(exportar, "grid_honras.json")
-write.csv(exportar, file = "grid_honras.csv")
+write.csv(exportar[1:950,], file = "webpage/dados/grid_honras.csv")
 
 ## experimentos
 
