@@ -53,7 +53,7 @@ const group_by_sum = function(objeto, coluna_categoria, coluna_valor, ordena_dec
   const resultado = []; 
   const categorias_unicas = d3.map(objeto, d => d[coluna_categoria]).keys();
   for (cat of categorias_unicas) {
-    const subtotal_categoria = d3.sum(objeto.filter(d => d[coluna_categoria] === cat), d => d[coluna_valor]);
+    const subtotal_categoria = d3.sum(objeto.filter(d => d[coluna_categoria] === cat), d => +d[coluna_valor]);
     resultado.push({"categoria" : cat,
                     "subtotal"  : subtotal_categoria});   
   }
