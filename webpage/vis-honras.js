@@ -498,12 +498,14 @@ Promise.all([
     "estados",
     [1.5/4,   2.5/4,
        2/6,   0.95/2,   4/6,
-       2/6,   0.95/2,   4/6,
+       1.9/6,   1/2,   4.1/6,
        2/8, 3.5/8, 4.8/8, 6.5/8],
-    [  0.75/4,   0.75/4,
-       3/8,       3.2/8, 3.5/8,
-       4.5,         4.5,   4.5,
-       6/8,         6/8,   6/8, 6.2/8])
+    [  0.75/4,     0.75/4,
+        2.7/8,      2.9/8,   3.3/8,
+        4.5/8,      4.5/8,   4.7/8,
+        6.2/8,      6.2/8,   6.2/8, 6.4/8])
+
+  console.log("Pos estados", pos_estados)
 
   
   const pos_tipo_divida = honras_gera_subconjunto(
@@ -515,10 +517,10 @@ Promise.all([
     "credor_cat",
     [1/2, 1/4, 3/4,
      1.5/4, 2.5/4,
-     1.5/4, 2.5/4],
+     1.4/4, 2.5/4],
     [1/4, 1/4, 1/4,
-     1/2, 1/2,
-     2.8/4, 2.8/4]);
+     1.05/2, 1.05/2,
+     2.9/4, 2.9/4]);
 
   //console.log(group_by_sum(honras_det, "credor_cat", "valor", true));
 
@@ -673,7 +675,7 @@ Promise.all([
   // interna e externa
 
   let pos_labels_tipos_x = [
-    1.5/4, 3/4
+    1.4/4, 2.8/4
   ]
 
   const honras_label_tipo_divida = $container_honras
@@ -684,7 +686,7 @@ Promise.all([
     .classed("subtotais-tipo", true)
     .style("opacity", 0)
     .style("left", (d,i) => pos_labels_tipos_x[i]*w_honras - largura_labels/2 + "px")
-    .style("top", d => pos_tipo_divida[d].y + h_honras/3 - ajuste_mobile + "px")
+    .style("top", d => pos_tipo_divida[d].y + h_honras/3.5 - ajuste_mobile + "px")
     .style("width", `${largura_labels}px`)
     .classed("subtotais", true);
 
@@ -700,9 +702,9 @@ Promise.all([
   // por estados
 
   let pos_labels_estados_y = [
-    0.30, 0.30,
-    0.56, 0.56, 0.56,
-    0.7 ,  0.7, 0,7,
+    0.33, 0.33,
+     0.53,  0.53, 0.53,
+     0.71,  0.71, 0.71,
     0.9 ,  0.9, 0.9 , 0.9
   ];
 
@@ -1334,8 +1336,8 @@ Promise.all([
       desaparece(honras_label_tipo_divida, false);
     }
 
-    simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(centro_bolhas_honras.x));
-    simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(centro_bolhas_honras.y));
+    simulacao.force('x', d3.forceX().strength(magnitudeForca*1.4).x(centro_bolhas_honras.x));
+    simulacao.force('y', d3.forceY().strength(magnitudeForca*1.4).y(centro_bolhas_honras.y));
     // reset alpha, reinicia simulação
     simulacao.alpha(1).restart();
   
@@ -1345,8 +1347,8 @@ Promise.all([
 
   function desenha_step9(direcao) {
     // por tipo  
-    simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_tipo_divida[d.tipo_divida].x));
-    simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(centro_bolhas_honras.y));
+    simulacao.force('x', d3.forceX().strength(magnitudeForca*1.4).x(d => pos_tipo_divida[d.tipo_divida].x));
+    simulacao.force('y', d3.forceY().strength(magnitudeForca*1.4).y(centro_bolhas_honras.y));
   
     // se não dá esse restart, as bolhas não se movem
     // com "vontade"
@@ -1366,7 +1368,7 @@ Promise.all([
     // por estado
 
     
-    simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_estados[d.estados].x));
+    simulacao.force('x', d3.forceX().strength(magnitudeForca*1.4).x(d => pos_estados[d.estados].x));
     simulacao.force('y', d3.forceY().strength(d => d.estados == "Rio de Janeiro" ? magnitudeForca*3 : magnitudeForca*1.5).y(d => pos_estados[d.estados].y));
   
     // se não dá esse restart, as bolhas não se movem
@@ -1383,8 +1385,8 @@ Promise.all([
   function desenha_step11(direcao) {
     if (direcao == "down") {
     
-      simulacao.force('x', d3.forceX().strength(magnitudeForca*1.5).x(d => pos_credor_cat[d.credor_cat].x));
-      simulacao.force('y', d3.forceY().strength(magnitudeForca*1.5).y(d => pos_credor_cat[d.credor_cat].y));
+      simulacao.force('x', d3.forceX().strength(magnitudeForca*1.4).x(d => pos_credor_cat[d.credor_cat].x));
+      simulacao.force('y', d3.forceY().strength(magnitudeForca*1.4).y(d => pos_credor_cat[d.credor_cat].y));
     
       // se não dá esse restart, as bolhas não se movem
       // com "vontade"
