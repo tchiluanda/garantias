@@ -161,7 +161,9 @@ Promise.all([
 
   const serie_acum = gera_series_formato_stack(honras_agg, "mutuario_cat", "valor_acum", lista_datas);
   const serie_mes  = gera_series_formato_stack(honras_agg, "mutuario_cat", "valor_mes",  lista_datas);
-  const serie_qde = gera_series_formato_stack(honras_agg, "mutuario_cat", "qde", lista_datas);
+  const serie_qde =  gera_series_formato_stack(honras_agg, "mutuario_cat", "qde", lista_datas);
+
+  console.log(serie_qde)
 
   //console.log(lista_datas)
   //console.table(serie_acum);
@@ -219,29 +221,28 @@ Promise.all([
 
   //// y - valores
   
+  //console.log(honras_agg.columns)
+
   function obtem_maximo_serie(serie) {
-    const lista_maximos = [];
-    for (cat of categorias) {
-      const maximo_coluna = d3.max(serie, d => d[cat]);
-      lista_maximos.push(maximo_coluna);
-    }
-    return d3.sum(lista_maximos);  
+    const total_serie_por_data = group_by_sum(honras_agg, "data_mes", serie)
+    return d3.max(total_serie_por_data, d => d.subtotal)
   }
 
+  //console.log("Maximo", obtem_maximo_serie("qde"))
 
   const range_y = [h_honras - margin_honras.bottom, margin_honras.top];
 
   const y_acu = d3.scaleLinear()
                   .range(range_y)
-                  .domain([0, obtem_maximo_serie(serie_acum)]);
+                  .domain([0, obtem_maximo_serie("valor_acum")]);
 
   const y_mens = d3.scaleLinear()
                    .range(range_y)
-                   .domain([0, obtem_maximo_serie(serie_mes)]);
+                   .domain([0, obtem_maximo_serie("valor_mes")]);
 
   const y_qde  = d3.scaleLinear()
                    .range(range_y)
-                   .domain([0, obtem_maximo_serie(serie_qde)]);                   
+                   .domain([0, obtem_maximo_serie("qde")]);                   
 
   // grid
   const max_grid_y = d3.max(grid, d => +d.y);
@@ -287,7 +288,7 @@ Promise.all([
 
 
   const r_honras = d3.scaleSqrt()
-    .range([2, (w_liq_honras*2/3)/15])  // 45
+    .range([2, (w_liq_honras*2/3)/18])  // 45
     .domain([0, maior_honra]);
 
   const soma_areas =
@@ -497,10 +498,12 @@ Promise.all([
     "estados",
     [1.5/4,   2.5/4,
        2/6,   0.95/2,   4/6,
+       2/6,   0.95/2,   4/6,
        2/8, 3.5/8, 4.8/8, 6.5/8],
-    [  1/4,   1/4,
-     3.5/8, 3.7/8, 4/8,
-       6/8,   6/8,   6/8, 6.2/8])
+    [  0.75/4,   0.75/4,
+       3/8,       3.2/8, 3.5/8,
+       4.5,         4.5,   4.5,
+       6/8,         6/8,   6/8, 6.2/8])
 
   
   const pos_tipo_divida = honras_gera_subconjunto(
@@ -518,14 +521,6 @@ Promise.all([
      2.8/4, 2.8/4]);
 
   //console.log(group_by_sum(honras_det, "credor_cat", "valor", true));
-
-
-
-
-
-
-
-
 
   ///////////// cria os elementos visuais
    
@@ -705,13 +700,15 @@ Promise.all([
   // por estados
 
   let pos_labels_estados_y = [
-    0.40, 0.40,
-    0.66, 0.66, 0.66,
+    0.30, 0.30,
+    0.56, 0.56, 0.56,
+    0.7 ,  0.7, 0,7,
     0.9 ,  0.9, 0.9 , 0.9
   ];
 
   let pos_labels_estados_x = [
     0.35, 0.71,
+    0.29, 0.53, 0.74,
     0.29, 0.53, 0.74,
     0.21, 0.44, 0.63 , 0.86
   ];
