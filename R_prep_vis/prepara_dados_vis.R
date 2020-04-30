@@ -196,7 +196,7 @@ names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato",
                    "Honra Juros/Encargos (R$)", "Honra - Mora (R$)", "Honra - Total (R$)", 
                    "Ano Regularização", "Mês Regularização", "X24")
 
-honras_simples <- honras %>%
+honras_simples_pre <- honras %>%
   select(data = `Data de Vencimento`,
          tipo_divida = `Tipo de Dívida`,
          `Credor`,
@@ -221,16 +221,21 @@ honras_simples <- honras %>%
              ",", "\\.")))
           
 # consultas on the fly
-honras_simples %>% filter(mutuario == "Rio de Janeiro") %>% group_by(mes_ano) %>% count()
-honras_simples %>% group_by(mutuario) %>% summarise(v = sum(valor)) %>% arrange(desc(v)) %>%
+honras_simples_pre %>% filter(mutuario == "Rio de Janeiro") %>% group_by(mes_ano) %>% count()
+honras_simples_pre %>% group_by(mutuario) %>% summarise(v = sum(valor)) %>% arrange(desc(v)) %>%
   ggplot(aes(x = v, y = reorder(mutuario, v))) + geom_col()
 
-honras_simples %>% 
+top_11_mutuarios <- honras_simples_pre %>% 
   group_by(mutuario) %>% 
   summarise(v = sum(valor)) %>% 
   arrange(desc(v)) %>%
-  filter(rank(-v)>11) %>%
-  group_by() %>% summarise(sum(v))
+  filter(rank(-v)<=11) %>%
+  pull(mutuario)
+
+honras_simples <- honras_simples_pre %>%
+  mutate(estados = if_else(mutuario %in% top_11_mutuarios,
+                           mutuario,
+                           "Demais"))
 
 # contagem e posições
 contagem_honras_avancado <- honras_simples %>%
@@ -249,24 +254,27 @@ contagem_honras_avancado <- honras_simples %>%
 
 # não precisa disso. mas preciso dos top estados/municipios para criar um "demais",
 # e recriar a variável "estado".
-rank_honras_cat <- contagem_honras_avancado %>%
-  group_by(credor_cat) %>%
-  summarise(soma_credor_cat = sum(valor)) %>%
-  ungroup() %>%
-  mutate(rank_credor_cat = rank(-soma_credor_cat))
+# rank_honras_cat <- contagem_honras_avancado %>%
+#   group_by(credor_cat) %>%
+#   summarise(soma_credor_cat = sum(valor)) %>%
+#   ungroup() %>%
+#   mutate(rank_credor_cat = rank(-soma_credor_cat))
+# 
+# rank_honras_tip <- contagem_honras_avancado %>%
+#   group_by(tipo_divida) %>%
+#   summarise(soma_credor_tip = sum(valor)) %>%
+#   ungroup() %>%
+#   mutate(rank_credor_tip = rank(-soma_credor_tip)) 
 
-rank_honras_tip <- contagem_honras_avancado %>%
-  group_by(tipo_divida) %>%
-  summarise(soma_credor_tip = sum(valor)) %>%
-  ungroup() %>%
-  mutate(rank_credor_tip = rank(-soma_credor_tip)) 
+# honras_det <- contagem_honras_avancado %>%
+#   left_join(rank_honras_cat) %>%
+#   left_join(rank_honras_tip)
 
-honras_det <- contagem_honras_avancado %>%
-  left_join(rank_honras_cat) %>%
-  left_join(rank_honras_tip)
+honras_det <- contagem_honras_avancado
 
-honras_det %>% group_by(Credor) %>% summarise(soma = sum(valor), qde = n()) %>% arrange(desc(soma))
+honras_det %>% group_by(estados) %>% summarise(soma = sum(valor), qde = n()) %>% arrange(desc(soma))
 
+sum(honras_det$valor[honras_det$mutuario=="Rio de Janeiro"]) / sum(honras_det$valor)
 ## para streamgraph
 
 honras_agg <- contagem_honras_avancado %>%
@@ -292,6 +300,15 @@ honras_agg <- contagem_honras_avancado %>%
 
 write.csv(honras_det, file = "webpage/dados/dados_honras_det.csv", fileEncoding = "UTF-8")
 write.csv(honras_agg, file = "webpage/dados/dados_honras_agg.csv", fileEncoding = "UTF-8")
+
+#verificacoes
+
+sum(honras_det$valor[honras_det$mutuario=="Rio de Janeiro"]) / sum(honras_det$valor)
+length(unique(honras_det$mutuario))
+
+ggplot(honras_det, aes(y = pos, x = data_mes)) + geom_point()
+
+View(honras_det %>% count(data_mes))
 
 ## prototipos de plots
 
