@@ -1,14 +1,15 @@
 Relatório de Honras e Atrasos
-Data de Emissão: 29/04/2020 10:46
+Data de Emissão: 30/04/2020 11:35
 Tipo de Dívida: Interna - Externa
 Selecionar mutuário(s) por: Não Informado
 Credor(es): Não Informado
 Selecionar operação de crédito por: Não Informado
 Status Atraso: Honra de Aval
 Data Regularização Inicial: 01/01/2016
-Data Regularização Final: 28/04/2020
+Data Regularização Final: 30/04/2020
 
 Data de Vencimento;Tipo de Dívida;Nome do Contrato;Credor;Classificação do Credor;Mutuário;Tipo de Mutuário;Processo PGFN;Status;Data Limite da União;Data Regularização do Atraso;Moeda de Origem;Total no Vencimento (Moeda de Origem);Honra - Principal (Moeda de Origem);Honra - Juros/Encargos (Moeda de Origem);Honra - Mora (Moeda de Origem);Honra - Total (Moeda de Origem);Honra - Principal (R$);Honra Juros/Encargos (R$);Honra - Mora (R$);Honra - Total (R$);Ano Regularização;Mês Regularização;
+27/04/2020;Interna;CAIXA - 20120842;Caixa Econômica Federal;Bancos Federais;Rio de Janeiro;Estados;17944.001300/2012-09;Honra de Aval;11/05/2020;30/04/2020;Real;13.283.333,60;5.730.751,34;8.065.554,75;28.933,89;13.825.239,98;5.730.751,34;8.065.554,75;28.933,89;13.825.239,98;2020;Abril;
 15/04/2020;Externa;BID1990/OC-BR;BID;Organismos Multilaterais;Belford Roxo;Municípios;17944.001463/2007-16;Honra de Aval;15/05/2020;28/04/2020;Dólar;356.770,90;253.184,96;103.585,94;0,00;356.770,90;1.412.772,08;578.009,55;0,00;1.990.781,63;2020;Abril;
 15/04/2020;Externa;BID2841/OC-BR;BID;Organismos Multilaterais;Bahia;Estados;17944.001253/2012-95;Honra de Aval;15/05/2020;28/04/2020;Dólar;21.080.987,61;13.050.000,00;8.030.987,61;0,00;21.080.987,61;72.943.400,00;44.855.334,81;0,00;117.798.734,81;2020;Abril;
 15/04/2020;Interna;BNDES - 2012794;Banco Nacional de Desenvolvimento Econômico e Social;Bancos Federais;Piauí;Estados;17944.001364/2012-00;Honra de Aval;04/05/2020;28/04/2020;Real;7.751.829,41;0,00;7.751.829,41;664.103,88;8.415.933,29;0,00;7.751.829,41;664.103,88;8.415.933,29;2020;Abril;
