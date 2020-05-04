@@ -603,7 +603,8 @@ Promise.all([
       .style("color", "firebrick")
       .style("text-align", "right")
       .style("right", d => (w_honras - x(new Date(d.categoria == "2020(abr)" ? "2020-04-01" : d.categoria + "-12-01")) + 7) + "px")
-      .style("bottom", d => h_honras - y_acu(d.subtotal) + "px")
+      //.style("bottom", d => h_honras - y_acu(d.subtotal) + "px") // troquei pq ele bagunçava a posição qdo a barra some no mobile.
+      .style("top", d => y_acu(d.subtotal) - 0.7*16*2.5 + "px") // que conta é essa? o tamanho da fonte é 0.7rem, fonte base 16px, lineheight 1.5. são duas linhas.
       .html(d => '<strong style="font-style: normal">'+d.categoria+"</strong></br>" + valor_formatado(d.subtotal))
       .style("opacity", 0);
 
@@ -742,7 +743,7 @@ Promise.all([
   let pos_labels_credores_y = [
     0.39, 0.39, 0.39,
     0.68, 0.68,
-    0.9 ,  0.9
+    0.92 ,  0.92
   ];
 
   let pos_labels_credores_x = [
