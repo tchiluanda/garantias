@@ -214,6 +214,7 @@ honras_simples_pre <- honras %>%
            mutuario == "Rio de Janeiro" ~ "Estado do Rio de Janeiro",
            mutuario == "Minas Gerais" ~ "Minas Gerais",
            TRUE ~ "Demais entes"),
+         Credor = ifelse(str_detect(Credor, "Credit Suisse"), "Credit Suisse", Credor),
          #estados = if_else(tipo_mutuario == "Municípios", "Municípios", mutuario),
          valor = as.numeric(
            str_replace(
@@ -232,17 +233,27 @@ top_11_mutuarios <- honras_simples_pre %>%
   filter(rank(-v)<=11) %>%
   pull(mutuario)
 
+top_6_credores <- honras_simples_pre %>% 
+  group_by(Credor) %>% 
+  summarise(v = sum(valor)) %>% 
+  arrange(desc(v)) %>%
+  filter(rank(-v)<=6) %>%
+  pull(Credor)
+
 honras_simples <- honras_simples_pre %>%
   mutate(estados = if_else(mutuario %in% top_11_mutuarios,
                            mutuario,
-                           "Demais"))
+                           "Demais"),
+         credor_cat = if_else(Credor %in% top_6_credores,
+                              Credor,
+                              "Demais credores"))
 
 # contagem e posições
 contagem_honras_avancado <- honras_simples %>%
   group_by(Credor) %>%
   mutate(qde_credor = n()) %>%
   ungroup() %>%
-  mutate(credor_cat = ifelse(qde_credor < 20, "Demais credores", Credor)) %>%
+  #mutate(credor_cat = ifelse(qde_credor < 20, "Demais credores", Credor)) %>%
   #arrange(mes_ano, desc(mutuario_cat)) %>%
   arrange(mes_ano, match(mutuario_cat, c("Estado do Rio de Janeiro", "Minas Gerais", "Demais entes"))) %>%
   mutate(data_mes = as.Date(paste(str_sub(mes_ano, 1, 4),
@@ -293,7 +304,6 @@ honras_agg <- contagem_honras_avancado %>%
 
 #(1): faço essa combinação de gathers e spread para "preencher" os valores
 #     de todas as categorias para todos os meses.
-
 
 
 ## exporta
