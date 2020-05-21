@@ -116,7 +116,7 @@ function draw_grafico_card(dados_selecionados) {
     .duration(750)
     .attr('x', margin.left)
     .attr('y', d => escala_rotulos(d.rotulo))
-    .attr('width', d => escala_valor(d.valor))
+    .attr('width', d => d.valor == 0 ? 0 : escala_valor(d.valor))
     .attr('fill', cor_grupo);
   
   //console.log("rotulos", periodos_maturacao["rotulos"]);
@@ -142,7 +142,7 @@ function draw_grafico_card(dados_selecionados) {
     .transition()
     .duration(750)
     .style("color", cor_grupo)
-    .style("left", d => (escala_valor(d.valor) + 10 + margin.left) + "px");
+    .style("left", d => ((d.valor == 0 ? 0 : escala_valor(d.valor)) + 10 + margin.left) + "px");
 
   // rotulos y
 
@@ -216,7 +216,7 @@ function monta_tabela_projetos(dados_selecionados) {
       // no data binding logo adiante.
 
 
-    console.log("Dados aninhados", dados_aninhados);
+    //console.log("Dados aninhados", dados_aninhados);
 
     // espero que ninguém além de um futuro eu esteja
     // lendo, mas fiquei orgulhoso dessa minha
@@ -241,7 +241,7 @@ function monta_tabela_projetos(dados_selecionados) {
       .selectAll("tr")
       .data(dados_aninhados, d => d.id_projeto);
 
-    console.log("tab_projetos", tab_projetos)
+    //console.log("tab_projetos", tab_projetos)
 
     const tab_projetos_enter = tab_projetos
       .enter()
@@ -260,7 +260,7 @@ function monta_tabela_projetos(dados_selecionados) {
       
     tab_projetos = tab_projetos.merge(tab_projetos_enter);
 
-    console.log(tab_projetos);
+    //console.log(tab_projetos);
 
   }
 
@@ -279,8 +279,10 @@ Promise.all([
   const dados = files[0];
   const projetos = files[1];
 
-  console.log(projetos.columns, projetos[0]);
-    //console.table(dados);
+ // console.log("Colunas", dados.columns)
+
+  //console.log(projetos.columns, projetos[0]);
+    ///console.table(dados);
     //console.log(Object.keys(dados[0]));
     //console.log(d3.keys(dados[0]));
     //console.log(d3.map(dados, d => d.Classificador).keys());
@@ -298,7 +300,7 @@ Promise.all([
                 }))
       .filter((v, i, a) => a.indexOf(v) === i);
 
-    //console.table(entidades_classificadores);
+    //console.table("hi", classificadores);
 
     // popular os <select>
 
@@ -379,7 +381,7 @@ Promise.all([
 
         const projetos_filtrados = projetos.filter(d => d.Classificador + d.Inicio == valor_selecionado);
         
-        console.table(projetos_filtrados);
+        //console.table(projetos_filtrados);
 
         monta_tabela_projetos(projetos_filtrados);
 
