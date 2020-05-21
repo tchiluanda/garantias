@@ -107,7 +107,11 @@ quadro <- quadro_pre %>%
          Classificador = ifelse(Classificador == "Entidades Estaduais Controladas",
                                 "Entidades Controladas",
                                 Classificador))  %>%
-  arrange(Classificador, Inicio)
+  arrange(Classificador, Inicio) %>%
+  mutate_if(is.numeric, ~replace(., is.na(.), 0)) %>%
+  mutate_if(is.character, ~replace(., is.na(.), 0))
+
+quadro %>% filter_all(any_vars(is.na(.)))
 
 write.csv(quadro, file = "webpage/dados/dados_quadro.csv", fileEncoding = "UTF-8")
 
