@@ -4,7 +4,7 @@ runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     navbar:
-      - { title: "Data: 31/12/2019",icon: ion-ios-calendar-outline, href: "https://www.tesourotransparente.gov.br/" ,align: right }
+      - { title: "Data: 30/04/2020",icon: ion-ios-calendar-outline, href: "http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas" ,align: right }
     orientation: columns
     vertical_layout: fill
     
@@ -96,7 +96,7 @@ library(dplyr)
 library(kableExtra)
 library(DT)
 
-load("Garantias_dez_2019.Rdata")
+load("Garantias_abr_2020.Rdata")
 
 funcao_formata_quantidade <- function(x){
   paste0(format(round(x/1000000, 2), big.mark = ".", decimal.mark = ","))
@@ -261,17 +261,17 @@ fluidPage(
   
   
       br(),
- column(width=1,align="left",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
-  column(width=5,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
+ 
+  column(width=6,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
   
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_cambial_geral"))),
   
      
    br(),
-  column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
+  
  
-  column(width=4,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais:")),
+  column(width=5,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais   :")),
   column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_demais_geral"))),
@@ -294,7 +294,8 @@ fluidPage(
   column(width=4,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","R$ Milhões")),
   br(),
   
-  column(width=3,align="left",div(style = "height:17px;background-color: ;","Até 12 meses")),
+  column(width=3,align="left",div(style = "height:17px;background-color: ;","12 meses")),
+  
   column(width=6,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_percentual_geral"))),
          
   column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_geral"))),
@@ -551,7 +552,7 @@ cores_gera_total_entidades_controladas<-reactive({ifelse("Total"== cor_reativo_g
 
 fluidPage(
 fluidRow(
-  br(), 
+  
   column(11,div(style = "font-size: 12pt;font-weight: bold; font-family: monospace;","TOTAL"),div(style = "font-size: 10pt;font-weight: bold;",textOutput("nominal_garantia")) ,plotlyOutput("barras_total")),
   
   br(), br(),br(), br(),br(), br(),br(), br(),br(), br(),br(), br(),
@@ -1013,7 +1014,7 @@ output$barras_total_atm <- renderPlotly({
   
       ) %>%
   
-  layout(height = 200, 
+  layout(height = 190, 
          showlegend =FALSE,
          
          xaxis = list(title = "",
@@ -1063,7 +1064,7 @@ output$barras_total_atm_interna <- renderPlotly({
       ) %>%
     
   
-  layout(height = 200, 
+  layout(height = 190, 
          showlegend =FALSE,
          
          xaxis = list(title = "",
@@ -1109,7 +1110,7 @@ output$barras_total_atm_externa <- renderPlotly({
       ) %>%
     
   
-  layout(height = 200, 
+  layout(height = 190, 
          showlegend =FALSE,
          
          xaxis = list(title = "",
@@ -1282,7 +1283,7 @@ output$barras_total_custo <- renderPlotly({
   
       ) %>%
   
-  layout(height = 200, 
+  layout(height = 190, 
          showlegend =FALSE,
          
          xaxis = list(title = "",
@@ -1332,7 +1333,7 @@ output$barras_total_custo_interna <- renderPlotly({
       ) %>%
     
   
-  layout(height = 200, 
+  layout(height = 190, 
          showlegend =FALSE,
          
          xaxis = list(title = "",
@@ -1378,7 +1379,7 @@ output$barras_total_custo_externa <- renderPlotly({
       ) %>%
     
   
-  layout(height = 200, 
+  layout(height = 190, 
          showlegend =FALSE,
          
          xaxis = list(title = "",
@@ -1493,14 +1494,14 @@ cores_gera_total_entidades_controladas_cambial<-reactive({ifelse("Total"== cor_r
 
 fluidPage(
 fluidRow(
-  br(), 
+  
   column(11,div(style = "font-size: 11pt;font-weight: bold; font-family: monospace;",textOutput("texto_garantia_cambiais")),div(style = "font-size: 10pt;font-weight: bold;",textOutput("nominal_garantia_cambiais")) ,plotlyOutput("barras_total_cambial")),
   
   br(), br(),br(), br(),br(), br(),br(), br(),br(), br(),br(), br(),
   
   column(11,div(style = "font-size: 11pt; font-family: monospace;","OPERAÇÕES INTERNAS CAMBIAIS"),div(style = "font-size: 10pt;",textOutput("nominal_garantia_interna_cambiais")) ,plotlyOutput("barras_total_interna_cambial")),
   
-  br(),br(),br(), br(),br(), br(),br(), br(),br(), br(),br(), br(),
+  br(),br(),br(), br(),br(), br(),br(), br(),br(), br(),br(), 
   
   column(11,div(style = "font-size: 11pt; font-family: monospace;","OPERAÇÕES EXTERNAS"),div(style = "font-size: 10pt;",textOutput("nominal_garantia_externa_cambiais")),plotlyOutput("barras_total_externa_cambial"))
   
@@ -2012,17 +2013,17 @@ fluidPage(
   column(width=3,align="right",div(style = "height:17px;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_2"))),
   
       br(),
- column(width=1,align="left",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
-  column(width=5,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
+ 
+  column(width=6,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
   
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_cambial_2"))),
   
      
    br(),
-  column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
+  
  
-  column(width=4,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais:")),
+  column(width=5,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais   :")),
   column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_demais_2"))),
@@ -2045,7 +2046,7 @@ fluidPage(
   column(width=4,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","R$ Milhões")),
   br(),
   
-  column(width=3,align="left",div(style = "height:17px;background-color: ;","Até 12 meses")),
+  column(width=3,align="left",div(style = "height:17px;background-color: ;","12 meses")),
   column(width=6,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_percentual"))),
          
   column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses"))),
@@ -2294,7 +2295,7 @@ output$divida_total_estados <-renderPlotly(
                  
                  ) %>%
       
-      layout(showlegend=TRUE, width = 880, height = 650 ,
+      layout(showlegend=TRUE, 
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -2314,8 +2315,8 @@ output$divida_total_estados <-renderPlotly(
 
 ```
 
-> Fonte:
-<br>Nota: Todos os 26 estados mais o Distrito Federal possuem operações garantidas pela União. 
+> **Fonte:**  [Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+<br>**Nota:** Todos os 26 estados mais o Distrito Federal possuem operações garantidas pela União. 
 
 
 
@@ -2360,7 +2361,7 @@ output$ATM <-renderPlotly(
      
     
       
-      layout(showlegend=TRUE, width = 870, height = 650 ,
+      layout(showlegend=TRUE, 
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -2378,7 +2379,7 @@ output$ATM <-renderPlotly(
 )
 ```
 
-> Fonte:
+> **Fonte:** [Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 ### Custo Médio
 
@@ -2422,7 +2423,7 @@ output$custos_estados <-renderPlotly(
                 
     
       
-      layout(showlegend=TRUE, width = 870, height = 650 ,
+      layout(showlegend=TRUE, 
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -2445,7 +2446,7 @@ output$custos_estados <-renderPlotly(
 )
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 
 ### Operações Garantidas Cambiais
@@ -2485,7 +2486,7 @@ output$cambial_estados <-renderPlotly(
                 
     
       
-      layout(autosize = F  ,width = 870, height = 650 ,legend = list(orientation = 'h', x = 0.8, y = 1.2,
+      layout( legend = list(orientation = 'h', x = 0.8, y = 1.2,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
                            bgcolor = 'transparent'),
@@ -2507,8 +2508,8 @@ output$cambial_estados <-renderPlotly(
 )
 ```
 
-> Fonte: .
-  <br>Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
+> **Fonte:** [Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+  <br>**Nota:**Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
 
 
 
@@ -2609,17 +2610,17 @@ fluidPage(
   
   
       br(),
- column(width=1,align="left",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
-  column(width=5,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
+ 
+  column(width=6,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
   
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_cambial_municipios"))),
   
      
    br(),
-  column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
+  
  
-  column(width=4,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais:")),
+  column(width=5,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais   :")),
   column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_demais_municipios"))),
@@ -2642,7 +2643,7 @@ fluidPage(
   column(width=4,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","R$ Milhões")),
   br(),
   
-  column(width=3,align="left",div(style = "height:17px;background-color: ;","Até 12 meses")),
+  column(width=3,align="left",div(style = "height:17px;background-color: ;","12 meses")),
   column(width=6,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_percentual_municipios"))),
          
   column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_municipios"))),
@@ -2861,7 +2862,7 @@ output$divida_total_municipios <-renderPlotly(
                  
                  ) %>%
                 
-      layout(showlegend=TRUE, width = 950, height = 650 ,
+      layout(showlegend=TRUE ,
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -2882,7 +2883,7 @@ output$divida_total_municipios <-renderPlotly(
 
 ```
 
-> **Fonte:**
+> **Fonte:** [Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 <br>**Nota:**  `r nrow(agrupador_formatado_municipios)` municípios possuem operações de crédito garantidas pela União.No entanto, `r nrow(agrupador_formatado_municipios)-max(rank(-agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, seu saldo de operações garantidas é zero.
 
 
@@ -2932,7 +2933,7 @@ output$ATM_municipios <-renderPlotly(
       
   ) %>%
     
-      layout(showlegend=TRUE, width = 950, height = 650 ,
+      layout(showlegend=TRUE, 
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -2951,7 +2952,7 @@ output$ATM_municipios <-renderPlotly(
 )
 ```
 
-> **Fonte:**
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 <br>**Nota:** `r nrow(agrupador_formatado_municipios)-max(rank(-agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, suas respectivos vidas médias (ATM) são iguais a zero.
 
 
@@ -2999,7 +3000,7 @@ output$custos_municipios <-renderPlotly(
       
   ) %>%
     
-      layout(showlegend=TRUE, width = 950, height = 650 ,
+      layout(showlegend=TRUE,
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -3017,7 +3018,7 @@ output$custos_municipios <-renderPlotly(
 )
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 <br>**Nota:** `r nrow(agrupador_formatado_municipios)-max(rank(-agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, seus respectivos custos são iguais a zero. 
 
 
@@ -3058,7 +3059,7 @@ output$cambial_municipios <-renderPlotly(
                 
     hide_colorbar() %>%
       
-      layout(autosize = F  ,width = 900, height = 650 ,legend = list(orientation = 'h', x = 0.8, y = 1.2,
+      layout(autosize = T   ,legend = list(orientation = 'h', x = 0.8, y = 1.2,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
                            bgcolor = 'transparent'),
@@ -3080,8 +3081,8 @@ output$cambial_municipios <-renderPlotly(
 )
 ```
 
-> Fonte: .
-  <br>Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
+> **Fonte:** [Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+  <br>**Nota:** Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
 
 
 
@@ -3177,17 +3178,17 @@ fluidPage(
   
   
       br(),
- column(width=1,align="left",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
-  column(width=5,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
+ 
+  column(width=6,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
   
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_cambial_bancos_federais"))),
   
      
    br(),
-  column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
+  
  
-  column(width=4,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais:")),
+  column(width=5,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais   :")),
   column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_demais_bancos_federais"))),
@@ -3210,7 +3211,7 @@ fluidPage(
   column(width=4,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","R$ Milhões")),
   br(),
   
-  column(width=3,align="left",div(style = "height:17px;background-color: ;","Até 12 meses")),
+  column(width=3,align="left",div(style = "height:17px;background-color: ;","12 meses")),
   column(width=6,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_percentual_bancos_federais"))),
          
   column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_bancos_federais"))),
@@ -3428,7 +3429,7 @@ output$divida_total_bancos_federais <-renderPlotly(
                  
                  ) %>%
       
-      layout(showlegend=TRUE, width = 880, height = 650 ,
+      layout(showlegend=TRUE,
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -3452,7 +3453,7 @@ output$divida_total_bancos_federais <-renderPlotly(
 
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 
 ### Vida Média - ATM
@@ -3497,7 +3498,7 @@ output$ATM_bancos_federais <-renderPlotly(
      
     
       
-      layout(showlegend=TRUE, width = 870, height = 650 ,
+      layout(showlegend=TRUE ,
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -3515,7 +3516,7 @@ output$ATM_bancos_federais <-renderPlotly(
 )
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 
 ### Custo Médio
@@ -3560,7 +3561,7 @@ output$custos_bancos_federais <-renderPlotly(
                 
     
       
-      layout(showlegend=TRUE, width = 870, height = 650 ,
+      layout(showlegend=TRUE, 
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -3583,7 +3584,7 @@ output$custos_bancos_federais <-renderPlotly(
 )
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 
 
@@ -3619,7 +3620,7 @@ output$cambial_bancos_federais <-renderPlotly(
                  
                  ) %>%
                 
-      layout(width = 870, height = 630 ,legend = list(orientation = 'h', x = 0.8, y = 1.2,
+      layout(legend = list(orientation = 'h', x = 0.8, y = 1.2,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
                            bgcolor = 'transparent'),
@@ -3643,8 +3644,8 @@ output$cambial_bancos_federais <-renderPlotly(
 
 
 
-> Fonte: .
-  <br>Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+  <br>**Nota:** Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
 
 Estatais Federais
 =======================================================================
@@ -3738,17 +3739,17 @@ fluidPage(
   
   
       br(),
- column(width=1,align="left",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
-  column(width=5,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
+ 
+  column(width=6,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
   
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_cambial_estatais_federais"))),
   
      
    br(),
-  column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
+  
  
-  column(width=4,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais:")),
+  column(width=5,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais   :")),
   column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_demais_estatais_federais"))),
@@ -3771,7 +3772,7 @@ fluidPage(
   column(width=4,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","R$ Milhões")),
   br(),
   
-  column(width=3,align="left",div(style = "height:17px;background-color: ;","Até 12 meses")),
+  column(width=3,align="left",div(style = "height:17px;background-color: ;","12 meses")),
   column(width=6,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_percentual_estatais_federais"))),
          
   column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_estatais_federais"))),
@@ -3987,7 +3988,7 @@ output$divida_total_estatais_federais <-renderPlotly(
                  
                  ) %>%
       
-      layout(showlegend=TRUE, width = 880, height = 650 ,
+      layout(showlegend=TRUE,
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -4011,7 +4012,7 @@ output$divida_total_estatais_federais <-renderPlotly(
 
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 
 ### Vida Média - ATM
@@ -4055,7 +4056,7 @@ output$ATM_estatais_federais <-renderPlotly(
      
     
       
-      layout(showlegend=TRUE, width = 870, height = 650 ,
+      layout(showlegend=TRUE ,
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -4073,7 +4074,7 @@ output$ATM_estatais_federais <-renderPlotly(
 )
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 ### Custo Médio
 ```{r custos_estatais_federais, warning=FALSE, message=FALSE  }
@@ -4117,7 +4118,7 @@ output$custos_estatais_federais <-renderPlotly(
                 
     
       
-      layout(showlegend=TRUE, width = 870, height = 650 ,
+      layout(showlegend=TRUE,
               legend = list(orientation = 'h', x = 0.6, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -4140,7 +4141,7 @@ output$custos_estatais_federais <-renderPlotly(
 )
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 
 ### Operações Garantidas Cambiais
@@ -4175,7 +4176,7 @@ output$cambial_estatais_federais <-renderPlotly(
                  
                  ) %>%
                 
-      layout(width = 870, height = 630 ,legend = list(orientation = 'h', x = 0.8, y = 1.2,
+      layout(legend = list(orientation = 'h', x = 0.8, y = 1.2,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
                            bgcolor = 'transparent'),
@@ -4199,8 +4200,8 @@ output$cambial_estatais_federais <-renderPlotly(
 
 
 
-> Fonte: .
-  <br>Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+  <br>**Nota:** Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
 
 
 
@@ -4296,17 +4297,17 @@ fluidPage(
   
   
       br(),
- column(width=1,align="left",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
-  column(width=5,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
+ 
+  column(width=6,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
   
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_cambial_entidades_estaduais"))),
   
      
    br(),
-  column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
+  
  
-  column(width=4,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais:")),
+  column(width=5,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais   :")),
   column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
  
   column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_demais_entidades_estaduais"))),
@@ -4329,7 +4330,7 @@ fluidPage(
   column(width=4,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","R$ Milhões")),
   br(),
   
-  column(width=3,align="left",div(style = "height:17px;background-color: ;","Até 12 meses")),
+  column(width=3,align="left",div(style = "height:17px;background-color: ;","12 meses")),
   column(width=6,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_percentual_entidades_estaduais"))),
          
   column(width=3,align="right",div(style = "height:17px;background-color: ;",textOutput("Garantia_12_meses_entidades_estaduais"))),
@@ -4548,7 +4549,7 @@ output$divida_total_entidades_estaduais <-renderPlotly(
                  
                  ) %>%
       
-      layout(showlegend=TRUE, width = 880, height = 650 ,
+      layout(showlegend=TRUE,
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -4572,7 +4573,7 @@ output$divida_total_entidades_estaduais <-renderPlotly(
 
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 
 ### Vida Média - ATM
@@ -4617,7 +4618,7 @@ output$ATM_entidades_estaduais <-renderPlotly(
      
     
       
-      layout(showlegend=TRUE, width = 870, height = 650 ,
+      layout(showlegend=TRUE ,
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -4635,7 +4636,7 @@ output$ATM_entidades_estaduais <-renderPlotly(
 )
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 ### Custo Médio
 ```{r custos_entidades_estaduais, warning=FALSE, message=FALSE  }
@@ -4679,7 +4680,7 @@ output$custos_entidades_estaduais <-renderPlotly(
                 
     
       
-      layout(showlegend=TRUE, width = 870, height = 650 ,
+      layout(showlegend=TRUE ,
               legend = list(orientation = 'h', x = 0.9, y = 1,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
@@ -4702,7 +4703,7 @@ output$custos_entidades_estaduais <-renderPlotly(
 )
 ```
 
-> Fonte:
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
 
 
 ### Operações Garantidas Cambiais
@@ -4737,7 +4738,7 @@ output$cambial_entidades_estaduais <-renderPlotly(
                  
                  ) %>%
                 
-      layout(width = 870, height = 630 ,legend = list(orientation = 'h', x = 0.8, y = 1.2,
+      layout(legend = list(orientation = 'h', x = 0.8, y = 1.2,
                            xanchor = 'center', yref = 'paper',
                            font = list(size = 14),
                            bgcolor = 'transparent'),
@@ -4761,8 +4762,8 @@ output$cambial_entidades_estaduais <-renderPlotly(
 
 
 
-> Fonte: .
-  <br>Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
+> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+  <br>**Nota:** Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
 
 
 
