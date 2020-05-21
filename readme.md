@@ -68,6 +68,7 @@ https://tchiluanda.github.io/garantias/dividas/
 
 Consome: 
 * [`R_prep_vis/Garantias_dez_2019.RData`](R_prep_vis/Garantias_dez_2019.RData) (gerado no processamento do painel de garantias).
+* [`Garantias_Dados/Abr2020/InfCadastrais 30abr2020.csv`](Garantias_Dados/Abr2020/InfCadastrais 30abr2020.csv).
 
 Produz:
 * [`webpage/dados/dados_vis_garantias.csv`](webpage/dados/dados_vis_garantias.csv), a ser consumido por [`webpage/visualizacao.js`](webpage/visualizacao.js), a visualização da Parte 1 (gráfico de bolhas).
@@ -78,7 +79,14 @@ Produz:
 
 * [`webpage/dados/contratos.csv`](webpage/dados/contratos.csv), a ser consumido por [`webpage/quadro.js`](webpage/quadro.js), a tabela da Parte 1.
 
+Consome: 
+
+* [`Garantias_Dados/Abr2020/Relatorio_honras_atrasos 30abr2020.csv`](Garantias_Dados/Abr2020/Relatorio_honras_atrasos 30abr2020.csv)
+
+Produz
+
 * [`webpage/dados/dados_honras_det.csv`](webpage/dados/dados_honras_det.csv) e [`webpage/dados/dados_honras_agg.csv`](webpage/dados/dados_honras_agg.csv), a ser consumido por [`webpage/vis-honras.js`](webpage/honras.js), a visualização da Parte 2.
+
 
 ### 2. `R_prep_vis/prep_dados_divida_total.R`
 
