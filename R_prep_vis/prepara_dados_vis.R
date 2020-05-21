@@ -9,7 +9,7 @@ library(padr)
 #extrafont::font_import()
 loadfonts()
 
-load("R_prep_vis/Garantias_dez_2019.Rdata")
+load("Garantias_abr_2020.Rdata")
 
 nomes_honras <- names(honras)
 
@@ -87,7 +87,7 @@ quadro <- list(
          Inicio != Classificador) %>%
   mutate(Custo_Total = as.character(Custo_Total)) %>%
   mutate_at(.vars = vars(ends_with("_percentual")), .funs = ~as.character(.)) %>%
-  mutate_if(is.factor, .funs = ~as.numeric(
+  mutate_if(is.character, .funs = ~as.numeric(
     str_replace(
       str_replace_all(
         as.character(.), "\\.", ""), ",", "\\."))) %>%
@@ -103,7 +103,7 @@ write.csv(quadro, file = "webpage/dados/dados_quadro.csv", fileEncoding = "UTF-8
 # contratos ---------------------------------------------------------------
 
 #lista_contratos <- novos_contratos %>% count(Mutuário)
-contratos <- read.csv2("Garantias_Dados/Dez2019/InfCadastrais 31dez2019.csv", 
+contratos <- read.csv2("Garantias_Dados/Abr2020/InfCadastrais 30abr2020.csv", 
                        skip = 10, stringsAsFactors = FALSE)
 
 # arq_contratos <- novos_contratos %>%  
@@ -184,7 +184,7 @@ lista_unica <- full_join(lista_garantias_mutuarios,
 
 # honras: dados para viz --------------------------------------------------
 
-honras <- read.csv2("./R_prep_vis/outros_dados/relatorio_honras_atrasos.csv",
+honras <- read.csv2("./Garantias_Dados/Abr2020/Relatorio_honras_atrasos 30abr2020.csv",
                     skip = 10, stringsAsFactors = FALSE)
 
 names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato", 
@@ -194,7 +194,7 @@ names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato",
                    "Honra - Juros/Encargos (Moeda de Origem)", "Honra - Mora (Moeda de Origem)", 
                    "Honra - Total (Moeda de Origem)", "Honra - Principal (R$)", 
                    "Honra Juros/Encargos (R$)", "Honra - Mora (R$)", "Honra - Total (R$)", 
-                   "Ano Regularização", "Mês Regularização", "X24")
+                   "Ano Regularização", "Mês Regularização")
 
 honras_simples_pre <- honras %>%
   select(data = `Data de Vencimento`,
