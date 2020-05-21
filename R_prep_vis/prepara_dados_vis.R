@@ -52,10 +52,12 @@ save(total_classificador, file = "./R_prep_vis/outros_dados/total_garantias_clas
 
 dados_vis %>% filter(rank_geral>=16) %>% group_by() %>% summarise(sum(valor))
 
+dados_vis %>% group_by() %>% summarise(sum(valor))
+
 
 # Dados Quadro ------------------------------------------------------------
 
-quadro <- list(
+quadro_pre <- list(
   
   agrupador_total %>%
     select(Inicio, Classificador, Periodo,
@@ -79,15 +81,25 @@ quadro <- list(
            De_2_3_anos, De_2_3_anos_percentual, 
            De_3_4_anos, De_3_4_anos_percentual, 
            De_4_5_anos, De_4_5_anos_percentual, 
-           Acima_5_anos, Acima_5_anos_percentual)) %>%
+           Acima_5_anos, Acima_5_anos_percentual)
+  ) %>%
   
-  reduce(full_join, by = c("Inicio", "Classificador", "Periodo")) %>%
+  reduce(full_join, by = c("Inicio", "Classificador", "Periodo")) 
+
+colunas_numericas <- c("total_total", "interna_cambial", 
+                       "interna_total", "externa_total", "ATM_Total", 
+                       "Ate_12_meses", "De_1_2_anos", "De_2_3_anos", "De_3_4_anos",  
+                       "De_4_5_anos", "Acima_5_anos")
+
+estah_na_lista <- function(coluna){enquo(coluna) %in% colunas_numericas}
+
+quadro <- quadro_pre %>%
   # juntamos todos, agora as limpezas
   filter(Periodo == max(Periodo),
          Inicio != Classificador) %>%
   mutate(Custo_Total = as.character(Custo_Total)) %>%
   mutate_at(.vars = vars(ends_with("_percentual")), .funs = ~as.character(.)) %>%
-  mutate_if(is.character, .funs = ~as.numeric(
+  mutate_at(vars(all_of(colunas_numericas)), .funs = ~as.numeric(
     str_replace(
       str_replace_all(
         as.character(.), "\\.", ""), ",", "\\."))) %>%
