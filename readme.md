@@ -163,7 +163,7 @@ Tutorial do Jim:
 https://vallandingham.me//bubble_charts_with_d3v4.html
 
 Streamgraph para honras
-![](streamgraph_hflip_shorter.svg)
+![](./outros/Imagens/streamgraph_hflip_shorter.svg)
 
 
 ## Páginas relacionadas dentro do site
