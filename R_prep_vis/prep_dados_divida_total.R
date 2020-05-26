@@ -4,7 +4,7 @@ library(readxl)
 
 
 exercicio_interesse_siconfi <- 2019
-periodo_interesse_coafi <- "Dez/2019"
+periodo_interesse_coafi <- "Mar/2020"
 
 # pega os dados divida total (siconfi) ------------------------------------
 
@@ -41,13 +41,17 @@ dc <- tabela_completa %>%
 
 # pega os dados divida com Uniao (Coafi) ----------------------------------
 
-div_uniao_bruto <- read_excel(paste0(caminho, "SALDOS_DEVEDORES_PROGRAMAS_FINANCIAMENTO_GOVERNO_FEDERAL_2020jan.xls"), skip = 5)
+div_uniao_bruto <- read_excel(paste0(caminho, "SALDOS_DEVEDORES_PROGRAMAS_FINANCIAMENTO_GOVERNO_FEDERAL_2020mar.xls"), skip = 5)
 
 div_uniao <- div_uniao_bruto %>%
   select(ATIVO, periodo_interesse_coafi) %>%
   filter(ATIVO == "Total") %>%
   rename(Divida_Uniao = periodo_interesse_coafi, 
          Escopo = ATIVO)
+
+div_uniao <- data.frame("Escopo" = c("Estados", "Municípios", "Total"),
+                        "Divida_Uniao" = c(594892771776.04, 31027155549.65, 625919927325.69))
+
 
 
 # pega os dados divida garantida ------------------------------------------
@@ -70,19 +74,21 @@ dividas <- dc %>%
   # isso tudo agora enquanto não temos os valores da Dívida União
   # aberto por Estados / Municípios... por enquanto estou alocando 
   # proporcionalmente
-  group_by() %>%
-  mutate(temp_total_Div = sum(Divida_Total)/2,
-         temp_percent_total = Divida_Total / temp_total_Div,
-         temp_total_DivUniao = sum(Divida_Uniao, na.rm = TRUE),
-         Divida_Uniao = if_else(is.na(Divida_Uniao), 
-                               temp_total_DivUniao * temp_percent_total,
-                               Divida_Uniao)) %>%
-  ungroup() %>%
+  # group_by() %>%
+  # mutate(temp_total_Div = sum(Divida_Total)/2,
+  #        temp_percent_total = Divida_Total / temp_total_Div,
+  #        temp_total_DivUniao = sum(Divida_Uniao, na.rm = TRUE),
+  #        Divida_Uniao = if_else(is.na(Divida_Uniao), 
+  #                              temp_total_DivUniao * temp_percent_total,
+  #                              Divida_Uniao)) %>%
+  # ungroup() %>%
   mutate(Divida_demais = Divida_Total - Divida_Uniao - Divida_Garantida) %>%
-  select(-starts_with("temp_")) %>%
-  filter(Escopo != "Total") %>%
-  gather(-Escopo, key = tipo_divida, value = valor) %>%
-  filter(tipo_divida != "Divida_Total")
+  # select(-starts_with("temp_")) %>%
+  # filter(Escopo != "Total") %>%
+  gather(-Escopo, key = tipo_divida, value = valor) # %>%
+  # filter(tipo_divida != "Divida_Total")
+
+write.csv(dividas, file = "webpage/dados/dividas_totais.csv", fileEncoding = "UTF-8")
 
 
 # prototipinho da visualizacao --------------------------------------------
