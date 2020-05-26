@@ -119,7 +119,7 @@ write.csv(quadro, file = "webpage/dados/dados_quadro.csv", fileEncoding = "UTF-8
 # contratos ---------------------------------------------------------------
 
 #lista_contratos <- novos_contratos %>% count(Mutuário)
-contratos <- read.csv2("Garantias_Dados/Abr2020/InfCadastrais 30abr2020.csv", 
+contratos <- read.csv2("R_prep_vis/dados/Abr2020/InfCadastrais 30abr2020.csv", 
                        skip = 10, stringsAsFactors = FALSE)
 
 # arq_contratos <- novos_contratos %>%  
@@ -200,7 +200,7 @@ lista_unica <- full_join(lista_garantias_mutuarios,
 
 # honras: dados para viz --------------------------------------------------
 
-honras <- read.csv2("./Garantias_Dados/Abr2020/Relatorio_honras_atrasos 30abr2020.csv",
+honras <- read.csv2("./R_prep_vis/dados/Abr2020/Relatorio_honras_atrasos 30abr2020.csv",
                     skip = 10, stringsAsFactors = FALSE)
 
 names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato", 
