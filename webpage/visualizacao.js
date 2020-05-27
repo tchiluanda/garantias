@@ -269,7 +269,7 @@ d3.csv("webpage/dados/dados_vis_garantias.csv", function(d) {
       labels_geral
         .append("p")
         .append("strong")
-        .text("Total de Garantias")
+        .text("Saldo Devedor das Garantias")
         .style("font-size", "1.5em")
         .style("color", "#1C5B80");
 
