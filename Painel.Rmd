@@ -2933,7 +2933,7 @@ output$ATM_municipios <-renderPlotly(
                  marker = list (color = cores_atm_municipios(),
                           line = list(color = cores_atm_municipios())),
                  
-                 text = ~paste0("<b>Estado:</b> ", Inicio,"<br><b>Vida Média:</b> ",round(ATM_Total,2)," anos"),
+                 text = ~paste0("<b>Município:</b> ", Inicio,"<br><b>Vida Média:</b> ",round(ATM_Total,2)," anos"),
                 hoverinfo = "text"
                  
                  ) %>%
