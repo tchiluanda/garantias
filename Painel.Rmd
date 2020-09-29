@@ -4,7 +4,7 @@ runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     navbar:
-      - { title: "Data: 30/04/2020",icon: ion-ios-calendar-outline, href: "http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas" ,align: right }
+      - { title: "Data: 31/08/2020",icon: ion-ios-calendar-outline, href: "http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas" ,align: right }
     orientation: columns
     vertical_layout: fill
     
@@ -96,7 +96,7 @@ library(dplyr)
 library(kableExtra)
 library(DT)
 
-load("Garantias_abr_2020.Rdata")
+load("Garantias_ago_2020.Rdata")
 
 funcao_formata_quantidade <- function(x){
   paste0(format(round(x/1000000, 2), big.mark = ".", decimal.mark = ","))
@@ -2938,13 +2938,13 @@ output$ATM_municipios <-renderPlotly(
                  
                  ) %>%
                 
-    add_trace(y = ~sum((agrupador_ATM_estados_formatado$ATM_Total*agrupador_formatado_estados$total_total))/sum(agrupador_formatado_estados$total_total) ,
+    add_trace(y = ~sum((agrupador_ATM_municipios_formatado$ATM_Total*agrupador_formatado_municipios$total_total))/sum(agrupador_formatado_municipios$total_total) ,
               type = 'scatter', 
               mode = 'lines',
               line = list(color = '#8c8c8c', width = 1),
               showlegend =TRUE,
               name ="Média",
-      text = ~paste0("<b>Média:</b> ",round(sum((agrupador_ATM_estados_formatado$ATM_Total*agrupador_formatado_estados$total_total))/sum(agrupador_formatado_estados$total_total),2)," anos"),
+      text = ~paste0("<b>Média:</b> ",round(sum((agrupador_ATM_municipios_formatado$ATM_Total*agrupador_formatado_municipios$total_total))/sum(agrupador_formatado_municipios$total_total),2)," anos"),
       
       hoverinfo = "text"
       
@@ -4949,7 +4949,8 @@ observeEvent(Contratos_assinados_reativo(),{
     if(entrada_tipo != "Todos"){
    
                filtro_tipo_contratos_assinados <- filtro_status_contratos_assinados %>%
-                filter(Tipo == entrada_tipo) 
+                filter(Tipo == entrada_tipo) %>%
+                mutate(`Valor Contratado Original`= formatC(`Valor Contratado Original`*1000000, format = "f", big.mark = ".",decimal.mark = ",",digits =2))
                  }
     if(entrada_tipo == "Todos"){
    
@@ -4959,7 +4960,7 @@ observeEvent(Contratos_assinados_reativo(),{
   
 output$Contratos <- renderDT({
 
-  datatable(filtro_tipo_contratos_assinados[,c(28,1,27,30,26,29,9,10,22,23)], 
+  datatable(filtro_tipo_contratos_assinados[,c(29,1,28,31,27,5,30,9,10,22,23)], 
           rownames = FALSE,
           extensions = c('Buttons', 'Scroller'),
           options = list(deferRender = TRUE,
@@ -4977,7 +4978,7 @@ output$Contratos <- renderDT({
           paging = TRUE,
           searching = FALSE
           ),
-     colnames = c('ANO','CONTRATO' ,'DATA ASSINATURA', 'GRUPO', 'MUTUARIO', 'STATUS', 'TIPO', 'CREDOR', 'MOEDA', 'VALOR CONTRATADO')
+     colnames = c('ANO','CONTRATO' ,'DATA ASSINATURA', 'GRUPO', 'MUTUARIO','UF' ,'STATUS', 'TIPO', 'CREDOR', 'MOEDA', 'VALOR CONTRATADO')
     
 
     ) #%>%
