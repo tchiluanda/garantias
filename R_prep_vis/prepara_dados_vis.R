@@ -9,7 +9,7 @@ library(padr)
 #extrafont::font_import()
 loadfonts()
 
-load("Garantias_abr_2020.Rdata")
+load("Garantias_ago_2020.Rdata")
 
 nomes_honras <- names(honras)
 
@@ -118,8 +118,9 @@ write.csv(quadro, file = "webpage/dados/dados_quadro.csv", fileEncoding = "UTF-8
 
 # contratos ---------------------------------------------------------------
 
+Sys.setlocale("LC_ALL", "C")
 #lista_contratos <- novos_contratos %>% count(Mutuário)
-contratos <- read.csv2("R_prep_vis/dados/Abr2020/InfCadastrais 30abr2020.csv", 
+contratos <- read.csv2("R_prep_vis/dados/Ago2020/InfCadastrais 31ago2020.csv", 
                        skip = 10, stringsAsFactors = FALSE)
 
 # arq_contratos <- novos_contratos %>%  
