@@ -521,7 +521,7 @@ Promise.all([
      1.4/4, 2.5/4],
     [1/4, 1/4, 1/4,
      1.05/2, 1.05/2,
-     2.9/4, 2.9/4]);
+     3.1/4, 3.1/4]);
 
   //console.log(group_by_sum(honras_det, "credor_cat", "valor", true));
 
@@ -741,9 +741,9 @@ Promise.all([
   // por credor
 
   let pos_labels_credores_y = [
-    0.39, 0.39, 0.39,
-    0.68, 0.68,
-    0.92 ,  0.92
+    0.3, 0.3, 0.3,
+    0.65, 0.65,
+    0.93 ,  0.93
   ];
 
   let pos_labels_credores_x = [
@@ -1387,7 +1387,7 @@ Promise.all([
   function desenha_step11(direcao) {
     if (direcao == "down") {
     
-      simulacao.force('x', d3.forceX().strength(magnitudeForca*1.4).x(d => pos_credor_cat[d.credor_cat].x));
+      simulacao.force('x', d3.forceX().strength(magnitudeForca*0.8).x(d => pos_credor_cat[d.credor_cat].x));
       simulacao.force('y', d3.forceY().strength(magnitudeForca*1.4).y(d => pos_credor_cat[d.credor_cat].y));
     
       // se não dá esse restart, as bolhas não se movem
