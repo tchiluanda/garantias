@@ -122,6 +122,8 @@ Sys.setlocale("LC_ALL", "C")
 #lista_contratos <- novos_contratos %>% count(Mutuário)
 contratos <- read.csv2("R_prep_vis/dados/Dez2020/InfCadastrais 31dez2020.csv", 
                        skip = 10, stringsAsFactors = FALSE)
+contratos <- readxl::read_excel("R_prep_vis/dados/Dez2020/InfCadastrais 31dez2020.xlsx", 
+                       skip = 10)
 #contratos <- readRDS("R_prep_vis/dados/Dez2020/contratos.rds")
 
 
@@ -141,21 +143,25 @@ contratos <- read.csv2("R_prep_vis/dados/Dez2020/InfCadastrais 31dez2020.csv",
 #   mutate(data_date = lubridate::dmy(data)) %>%
 #   arrange(Classificador, Inicio, data_date)
   
-arq_contratos <- contratos %>%  
-  mutate(Inicio = rm_accent(`Mutuário`),
-         Classificador = rm_accent(`Tipo.Mutuário`)) %>%
+arq_contratos <- contratos %>%
+  rename(Inicio = 3,
+         Classificador = 4) %>%
+  # rename(Mutuario = 3,
+  #        Tipo_Mutuario = 4) %>%
+  # mutate(Inicio = rm_accent(Mutuario),
+  #        Classificador = rm_accent(Tipo_Mutuario)) %>%
   filter(Inicio %in% dados_vis$Inicio) %>% # (1)
-  left_join(honras_unicas, by = c("Nome.do.Contrato" = "Nome do Contrato")) %>%
+  left_join(honras_unicas, by = "Nome do Contrato") %>%
   select(Inicio, 
          Classificador, 
          UF, 
          Credor, 
-         tipo_credor = `Classificação.de.Credor`,
+         tipo_credor = 11,
          Projeto,
          honras = n,
-         data = `Data.de.Assinatura`,
-         Moeda = `Moeda.de.Origem`,
-         valor = `Valor.Contratado.Original`) %>%
+         data = `Data de Assinatura`,
+         Moeda = `Moeda de Origem`,
+         valor = `Valor Contratado Original`) %>%
   mutate(data_date = lubridate::dmy(data),
          valor = as.numeric(
            str_replace(str_replace_all(valor, "\\.", ""),
@@ -203,7 +209,7 @@ lista_unica <- full_join(lista_garantias_mutuarios,
 
 # honras: dados para viz --------------------------------------------------
 
-honras <- read.csv2("./R_prep_vis/dados/Ago2020/Relatorio_honras_atrasos 31ago2020.csv",
+honras <- read.csv2("./R_prep_vis/dados/Dez2020/Relatorio_honras_atrasos 31dez2020.csv",
                     skip = 10, stringsAsFactors = FALSE)
 
 names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato", 
