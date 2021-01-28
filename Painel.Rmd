@@ -4,7 +4,7 @@ runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     navbar:
-      - { title: "Data: 31/08/2020",icon: ion-ios-calendar-outline, href: "http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas" ,align: right }
+      - { title: "Data: 31/12/2020",icon: ion-ios-calendar-outline, href: "http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas" ,align: right }
     orientation: columns
     vertical_layout: fill
     
@@ -96,7 +96,7 @@ library(dplyr)
 library(kableExtra)
 library(DT)
 
-load("Garantias_ago_2020.Rdata")
+load("Garantias_dez_2020.Rdata")
 
 funcao_formata_quantidade <- function(x){
   paste0(format(round(x/1000000, 2), big.mark = ".", decimal.mark = ","))
@@ -1053,7 +1053,7 @@ y_atm_interna <- c("Estados", "Bancos Federais", "Municipios", "Estatais Federai
 
 data_atm_interna <- c(Estados_valor_atm_interna, Bancos_Federais_valor_atm_interna, Municipios_valor_atm_interna, Estatais_Federais_valor_atm_interna)
 
-#tem gambiarra aqui nesse ponto
+#tem gambiarra aqui nesse ponto (entidades controladas retiradas do gráfico por ser zero)
 
 output$barras_total_atm_interna <- renderPlotly({
  
@@ -1332,7 +1332,7 @@ y_custo_interna <- c("Estados", "Bancos Federais", "Municipios", "Estatais Feder
 
 data_custo_interna <- c(Estados_valor_custo_interna, Bancos_Federais_valor_custo_interna, Municipios_valor_custo_interna, Estatais_Federais_valor_custo_interna)
 
-#tem gambiarra aqui nesse ponto
+#tem gambiarra aqui nesse ponto (Entidades Controladas retiradas do gráfico por ser zero)
 
 output$barras_total_custo_interna <- renderPlotly({
  
@@ -4790,7 +4790,9 @@ Contratos Assinados
 ```{r contratos_assinados, warning=FALSE, message=FALSE  }
 
 novos_contratos_2010 <- novos_contratos %>%
-         filter (Ano >= 2010)
+         filter (Ano >= 2010) 
+         
+novos_contratos_2010$UF <- if_else(novos_contratos_2010$UF == 0, "-", novos_contratos_2010$UF)
 
 
 novos_contratos_2010 <- novos_contratos_2010[order(novos_contratos_2010$Assinatura, decreasing = TRUE),]
@@ -4958,9 +4960,10 @@ observeEvent(Contratos_assinados_reativo(),{
                     mutate(`Valor Contratado Original`= formatC(`Valor Contratado Original`*1000000, format = "f", big.mark = ".",decimal.mark = ",",digits =2))
     }
   
-output$Contratos <- renderDT({
+output$Contratos <- renderDT(server = FALSE, {
 
   datatable(filtro_tipo_contratos_assinados[,c(29,1,28,31,27,5,30,9,10,22,23)], 
+          
           rownames = FALSE,
           extensions = c('Buttons', 'Scroller'),
           options = list(deferRender = TRUE,
