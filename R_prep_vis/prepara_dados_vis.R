@@ -118,12 +118,12 @@ write.csv(quadro, file = "webpage/dados/dados_quadro.csv", fileEncoding = "UTF-8
 
 # contratos ---------------------------------------------------------------
 
-Sys.setlocale("LC_ALL", "C")
+#Sys.setlocale("LC_ALL", "C")
+Sys.setlocale("LC_ALL", "pt_br.utf-8") 
 #lista_contratos <- novos_contratos %>% count(Mutuário)
-contratos <- read.csv2("R_prep_vis/dados/Dez2020/InfCadastrais 31dez2020.csv", 
-                       skip = 10, stringsAsFactors = FALSE)
-contratos <- readxl::read_excel("R_prep_vis/dados/Dez2020/InfCadastrais 31dez2020.xlsx", 
-                       skip = 10)
+# contratos <- read.csv2("R_prep_vis/dados/Dez2020/InfCadastrais 31dez2020.csv", skip = 10, stringsAsFactors = FALSE)
+
+contratos <- readxl::read_excel("R_prep_vis/dados/Dez2020/InfCadastrais 31dez2020.xlsx", skip = 10)
 #contratos <- readRDS("R_prep_vis/dados/Dez2020/contratos.rds")
 
 
@@ -148,8 +148,8 @@ arq_contratos <- contratos %>%
          Classificador = 4) %>%
   # rename(Mutuario = 3,
   #        Tipo_Mutuario = 4) %>%
-  # mutate(Inicio = rm_accent(Mutuario),
-  #        Classificador = rm_accent(Tipo_Mutuario)) %>%
+  # mutate(Inicio = rm_accent(Inicio),
+  #        Classificador = rm_accent(Classificador)) %>%
   filter(Inicio %in% dados_vis$Inicio) %>% # (1)
   left_join(honras_unicas, by = "Nome do Contrato") %>%
   select(Inicio, 
@@ -175,7 +175,8 @@ arq_contratos <- contratos %>%
 # (1) isso pq o arquivo de contratos traz coisas que foram feitas em 2020, então
 # achei melhor cortar. acho.
 
-write.csv(arq_contratos, file = "webpage/dados/contratos.csv", fileEncoding = "UTF-8")
+write.csv(arq_contratos, file = "webpage/dados/contratos.csv",
+          fileEncoding = "utf-8")
 
 arq_contratos %>% count(Inicio, sort = TRUE)
 
