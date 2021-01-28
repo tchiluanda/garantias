@@ -210,8 +210,11 @@ lista_unica <- full_join(lista_garantias_mutuarios,
 
 # honras: dados para viz --------------------------------------------------
 
-honras <- read.csv2("./R_prep_vis/dados/Dez2020/Relatorio_honras_atrasos 31dez2020.csv",
-                    skip = 10, stringsAsFactors = FALSE)
+# honras <- read.csv2("./R_prep_vis/dados/Dez2020/Relatorio_honras_atrasos 31dez2020.csv",
+#                     skip = 10, stringsAsFactors = FALSE)
+
+honras <- read_excel("./R_prep_vis/dados/Dez2020/Relatorio_honras_atrasos 31dez2020.xlsx",
+                    skip = 10)
 
 names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato", 
                    "Credor", "Classificação do Credor", "Mutuário", "Tipo de Mutuário", 
@@ -232,7 +235,7 @@ honras_simples_pre <- honras %>%
          `Status`,
          valor = `Honra - Total (R$)`) %>%
   as.data.frame() %>%
-  mutate(data = dmy(data),
+  mutate(data = ymd(data),
          mes = str_pad(month(data), width = 2, pad = "0"),
          ano = year(data),
          mes_ano = paste0(ano,mes),
