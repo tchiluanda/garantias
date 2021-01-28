@@ -244,11 +244,13 @@ honras_simples_pre <- honras %>%
            mutuario == "Minas Gerais" ~ "Minas Gerais",
            TRUE ~ "Demais entes"),
          Credor = ifelse(str_detect(Credor, "Credit Suisse"), "Credit Suisse", Credor),
+         Credor = ifelse(Credor == "Banco Nacional de Desenvolvimento Econômico e Social", "BNDES", Credor)
          #estados = if_else(tipo_mutuario == "Municípios", "Municípios", mutuario),
-         valor = as.numeric(
-           str_replace(
-             str_replace_all(as.character(valor), "\\.", ""), 
-             ",", "\\.")))
+         # valor = as.numeric(
+         #   str_replace(
+         #     str_replace_all(as.character(valor), "\\.", ""), 
+         #     ",", "\\."))
+         )
           
 # consultas on the fly
 honras_simples_pre %>% filter(mutuario == "Rio de Janeiro") %>% group_by(mes_ano) %>% count()
