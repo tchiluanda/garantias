@@ -163,9 +163,9 @@ arq_contratos <- contratos %>%
          Moeda = `Moeda de Origem`,
          valor = `Valor Contratado Original`) %>%
   mutate(data_date = lubridate::dmy(data),
-         valor = as.numeric(
-           str_replace(str_replace_all(valor, "\\.", ""),
-                       ",", ".")),
+         #valor = as.numeric(
+        #   str_replace(str_replace_all(valor, "\\.", ""),
+        #               ",", ".")),
          Projeto = str_replace_all(Projeto, "¿", "-"),
          Classificador = ifelse(Classificador == "Entidades Estaduais Controladas",
                                 "Entidades Controladas",
