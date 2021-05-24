@@ -5,11 +5,12 @@ library(viridis)
 library(colorspace)
 library(extrafont)
 library(padr)
+library(readxl)
 
 #extrafont::font_import()
 loadfonts()
 
-load("Garantias_dez_2020.Rdata")
+load("Garantias_abr_2021.Rdata")
 
 nomes_honras <- names(honras)
 
@@ -121,9 +122,9 @@ write.csv(quadro, file = "webpage/dados/dados_quadro.csv", fileEncoding = "UTF-8
 #Sys.setlocale("LC_ALL", "C")
 Sys.setlocale("LC_ALL", "pt_br.utf-8") 
 #lista_contratos <- novos_contratos %>% count(Mutuário)
-# contratos <- read.csv2("R_prep_vis/dados/Dez2020/InfCadastrais 31dez2020.csv", skip = 10, stringsAsFactors = FALSE)
+#contratos <- read.csv2("./R_prep_vis/dados/Abr2021/InfCadastrais 30abr2021.csv", skip = 10, stringsAsFactors = FALSE)
 
-contratos <- readxl::read_excel("R_prep_vis/dados/Dez2020/InfCadastrais 31dez2020.xlsx", skip = 10)
+contratos <- readxl::read_excel("./R_prep_vis/dados/Abr2021/InfCadastrais 30abr2021.xlsx")
 #contratos <- readRDS("R_prep_vis/dados/Dez2020/contratos.rds")
 
 
@@ -162,7 +163,7 @@ arq_contratos <- contratos %>%
          data = `Data de Assinatura`,
          Moeda = `Moeda de Origem`,
          valor = `Valor Contratado Original`) %>%
-  mutate(data_date = lubridate::dmy(data),
+  mutate(data_date = lubridate::ymd(data),
          #valor = as.numeric(
         #   str_replace(str_replace_all(valor, "\\.", ""),
         #               ",", ".")),
@@ -213,8 +214,7 @@ lista_unica <- full_join(lista_garantias_mutuarios,
 # honras <- read.csv2("./R_prep_vis/dados/Dez2020/Relatorio_honras_atrasos 31dez2020.csv",
 #                     skip = 10, stringsAsFactors = FALSE)
 
-honras <- read_excel("./R_prep_vis/dados/Dez2020/Relatorio_honras_atrasos 31dez2020.xlsx",
-                    skip = 10)
+honras <- read_excel("./R_prep_vis/dados/Abr2021/Relatorio_honras_atrasos 30abr2021.xlsx")
 
 names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato", 
                    "Credor", "Classificação do Credor", "Mutuário", "Tipo de Mutuário", 

@@ -4,7 +4,7 @@ runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     navbar:
-      - { title: "Data: 31/12/2020",icon: ion-ios-calendar-outline, href: "http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas" ,align: right }
+      - { title: "Data: 30/04/2021",icon: ion-ios-calendar-outline, href: "https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/" ,align: right }
     orientation: columns
     vertical_layout: fill
     
@@ -96,7 +96,7 @@ library(dplyr)
 library(kableExtra)
 library(DT)
 
-load("Garantias_dez_2020.Rdata")
+load("Garantias_abr_2021.Rdata")
 
 funcao_formata_quantidade <- function(x){
   paste0(format(round(x/1000000, 2), big.mark = ".", decimal.mark = ","))
@@ -1908,6 +1908,218 @@ output$texto_garantia_cambiais <- renderText(paste0("Operações Cambiais (Inter
 ```
 
 
+### Credores
+
+```{r credores_geral, fig.width=9,echo = FALSE, results = 'asis'}
+
+#Ajuste Base correção nome "Entidades Estaduais COntroladas" para "Entidades Controladas"
+agrupador_credores_formatado <- agrupador_credores 
+
+agrupador_credores_formatado$Tipo_Mutuario <- str_replace(agrupador_credores$Tipo_Mutuario, "Entidades Estaduais Controladas","Entidades Controladas")
+
+
+#Criação observador de reativo (botão com os mutuarios)
+#Para gráfico da divida interna
+credores_geral_interna <- reactive({
+
+       list(input$Geral)
+
+     })
+#Para gráfico da dívida externa
+credores_geral_externa <- reactive({
+
+       list(input$Geral)
+
+     })
+
+#Filtros dinâmicos para a base de dados - Interna
+observeEvent(credores_geral_interna(),{
+
+   if (is.null(input$Geral)){entrada <- "Total"} 
+   else
+   {entrada <- input$Geral}
+   
+  if(entrada == "Total"){
+
+         credores_geral_interna <- agrupador_credores_formatado %>%
+                filter(Tipo_Divida == "Interna")%>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+ 
+   
+   if(entrada != "Total"){
+
+         credores_geral_interna <- agrupador_credores_formatado %>%
+                filter(Tipo_Divida == "Interna",
+                  Tipo_Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  if(entrada == "Total"){
+
+         credores_total_tipo <- agrupador_credores_formatado %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+ 
+   
+   if(entrada != "Total"){
+
+         credores_total_tipo <- agrupador_credores_formatado %>%
+                filter(Tipo_Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  output$teste_2 <- renderPlotly({
+ 
+  plot_ly(credores_geral_interna, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal,
+      
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_total_tipo$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+) %>%
+      layout(height = 250, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE
+                      ),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_geral_interna$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE
+                      )
+         
+         ) %>%
+  
+config(displayModeBar = FALSE) 
+       
+ })
+  
+  output$credores_interno <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_geral_interna$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_geral_interna$Saldo_Principal)/ (sum(credores_total_tipo$Saldo_Principal))),")"))
+
+  
+})
+
+#Filtros dinâmicos para a base de dados - Externa
+
+observeEvent(credores_geral_externa(),{
+
+   if (is.null(input$Geral)){entrada <- "Total"} 
+   else
+   {entrada <- input$Geral}
+   
+  if(entrada == "Total"){
+
+         credores_geral_externa <- agrupador_credores_formatado %>%
+                filter(Tipo_Divida == "Externa")%>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+ 
+   
+   if(entrada != "Total"){
+
+         credores_geral_externa <- agrupador_credores_formatado %>%
+                filter(Tipo_Divida == "Externa",
+                  Tipo_Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+   if(entrada == "Total"){
+
+         credores_total_tipo_2 <- agrupador_credores_formatado %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+ 
+   
+   if(entrada != "Total"){
+
+         credores_total_tipo_2 <- agrupador_credores_formatado %>%
+                filter(Tipo_Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+  output$teste_3 <- renderPlotly({
+ 
+  plot_ly(credores_geral_externa, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal ,
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_total_tipo_2$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+              
+      ) %>%
+      
+      layout(height = 350, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_geral_externa$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE)
+         
+         ) %>%
+  
+      
+      config(displayModeBar = FALSE) 
+       
+ })
+  
+  
+output$credores_externo <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_geral_externa$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_geral_externa$Saldo_Principal)/ (sum(credores_total_tipo_2$Saldo_Principal))),")"))
+  
+
+  
+})
+
+
+fluidPage(
+fluidRow(
+
+  column(11,div(style = "font-size: 11pt;font-family: monospace;","OPERAÇÕES GARANTIDAS INTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_interno")) ,plotlyOutput("teste_2")),
+  
+  
+  
+  column(11,div(style = "font-size: 11pt; font-family: monospace;","OPERAÇÕES GARANTIDAS EXTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_externo")),plotlyOutput("teste_3"))
+  
+))
+
+
+
+  
+```
+
+
+```
+
 
 
 Estados
@@ -2332,7 +2544,7 @@ output$divida_total_estados <-renderPlotly(
 
 ```
 
-> **Fonte:**  [Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**  [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 <br>**Nota:** Todos os 26 estados mais o Distrito Federal possuem operações garantidas pela União. 
 
 
@@ -2396,7 +2608,7 @@ output$ATM <-renderPlotly(
 )
 ```
 
-> **Fonte:** [Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:** [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 ### Custo Médio
 
@@ -2463,7 +2675,7 @@ output$custos_estados <-renderPlotly(
 )
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 ### Operações Garantidas Cambiais
@@ -2525,8 +2737,184 @@ output$cambial_estados <-renderPlotly(
 )
 ```
 
-> **Fonte:** [Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:** [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
   <br>**Nota:**Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
+
+
+### Credores
+
+```{r credores_estados, fig.width=9,echo = FALSE, results = 'asis'}
+
+#Ajuste Base correção nome "Entidades Estaduais COntroladas" para "Entidades Controladas"
+
+agrupador_credores_formatado_estados <- agrupador_credores %>%
+                  filter(Tipo_Mutuario == "Estados")
+
+#agrupador_credores_formatado$Tipo_Mutuario <- str_replace(agrupador_credores$Tipo_Mutuario, "Entidades #Estaduais Controladas","Entidades Controladas")
+
+
+#Criação observador de reativo (botão com os mutuarios)
+#Para gráfico da divida interna
+credores_estados_interna <- reactive({
+
+       list(input$Mutuario)
+
+     })
+#Para gráfico da dívida externa
+credores_estados_externa <- reactive({
+
+       list(input$Mutuario)
+
+     })
+
+#Filtros dinâmicos para a base de dados - Interna
+observeEvent(credores_estados_interna(),{
+
+   if (is.null(input$Mutuario)){entrada <- "Total"} 
+   else
+   {entrada <- input$Mutuario}
+   
+   if(entrada != "Total"){
+
+         credores_estados_interna <- agrupador_credores_formatado_estados %>%
+                filter(Tipo_Divida == "Interna",
+                  Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+   if(entrada != "Total"){
+
+         credores_estados_tipo <- agrupador_credores_formatado_estados %>%
+                filter(Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  output$credores_estado_interna <- renderPlotly({
+ 
+  plot_ly(credores_estados_interna, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal,
+      
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_estados_tipo$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+) %>%
+      layout(height = 250, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE
+                      ),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_estados_interna$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE
+                      )
+         
+         ) %>%
+  
+config(displayModeBar = FALSE) 
+       
+ })
+  
+  output$credores_interno_estados <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_estados_interna$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_estados_interna$Saldo_Principal)/ (sum(credores_estados_tipo$Saldo_Principal))),")"))
+
+  
+})
+
+#Filtros dinâmicos para a base de dados - Externa
+
+observeEvent(credores_estados_externa(),{
+
+   if (is.null(input$Mutuario)){entrada <- "Total"} 
+   else
+   {entrada <- input$Mutuario}
+   
+   if(entrada != "Total"){
+
+         credores_estados_externa <- agrupador_credores_formatado_estados %>%
+                filter(Tipo_Divida == "Externa",
+                  Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+   
+   if(entrada != "Total"){
+
+         credores_estados_tipo_2 <- agrupador_credores_formatado_estados %>%
+                filter(Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+  output$credores_estado_externa <- renderPlotly({
+ 
+  plot_ly(credores_estados_externa, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal ,
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_estados_tipo_2$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+              
+      ) %>%
+      
+      layout(height = 350, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_estados_externa$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE)
+         
+         ) %>%
+  
+      
+      config(displayModeBar = FALSE) 
+       
+ })
+  
+  
+output$credores_externo_estados <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_estados_externa$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_estados_externa$Saldo_Principal)/ (sum(credores_estados_tipo_2$Saldo_Principal))),")"))
+  
+
+  
+})
+
+
+fluidPage(
+fluidRow(
+
+  column(11,div(style = "font-size: 11pt;font-family: monospace;","OPERAÇÕES GARANTIDAS INTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_interno_estados")) ,plotlyOutput("credores_estado_interna")),
+  
+  
+  
+  column(11,div(style = "font-size: 11pt; font-family: monospace;","OPERAÇÕES GARANTIDAS EXTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_externo_estados")),plotlyOutput("credores_estado_externa"))
+  
+))
+
+```
+
+
+> **Fonte:** [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 
@@ -2900,7 +3288,7 @@ output$divida_total_municipios <-renderPlotly(
 
 ```
 
-> **Fonte:** [Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:** [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 <br>**Nota:**  `r nrow(agrupador_formatado_municipios)` municípios possuem operações de crédito garantidas pela União.No entanto, `r nrow(agrupador_formatado_municipios)-max(rank(-agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, seu saldo de operações garantidas é zero.
 
 
@@ -2969,7 +3357,7 @@ output$ATM_municipios <-renderPlotly(
 )
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 <br>**Nota:** `r nrow(agrupador_formatado_municipios)-max(rank(-agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, suas respectivos vidas médias (ATM) são iguais a zero.
 
 
@@ -3035,7 +3423,7 @@ output$custos_municipios <-renderPlotly(
 )
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 <br>**Nota:** `r nrow(agrupador_formatado_municipios)-max(rank(-agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, seus respectivos custos são iguais a zero. 
 
 
@@ -3098,8 +3486,187 @@ output$cambial_municipios <-renderPlotly(
 )
 ```
 
-> **Fonte:** [Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:** [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
   <br>**Nota:** Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
+
+
+### Credores
+
+```{r credores_municipios, fig.width=9,echo = FALSE, results = 'asis'}
+
+#Ajuste Base correção nome "Entidades Estaduais COntroladas" para "Entidades Controladas"
+
+agrupador_credores_formatado_municipios <- agrupador_credores %>%
+                  filter(Tipo_Mutuario == "Municipios")
+
+#agrupador_credores_formatado$Tipo_Mutuario <- str_replace(agrupador_credores$Tipo_Mutuario, "Entidades #Estaduais Controladas","Entidades Controladas")
+
+
+#Criação observador de reativo (botão com os mutuarios)
+#Para gráfico da divida interna
+credores_municipios_interna <- reactive({
+
+       list(input$Municipios)
+
+     })
+#Para gráfico da dívida externa
+credores_municipios_externa <- reactive({
+
+       list(input$Municipios)
+
+     })
+
+#Filtros dinâmicos para a base de dados - Interna
+observeEvent(credores_municipios_interna(),{
+
+   if (is.null(input$Municipios)){entrada <- "Total"} 
+   else
+   {entrada <- input$Municipios}
+   
+   if(entrada != "Total"){
+
+         credores_municipios_interna <- agrupador_credores_formatado_municipios %>%
+                filter(Tipo_Divida == "Interna",
+                  Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+   if(entrada != "Total"){
+
+         credores_municipios_tipo <- agrupador_credores_formatado_municipios %>%
+                filter(Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  output$credores_municipios_interna <- renderPlotly({
+ 
+  plot_ly(credores_municipios_interna, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal,
+      
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_municipios_tipo$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+) %>%
+      layout(height = 250, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE
+                      ),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_municipios_interna$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE
+                      )
+         
+         ) %>%
+  
+config(displayModeBar = FALSE) 
+       
+ })
+  
+  output$credores_interno_municipios <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_municipios_interna$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_municipios_interna$Saldo_Principal)/ (sum(credores_municipios_tipo$Saldo_Principal))),")"))
+
+  
+})
+
+#Filtros dinâmicos para a base de dados - Externa
+
+observeEvent(credores_municipios_externa(),{
+
+   if (is.null(input$Municipios)){entrada <- "Total"} 
+   else
+   {entrada <- input$Municipios}
+   
+   if(entrada != "Total"){
+
+         credores_municipios_externa <- agrupador_credores_formatado_municipios %>%
+                filter(Tipo_Divida == "Externa",
+                  Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+   
+   if(entrada != "Total"){
+
+         credores_municipios_tipo_2 <- agrupador_credores_formatado_municipios %>%
+                filter(Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+  output$credores_municipios_externa <- renderPlotly({
+ 
+  plot_ly(credores_municipios_externa, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal ,
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_municipios_tipo_2$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+              
+      ) %>%
+      
+      layout(height = 350, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_municipios_externa$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE)
+         
+         ) %>%
+  
+      
+      config(displayModeBar = FALSE) 
+       
+ })
+  
+  
+output$credores_externo_municipios <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_municipios_externa$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_municipios_externa$Saldo_Principal)/ (sum(credores_municipios_tipo_2$Saldo_Principal))),")"))
+  
+
+  
+})
+
+
+fluidPage(
+fluidRow(
+
+  column(11,div(style = "font-size: 11pt;font-family: monospace;","OPERAÇÕES GARANTIDAS INTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_interno_municipios")) ,plotlyOutput("credores_municipios_interna")),
+  
+  
+  
+  column(11,div(style = "font-size: 11pt; font-family: monospace;","OPERAÇÕES GARANTIDAS EXTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_externo_municipios")),plotlyOutput("credores_municipios_externa"))
+  
+))
+
+```
+
+
+> **Fonte:** [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
+
+
+
 
 
 
@@ -3470,7 +4037,7 @@ output$divida_total_bancos_federais <-renderPlotly(
 
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 ### Vida Média - ATM
@@ -3533,7 +4100,7 @@ output$ATM_bancos_federais <-renderPlotly(
 )
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 ### Custo Médio
@@ -3601,7 +4168,7 @@ output$custos_bancos_federais <-renderPlotly(
 )
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 
@@ -3661,8 +4228,184 @@ output$cambial_bancos_federais <-renderPlotly(
 
 
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
   <br>**Nota:** Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
+  
+### Credores
+
+```{r credores_Bancos_Federais, fig.width=9,echo = FALSE, results = 'asis'}
+
+#Ajuste Base correção nome "Entidades Estaduais COntroladas" para "Entidades Controladas"
+
+agrupador_credores_formatado_Bancos_Federais <- agrupador_credores %>%
+                  filter(Tipo_Mutuario == "Bancos Federais")
+
+#agrupador_credores_formatado$Tipo_Mutuario <- str_replace(agrupador_credores$Tipo_Mutuario, "Entidades #Estaduais Controladas","Entidades Controladas")
+
+
+#Criação observador de reativo (botão com os mutuarios)
+#Para gráfico da divida interna
+credores_Bancos_Federais_interna <- reactive({
+
+       list(input$Bancos_Federais)
+
+     })
+#Para gráfico da dívida externa
+credores_Bancos_Federais_externa <- reactive({
+
+       list(input$Bancos_Federais)
+
+     })
+
+#Filtros dinâmicos para a base de dados - Interna
+observeEvent(credores_Bancos_Federais_interna(),{
+
+   if (is.null(input$Bancos_Federais)){entrada <- "Total"} 
+   else
+   {entrada <- input$Bancos_Federais}
+   
+   if(entrada != "Total"){
+
+         credores_Bancos_Federais_interna <- agrupador_credores_formatado_Bancos_Federais %>%
+                filter(Tipo_Divida == "Interna",
+                  Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+   if(entrada != "Total"){
+
+         credores_Bancos_Federais_tipo <- agrupador_credores_formatado_Bancos_Federais %>%
+                filter(Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  output$credores_Bancos_Federais_interna <- renderPlotly({
+ 
+  plot_ly(credores_Bancos_Federais_interna, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal,
+      
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_Bancos_Federais_tipo$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+) %>%
+      layout(height = 250, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE
+                      ),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_Bancos_Federais_interna$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE
+                      )
+         
+         ) %>%
+  
+config(displayModeBar = FALSE) 
+       
+ })
+  
+  output$credores_interno_Bancos_Federais <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_Bancos_Federais_interna$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_Bancos_Federais_interna$Saldo_Principal)/ (sum(credores_Bancos_Federais_tipo$Saldo_Principal))),")"))
+
+  
+})
+
+#Filtros dinâmicos para a base de dados - Externa
+
+observeEvent(credores_Bancos_Federais_externa(),{
+
+   if (is.null(input$Bancos_Federais)){entrada <- "Total"} 
+   else
+   {entrada <- input$Bancos_Federais}
+   
+   if(entrada != "Total"){
+
+         credores_Bancos_Federais_externa <- agrupador_credores_formatado_Bancos_Federais %>%
+                filter(Tipo_Divida == "Externa",
+                  Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+   
+   if(entrada != "Total"){
+
+         credores_Bancos_Federais_tipo_2 <- agrupador_credores_formatado_Bancos_Federais %>%
+                filter(Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+  output$credores_Bancos_Federais_externa <- renderPlotly({
+ 
+  plot_ly(credores_Bancos_Federais_externa, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal ,
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_Bancos_Federais_tipo_2$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+              
+      ) %>%
+      
+      layout(height = 350, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_Bancos_Federais_externa$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE)
+         
+         ) %>%
+  
+      
+      config(displayModeBar = FALSE) 
+       
+ })
+  
+  
+output$credores_externo_Bancos_Federais <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_Bancos_Federais_externa$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_Bancos_Federais_externa$Saldo_Principal)/ (sum(credores_Bancos_Federais_tipo_2$Saldo_Principal))),")"))
+  
+
+  
+})
+
+
+fluidPage(
+fluidRow(
+
+  column(11,div(style = "font-size: 11pt;font-family: monospace;","OPERAÇÕES GARANTIDAS INTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_interno_Bancos_Federais")) ,plotlyOutput("credores_Bancos_Federais_interna")),
+  
+  
+  
+  column(11,div(style = "font-size: 11pt; font-family: monospace;","OPERAÇÕES GARANTIDAS EXTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_externo_Bancos_Federais")),plotlyOutput("credores_Bancos_Federais_externa"))
+  
+))
+
+```
+
+
+> **Fonte:** [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
+
 
 Estatais Federais
 =======================================================================
@@ -4029,7 +4772,7 @@ output$divida_total_estatais_federais <-renderPlotly(
 
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 ### Vida Média - ATM
@@ -4091,7 +4834,7 @@ output$ATM_estatais_federais <-renderPlotly(
 )
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 ### Custo Médio
 ```{r custos_estatais_federais, warning=FALSE, message=FALSE  }
@@ -4158,7 +4901,7 @@ output$custos_estatais_federais <-renderPlotly(
 )
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 ### Operações Garantidas Cambiais
@@ -4217,9 +4960,184 @@ output$cambial_estatais_federais <-renderPlotly(
 
 
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
   <br>**Nota:** Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
 
+
+### Credores
+
+```{r credores_Estatais_Federais, fig.width=9,echo = FALSE, results = 'asis'}
+
+#Ajuste Base correção nome "Entidades Estaduais COntroladas" para "Entidades Controladas"
+
+agrupador_credores_formatado_Estatais_Federais <- agrupador_credores %>%
+                  filter(Tipo_Mutuario == "Estatais Federais")
+
+#agrupador_credores_formatado$Tipo_Mutuario <- str_replace(agrupador_credores$Tipo_Mutuario, "Entidades #Estaduais Controladas","Entidades Controladas")
+
+
+#Criação observador de reativo (botão com os mutuarios)
+#Para gráfico da divida interna
+credores_Estatais_Federais_interna <- reactive({
+
+       list(input$Estatais_Federais)
+
+     })
+#Para gráfico da dívida externa
+credores_Estatais_Federais_externa <- reactive({
+
+       list(input$Estatais_Federais)
+
+     })
+
+#Filtros dinâmicos para a base de dados - Interna
+observeEvent(credores_Estatais_Federais_interna(),{
+
+   if (is.null(input$Estatais_Federais)){entrada <- "Total"} 
+   else
+   {entrada <- input$Estatais_Federais}
+   
+   if(entrada != "Total"){
+
+         credores_Estatais_Federais_interna <- agrupador_credores_formatado_Estatais_Federais %>%
+                filter(Tipo_Divida == "Interna",
+                  Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+   if(entrada != "Total"){
+
+         credores_Estatais_Federais_tipo <- agrupador_credores_formatado_Estatais_Federais %>%
+                filter(Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  output$credores_Estatais_Federais_interna <- renderPlotly({
+ 
+  plot_ly(credores_Estatais_Federais_interna, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal,
+      
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_Estatais_Federais_tipo$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+) %>%
+      layout(height = 250, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE
+                      ),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_Estatais_Federais_interna$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE
+                      )
+         
+         ) %>%
+  
+config(displayModeBar = FALSE) 
+       
+ })
+  
+  output$credores_interno_Estatais_Federais <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_Estatais_Federais_interna$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_Estatais_Federais_interna$Saldo_Principal)/ (sum(credores_Estatais_Federais_tipo$Saldo_Principal))),")"))
+
+  
+})
+
+#Filtros dinâmicos para a base de dados - Externa
+
+observeEvent(credores_Estatais_Federais_externa(),{
+
+   if (is.null(input$Estatais_Federais)){entrada <- "Total"} 
+   else
+   {entrada <- input$Estatais_Federais}
+   
+   if(entrada != "Total"){
+
+         credores_Estatais_Federais_externa <- agrupador_credores_formatado_Estatais_Federais %>%
+                filter(Tipo_Divida == "Externa",
+                  Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+   
+   if(entrada != "Total"){
+
+         credores_Estatais_Federais_tipo_2 <- agrupador_credores_formatado_Estatais_Federais %>%
+                filter(Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+  output$credores_Estatais_Federais_externa <- renderPlotly({
+ 
+  plot_ly(credores_Estatais_Federais_externa, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal ,
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_Estatais_Federais_tipo_2$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+              
+      ) %>%
+      
+      layout(height = 350, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_Estatais_Federais_externa$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE)
+         
+         ) %>%
+  
+      
+      config(displayModeBar = FALSE) 
+       
+ })
+  
+  
+output$credores_externo_Estatais_Federais <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_Estatais_Federais_externa$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_Estatais_Federais_externa$Saldo_Principal)/ (sum(credores_Estatais_Federais_tipo_2$Saldo_Principal))),")"))
+  
+
+  
+})
+
+
+fluidPage(
+fluidRow(
+
+  column(11,div(style = "font-size: 11pt;font-family: monospace;","OPERAÇÕES GARANTIDAS INTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_interno_Estatais_Federais")) ,plotlyOutput("credores_Estatais_Federais_interna")),
+  
+  
+  
+  column(11,div(style = "font-size: 11pt; font-family: monospace;","OPERAÇÕES GARANTIDAS EXTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_externo_Estatais_Federais")),plotlyOutput("credores_Estatais_Federais_externa"))
+  
+))
+
+```
+
+
+> **Fonte:** [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 
@@ -4590,7 +5508,7 @@ output$divida_total_entidades_estaduais <-renderPlotly(
 
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 ### Vida Média - ATM
@@ -4653,7 +5571,7 @@ output$ATM_entidades_estaduais <-renderPlotly(
 )
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 ### Custo Médio
 ```{r custos_entidades_estaduais, warning=FALSE, message=FALSE  }
@@ -4720,7 +5638,7 @@ output$custos_entidades_estaduais <-renderPlotly(
 )
 ```
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 ### Operações Garantidas Cambiais
@@ -4779,8 +5697,182 @@ output$cambial_entidades_estaduais <-renderPlotly(
 
 
 
-> **Fonte:**[Secretaria do Tesouro Nacional](http://www.tesouro.fazenda.gov.br/-/relatorios-garantias-e-contratacoes-diretas)
+> **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
   <br>**Nota:** Dívida Cambial é a soma entre a dívida interna cambinal mais a dívida externa. O peso da dívida cambinal na carteira é calculado pela divisão entre a parcela cambial e a total.
+
+
+### Credores
+
+```{r credores_Entidades_Estaduais, fig.width=9,echo = FALSE, results = 'asis'}
+
+#Ajuste Base correção nome "Entidades Estaduais COntroladas" para "Entidades Controladas"
+
+agrupador_credores_formatado_Entidades_Estaduais <- agrupador_credores %>%
+                filter(Tipo_Mutuario == "Entidades Estaduais Controladas")
+
+
+#Criação observador de reativo (botão com os mutuarios)
+#Para gráfico da divida interna
+credores_Entidades_Estaduais_interna <- reactive({
+
+       list(input$Entidades_Estaduais)
+
+     })
+#Para gráfico da dívida externa
+credores_Entidades_Estaduais_externa <- reactive({
+
+       list(input$Entidades_Estaduais)
+
+     })
+
+#Filtros dinâmicos para a base de dados - Interna
+observeEvent(credores_Entidades_Estaduais_interna(),{
+
+   if (is.null(input$Entidades_Estaduais)){entrada <- "Total"} 
+   else
+   {entrada <- input$Entidades_Estaduais}
+   
+   if(entrada != "Total"){
+
+         credores_Entidades_Estaduais_interna <- agrupador_credores_formatado_Entidades_Estaduais %>%
+                filter(Tipo_Divida == "Interna",
+                  Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+   if(entrada != "Total"){
+
+         credores_Entidades_Estaduais_tipo <- agrupador_credores_formatado_Entidades_Estaduais %>%
+                filter(Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  output$credores_Entidades_Estaduais_interna <- renderPlotly({
+ 
+  plot_ly(credores_Entidades_Estaduais_interna, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal,
+      
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_Entidades_Estaduais_tipo$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+) %>%
+      layout(height = 250, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE
+                      ),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_Entidades_Estaduais_interna$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE
+                      )
+         
+         ) %>%
+  
+config(displayModeBar = FALSE) 
+       
+ })
+  
+  output$credores_interno_Entidades_Estaduais <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_Entidades_Estaduais_interna$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_Entidades_Estaduais_interna$Saldo_Principal)/ (sum(credores_Entidades_Estaduais_tipo$Saldo_Principal))),")"))
+
+  
+})
+
+#Filtros dinâmicos para a base de dados - Externa
+
+observeEvent(credores_Entidades_Estaduais_externa(),{
+
+   if (is.null(input$Entidades_Estaduais)){entrada <- "Total"} 
+   else
+   {entrada <- input$Entidades_Estaduais}
+   
+   if(entrada != "Total"){
+
+         credores_Entidades_Estaduais_externa <- agrupador_credores_formatado_Entidades_Estaduais %>%
+                filter(Tipo_Divida == "Externa",
+                  Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+   
+   if(entrada != "Total"){
+
+         credores_Entidades_Estaduais_tipo_2 <- agrupador_credores_formatado_Entidades_Estaduais %>%
+                filter(Mutuario == entrada) %>%
+                group_by(Credor) %>%
+                summarise(Saldo_Principal = sum(Saldo_Principal)) %>%
+                ungroup()
+   }
+  
+  
+  output$credores_Entidades_Estaduais_externa <- renderPlotly({
+ 
+  plot_ly(credores_Entidades_Estaduais_externa, y =~reorder(Credor,Saldo_Principal), type = 'bar', 
+                 orientation = 'h',
+        
+      x = ~Saldo_Principal ,
+      text = ~paste0("<b>Credor:</b> ", Credor,"<br><b>Saldo:</b> ","R$",funcao_formata_quantidade_2(Saldo_Principal)," Milhões","<br><b>Percentual do Total:</b> ",funcao_percentual_taxa(Saldo_Principal/sum(credores_Entidades_Estaduais_tipo_2$Saldo_Principal))),         
+  
+  hoverinfo = "text"
+              
+      ) %>%
+      
+      layout(height = 350, 
+         showlegend =FALSE,
+         xaxis = list(title = "",
+                      showgrid = FALSE,
+                      showticklabels = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = if_else(sum(credores_Entidades_Estaduais_externa$Saldo_Principal) == 0, FALSE,TRUE),
+                      zeroline = FALSE)
+         
+         ) %>%
+  
+      
+      config(displayModeBar = FALSE) 
+       
+ })
+  
+  
+output$credores_externo_Entidades_Estaduais <- renderText(paste0(funcao_formata_quantidade_2(sum(credores_Entidades_Estaduais_externa$Saldo_Principal))," milhões", " (",funcao_percentual_taxa(sum(credores_Entidades_Estaduais_externa$Saldo_Principal)/ (sum(credores_Entidades_Estaduais_tipo_2$Saldo_Principal))),")"))
+  
+
+  
+})
+
+
+fluidPage(
+fluidRow(
+
+  column(11,div(style = "font-size: 11pt;font-family: monospace;","OPERAÇÕES GARANTIDAS INTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_interno_Entidades_Estaduais")) ,plotlyOutput("credores_Entidades_Estaduais_interna")),
+  
+  
+  
+  column(11,div(style = "font-size: 11pt; font-family: monospace;","OPERAÇÕES GARANTIDAS EXTERNAS"),div(style = "font-size: 10pt;",textOutput("credores_externo_Entidades_Estaduais")),plotlyOutput("credores_Entidades_Estaduais_externa"))
+  
+))
+
+```
+
+
+> **Fonte:** [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
 
 
 

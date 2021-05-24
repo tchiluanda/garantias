@@ -32,7 +32,7 @@ gera_grid <- function(grid_inicial) {
 }
 
 
-exportar <- gera_grid(new_grid)
+exportar <- gera_grid(grid)
 #exportar_copy <- exportar[824,]
 
 #exportar <- bind_rows(exportar, exportar_copy)
