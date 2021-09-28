@@ -435,8 +435,8 @@ Promise.all([
         "y" : 0.15*h_honras 
       },
       "ponto_final" : {
-        "x" : 0.85*w_honras, 
-        "y" : 0.28*h_honras
+        "x" : 0.87*w_honras, 
+        "y" : 0.18*h_honras
       }
     }];
 
