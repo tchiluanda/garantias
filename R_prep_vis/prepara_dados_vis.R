@@ -149,8 +149,8 @@ arq_contratos <- contratos %>%
          Classificador = 4) %>%
   # rename(Mutuario = 3,
   #        Tipo_Mutuario = 4) %>%
-  # mutate(Inicio = rm_accent(Inicio),
-  #        Classificador = rm_accent(Classificador)) %>%
+  mutate(Inicio = rm_accent(Inicio),
+         Classificador = rm_accent(Classificador)) %>%
   filter(Inicio %in% dados_vis$Inicio) %>% # (1)
   left_join(honras_unicas, by = "Nome do Contrato") %>%
   select(Inicio, 
