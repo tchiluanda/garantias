@@ -4,7 +4,7 @@ runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     navbar:
-      - { title: "Data: 30/04/2021",icon: ion-ios-calendar-outline, href: "https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/" ,align: right }
+      - { title: "Data: 31/08/2021",icon: ion-ios-calendar-outline, href: "https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/" ,align: right }
     orientation: columns
     vertical_layout: fill
     
@@ -96,7 +96,7 @@ library(dplyr)
 library(kableExtra)
 library(DT)
 
-load("Garantias_abr_2021.Rdata")
+load("Garantias_ago_2021.Rdata")
 
 funcao_formata_quantidade <- function(x){
   paste0(format(round(x/1000000, 2), big.mark = ".", decimal.mark = ","))
@@ -1296,7 +1296,7 @@ output$barras_total_custo <- renderPlotly({
          showlegend =FALSE,
          
          xaxis = list(title = "",
-                      range = c(0,max(barras_custo$Custo_Total_formatado,barras_custo$Custo_Interno_formatado,barras_custo$Custo_Externo_formatado, na.rm = TRUE)),
+                      range = c(min(barras_custo$Custo_Total_formatado,barras_custo$Custo_Interno_formatado,barras_custo$Custo_Externo_formatado, na.rm = TRUE),max(barras_custo$Custo_Total_formatado,barras_custo$Custo_Interno_formatado,barras_custo$Custo_Externo_formatado, na.rm = TRUE)),
                       
                       
                       showgrid = FALSE,
@@ -1352,7 +1352,7 @@ output$barras_total_custo_interna <- renderPlotly({
          showlegend =FALSE,
          
          xaxis = list(title = "",
-                      range = c(0,max(barras_custo$Custo_Total_formatado,barras_custo$Custo_Interno_formatado,barras_custo$Custo_Externo_formatado, na.rm = TRUE)),
+                      range = c(min(barras_custo$Custo_Total_formatado,barras_custo$Custo_Interno_formatado,barras_custo$Custo_Externo_formatado, na.rm = TRUE),max(barras_custo$Custo_Total_formatado,barras_custo$Custo_Interno_formatado,barras_custo$Custo_Externo_formatado, na.rm = TRUE)),
                       showgrid = FALSE,
                       showticklabels = FALSE,
                       showline = FALSE,
@@ -1399,7 +1399,7 @@ output$barras_total_custo_externa <- renderPlotly({
          showlegend =FALSE,
          
          xaxis = list(title = "",
-                      range = c(0,max(barras_custo$Custo_Total_formatado,barras_custo$Custo_Interno_formatado,barras_custo$Custo_Externo_formatado, na.rm = TRUE)),
+                      range = c(min(barras_custo$Custo_Total_formatado,barras_custo$Custo_Interno_formatado,barras_custo$Custo_Externo_formatado, na.rm = TRUE),max(barras_custo$Custo_Total_formatado,barras_custo$Custo_Interno_formatado,barras_custo$Custo_Externo_formatado, na.rm = TRUE)),
                       showgrid = FALSE,
                       showticklabels = FALSE,
                       showline = FALSE,
