@@ -1,219 +1,223 @@
 "","Classificador","total_classificador","rank_classificadores","Inicio","valor","rank_geral"
-"1","Bancos Federais",23492926200.18,3,"BNDES",17899425000,4
-"2","Bancos Federais",23492926200.18,3,"CAIXA",4491132381.44,18
-"3","Bancos Federais",23492926200.18,3,"Banco do Brasil",636805926.65,46
-"4","Bancos Federais",23492926200.18,3,"Banco do Nordeste",465562892.09,50
-"5","Entidades Controladas",9872025882.02,4,"SABESP-SP",5786765095.97,13
-"6","Entidades Controladas",9872025882.02,4,"CELESC-SC",990644406.33,38
-"7","Entidades Controladas",9872025882.02,4,"CEEE-D-RS",935041115.76,39
-"8","Entidades Controladas",9872025882.02,4,"CAESB-DF",703137450.44,41
-"9","Entidades Controladas",9872025882.02,4,"CEEE-GT-RS",655595784.71,44
-"10","Entidades Controladas",9872025882.02,4,"CASAN-SC",257951368.54,61
-"11","Entidades Controladas",9872025882.02,4,"CAGECE-CE",235617104.95,63
-"12","Entidades Controladas",9872025882.02,4,"COPASA-MG",216737721.63,64
-"13","Entidades Controladas",9872025882.02,4,"SANEAGO-GO",90535833.69,84
-"14","Estados",235334698650.92,1,"Sao Paulo",41403820153.9,1
-"15","Estados",235334698650.92,1,"Rio de Janeiro",38344477059.28,2
-"16","Estados",235334698650.92,1,"Minas Gerais",26167380051.82,3
-"17","Estados",235334698650.92,1,"Bahia",17160467153.99,5
-"18","Estados",235334698650.92,1,"Ceara",14255523467.55,6
-"19","Estados",235334698650.92,1,"Rio Grande do Sul",12239808794.23,7
-"20","Estados",235334698650.92,1,"Pernambuco",11206075349.84,8
-"21","Estados",235334698650.92,1,"Santa Catarina",10549128445.37,9
-"22","Estados",235334698650.92,1,"Goias",9198333637.49,10
-"23","Estados",235334698650.92,1,"Amazonas",6884261613.75,12
-"24","Estados",235334698650.92,1,"Espirito Santo",5337767859.63,14
-"25","Estados",235334698650.92,1,"Parana",5011803286.14,15
-"26","Estados",235334698650.92,1,"Piaui",4918886359.01,16
-"27","Estados",235334698650.92,1,"Maranhao",4869318452.3,17
-"28","Estados",235334698650.92,1,"Para",3219789156.85,19
-"29","Estados",235334698650.92,1,"Alagoas",3136355173.41,20
-"30","Estados",235334698650.92,1,"Mato Grosso",3026149050.43,22
-"31","Estados",235334698650.92,1,"Acre",2993978401.89,23
-"32","Estados",235334698650.92,1,"Tocantins",2694325438.49,24
-"33","Estados",235334698650.92,1,"Distrito Federal",2683361171.06,25
-"34","Estados",235334698650.92,1,"Mato Grosso do Sul",2286026485.68,26
-"35","Estados",235334698650.92,1,"Rio Grande do Norte",1931889873.19,30
-"36","Estados",235334698650.92,1,"Sergipe",1892698529.18,31
-"37","Estados",235334698650.92,1,"Paraiba",1498446459.84,35
-"38","Estados",235334698650.92,1,"Amapa",1454617362.02,36
-"39","Estados",235334698650.92,1,"Roraima",679387688.49,43
-"40","Estados",235334698650.92,1,"Rondonia",290622176.09,56
-"41","Estatais Federais",7596255578.05,5,"ELETRONUCLEAR",3066568683.88,21
-"42","Estatais Federais",7596255578.05,5,"ELETROBRAS",2282549250.2,27
-"43","Estatais Federais",7596255578.05,5,"FINEP",1798426873.6,34
-"44","Estatais Federais",7596255578.05,5,"Furnas Centrais Eletricas",448710770.37,51
-"45","Municipios",28499957966.59,2,"Rio de Janeiro",7710108498.89,11
-"46","Municipios",28499957966.59,2,"Manaus",2238527985.23,28
-"47","Municipios",28499957966.59,2,"Fortaleza",2173599819.23,29
-"48","Municipios",28499957966.59,2,"Sao Bernardo do Campo",1877785811.58,32
-"49","Municipios",28499957966.59,2,"Belo Horizonte",1807784199.57,33
-"50","Municipios",28499957966.59,2,"Sao Paulo",1112715804.96,37
-"51","Municipios",28499957966.59,2,"Salvador",820931251.96,40
-"52","Municipios",28499957966.59,2,"Porto Alegre",683767589.18,42
-"53","Municipios",28499957966.59,2,"Goiania",644651214.61,45
-"54","Municipios",28499957966.59,2,"Recife",599635173.75,47
-"55","Municipios",28499957966.59,2,"Curitiba",556611508.82,48
-"56","Municipios",28499957966.59,2,"Maua",553386364.04,49
-"57","Municipios",28499957966.59,2,"Niteroi",418152980.67,52
-"58","Municipios",28499957966.59,2,"Sao Jose dos Campos",332507526.52,53
-"59","Municipios",28499957966.59,2,"Teresina",331159478.26,54
-"60","Municipios",28499957966.59,2,"Taubate",324216000,55
-"61","Municipios",28499957966.59,2,"Florianopolis",289712542.6,57
-"62","Municipios",28499957966.59,2,"Caucaia",286359190.24,58
-"63","Municipios",28499957966.59,2,"Belem",278127373.29,59
-"64","Municipios",28499957966.59,2,"Blumenau",269411851.13,60
-"65","Municipios",28499957966.59,2,"Joinville",253517022.02,62
-"66","Municipios",28499957966.59,2,"Campo Grande",214250055.38,65
-"67","Municipios",28499957966.59,2,"Osasco",212983576.27,66
-"68","Municipios",28499957966.59,2,"Natal",204641028.11,67
-"69","Municipios",28499957966.59,2,"Caxias do Sul",167972519.69,68
-"70","Municipios",28499957966.59,2,"Ribeirao Preto",165172571.66,69
-"71","Municipios",28499957966.59,2,"Canoas",165109999.92,70
-"72","Municipios",28499957966.59,2,"Cascavel",164510017.61,71
-"73","Municipios",28499957966.59,2,"Camacari",161389612.99,72
-"74","Municipios",28499957966.59,2,"Sao Luis",158490013.14,73
-"75","Municipios",28499957966.59,2,"Hortolandia",152413623.98,74
-"76","Municipios",28499957966.59,2,"Corumba",141161116.6,75
-"77","Municipios",28499957966.59,2,"Vitoria",125154431.7,76
-"78","Municipios",28499957966.59,2,"Aparecida de Goiania",124688070.16,77
-"79","Municipios",28499957966.59,2,"Serra",121532750.3,78
-"80","Municipios",28499957966.59,2,"Maceio",106225914.1,79
-"81","Municipios",28499957966.59,2,"Aracaju",103073604.94,80
-"82","Municipios",28499957966.59,2,"Novo Hamburgo",95846222.07,81
-"83","Municipios",28499957966.59,2,"Itajai",92429357.79,82
-"84","Municipios",28499957966.59,2,"Santos",90769498.48,83
-"85","Municipios",28499957966.59,2,"Parauapebas",83421557.73,85
-"86","Municipios",28499957966.59,2,"Santo Andre",82113068.58,86
-"87","Municipios",28499957966.59,2,"Linhares",81681485.6,87
-"88","Municipios",28499957966.59,2,"Palmas",80049454.55,88
-"89","Municipios",28499957966.59,2,"Sobral",77762224.14,89
-"90","Municipios",28499957966.59,2,"Paranagua",73959403.74,90
-"91","Municipios",28499957966.59,2,"Toledo",71946003.35,91
-"92","Municipios",28499957966.59,2,"Alagoinhas",59552174.98,92
-"93","Municipios",28499957966.59,2,"Contagem",57062486.49,93
-"94","Municipios",28499957966.59,2,"Criciuma",53231975.19,94
-"95","Municipios",28499957966.59,2,"Maringa",47019708.32,95
-"96","Municipios",28499957966.59,2,"Ouro Preto",4.5e+07,96
-"97","Municipios",28499957966.59,2,"Colatina",44198747.71,97
-"98","Municipios",28499957966.59,2,"Sete Lagoas",42368878.74,98
-"99","Municipios",28499957966.59,2,"Araguaina",42144419.28,99
-"100","Municipios",28499957966.59,2,"Muriae",41543743.33,100
-"101","Municipios",28499957966.59,2,"Chapeco",39857796.62,101
-"102","Municipios",28499957966.59,2,"Cariacica",38791681.13,102
-"103","Municipios",28499957966.59,2,"Sao Goncalo do Amarante",37846814.4,103
-"104","Municipios",28499957966.59,2,"Passo Fundo",36945893.79,104
-"105","Municipios",28499957966.59,2,"Belford Roxo",35570866.28,105
-"106","Municipios",28499957966.59,2,"Jaragua do Sul",3.5e+07,106
-"107","Municipios",28499957966.59,2,"Rio Branco",34808454.05,107
-"108","Municipios",28499957966.59,2,"Sao Caetano do Sul",33305915.53,108
-"109","Municipios",28499957966.59,2,"Catanduva",33060710.79,109
-"110","Municipios",28499957966.59,2,"Jacarei",30800520,110
-"111","Municipios",28499957966.59,2,"Maracanau",29719800,111
-"112","Municipios",28499957966.59,2,"Suzano",29158894.53,112
-"113","Municipios",28499957966.59,2,"Mogi das Cruzes",28593060,113
-"114","Municipios",28499957966.59,2,"Ponta Pora",28371893.34,114
-"115","Municipios",28499957966.59,2,"Ponta Grossa",28287053.35,115
-"116","Municipios",28499957966.59,2,"Santa Maria",27880276.61,116
-"117","Municipios",28499957966.59,2,"Boa Vista",27778572.38,117
-"118","Municipios",28499957966.59,2,"Pelotas",25597769.27,118
-"119","Municipios",28499957966.59,2,"Cachoeirinha",24903142.71,119
-"120","Municipios",28499957966.59,2,"Itapipoca",24745871.25,120
-"121","Municipios",28499957966.59,2,"Aracati",23544000,121
-"122","Municipios",28499957966.59,2,"Uberaba",21559168.45,122
-"123","Municipios",28499957966.59,2,"Piraquara",21470357.88,123
-"124","Municipios",28499957966.59,2,"Votuporanga",18571428.56,124
-"125","Municipios",28499957966.59,2,"Camocim",18467293.52,125
-"126","Municipios",28499957966.59,2,"Guarulhos",18097119.7,126
-"127","Municipios",28499957966.59,2,"Sorocaba",17589130.24,127
-"128","Municipios",28499957966.59,2,"Bage",16444924.1,128
-"129","Municipios",28499957966.59,2,"Ituiutaba",1.6e+07,129
-"130","Municipios",28499957966.59,2,"Itatiaia",15010000,130
-"131","Municipios",28499957966.59,2,"Tangua",14607778.73,131
-"132","Municipios",28499957966.59,2,"Gurupi",14246500.72,132
-"133","Municipios",28499957966.59,2,"Rio Grande",13923627.36,133
-"134","Municipios",28499957966.59,2,"Aquidauana",13715707.73,134
-"135","Municipios",28499957966.59,2,"Camboriu",13300000,135
-"136","Municipios",28499957966.59,2,"Pomerode",12908999.6,136
-"137","Municipios",28499957966.59,2,"Mineiros",11840755.91,137
-"138","Municipios",28499957966.59,2,"Vila Velha",11702036.16,138
-"139","Municipios",28499957966.59,2,"Jandira",11438930.42,139
-"140","Municipios",28499957966.59,2,"Tapejara",11388022.54,140
-"141","Municipios",28499957966.59,2,"Timbo",10823989.82,141
-"142","Municipios",28499957966.59,2,"Prudentopolis",10220684.81,142
-"143","Municipios",28499957966.59,2,"Panambi",9607959.02,143
-"144","Municipios",28499957966.59,2,"Betim",9391708.23,144
-"145","Municipios",28499957966.59,2,"Costa Rica",8380038.84,145
-"146","Municipios",28499957966.59,2,"Araquari",7817082.26,146
-"147","Municipios",28499957966.59,2,"Ubaira",7600000,147
-"148","Municipios",28499957966.59,2,"Nova Alvorada do Sul",7366520.61,148
-"149","Municipios",28499957966.59,2,"Campinas",7067347.37,149
-"150","Municipios",28499957966.59,2,"Santa Rosa",7e+06,150
-"151","Municipios",28499957966.59,2,"Uruguaiana",6825987.57,151
-"152","Municipios",28499957966.59,2,"Joao Pessoa",6428500.81,152
-"153","Municipios",28499957966.59,2,"Castro",6110725.35,153
-"154","Municipios",28499957966.59,2,"Carandai",5390000,154
-"155","Municipios",28499957966.59,2,"Jiquirica",5225000,155
-"156","Municipios",28499957966.59,2,"Ivinhema",5080183.9,156
-"157","Municipios",28499957966.59,2,"Agua Doce",4953703.7,157
-"158","Municipios",28499957966.59,2,"Paraiso das Aguas",4808230.7,158
-"159","Municipios",28499957966.59,2,"Lapao",4627808.63,159
-"160","Municipios",28499957966.59,2,"Pinhalzinho",4500000,160
-"161","Municipios",28499957966.59,2,"Barrocas",4492704.37,161
-"162","Municipios",28499957966.59,2,"Schroeder",4380237.66,162
-"163","Municipios",28499957966.59,2,"Massaranduba",4263957.97,163
-"164","Municipios",28499957966.59,2,"Concordia",4153289.53,164
-"165","Municipios",28499957966.59,2,"Guarda-Mor",4017500,165
-"166","Municipios",28499957966.59,2,"Parana",3800000,166
-"167","Municipios",28499957966.59,2,"Morro da Fumaca",3747029.52,167
-"168","Municipios",28499957966.59,2,"Jaguare",3552449.36,168
-"169","Municipios",28499957966.59,2,"Ponte Nova",3417224.72,169
-"170","Municipios",28499957966.59,2,"Pojuca",3399000,170
-"171","Municipios",28499957966.59,2,"Candeias",3188187.54,171
-"172","Municipios",28499957966.59,2,"Barracao",3146598.15,172
-"173","Municipios",28499957966.59,2,"Ponte Serrada",2850000,173
-"174","Municipios",28499957966.59,2,"Vicosa",2707022.48,174
-"175","Municipios",28499957966.59,2,"Sao Gabriel do Oeste",2701424,175
-"176","Municipios",28499957966.59,2,"Roca Sales",2348123.83,176
-"177","Municipios",28499957966.59,2,"Sonora",2293574.85,177
-"178","Municipios",28499957966.59,2,"Garca",2255624.68,178
-"179","Municipios",28499957966.59,2,"Capitolio",2152260.98,179
-"180","Municipios",28499957966.59,2,"Doutor Pedrinho",2086802.85,180
-"181","Municipios",28499957966.59,2,"Ita",2085410.24,181
-"182","Municipios",28499957966.59,2,"Morro Grande",2059465.86,182
-"183","Municipios",28499957966.59,2,"Cotipora",2042898.41,183
-"184","Municipios",28499957966.59,2,"Passos Maia",2026082.6,184
-"185","Municipios",28499957966.59,2,"Goioere",1919976.65,185
-"186","Municipios",28499957966.59,2,"Vale Real",1884442.69,186
-"187","Municipios",28499957966.59,2,"Abdon Batista",1878097.1,187
-"188","Municipios",28499957966.59,2,"Bom Jesus",1735872.73,188
-"189","Municipios",28499957966.59,2,"Jaquirana",1685722.33,189
-"190","Municipios",28499957966.59,2,"Piripiri",1666738.55,190
-"191","Municipios",28499957966.59,2,"Alto Feliz",1657875.14,191
-"192","Municipios",28499957966.59,2,"Caarapo",1558368.65,192
-"193","Municipios",28499957966.59,2,"Paty do Alferes",1500000,193
-"194","Municipios",28499957966.59,2,"Pinheiro Preto",1451607.49,194
-"195","Municipios",28499957966.59,2,"Marata",1212599.18,195
-"196","Municipios",28499957966.59,2,"Nova Santa Rita",1150674.98,196
-"197","Municipios",28499957966.59,2,"Vargeao",1003382.5,197
-"198","Municipios",28499957966.59,2,"Serafina Correa",868075.84,198
-"199","Municipios",28499957966.59,2,"Entre Rios",798655.26,199
-"200","Municipios",28499957966.59,2,"Campinas das Missoes",797468.89,200
-"201","Municipios",28499957966.59,2,"Tio Hugo",722544.15,201
-"202","Municipios",28499957966.59,2,"Paranavai",652682,202
-"203","Municipios",28499957966.59,2,"Santa Helena",613968.37,203
-"204","Municipios",28499957966.59,2,"Crucilandia",6e+05,204
-"205","Municipios",28499957966.59,2,"Rio Paranaiba",5e+05,205
-"206","Municipios",28499957966.59,2,"Abelardo Luz",4e+05,206
-"207","Municipios",28499957966.59,2,"Correia Pinto",398287.64,207
-"208","Municipios",28499957966.59,2,"Capinzal",248813.98,208
-"209","Municipios",28499957966.59,2,"Santa Vitoria",181925.63,209
-"210","Municipios",28499957966.59,2,"Salvador do Sul",75304.8,210
-"211","Municipios",28499957966.59,2,"Monte Castelo",13270,211
-"212","Municipios",28499957966.59,2,"Rio do Campo",0,215
-"213","Municipios",28499957966.59,2,"Barra do Pirai",0,215
-"214","Municipios",28499957966.59,2,"Sao Sebastiao do Cai",0,215
-"215","Municipios",28499957966.59,2,"Veranopolis",0,215
-"216","Municipios",28499957966.59,2,"Jundiai",0,215
-"217","Municipios",28499957966.59,2,"Barao",0,215
-"218","Municipios",28499957966.59,2,"Balneario Camboriu",0,215
+"1","Bancos Federais",22214264779.89,3,"BNDES",16876453125,4
+"2","Bancos Federais",22214264779.89,3,"CAIXA",4294814016.37,18
+"3","Bancos Federais",22214264779.89,3,"Banco do Brasil",600623723.85,46
+"4","Bancos Federais",22214264779.89,3,"Banco do Nordeste",442373914.67,50
+"5","Entidades Controladas",9214058120.04,4,"SABESP-SP",5397260492.18,13
+"6","Entidades Controladas",9214058120.04,4,"CELESC-SC",942923490.83,38
+"7","Entidades Controladas",9214058120.04,4,"CEEE-D-RS",889998699.14,39
+"8","Entidades Controladas",9214058120.04,4,"CAESB-DF",651177926.24,42
+"9","Entidades Controladas",9214058120.04,4,"CEEE-GT-RS",604973934.96,45
+"10","Entidades Controladas",9214058120.04,4,"CASAN-SC",248668224.06,61
+"11","Entidades Controladas",9214058120.04,4,"CAGECE-CE",224267054.53,64
+"12","Entidades Controladas",9214058120.04,4,"COPASA-MG",168613719.41,67
+"13","Entidades Controladas",9214058120.04,4,"SANEAGO-GO",86174578.69,88
+"14","Estados",224290029473.91,1,"Sao Paulo",39188243999.68,1
+"15","Estados",224290029473.91,1,"Rio de Janeiro",36460112290.34,2
+"16","Estados",224290029473.91,1,"Minas Gerais",24625134161.69,3
+"17","Estados",224290029473.91,1,"Bahia",16460805159.62,5
+"18","Estados",224290029473.91,1,"Ceara",14637424280.1,6
+"19","Estados",224290029473.91,1,"Rio Grande do Sul",11573448935.36,7
+"20","Estados",224290029473.91,1,"Pernambuco",10514895828.54,8
+"21","Estados",224290029473.91,1,"Santa Catarina",9813298764.34,9
+"22","Estados",224290029473.91,1,"Goias",8830373348.24,10
+"23","Estados",224290029473.91,1,"Amazonas",6469396926.15,12
+"24","Estados",224290029473.91,1,"Espirito Santo",5245749310.43,14
+"25","Estados",224290029473.91,1,"Parana",4895719744.57,15
+"26","Estados",224290029473.91,1,"Piaui",4599529429.21,16
+"27","Estados",224290029473.91,1,"Maranhao",4509305677.56,17
+"28","Estados",224290029473.91,1,"Para",3061105104.05,19
+"29","Estados",224290029473.91,1,"Alagoas",2971294706.68,21
+"30","Estados",224290029473.91,1,"Mato Grosso",2870355134.44,22
+"31","Estados",224290029473.91,1,"Acre",2812460177.4,23
+"32","Estados",224290029473.91,1,"Tocantins",2588861353.95,24
+"33","Estados",224290029473.91,1,"Distrito Federal",2504256974.84,25
+"34","Estados",224290029473.91,1,"Mato Grosso do Sul",2171278155.05,26
+"35","Estados",224290029473.91,1,"Rio Grande do Norte",1866146865.12,30
+"36","Estados",224290029473.91,1,"Sergipe",1801216956.34,31
+"37","Estados",224290029473.91,1,"Paraiba",1461679599,35
+"38","Estados",224290029473.91,1,"Amapa",1419054714.52,36
+"39","Estados",224290029473.91,1,"Roraima",661999092.13,41
+"40","Estados",224290029473.91,1,"Rondonia",276882784.56,56
+"41","Estatais Federais",7026515024.3,5,"ELETRONUCLEAR",3033780487.97,20
+"42","Estatais Federais",7026515024.3,5,"ELETROBRAS",1873258523.16,29
+"43","Estatais Federais",7026515024.3,5,"FINEP",1711793792.84,33
+"44","Estatais Federais",7026515024.3,5,"Furnas Centrais Eletricas",407682220.33,51
+"45","Municipios",27533771068.49,2,"Rio de Janeiro",7224556371.05,11
+"46","Municipios",27533771068.49,2,"Manaus",2143658549.57,27
+"47","Municipios",27533771068.49,2,"Fortaleza",2127240896.82,28
+"48","Municipios",27533771068.49,2,"Sao Bernardo do Campo",1793228345.18,32
+"49","Municipios",27533771068.49,2,"Belo Horizonte",1670994957.32,34
+"50","Municipios",27533771068.49,2,"Sao Paulo",1015995867.1,37
+"51","Municipios",27533771068.49,2,"Salvador",828914185.67,40
+"52","Municipios",27533771068.49,2,"Porto Alegre",640551190.24,43
+"53","Municipios",27533771068.49,2,"Goiania",619989770.55,44
+"54","Municipios",27533771068.49,2,"Curitiba",588283109.48,47
+"55","Municipios",27533771068.49,2,"Recife",554507176.75,48
+"56","Municipios",27533771068.49,2,"Maua",551266746.49,49
+"57","Municipios",27533771068.49,2,"Niteroi",404850677.28,52
+"58","Municipios",27533771068.49,2,"Teresina",313035542.86,53
+"59","Municipios",27533771068.49,2,"Taubate",308598000,54
+"60","Municipios",27533771068.49,2,"Sao Jose dos Campos",301419152.87,55
+"61","Municipios",27533771068.49,2,"Caucaia",272564812.93,57
+"62","Municipios",27533771068.49,2,"Florianopolis",271905795.01,58
+"63","Municipios",27533771068.49,2,"Blumenau",256433854.09,59
+"64","Municipios",27533771068.49,2,"Belem",255686332.06,60
+"65","Municipios",27533771068.49,2,"Joinville",247351741.91,62
+"66","Municipios",27533771068.49,2,"Campo Grande",224502489.71,63
+"67","Municipios",27533771068.49,2,"Osasco",209468403.78,65
+"68","Municipios",27533771068.49,2,"Natal",201353568.21,66
+"69","Municipios",27533771068.49,2,"Ribeirao Preto",167711779.79,68
+"70","Municipios",27533771068.49,2,"Hortolandia",165644817.48,69
+"71","Municipios",27533771068.49,2,"Caxias do Sul",157924243.33,70
+"72","Municipios",27533771068.49,2,"Cascavel",157674853.84,71
+"73","Municipios",27533771068.49,2,"Camacari",153615218.84,72
+"74","Municipios",27533771068.49,2,"Corumba",151954171.12,73
+"75","Municipios",27533771068.49,2,"Sao Luis",148387870.84,74
+"76","Municipios",27533771068.49,2,"Canoas",142869444.35,75
+"77","Municipios",27533771068.49,2,"Aparecida de Goiania",131754201.84,76
+"78","Municipios",27533771068.49,2,"Maceio",122396077.04,77
+"79","Municipios",27533771068.49,2,"Vitoria",119125543.81,78
+"80","Municipios",27533771068.49,2,"Itajai",115428997.99,79
+"81","Municipios",27533771068.49,2,"Serra",114588021.7,80
+"82","Municipios",27533771068.49,2,"Aracaju",104788724.78,81
+"83","Municipios",27533771068.49,2,"Santo Andre",102966001.64,82
+"84","Municipios",27533771068.49,2,"Parauapebas",95655536.19,83
+"85","Municipios",27533771068.49,2,"Palmas",94194895.1,84
+"86","Municipios",27533771068.49,2,"Novo Hamburgo",91229157.22,85
+"87","Municipios",27533771068.49,2,"Sobral",89446194.22,86
+"88","Municipios",27533771068.49,2,"Santos",86396987.48,87
+"89","Municipios",27533771068.49,2,"Linhares",78764289.68,89
+"90","Municipios",27533771068.49,2,"Paranagua",71971087.4,90
+"91","Municipios",27533771068.49,2,"Toledo",68751900.53,91
+"92","Municipios",27533771068.49,2,"Criciuma",62186849.92,92
+"93","Municipios",27533771068.49,2,"Araguaina",61103960.26,93
+"94","Municipios",27533771068.49,2,"Sao Goncalo do Amarante",57307177.18,94
+"95","Municipios",27533771068.49,2,"Rio Branco",56511826.91,95
+"96","Municipios",27533771068.49,2,"Contagem",54313695.83,96
+"97","Municipios",27533771068.49,2,"Alagoinhas",54218954.13,97
+"98","Municipios",27533771068.49,2,"Maringa",45007503.39,98
+"99","Municipios",27533771068.49,2,"Ouro Preto",4.5e+07,99
+"100","Municipios",27533771068.49,2,"Sorocaba",44052370.07,100
+"101","Municipios",27533771068.49,2,"Sao Caetano do Sul",43656686.12,101
+"102","Municipios",27533771068.49,2,"Colatina",42069623.79,102
+"103","Municipios",27533771068.49,2,"Sete Lagoas",41781740.35,103
+"104","Municipios",27533771068.49,2,"Muriae",40457685.74,104
+"105","Municipios",27533771068.49,2,"Joao Pessoa",38574750,105
+"106","Municipios",27533771068.49,2,"Cariacica",37098115.24,106
+"107","Municipios",27533771068.49,2,"Chapeco",35408597.63,107
+"108","Municipios",27533771068.49,2,"Passo Fundo",35166151.36,108
+"109","Municipios",27533771068.49,2,"Jaragua do Sul",34351851.86,109
+"110","Municipios",27533771068.49,2,"Belford Roxo",33857361.12,110
+"111","Municipios",27533771068.49,2,"Catanduva",31468123.81,111
+"112","Municipios",27533771068.49,2,"Ponta Pora",30971330.52,112
+"113","Municipios",27533771068.49,2,"Jacarei",29316810,113
+"114","Municipios",27533771068.49,2,"Suzano",28888904.77,114
+"115","Municipios",27533771068.49,2,"Maracanau",28288150,115
+"116","Municipios",27533771068.49,2,"Mogi das Cruzes",27228947.84,116
+"117","Municipios",27533771068.49,2,"Ponta Grossa",26924421.03,117
+"118","Municipios",27533771068.49,2,"Boa Vista",26621131.86,118
+"119","Municipios",27533771068.49,2,"Santa Maria",26537239.37,119
+"120","Municipios",27533771068.49,2,"Itapipoca",24287614.37,120
+"121","Municipios",27533771068.49,2,"Cachoeirinha",23703518.74,121
+"122","Municipios",27533771068.49,2,"Aracati",22890000,122
+"123","Municipios",27533771068.49,2,"Piraquara",22770590.37,123
+"124","Municipios",27533771068.49,2,"Uberaba",20520629.04,124
+"125","Municipios",27533771068.49,2,"Itatiaia",20500000,125
+"126","Municipios",27533771068.49,2,"Pelotas",20291487.06,126
+"127","Municipios",27533771068.49,2,"Camocim",18125306.6,127
+"128","Municipios",27533771068.49,2,"Votuporanga",17619047.6,128
+"129","Municipios",27533771068.49,2,"Guarulhos",17225352.69,129
+"130","Municipios",27533771068.49,2,"Bage",15652745.97,130
+"131","Municipios",27533771068.49,2,"Timbo",15338173.14,131
+"132","Municipios",27533771068.49,2,"Ituiutaba",15333333.32,132
+"133","Municipios",27533771068.49,2,"Tangua",14607778.73,133
+"134","Municipios",27533771068.49,2,"Gurupi",14500008.15,134
+"135","Municipios",27533771068.49,2,"Balneario Camboriu",14393939.4,135
+"136","Municipios",27533771068.49,2,"Camboriu",14176851.85,136
+"137","Municipios",27533771068.49,2,"Aquidauana",13941875.17,137
+"138","Municipios",27533771068.49,2,"Pomerode",13683495.22,138
+"139","Municipios",27533771068.49,2,"Barra do Pirai",13501835.08,139
+"140","Municipios",27533771068.49,2,"Rio Grande",13252904.1,140
+"141","Municipios",27533771068.49,2,"Tapejara",12851150.85,141
+"142","Municipios",27533771068.49,2,"Mineiros",11729736.93,142
+"143","Municipios",27533771068.49,2,"Jandira",11438930.42,143
+"144","Municipios",27533771068.49,2,"Vila Velha",11138330.48,144
+"145","Municipios",27533771068.49,2,"Prudentopolis",10151165.78,145
+"146","Municipios",27533771068.49,2,"Nova Alvorada do Sul",10099605.93,146
+"147","Municipios",27533771068.49,2,"Costa Rica",9876868.83,147
+"148","Municipios",27533771068.49,2,"Panambi",9819677.16,148
+"149","Municipios",27533771068.49,2,"Araquari",8648077.97,149
+"150","Municipios",27533771068.49,2,"Ubaira",7283333.32,150
+"151","Municipios",27533771068.49,2,"Carandai",7163948.68,151
+"152","Municipios",27533771068.49,2,"Santa Rosa",6750000.01,152
+"153","Municipios",27533771068.49,2,"Campinas",6726902.01,153
+"154","Municipios",27533771068.49,2,"Uruguaiana",6497168.9,154
+"155","Municipios",27533771068.49,2,"Castro",6489818.91,155
+"156","Municipios",27533771068.49,2,"Jaguare",5824472.45,156
+"157","Municipios",27533771068.49,2,"Candeias",5327005.56,157
+"158","Municipios",27533771068.49,2,"Ivinhema",5045629.53,158
+"159","Municipios",27533771068.49,2,"Ponte Nova",5007806.89,159
+"160","Municipios",27533771068.49,2,"Jiquirica",5007291.68,160
+"161","Municipios",27533771068.49,2,"Lapao",4900000,161
+"162","Municipios",27533771068.49,2,"Agua Doce",4814814.8,162
+"163","Municipios",27533771068.49,2,"Paraiso das Aguas",4762299.29,163
+"164","Municipios",27533771068.49,2,"Betim",4495997.49,164
+"165","Municipios",27533771068.49,2,"Pinhalzinho",4416666.66,165
+"166","Municipios",27533771068.49,2,"Schroeder",4339763.08,166
+"167","Municipios",27533771068.49,2,"Barrocas",4303537.87,167
+"168","Municipios",27533771068.49,2,"Massaranduba",4223389.05,168
+"169","Municipios",27533771068.49,2,"Concordia",4207429.68,169
+"170","Municipios",27533771068.49,2,"Guarda-Mor",3891953.12,170
+"171","Municipios",27533771068.49,2,"Parana",3800000,171
+"172","Municipios",27533771068.49,2,"Morro da Fumaca",3710311.11,172
+"173","Municipios",27533771068.49,2,"Pojuca",3363593.75,173
+"174","Municipios",27533771068.49,2,"Sao Gabriel do Oeste",3279673.26,174
+"175","Municipios",27533771068.49,2,"Ita",3046161.76,175
+"176","Municipios",27533771068.49,2,"Barracao",3021980.39,176
+"177","Municipios",27533771068.49,2,"Ponte Serrada",2947222.22,177
+"178","Municipios",27533771068.49,2,"Piripiri",2841157.61,178
+"179","Municipios",27533771068.49,2,"Vicosa",2741153.38,179
+"180","Municipios",27533771068.49,2,"Capitolio",2421747.86,180
+"181","Municipios",27533771068.49,2,"Sonora",2316188.91,181
+"182","Municipios",27533771068.49,2,"Garca",2296557.83,182
+"183","Municipios",27533771068.49,2,"Abdon Batista",2293622.18,183
+"184","Municipios",27533771068.49,2,"Roca Sales",2260343.51,184
+"185","Municipios",27533771068.49,2,"Marata",2247568.75,185
+"186","Municipios",27533771068.49,2,"Cotipora",2150212.42,186
+"187","Municipios",27533771068.49,2,"Morro Grande",2038982.28,187
+"188","Municipios",27533771068.49,2,"Passos Maia",2007086.04,188
+"189","Municipios",27533771068.49,2,"Doutor Pedrinho",1999852.73,189
+"190","Municipios",27533771068.49,2,"Jaquirana",1978976.06,190
+"191","Municipios",27533771068.49,2,"Goioere",1945350.6,191
+"192","Municipios",27533771068.49,2,"Caarapo",1926270.87,192
+"193","Municipios",27533771068.49,2,"Alto Feliz",1877952.96,193
+"194","Municipios",27533771068.49,2,"Vale Real",1866902.65,194
+"195","Municipios",27533771068.49,2,"Bom Jesus",1843935.34,195
+"196","Municipios",27533771068.49,2,"Correia Pinto",1689115.98,196
+"197","Municipios",27533771068.49,2,"Osorio",1621493.56,197
+"198","Municipios",27533771068.49,2,"Pinheiro Preto",1500902.38,198
+"199","Municipios",27533771068.49,2,"Paty do Alferes",1472222.22,199
+"200","Municipios",27533771068.49,2,"Abelardo Luz",1400000,200
+"201","Municipios",27533771068.49,2,"Serafina Correa",1350555.01,201
+"202","Municipios",27533771068.49,2,"Nova Santa Rita",1140020.58,202
+"203","Municipios",27533771068.49,2,"Salvador do Sul",1053918.05,203
+"204","Municipios",27533771068.49,2,"Sao Sebastiao do Cai",998145.94,204
+"205","Municipios",27533771068.49,2,"Campinas das Missoes",830403.78,205
+"206","Municipios",27533771068.49,2,"Barao",822378.68,206
+"207","Municipios",27533771068.49,2,"Entre Rios",791221.52,207
+"208","Municipios",27533771068.49,2,"Tio Hugo",770796.11,208
+"209","Municipios",27533771068.49,2,"Vargeao",770773.15,209
+"210","Municipios",27533771068.49,2,"Capinzal",701005.94,210
+"211","Municipios",27533771068.49,2,"Santa Helena",658680.78,211
+"212","Municipios",27533771068.49,2,"Paranavai",646638.65,212
+"213","Municipios",27533771068.49,2,"Crucilandia",6e+05,213
+"214","Municipios",27533771068.49,2,"Rio Paranaiba",510000,214
+"215","Municipios",27533771068.49,2,"Rio do Campo",509444.45,215
+"216","Municipios",27533771068.49,2,"Santa Vitoria",180626.94,216
+"217","Municipios",27533771068.49,2,"Monte Castelo",13147.13,217
+"218","Municipios",27533771068.49,2,"Guaruja do Sul",0,220
+"219","Municipios",27533771068.49,2,"Sidrolandia",0,220
+"220","Municipios",27533771068.49,2,"Veranopolis",0,220
+"221","Municipios",27533771068.49,2,"Jundiai",0,220
+"222","Municipios",27533771068.49,2,"Eusebio",0,220

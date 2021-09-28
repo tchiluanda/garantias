@@ -10,7 +10,7 @@ library(readxl)
 #extrafont::font_import()
 loadfonts()
 
-load("Garantias_abr_2021.Rdata")
+load("Garantias_ago_2021.Rdata")
 
 nomes_honras <- names(honras)
 
@@ -124,7 +124,7 @@ Sys.setlocale("LC_ALL", "pt_br.utf-8")
 #lista_contratos <- novos_contratos %>% count(Mutuário)
 #contratos <- read.csv2("./R_prep_vis/dados/Abr2021/InfCadastrais 30abr2021.csv", skip = 10, stringsAsFactors = FALSE)
 
-contratos <- readxl::read_excel("./R_prep_vis/dados/Abr2021/InfCadastrais 30abr2021.xlsx")
+contratos <- readxl::read_excel("./R_prep_vis/dados/Ago2021/InfCadastrais 31ago2021.xlsx")
 #contratos <- readRDS("R_prep_vis/dados/Dez2020/contratos.rds")
 
 
@@ -214,7 +214,7 @@ lista_unica <- full_join(lista_garantias_mutuarios,
 # honras <- read.csv2("./R_prep_vis/dados/Dez2020/Relatorio_honras_atrasos 31dez2020.csv",
 #                     skip = 10, stringsAsFactors = FALSE)
 
-honras <- read_excel("./R_prep_vis/dados/Abr2021/Relatorio_honras_atrasos 30abr2021.xlsx")
+honras <- read_excel("./R_prep_vis/dados/Ago2021/Relatorio_honras_atrasos 31ago2021.xlsx")
 
 names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato", 
                    "Credor", "Classificação do Credor", "Mutuário", "Tipo de Mutuário", 
