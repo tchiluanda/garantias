@@ -64,6 +64,8 @@ https://tchiluanda.github.io/garantias/dividas/
 
 ## Pipeline da análise
 
+(as referências estão à primeira versão do projeto, naturalmente é preciso considerar os meses e anos atualizados)
+
 ### 1. `R_prep_vis/prepara_dados_vis.R`
 
 Consome: 
@@ -130,6 +132,27 @@ Algumas observações:
 "Externas": `externa_total`
 
 ### agrupador_atm_completo
+
+## Para atualização
+
+Converter arquivos .csv em .xlsx (no Mac, usar ferramenta de importação de Dados Externos, Arquivo Texto, com a codificação "Western (Windows Latin 1)").
+
+### Script `./R_prep_vis/prepara_dados_vis.R` :
+
+* Atualizar referências ao arquivo `.RData` (linha 13)
+
+* Atualizar referências ao arquivo `./R_prep_vis/dados/MmmAA/InfCadastrais ... .csv` (linha 127)
+
+* Atualizar referências ao arquivo `./R_prep_vis/dados/MmmAA/Relatorio_honras ... .csv` (linha 217)
+
+### HTML e JS
+
+`./index.html` -- linhas 85 e 180, referências a datas.
+
+`./honras/index.html`-- linhas 46, 62, 74, referências a datas.
+
+`./webpage/vis-honras.js` -- linhas 383, 384, 592, 604.
+
 
 ## Licões aprendidas (D3/Web)
 
