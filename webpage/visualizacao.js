@@ -120,7 +120,7 @@ d3.csv("webpage/dados/dados_vis_garantias.csv", function(d) {
     const maxValue = d3.max(dados, d => +d.valor);
 
     const radiusScale = d3.scaleSqrt()
-      .range([2, w < 510 ? w/13 : 35])  // 45
+      .range([2, w < 510 ? w/15 : 32])  // 45
       .domain([0, maxValue]);
     
     // Jim uses a function to create the nodes, i.e., the 
