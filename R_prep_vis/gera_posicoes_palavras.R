@@ -2,7 +2,7 @@ library(tidyverse)
 library(readxl)
 #library(jsonlite)
 
-grid <- read_excel("./R_prep_vis/grid_letras.xlsx", sheet = "export_honras_2")
+grid <- read_excel("./R_prep_vis/grid_letras.xlsx", sheet = "export")
 
 new_grid <- as.data.frame(grid[,-1])
 
