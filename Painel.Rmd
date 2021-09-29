@@ -6073,7 +6073,7 @@ output$Contratos <- renderDT(server = FALSE, {
           paging = TRUE,
           searching = FALSE
           ),
-     colnames = c('ANO','CONTRATO' ,'DATA ASSINATURA', 'GRUPO', 'MUTUARIO','UF' ,'STATUS', 'TIPO', 'CREDOR', 'MOEDA', 'VALOR CONTRATADO')
+     colnames = c('DATA ASSINATURA', 'CONTRATO' , 'MUTUARIO', 'STATUS', 'HONRA?', 'UF', 'ANO', 'TIPO', 'CREDOR', 'MOEDA', 'VALOR CONTRATADO')
     
 
     ) #%>%
