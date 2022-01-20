@@ -16,7 +16,9 @@ library(abjutils)
 
 #Definição Pasta de Processamento dos Arquivos
 
-setwd("C:/Users/sara/Desktop/Lucas/GT-CEAD/Projetos/16. Painel Garantias - CODIV - SUDIP/R")
+#setwd("C:/Users/sara/Desktop/Lucas/GT-CEAD/Projetos/16. Painel Garantias - CODIV - SUDIP/R")
+
+caminho <- './prep/R/dados-codiv/'
 
 #___________________________________________________________________________________________
 
@@ -76,7 +78,7 @@ setwd("C:/Users/sara/Desktop/Lucas/GT-CEAD/Projetos/16. Painel Garantias - CODIV
 
 #Novo período (Data) - Último Quadrimestre
 
-Novo_Periodo <- as.character("30abr2021") #alterar essa data para atualizar processamento dos dados
+Novo_Periodo <- as.character("31dez2021") #alterar essa data para atualizar processamento dos dados
 
 #Radical Dados Garantias Totais 
 
@@ -107,7 +109,16 @@ credores <- as.character("EstTranche ")
 
 #CSV - Total de Garantias
 
-agrupador_total_bruto <- read.csv2(paste0(total,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
+tam_cabecalho <- 11
+
+cabecalho <- read.csv2(paste0(caminho,total,Novo_Periodo,".csv"), 
+                       encoding = "latin1", 
+                       nrows = tam_cabecalho) %>%
+  rename(Inicio = 1) 
+
+agrupador_total_bruto <- read.csv2(paste0(caminho,total,Novo_Periodo,".csv"), 
+                                   encoding = "latin1", 
+                                   skip = tam_cabecalho) %>%
         rename(Inicio = 1) 
         
 
@@ -117,7 +128,7 @@ linha_agrupador_total <- which(agrupador_total_bruto$Inicio=="Agrupador")
 
 #Obtenção da Data de Referência da Base de Dados
 
-data_referencia_total <- agrupador_total_bruto$Inicio[which(str_detect(agrupador_total_bruto$Inicio, "Data de Referência:"))]
+data_referencia_total <- cabecalho$Inicio[which(str_detect(cabecalho$Inicio, "Data de Referência:"))]
 
 data_referencia <- as.Date(str_sub(data_referencia_total,21,str_length(data_referencia_total)),"%d/%m/%Y" )
 
@@ -127,7 +138,7 @@ lista_agrupador <- c("Garantia Total","Todas","Estados", "Bancos Federais", "Mun
 
 
 agrupador_total <- agrupador_total_bruto %>% 
-    filter(row_number() > linha_agrupador_total) %>%
+    filter(row_number() >= linha_agrupador_total) %>%
     rename(total_total=2,
                          total_IPCA=4, 
                          total_selic=6, 
@@ -161,17 +172,18 @@ agrupador_total <- agrupador_total_bruto %>%
 
 #CSV - ATM Total
 
-agrupador_atm_bruto <- read.csv2(paste0(atm_total,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
+agrupador_atm_bruto <- read.csv2(paste0(caminho,atm_total,Novo_Periodo,".csv"), 
+                                 encoding = "latin1", skip = tam_cabecalho) %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
 
-linha_agrupador_atm <- which(agrupador_atm_bruto$Inicio=="Agrupador")
+linha_agrupador_atm <- 1#which(agrupador_atm_bruto$Inicio=="Agrupador")
 
 #Processamento da Base com ATM das Garantias - Formatada
 
 agrupador_atm <- agrupador_atm_bruto %>% 
-    filter(row_number() > linha_agrupador_atm) %>%
+    filter(row_number() >= linha_agrupador_atm) %>%
     rename(ATM_Total = 2,
            Financeiro_atm_total = 3) %>%
     mutate(Inicio = as.character(Inicio), 
@@ -181,21 +193,25 @@ agrupador_atm <- agrupador_atm_bruto %>%
     select(Inicio, Classificador,Grupo,Periodo,everything()) %>%
     fill(Classificador)
     
+
 # Processamento - ATM (Avarage Time to Maturity) - INTERNO
 
 #CSV - ATM Garantias
 
-agrupador_atm_bruto_interno <- read.csv2(paste0(atm_interno,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
+agrupador_atm_bruto_interno <- read.csv2(
+  paste0(caminho,atm_interno,Novo_Periodo,".csv"), 
+  encoding = "latin1",
+  skip = tam_cabecalho) %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
 
-linha_agrupador_atm_interno <- which(agrupador_atm_bruto_interno$Inicio=="Agrupador")
+linha_agrupador_atm_interno <- 1#which(agrupador_atm_bruto_interno$Inicio=="Agrupador")
 
 #Processamento da Base com ATM das Garantias - Formatada
 
 agrupador_atm_interno <- agrupador_atm_bruto_interno %>% 
-    filter(row_number() > linha_agrupador_atm_interno) %>%
+    filter(row_number() >= linha_agrupador_atm_interno) %>%
     rename(ATM_interno = 2,
            Financeiro_atm_interno = 3) %>%
     mutate(Inicio = as.character(Inicio), 
@@ -209,17 +225,20 @@ agrupador_atm_interno <- agrupador_atm_bruto_interno %>%
 
 #CSV - ATM Garantias
 
-agrupador_atm_bruto_externo <- read.csv2(paste0(atm_externo,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
+agrupador_atm_bruto_externo <- read.csv2(
+  paste0(caminho,atm_externo,Novo_Periodo,".csv"), 
+  encoding = "latin1",
+  skip = tam_cabecalho) %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
 
-linha_agrupador_atm_externo <- which(agrupador_atm_bruto_externo$Inicio=="Agrupador")
+linha_agrupador_atm_externo <- 1#which(agrupador_atm_bruto_externo$Inicio=="Agrupador")
 
 #Processamento da Base com ATM das Garantias - Formatada
 
 agrupador_atm_externo <- agrupador_atm_bruto_externo %>% 
-    filter(row_number() > linha_agrupador_atm_externo) %>%
+    filter(row_number() >= linha_agrupador_atm_externo) %>%
     rename(ATM_externo = 2,
            Financeiro_atm_externo = 3) %>%
     mutate(Inicio = as.character(Inicio), 
@@ -244,17 +263,17 @@ agrupador_atm_completo <- agrupador_atm %>%
 
 #CSV - CUSTO Total
 
-agrupador_custo_bruto <- read.csv2(paste0(custo_total,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
+agrupador_custo_bruto <- read.csv2(paste0(caminho,custo_total,Novo_Periodo,".csv"), encoding = "latin1", skip=tam_cabecalho) %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
 
-linha_agrupador_custo <- which(agrupador_custo_bruto$Inicio=="Agrupador")
+linha_agrupador_custo <- 1#which(agrupador_custo_bruto$Inicio=="Agrupador")
 
 #Processamento da Base com Custo das Garantias - Formatada
 
 agrupador_custo <- agrupador_custo_bruto %>% 
-    filter(row_number() > linha_agrupador_custo) %>%
+    filter(row_number() >= linha_agrupador_custo) %>%
     rename(Custo_Total = 2,
            Financeiro_custo_total = 3) %>%
     mutate(Inicio = as.character(Inicio), 
@@ -268,17 +287,17 @@ agrupador_custo <- agrupador_custo_bruto %>%
 
 #CSV - CUSTO Interno
 
-agrupador_custo_bruto_interno <- read.csv2(paste0(custo_interno,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
+agrupador_custo_bruto_interno <- read.csv2(paste0(caminho,custo_interno,Novo_Periodo,".csv"), encoding = "latin1", skip = tam_cabecalho) %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
 
-linha_agrupador_custo_interno <- which(agrupador_custo_bruto_interno$Inicio=="Agrupador")
+linha_agrupador_custo_interno <- 1#which(agrupador_custo_bruto_interno$Inicio=="Agrupador")
 
 #Processamento da Base com Custo das Garantias - Formatada
 
 agrupador_custo_interno <- agrupador_custo_bruto_interno %>% 
-    filter(row_number() > linha_agrupador_custo_interno) %>%
+    filter(row_number() >= linha_agrupador_custo_interno) %>%
     rename(Custo_Interno = 2,
            Financeiro_custo_interno = 3) %>%
     mutate(Inicio = as.character(Inicio), 
@@ -292,17 +311,17 @@ agrupador_custo_interno <- agrupador_custo_bruto_interno %>%
 
 #CSV - CUSTO Externo
 
-agrupador_custo_bruto_externo <- read.csv2(paste0(custo_externo,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
+agrupador_custo_bruto_externo <- read.csv2(paste0(caminho,custo_externo,Novo_Periodo,".csv"), encoding = "latin1", skip = tam_cabecalho) %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
 
-linha_agrupador_custo_externo <- which(agrupador_custo_bruto_externo$Inicio=="Agrupador")
+linha_agrupador_custo_externo <- 1#which(agrupador_custo_bruto_externo$Inicio=="Agrupador")
 
 #Processamento da Base com Custo das Garantias - Formatada
 
 agrupador_custo_externo <- agrupador_custo_bruto_externo %>% 
-    filter(row_number() > linha_agrupador_custo_externo) %>%
+    filter(row_number() >= linha_agrupador_custo_externo) %>%
     rename(Custo_Externo = 2,
            Financeiro_custo_externo = 3) %>%
     mutate(Inicio = as.character(Inicio), 
@@ -330,17 +349,17 @@ agrupador_custo_completo <- agrupador_custo %>%
 
 #CSV - Percentual Vincendo
 
-agrupador_percentual_vincendo_bruto <- read.csv2(paste0(percentual_vincendo,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
+agrupador_percentual_vincendo_bruto <- read.csv2(paste0(caminho,percentual_vincendo,Novo_Periodo,".csv"), encoding = "latin1", skip = tam_cabecalho) %>%
     rename(Inicio = 1) 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
 
-linha_agrupador_percentual_vincendo <- which(agrupador_percentual_vincendo_bruto$Inicio=="Agrupador")
+linha_agrupador_percentual_vincendo <- 1#which(agrupador_percentual_vincendo_bruto$Inicio=="Agrupador")
 
 #Processamento da Base com Percentual Vincendo das Garantias - Formatada
 
 agrupador_percentual_vincendo <- agrupador_percentual_vincendo_bruto %>% 
-    filter(row_number() > linha_agrupador_percentual_vincendo) %>%
+    filter(row_number() >= linha_agrupador_percentual_vincendo) %>%
     #rename(Custo_Total = 2,
      #      Financeiro_custo_total = 3) %>%
     mutate(Inicio = as.character(Inicio), 
@@ -374,17 +393,24 @@ agrupador_percentual_vincendo <- agrupador_percentual_vincendo_bruto %>%
 
 #CSV - Credores
 
-agrupador_credores_bruto <- read.csv2(paste0(credores,Novo_Periodo,".csv"), encoding = "LATIN1") %>%
+agrupador_credores_bruto <- read.csv2(
+  paste0(caminho,credores,Novo_Periodo,".csv"), 
+  encoding = "latin1", skip = tam_cabecalho, row.names = NULL) %>%
   rename(Inicio = 1) 
+
+#gambiarra na pressa
+colnames(agrupador_credores_bruto) <- c("Inicio", colnames(agrupador_credores_bruto)[-1:-2])
+agrupador_credores_bruto <- agrupador_credores_bruto[,1:26]
+
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
 
-linha_agrupador_credores <- which(agrupador_credores_bruto$Inicio=="Nome do Contrato")
+linha_agrupador_credores <- 1#which(agrupador_credores_bruto$Inicio=="Nome do Contrato")
 
 #Processamento da Base com Credores - Formatados
 
 agrupador_credores <- agrupador_credores_bruto %>% 
-  filter(row_number() > linha_agrupador_credores)%>%
+  filter(row_number() >= linha_agrupador_credores)%>%
   rename(Tipo_Divida = 4, 
          Mutuario = 5,
          Tipo_Mutuario = 6,
@@ -407,7 +433,7 @@ agrupador_credores <- agrupador_credores_bruto %>%
 
 #CSV - Honras Garantias
 
-honras <- read_delim("Relatorio_honras_atrasos 30abr2021.csv", 
+honras <- read_delim(paste0(caminho,"Relatorio_honras_atrasos 31dez2021.csv"), 
                      ";", escape_double = FALSE, locale = locale(date_format = "%d/%m/%Y", 
                                                                  decimal_mark = ",", grouping_mark = ".", 
                                                                  encoding = "LATIN1"), trim_ws = TRUE, 
@@ -418,7 +444,7 @@ honras <- read_delim("Relatorio_honras_atrasos 30abr2021.csv",
 
 #CSV - Novos Contratos
 
-novos_contratos <- read_delim("InfCadastrais 30abr2021 - Final.csv", 
+novos_contratos <- read_delim(paste0(caminho,"InfCadastrais 31dez2021.csv"), 
                      ";", escape_double = TRUE, locale = locale(date_format = "%d/%m/%y", 
                                                                  decimal_mark = ",", grouping_mark = ".", 
                                                                  encoding = "LATIN1"), trim_ws = TRUE, 
@@ -447,7 +473,7 @@ novos_contratos$Tipo_Mutuario <- ifelse(novos_contratos$Tipo_Mutuario =="Entidad
 
 #____________________________
 
-save(list = c("data_referencia","honras","novos_contratos","agrupador_atm_completo","agrupador_custo_completo","agrupador_percentual_vincendo","agrupador_total", "agrupador_credores"),file = "Garantias_abr_2021.Rdata")
+save(list = c("data_referencia","honras","novos_contratos","agrupador_atm_completo","agrupador_custo_completo","agrupador_percentual_vincendo","agrupador_total", "agrupador_credores"),file = "Garantias_dez_2021.Rdata")
 
 #save(list = c("honras"),file = "Honras_mai_2020.Rdata")
 
