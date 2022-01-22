@@ -4,7 +4,7 @@ runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     navbar:
-      - { title: "Data: 31/08/2021",icon: ion-ios-calendar-outline, href: "https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/" ,align: right }
+      - { title: "Data: 31/12/2021",icon: ion-ios-calendar-outline, href: "https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/" ,align: right }
     orientation: columns
     vertical_layout: fill
     
@@ -96,7 +96,7 @@ library(dplyr)
 library(kableExtra)
 library(DT)
 
-load("Garantias_ago_2021.Rdata")
+load("Garantias_dez_2021.Rdata")
 
 funcao_formata_quantidade <- function(x){
   paste0(format(round(x/1000000, 2), big.mark = ".", decimal.mark = ","))
