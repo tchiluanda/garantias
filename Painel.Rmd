@@ -93,6 +93,7 @@ library(plotly)
 library(flexdashboard)
 library(stringr)
 library(dplyr)
+library(systemfonts)
 library(kableExtra)
 library(DT)
 
@@ -111,6 +112,10 @@ formata <- function(x){
     paste0("R$", format(round(x, 2), big.mark = ".", decimal.mark = ","), " mi")
   }
 
+formata_numero <- function(x){
+  as.numeric(format(round(x,2), big.mark = ".", decimal.mark = ","))
+}
+
 funcao_percentual_taxa <- function(x){
   paste0(format(round(x*100, 2), big.mark = ".", decimal.mark = ","),"%")
 }
@@ -122,7 +127,7 @@ numero <- function(x){
    b <- str_replace_all(a,"\\.","")
    c <- str_replace_all(b,",","\\.")
    d <- as.numeric(c)
-   
+
    return(d)
 }
 
@@ -163,8 +168,8 @@ agrupador_formatado_geral[paste0(linha_entidade_geral),1] <- "Entidades Controla
 agrupador_formatado_geral[1,1] <- "Total"
 
 agrupador_ATM_geral_formatado <- agrupador_atm_completo %>%
-                 filter((Inicio %in% grupos_geral)) %>%
-                 mutate(ATM_Total = numero(ATM_Total))
+                 filter((Inicio %in% grupos_geral))# %>%
+                 #mutate(ATM_Total = numero(ATM_Total))
 
 linha_entidade_ATM <- which(agrupador_ATM_geral_formatado$Inicio=="Entidades Estaduais Controladas")
 
@@ -184,7 +189,7 @@ agrupador_custo_geral_formatado[paste0(linha_entidade_custo),1] <- "Entidades Co
 agrupador_custo_geral_formatado[1,1] <- "Total"
 
 agrupador_percentual_vincendo_geral_formatado <- agrupador_percentual_vincendo %>%
-                 filter((Inicio %in% grupos_geral)) 
+                 filter((Inicio %in% grupos_geral))
 
 linha_entidade_percentual_vincendo <- which(agrupador_percentual_vincendo_geral_formatado$Inicio=="Entidades Estaduais Controladas")
 
@@ -2163,8 +2168,7 @@ teste <- agrupador_formatado_estados[order(-rank(agrupador_formatado_estados$tot
 
 agrupador_ATM_estados_formatado <- agrupador_atm_completo %>%
                  filter(!(Inicio %in% grupos)) %>%
-                 filter((Classificador == "Estados")) %>%
-                 mutate(ATM_Total = numero(ATM_Total))
+                 filter((Classificador == "Estados"))
 
 agrupador_custo_estados_formatado <- agrupador_custo_completo %>%
                  filter(!(Inicio %in% grupos)) %>%
@@ -2943,8 +2947,7 @@ agrupador_formatado_municipios <- agrupador_total %>%
 
 agrupador_ATM_municipios_formatado <- agrupador_atm_completo %>%
                  filter(!(Inicio %in% grupos)) %>%
-                 filter((Classificador == "Municipios")) %>%
-                 mutate(ATM_Total = numero(ATM_Total))
+                 filter((Classificador == "Municipios"))
 
 agrupador_custo_municipios_formatado <- agrupador_custo_completo %>%
                  filter(!(Inicio %in% grupos)) %>%
@@ -3690,8 +3693,7 @@ agrupador_formatado_bancos_federais <- agrupador_total %>%
 
 agrupador_ATM_bancos_federais_formatado <- agrupador_atm_completo %>%
                  filter(!(Inicio %in% grupos)) %>%
-                 filter((Classificador == "Bancos Federais")) %>%
-                 mutate(ATM_Total = numero(ATM_Total))
+                 filter((Classificador == "Bancos Federais"))
 
 agrupador_custo_bancos_federais_formatado <- agrupador_custo_completo %>%
                  filter(!(Inicio %in% grupos)) %>%
@@ -4427,8 +4429,7 @@ agrupador_formatado_estatais_federais <- agrupador_total %>%
 
 agrupador_ATM_estatais_federais_formatado <- agrupador_atm_completo %>%
                  filter(!(Inicio %in% grupos)) %>%
-                 filter((Classificador == "Estatais Federais")) %>%
-                 mutate(ATM_Total = numero(ATM_Total))
+                 filter((Classificador == "Estatais Federais"))
 
 agrupador_custo_estatais_federais_formatado <- agrupador_custo_completo %>%
                  filter(!(Inicio %in% grupos)) %>%
@@ -5160,8 +5161,7 @@ agrupador_formatado_entidades_estaduais <- agrupador_total %>%
 
 agrupador_ATM_entidades_estaduais_formatado <- agrupador_atm_completo %>%
                  filter(!(Inicio %in% grupos)) %>%
-                 filter((Classificador == "Entidades Estaduais Controladas")) %>%
-                 mutate(ATM_Total = numero(ATM_Total))
+                 filter((Classificador == "Entidades Estaduais Controladas"))
 
 agrupador_custo_entidades_estaduais_formatado <- agrupador_custo_completo %>%
                  filter(!(Inicio %in% grupos)) %>%
