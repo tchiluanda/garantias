@@ -23,6 +23,21 @@ output:
   box-shadow: 10px;
 }
 
+#section-quadro-geral .card {
+  font-size: 12px;
+}
+
+#section-quadro-geral .card .col-sm-3,
+#section-quadro-geral .card .col-sm-5,
+#section-quadro-geral .card .col-sm-6 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.space-left {
+padding-left : 10px;
+}
+
 </style>
 
 
@@ -177,12 +192,13 @@ agrupador_ATM_geral_formatado[paste0(linha_entidade_ATM),1] <- "Entidades Contro
 
 agrupador_ATM_geral_formatado[1,1] <- "Total"
 
+agrupador_custo_completo <- agrupador_custo_completo %>%
+                   mutate_at(
+                   vars(starts_with("Custo_")), 
+                   .funs = ~scales::percent_format(accuracy = .01, decimal.mark = ",", big.mark = ".")(as.numeric(str_replace(str_sub(., 1, -2), ",", "."))/100))
 
 agrupador_custo_geral_formatado <- agrupador_custo_completo %>%
                  filter((Inicio %in% grupos_geral)) %>%
-                 mutate_at(
-                   vars(starts_with("Custo_")), 
-                   .funs = ~scales::percent_format(accuracy = .01, decimal.mark = ",", big.mark = ".")(as.numeric(str_replace(str_sub(., 1, -2), ",", "."))/100)) %>%
                  mutate(Custo_total_formatado =   numero(str_replace_all(Custo_Total,"%","")))
 
 linha_entidade_custo <- which(agrupador_custo_geral_formatado$Inicio=="Entidades Estaduais Controladas")
@@ -257,54 +273,54 @@ fluidPage(
    
   br(), br(),
   
-  column(width=6,align="center",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
+  column(width=6,align="center",div(style = "height:17px;font-size: 12px;background-color: ;","")),
   
-   column(width=3,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","R$ Milhões")),
+   column(width=3,align="right",div(style = "height:17px;font-size: 12px;background-color: ;","R$ Mi")),
    br(),
-  column(width=6,align="left",div(style = "height:17px;font-size: 13pt;font-weight: bold;background-color: ;","OPERAÇÕES GARANTIDAS")),
+  column(width=6,align="left",div(style = "height:17px;font-size: 13px;font-weight: bold;background-color: ;","OPERAÇÕES GARANTIDAS")),
   
   
-  column(width=3,align="right",div(style = "height:17px;font-size: 13pt;font-weight: bold;background-color: ;",textOutput("Garantia_Total_geral"))),
+  column(width=3,align="right",div(style = "height:17px;font-size: 13px;font-weight: bold;background-color: ;",textOutput("Garantia_Total_geral"))),
   
        br(), 
   
-  column(width=6,align="left",div(style = "height:17px;font-size: 13pt;background-color: ;","INTERNAS")),
+  column(width=6,align="left",div(style = "height:17px;font-size: 13px;background-color: ;","INTERNAS")),
   
-  column(width=3,align="right",div(style = "height:17px;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_geral"))),
+  column(width=3,align="right",div(style = "height:17px;font-size: 13px;background-color: ;",textOutput("Garantia_interna_geral"))),
   
   
       br(),
  
  
-  column(width=6,align="center",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais:")),
+  column(width=6,align="left",div(style = "height:17px;color: #737373;background-color: ;","Internas Cambiais", class = "space-left")),
   
-  column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_cambial_geral"))),
+  column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13px;background-color: ;",textOutput("Garantia_interna_cambial_geral"))),
   
      
    br(),
   
  
-  column(width=5,align="right",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais   :")),
-  column(width=1,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
+  column(width=6,align="left",div(style = "height:17px;color: #737373;background-color: ;","Internas Demais", class = "space-left")),
+  #column(width=1,align="right",div(style = "height:17px;font-size: 12px;background-color: ;","")),
  
-  column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13pt;background-color: ;",textOutput("Garantia_interna_demais_geral"))),
+  column(width=3,align="right",div(style = "height:17px;color: #737373;font-size: 13px;background-color: ;",textOutput("Garantia_interna_demais_geral"))),
   
  br(), 
-  column(width=6,align="left",div(style = "height:17px;font-size: 13pt;background-color: ;","EXTERNAS")),
+  column(width=6,align="left",div(style = "height:17px;font-size: 13px;background-color: ;","EXTERNAS")),
   
-  column(width=3,align="right",div(style = "height:17px;font-size: 13pt;background-color: ;",textOutput("Garantia_externa_geral"))),
+  column(width=3,align="right",div(style = "height:17px;font-size: 13px;background-color: ;",textOutput("Garantia_externa_geral"))),
   
       br(), br(),
-  column(width=5,align="left",div(style = "height:17px;font-size: 13pt;font-weight: bold;background-color: ;","VIDA MÉDIA - ATM")),
-  column(width=4,align="right",div(style = "height:17px;font-size: 13pt;font-weight: bold;background-color: ;",textOutput("Garantia_ATM_geral"))),
+  column(width=5,align="left",div(style = "height:17px;font-size: 13px;font-weight: bold;background-color: ;","VIDA MÉDIA - ATM")),
+  column(width=4,align="right",div(style = "height:17px;font-size: 13px;font-weight: bold;background-color: ;",textOutput("Garantia_ATM_geral"))),
       br(),br(),
-  column(width=5,align="left",div(style = "height:17px;font-size: 13pt;font-weight: bold;background-color: ;","CUSTO MÉDIO")),
-  column(width=4,align="right",div(style = "height:17px;font-size: 13pt;font-weight: bold;background-color: ;",textOutput("Garantia_custo_geral"))),
+  column(width=5,align="left",div(style = "height:17px;font-size: 13px;font-weight: bold;background-color: ;","CUSTO MÉDIO")),
+  column(width=4,align="right",div(style = "height:17px;font-size: 13px;font-weight: bold;background-color: ;",textOutput("Garantia_custo_geral"))),
       br(),br(),
-  column(width=6,align="left",div(style = "height:17px;font-size: 13pt;font-weight: bold;background-color: ;","PERCENTUAL VINCENDO")),
-  column(width=2,align="center",div(style = "height:17px;font-size: 12pt;background-color: ;","")),
+  column(width=6,align="left",div(style = "height:17px;font-size: 13px;font-weight: bold;background-color: ;","PERCENTUAL VINCENDO")),
+  column(width=2,align="center",div(style = "height:17px;font-size: 12px;background-color: ;","")),
       
-  column(width=4,align="right",div(style = "height:17px;font-size: 12pt;background-color: ;","R$ Milhões")),
+  column(width=4,align="right",div(style = "height:17px;font-size: 12px;background-color: ;","R$ Milhões")),
   br(),
   
   column(width=3,align="left",div(style = "height:17px;background-color: ;","12 meses")),
