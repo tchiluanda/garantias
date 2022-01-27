@@ -188,6 +188,11 @@ agrupador_custo_geral_formatado[paste0(linha_entidade_custo),1] <- "Entidades Co
 
 agrupador_custo_geral_formatado[1,1] <- "Total"
 
+agrupador_percentual_vincendo <- agrupador_percentual_vincendo %>%
+  mutate_at(
+    vars(ends_with("_percentual")), 
+    .funs = ~scales::percent_format(accuracy = .01, decimal.mark = ",", big.mark = ".")(as.numeric(str_replace(str_sub(., 1, -2), ",", "."))/100))
+
 agrupador_percentual_vincendo_geral_formatado <- agrupador_percentual_vincendo %>%
                  filter((Inicio %in% grupos_geral))
 
