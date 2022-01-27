@@ -418,7 +418,9 @@ observeEvent(Garantia_ATM_reativo_geral(),{
 
                       filter(Inicio == entrada) }
 
-  output$Garantia_ATM_geral <- renderText(paste0(str_replace_all(round(filtro_classificador_geral_atm$ATM_Total,2),"\\.",","), " anos"))
+  output$Garantia_ATM_geral <- renderText(
+    paste0(format(round(filtro_classificador_geral_atm$ATM_Total,2), big.mark = ".", decimal.mark = ","), " anos")
+    )
   
 })
   
@@ -899,9 +901,9 @@ output$nominal_garantia_externa <- renderText(paste0("R$ ",funcao_formata_quanti
 ```{r atm_geral, fig.width=9,echo = FALSE, results = 'asis'}
 
 
-barras_atm <- agrupador_ATM_geral_formatado %>%
-              mutate(ATM_interno = numero(ATM_interno)) %>%
-              mutate(ATM_externo = numero(ATM_externo)) 
+barras_atm <- agrupador_ATM_geral_formatado #%>%
+              #mutate(ATM_interno = numero(ATM_interno)) %>%
+              #mutate(ATM_externo = numero(ATM_externo)) 
               
              
 
