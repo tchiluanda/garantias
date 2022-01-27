@@ -368,7 +368,7 @@ Promise.all([
 
             //console.log(d.id, d, dados_filtrados[d.id]);
 
-            if (d.id == "ATM_Total") d.textContent = dados_filtrados[d.id] == "NA" ? "" : formataBR(dados_filtrados[d.id]) + " anos"
+            if (d.id == "ATM_Total") d.textContent = dados_filtrados[d.id] == "NA" ? "" : formataBR_1(dados_filtrados[d.id]) + " anos"
             else
                 if (d.id == "Custo_Total") d.textContent = dados_filtrados[d.id] == "NA" ? "" : dados_filtrados[d.id]
                 else d.textContent = (dados_filtrados[d.id] == 0) ? 0: formata_vlr_tooltip(dados_filtrados[d.id]);

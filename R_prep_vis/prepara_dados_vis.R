@@ -10,7 +10,7 @@ library(readxl)
 #extrafont::font_import()
 loadfonts()
 
-load("Garantias_ago_2021.Rdata")
+load("Garantias_dez_2021.Rdata")
 
 nomes_honras <- names(honras)
 
@@ -88,7 +88,7 @@ quadro_pre <- list(
   reduce(full_join, by = c("Inicio", "Classificador", "Periodo")) 
 
 colunas_numericas <- c("total_total", "interna_cambial", 
-                       "interna_total", "externa_total", "ATM_Total", 
+                       "interna_total", "externa_total", 
                        "Ate_12_meses", "De_1_2_anos", "De_2_3_anos", "De_3_4_anos",  
                        "De_4_5_anos", "Acima_5_anos")
 
@@ -99,7 +99,9 @@ quadro <- quadro_pre %>%
   filter(Periodo == max(Periodo),
          Inicio != Classificador) %>%
   mutate(Custo_Total = as.character(Custo_Total)) %>%
-  mutate_at(.vars = vars(ends_with("_percentual")), .funs = ~as.character(.)) %>%
+  mutate_at(
+    .vars = vars(ends_with("_percentual"), "Custo_Total"), 
+    .funs = ~scales::percent_format(accuracy = .01, decimal.mark = ",", big.mark = ".")(as.numeric(str_replace(str_sub(., 1, -2), ",", "."))/100)) %>%
   mutate_at(vars(all_of(colunas_numericas)), .funs = ~as.numeric(
     str_replace(
       str_replace_all(
@@ -124,7 +126,7 @@ Sys.setlocale("LC_ALL", "pt_br.utf-8")
 #lista_contratos <- novos_contratos %>% count(Mutuário)
 #contratos <- read.csv2("./R_prep_vis/dados/Abr2021/InfCadastrais 30abr2021.csv", skip = 10, stringsAsFactors = FALSE)
 
-contratos <- readxl::read_excel("./R_prep_vis/dados/Ago2021/InfCadastrais 31ago2021.xlsx")
+contratos <- readxl::read_excel("./R_prep_vis/dados/Dez2021/InfCadastrais 31dez2021.xlsx")
 #contratos <- readRDS("R_prep_vis/dados/Dez2020/contratos.rds")
 
 
@@ -214,7 +216,7 @@ lista_unica <- full_join(lista_garantias_mutuarios,
 # honras <- read.csv2("./R_prep_vis/dados/Dez2020/Relatorio_honras_atrasos 31dez2020.csv",
 #                     skip = 10, stringsAsFactors = FALSE)
 
-honras <- read_excel("./R_prep_vis/dados/Ago2021/Relatorio_honras_atrasos 31ago2021.xlsx")
+honras <- read_excel("./R_prep_vis/dados/Dez2021/Relatorio_honras_atrasos 31dez2021.xlsx")
 
 names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato", 
                    "Credor", "Classificação do Credor", "Mutuário", "Tipo de Mutuário", 
