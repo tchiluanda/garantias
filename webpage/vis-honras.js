@@ -380,12 +380,11 @@ Promise.all([
   // totais por ano
   //console.log(honras_agg[0])
   const honras_tot = honras_agg
-    .filter(d => d.data_mes.substr(5,2) === "08" || d.data_mes === "2021-12-01") // inclui data na mão para dezembro
+    .filter(d => d.data_mes.substr(5,2) === "12" || d.data_mes === "2021-12-01") // inclui data na mão para dezembro
     .map(d => ({"ano"   : d.data_mes.substr(0,4) === "2021" ? "2021(dez)" : d.data_mes.substr(0,4),
                 "valor" : d.valor_acum}));
   
   const totais_anos = group_by_sum(honras_tot, "ano", "valor");
-  //console.log({totais_anos});
 
   // total de honras
   const total_honras = honras_det
