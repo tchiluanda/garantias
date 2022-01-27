@@ -180,6 +180,9 @@ agrupador_ATM_geral_formatado[1,1] <- "Total"
 
 agrupador_custo_geral_formatado <- agrupador_custo_completo %>%
                  filter((Inicio %in% grupos_geral)) %>%
+                 mutate_at(
+                   vars(starts_with("Custo_")), 
+                   .funs = ~scales::percent_format(accuracy = .01, decimal.mark = ",", big.mark = ".")(as.numeric(str_replace(str_sub(., 1, -2), ",", "."))/100)) %>%
                  mutate(Custo_total_formatado =   numero(str_replace_all(Custo_Total,"%","")))
 
 linha_entidade_custo <- which(agrupador_custo_geral_formatado$Inicio=="Entidades Estaduais Controladas")
