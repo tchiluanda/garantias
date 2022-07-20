@@ -380,8 +380,8 @@ Promise.all([
   // totais por ano
   //console.log(honras_agg[0])
   const honras_tot = honras_agg
-    .filter(d => d.data_mes.substr(5,2) === "12" || d.data_mes === "2021-12-01") // inclui data na mão para dezembro
-    .map(d => ({"ano"   : d.data_mes.substr(0,4) === "2021" ? "2021(dez)" : d.data_mes.substr(0,4),
+    .filter(d => d.data_mes.substr(5,2) === "04" || d.data_mes === "2022-04-01") // inclui data na mão para dezembro
+    .map(d => ({"ano"   : d.data_mes.substr(0,4) === "2022" ? "2022(abr)" : d.data_mes.substr(0,4),
                 "valor" : d.valor_acum}));
   
   const totais_anos = group_by_sum(honras_tot, "ano", "valor");
@@ -424,7 +424,7 @@ Promise.all([
       },
       "ponto_final" : {
         "x" : 0.76*w_honras, 
-        "y" : 0.45*h_honras
+        "y" : 0.40*h_honras
       }
     },
     {
@@ -588,7 +588,7 @@ Promise.all([
       .classed("d3-honras-ptos-totais-ano", true)
       .attr("fill", "firebrick")
       .attr("r", 4)
-      .attr("cx", d => x(new Date(d.categoria == "2021(dez)" ? "2021-12-01" : d.categoria + "-12-01"))) // atualizar dezembro
+      .attr("cx", d => x(new Date(d.categoria == "2022(abr)" ? "2022-04-01" : d.categoria + "-04-01"))) // atualizar dezembro
       .attr("cy", d => y_acu(d.subtotal))
       .attr("opacity", 0);
 
@@ -601,7 +601,7 @@ Promise.all([
       .classed("labels-honras", true)
       .style("color", "firebrick")
       .style("text-align", "right")
-      .style("right", d => (w_honras - x(new Date(d.categoria == "2021(dez)" ? "2021-12-01" : d.categoria + "-12-01")) + 7) + "px")
+      .style("right", d => (w_honras - x(new Date(d.categoria == "2022(abr)" ? "2022-04-01" : d.categoria + "-04-01")) + 7) + "px")
       //.style("bottom", d => h_honras - y_acu(d.subtotal) + "px") // troquei pq ele bagunçava a posição qdo a barra some no mobile.
       .style("top", d => y_acu(d.subtotal) - 0.7*16*2.5 + "px") // que conta é essa? o tamanho da fonte é 0.7rem, fonte base 16px, lineheight 1.5. são duas linhas.
       .html(d => '<strong style="font-style: normal">'+d.categoria+"</strong></br>" + valor_formatado(d.subtotal))
