@@ -78,7 +78,7 @@ caminho <- './prep/R/dados-codiv/'
 
 #Novo período (Data) - Último Quadrimestre
 
-Novo_Periodo <- as.character("31dez2021") #alterar essa data para atualizar processamento dos dados
+Novo_Periodo <- as.character("30abr2022") #alterar essa data para atualizar processamento dos dados
 
 #Radical Dados Garantias Totais 
 
@@ -398,9 +398,9 @@ agrupador_credores_bruto <- read.csv2(
   encoding = "latin1", skip = tam_cabecalho, row.names = NULL) %>%
   rename(Inicio = 1) 
 
-#gambiarra na pressa
-colnames(agrupador_credores_bruto) <- c("Inicio", colnames(agrupador_credores_bruto)[-1:-2])
-agrupador_credores_bruto <- agrupador_credores_bruto[,1:26]
+# #gambiarra na pressa
+# colnames(agrupador_credores_bruto) <- c("Inicio", colnames(agrupador_credores_bruto)[-1:-2])
+# agrupador_credores_bruto <- agrupador_credores_bruto[,1:26]
 
 
 #Número linha agregador (definição até que linha deve ser ignorada para iniciar processamento)
@@ -433,7 +433,7 @@ agrupador_credores <- agrupador_credores_bruto %>%
 
 #CSV - Honras Garantias
 
-honras <- read_delim(paste0(caminho,"Relatorio_honras_atrasos 31dez2021.csv"), 
+honras <- read_delim(paste0(caminho,"Relatorio_honras_atrasos 30abr2022.csv"), 
                      ";", escape_double = FALSE, locale = locale(date_format = "%d/%m/%Y", 
                                                                  decimal_mark = ",", grouping_mark = ".", 
                                                                  encoding = "LATIN1"), trim_ws = TRUE, 
@@ -444,7 +444,7 @@ honras <- read_delim(paste0(caminho,"Relatorio_honras_atrasos 31dez2021.csv"),
 
 #CSV - Novos Contratos
 
-novos_contratos <- read_delim(paste0(caminho,"InfCadastrais 31dez2021.csv"), 
+novos_contratos <- read_delim(paste0(caminho,"InfCadastrais 30abr2022.csv"), 
                      ";", escape_double = TRUE, locale = locale(date_format = "%d/%m/%y", 
                                                                  decimal_mark = ",", grouping_mark = ".", 
                                                                  encoding = "LATIN1"), trim_ws = TRUE, 
@@ -473,7 +473,7 @@ novos_contratos$Tipo_Mutuario <- ifelse(novos_contratos$Tipo_Mutuario =="Entidad
 
 #____________________________
 
-save(list = c("data_referencia","honras","novos_contratos","agrupador_atm_completo","agrupador_custo_completo","agrupador_percentual_vincendo","agrupador_total", "agrupador_credores"),file = "Garantias_dez_2021.Rdata")
+save(list = c("data_referencia","honras","novos_contratos","agrupador_atm_completo","agrupador_custo_completo","agrupador_percentual_vincendo","agrupador_total", "agrupador_credores"),file = "Garantias_abr_2022.Rdata")
 
 #save(list = c("honras"),file = "Honras_mai_2020.Rdata")
 
