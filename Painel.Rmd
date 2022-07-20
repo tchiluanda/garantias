@@ -148,7 +148,8 @@ numero <- function(x){
 
 #prepara agrupador atm completo
 agrupador_atm_completo <- agrupador_atm_completo %>%
-  mutate(across(starts_with("ATM"), numero))
+  #mutate(across(starts_with("ATM"), numero))
+  mutate_at(.vars = vars(starts_with("ATM")), .funs = numero)
 
 ```
 
