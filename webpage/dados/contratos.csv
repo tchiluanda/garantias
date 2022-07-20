@@ -175,8 +175,9 @@
 "174","Distrito Federal","Estados","DF","BIRD","Organismos Multilaterais","Programa de Modernização da Gestão Pública - Gestão GDF",NA,2009-09-10,"USD",1.3e+08,2009-09-10
 "175","Distrito Federal","Estados","DF","BID","Organismos Multilaterais","Programa de Transporte Urbano do Distrito Federal",NA,2008-01-30,"USD",176775000,2008-01-30
 "176","Distrito Federal","Estados","DF","BIRD","Organismos Multilaterais","Programa Brasília Sustentável",NA,2006-02-23,"USD",57643000,2006-02-23
-"177","Distrito Federal","Estados","DF","BID","Organismos Multilaterais","Programa de Saneamento Básico do Distrito Federal",NA,NA,NA,NA,NA
-"178","Espirito Santo","Estados","ES","BID","Organismos Multilaterais","(Projeto de Modernização da Gestão Fiscal do Estado do Espírito Santo - PROFISCO II - ES",NA,2021-12-28,"USD",37800000,2021-12-28
+"177","Distrito Federal","Estados","DF","BID","Organismos Multilaterais","Programa de Saneamento Básico do Distrito Federal
+.",NA,2001-06-11,"USD",1.3e+08,2001-06-11
+"178","Espirito Santo","Estados","ES","BID","Organismos Multilaterais","Projeto de Modernização da Gestão Fiscal do Estado do Espírito Santo - PROFISCO II - ES",NA,2021-12-28,"USD",37800000,2021-12-28
 "179","Espirito Santo","Estados","ES","BID","Organismos Multilaterais","Programa Eficiência Logística do Espírito Santo",NA,2021-12-21,"USD",216800000,2021-12-21
 "180","Espirito Santo","Estados","ES","BNDES","Bancos Federais","Investimentos em Segurança Pública - Modernização e Reaparelhamento. Lei nº 10.850 de 04/06/2018",NA,2021-07-29,"R$",142665350,2021-07-29
 "181","Espirito Santo","Estados","ES","CAIXA","Bancos Federais","Repactuação Dívida FGTS",NA,2018-08-24,"R$",905518225.03,2018-08-24
@@ -191,13 +192,13 @@
 "190","Espirito Santo","Estados","ES","BID","Organismos Multilaterais","Programa Rodoviário do Espírito Santo II",NA,2006-03-28,"USD",73500000,2006-03-28
 "191","Espirito Santo","Estados","ES","BIRD","Organismos Multilaterais","Projeto de Gerenciamento da Poluição Costeira e de Águas do Espírito Santo - Projeto Águas Limpas",NA,2004-11-10,"USD",3.6e+07,2004-11-10
 "192","Espirito Santo","Estados","ES","BID","Organismos Multilaterais","A definir",NA,1992-02-28,"USD",15600000,1992-02-28
-"193","Goias","Estados","GO","CAIXA","Bancos Federais","Assunção da Dívida do Contrato nº 0412.113-76/2014",25,2016-08-02,"R$",1.9e+09,2016-08-02
+"193","Goias","Estados","GO","CAIXA","Bancos Federais","Assunção da Dívida do Contrato nº 0412.113-76/2014",29,2016-08-02,"R$",1.9e+09,2016-08-02
 "194","Goias","Estados","GO","BID","Organismos Multilaterais","Programa de Modernização da Administração Fazendária - PROFISCO.",NA,2013-08-23,"USD",11577000,2013-08-23
-"195","Goias","Estados","GO","BB","Bancos Federais","Programas e projetos referidos na Lei nº 18.032, de 22/05/2013",4,2013-08-08,"R$",1.56e+09,2013-08-08
-"196","Goias","Estados","GO","BNDES","Bancos Federais","Amortização de Dívida do Estado e Aporte de Capital para a SANEAGO. Lei nº 17.816, de 10/10/2012",24,2013-01-18,"R$",260416043.3,2013-01-18
-"197","Goias","Estados","GO","CAIXA","Bancos Federais","PROINVESTE - Programa de Apoio ao Investimento dos Estados e Distrito Federal",24,2012-12-28,"R$",366969587.8,2012-12-28
-"198","Goias","Estados","GO","BNDES","Bancos Federais","Construção e Manutenção de Rodovias Pavimentadas e não Pavimentadas e Adequação de Aeródromos. Lei nº 17.666, de 18/06/2012",21,2012-10-11,"R$",1.5e+09,2012-10-11
-"199","Goias","Estados","GO","CAIXA","Bancos Federais","Saneamento da CELG-D",26,2011-12-27,"R$",3.527e+09,2011-12-27
+"195","Goias","Estados","GO","BB","Bancos Federais","Programas e projetos referidos na Lei nº 18.032, de 22/05/2013",5,2013-08-08,"R$",1.56e+09,2013-08-08
+"196","Goias","Estados","GO","BNDES","Bancos Federais","Amortização de Dívida do Estado e Aporte de Capital para a SANEAGO. Lei nº 17.816, de 10/10/2012",28,2013-01-18,"R$",260416043.3,2013-01-18
+"197","Goias","Estados","GO","CAIXA","Bancos Federais","PROINVESTE - Programa de Apoio ao Investimento dos Estados e Distrito Federal",28,2012-12-28,"R$",366969587.8,2012-12-28
+"198","Goias","Estados","GO","BNDES","Bancos Federais","Construção e Manutenção de Rodovias Pavimentadas e não Pavimentadas e Adequação de Aeródromos. Lei nº 17.666, de 18/06/2012",25,2012-10-11,"R$",1.5e+09,2012-10-11
+"199","Goias","Estados","GO","CAIXA","Bancos Federais","Saneamento da CELG-D",30,2011-12-27,"R$",3.527e+09,2011-12-27
 "200","Maranhao","Estados","MA","BID","Organismos Multilaterais","Projeto de modernização da gestão fiscal do Estado do Maranhão - PROFISCO II - MA",NA,2019-02-21,"USD",3.5e+07,2019-02-21
 "201","Maranhao","Estados","MA","BB","Bancos Federais","Programa Maranhão mais Justo e Competitivo II. Lei nº 10.546, de 23/12/2016",NA,2017-12-12,"R$",55692000,2017-12-12
 "202","Maranhao","Estados","MA","CAIXA","Bancos Federais","Programa Maranhão Mais Justo e Competitivo",NA,2016-12-30,"R$",444750000,2016-12-30
@@ -225,25 +226,25 @@
 "224","Minas Gerais","Estados","MG","CAIXA","Bancos Federais","Programa Saneamento para Todos",NA,2013-11-28,"R$",120887500,2013-11-28
 "225","Minas Gerais","Estados","MG","CAIXA","Bancos Federais","Programa Saneamento para Todos",NA,2013-11-28,"R$",94254505.82,2013-11-28
 "226","Minas Gerais","Estados","MG","CAIXA","Bancos Federais","Programa Saneamento para Todos",NA,2013-11-28,"R$",237500000,2013-11-28
-"227","Minas Gerais","Estados","MG","BB","Bancos Federais","Programa de Infraestrutura Rodoviária. Lei nº 19.969, de 26/12/2011 e alterações",7,2013-07-24,"R$",1.5e+09,2013-07-24
-"228","Minas Gerais","Estados","MG","CREDIT SUISSE","Credores Privados","Programa de Reestruturação da Dívida CRC-CEMIG",6,2012-12-28,"USD",1.3e+09,2012-12-28
+"227","Minas Gerais","Estados","MG","BB","Bancos Federais","Programa de Infraestrutura Rodoviária. Lei nº 19.969, de 26/12/2011 e alterações",8,2013-07-24,"R$",1.5e+09,2013-07-24
+"228","Minas Gerais","Estados","MG","CREDIT SUISSE","Credores Privados","Programa de Reestruturação da Dívida CRC-CEMIG",7,2012-12-28,"USD",1.3e+09,2012-12-28
 "229","Minas Gerais","Estados","MG","BB","Bancos Federais","Programa de Desenvolvimento de Minas Gerais - PDMG - Lei nº 20.444, de 19/11/2012",8,2012-12-26,"R$",3653733000,2012-12-26
-"230","Minas Gerais","Estados","MG","BNDES","Bancos Federais","PROINVESTE - Programa de Apoio ao Investimento dos Estados e do Distrito Federal. Lei nº 20.385, de 20/09/2012",10,2012-12-11,"R$",1326389531.69,2012-12-11
-"231","Minas Gerais","Estados","MG","BNDES","Bancos Federais","Programa de Desenvolvimento Integrado II - PDI II. Lei nº 20.249, de 13/06/2012",28,2012-12-11,"R$",469773000,2012-12-11
+"230","Minas Gerais","Estados","MG","BNDES","Bancos Federais","PROINVESTE - Programa de Apoio ao Investimento dos Estados e do Distrito Federal. Lei nº 20.385, de 20/09/2012",13,2012-12-11,"R$",1326389531.69,2012-12-11
+"231","Minas Gerais","Estados","MG","BNDES","Bancos Federais","Programa de Desenvolvimento Integrado II - PDI II. Lei nº 20.249, de 13/06/2012",32,2012-12-11,"R$",469773000,2012-12-11
 "232","Minas Gerais","Estados","MG","AFD","Agências Governamentais","Programa de Apoio aos Investimentos em Infraestrutura de Serviços Básicos (CRC-CEMIG)",6,2012-12-03,"EUR",3e+08,2012-12-03
-"233","Minas Gerais","Estados","MG","BIRD","Organismos Multilaterais","Terceiro Programa de Parceria para o Desenvolvimento de Minas Gerais",6,2012-11-26,"USD",4.5e+08,2012-11-26
+"233","Minas Gerais","Estados","MG","BIRD","Organismos Multilaterais","Terceiro Programa de Parceria para o Desenvolvimento de Minas Gerais",7,2012-11-26,"USD",4.5e+08,2012-11-26
 "234","Minas Gerais","Estados","MG","BID","Organismos Multilaterais","Programa de Acesso ao Município - PROACESSO II",6,2010-09-30,"USD",5e+07,2010-09-30
-"235","Minas Gerais","Estados","MG","BIRD","Organismos Multilaterais","Programa de Parceria para o Desenvolvimento de Minas Gerais II - Financiamento Adicional",6,2010-09-16,"USD",4.61e+08,2010-09-16
-"236","Minas Gerais","Estados","MG","BID","Organismos Multilaterais","Programa de Parceria para o Desenvolvimento de Minas Gerais III",6,2010-07-08,"USD",1.37e+08,2010-07-08
-"237","Minas Gerais","Estados","MG","BNDES","Bancos Federais","Programas de Desenvolvimento Integrado Constantes do PPA. Descontingenciamento de Crédito - Resolução CMN nº 3.794, de 07/10/2009",10,2010-06-29,"R$",267270000,2010-06-29
+"235","Minas Gerais","Estados","MG","BIRD","Organismos Multilaterais","Programa de Parceria para o Desenvolvimento de Minas Gerais II - Financiamento Adicional",7,2010-09-16,"USD",4.61e+08,2010-09-16
+"236","Minas Gerais","Estados","MG","BID","Organismos Multilaterais","Programa de Parceria para o Desenvolvimento de Minas Gerais III",7,2010-07-08,"USD",1.37e+08,2010-07-08
+"237","Minas Gerais","Estados","MG","BNDES","Bancos Federais","Programas de Desenvolvimento Integrado Constantes do PPA. Descontingenciamento de Crédito - Resolução CMN nº 3.794, de 07/10/2009",13,2010-06-29,"R$",267270000,2010-06-29
 "238","Minas Gerais","Estados","MG","BID","Organismos Multilaterais","Programa de Eletrificação Rural - PRONOROESTE",6,2010-02-26,"USD",1e+07,2010-02-26
-"239","Minas Gerais","Estados","MG","BID","Organismos Multilaterais","Projeto de Fortalecimento Institucional para Modernização da Gestão Fiscal -PROFORT-PROFISCO-MG",6,2010-02-26,"USD",4e+07,2010-02-26
+"239","Minas Gerais","Estados","MG","BID","Organismos Multilaterais","Projeto de Fortalecimento Institucional para Modernização da Gestão Fiscal -PROFORT-PROFISCO-MG",7,2010-02-26,"USD",4e+07,2010-02-26
 "240","Minas Gerais","Estados","MG","BID","Organismos Multilaterais","Programa Consolidação das Cadeias Produtivas - Minas do Princípio ao Fim",6,2009-10-22,"USD",1e+07,2009-10-22
-"241","Minas Gerais","Estados","MG","BIRD","Organismos Multilaterais","Programa de Parceria para o Desenvolvimento de Minas Gerais II",6,2008-08-13,"USD",9.76e+08,2008-08-13
-"242","Minas Gerais","Estados","MG","BNB","Bancos Federais","Programa de Desenvolvimento do Turismo no Nordeste - PRODETUR/NE - II",6,2006-06-02,"R$",59966559.43,2006-06-02
+"241","Minas Gerais","Estados","MG","BIRD","Organismos Multilaterais","Programa de Parceria para o Desenvolvimento de Minas Gerais II",7,2008-08-13,"USD",9.76e+08,2008-08-13
+"242","Minas Gerais","Estados","MG","BNB","Bancos Federais","Programa de Desenvolvimento do Turismo no Nordeste - PRODETUR/NE - II",7,2006-06-02,"R$",59966559.43,2006-06-02
 "243","Minas Gerais","Estados","MG","BID","Organismos Multilaterais","Programa de Melhoria da Acessibilidade de Municípios de Pequeno Porte de MG - PROACESSO",6,2006-04-28,"USD",5e+07,2006-04-28
-"244","Minas Gerais","Estados","MG","BIRD","Organismos Multilaterais","Programa de Ajuste Estrutural e de Políticas de Desenvolvimento do Estado",6,2006-04-28,"USD",1.7e+08,2006-04-28
-"245","Minas Gerais","Estados","MG","BIRD","Organismos Multilaterais","Projeto de Combate à Pobreza Rural da Região Mineira do Nordeste - PCPR - 1ª Fase",6,2006-01-31,"USD",3.5e+07,2006-01-31
+"244","Minas Gerais","Estados","MG","BIRD","Organismos Multilaterais","Programa de Ajuste Estrutural e de Políticas de Desenvolvimento do Estado",7,2006-04-28,"USD",1.7e+08,2006-04-28
+"245","Minas Gerais","Estados","MG","BIRD","Organismos Multilaterais","Projeto de Combate à Pobreza Rural da Região Mineira do Nordeste - PCPR - 1ª Fase",7,2006-01-31,"USD",3.5e+07,2006-01-31
 "246","Para","Estados","PA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento",NA,2020-03-04,"R$",537322634.96,2020-03-04
 "247","Para","Estados","PA","NDB","Organismos Multilaterais","Programa Municípios Sustentáveis",NA,2019-03-11,"USD",5e+07,2019-03-11
 "248","Para","Estados","PA","BID","Organismos Multilaterais","Projeto de Modernização da Gestão Fiscal do Estado do Pará - PROFISCO II - PA",NA,2019-02-19,"USD",35100000,2019-02-19
@@ -325,41 +326,41 @@
 "324","Piaui","Estados","PI","BIRD","Organismos Multilaterais","Projeto de Combate à Pobreza Rural - PCPR II - Fase II",NA,2007-07-24,"USD",22500000,2007-07-24
 "325","Piaui","Estados","PI","BNB","Bancos Federais","Programa de Desenvolvimento do Turismo no Nordeste - PRODETUR/NE - II",NA,2006-06-30,"R$",31735179.27,2006-06-30
 "326","Rio de Janeiro","Estados","RJ","BNP Int","Credores Privados","Recursos destinados prioritariamente ao pagamento dos Servidores Ativos, Inativos e Pensionistas",1,2017-12-14,"R$",2.9e+09,2017-12-14
-"327","Rio de Janeiro","Estados","RJ","BNDES","Bancos Federais","Implantação da infraestrutura da linha 4 do Metrô do Rio de Janeiro",56,2016-02-26,"R$",444811123.92,2016-02-26
+"327","Rio de Janeiro","Estados","RJ","BNDES","Bancos Federais","Implantação da infraestrutura da linha 4 do Metrô do Rio de Janeiro",60,2016-02-26,"R$",444811123.92,2016-02-26
 "328","Rio de Janeiro","Estados","RJ","CREDIT SUISSE-BRASIL","Credores Privados","PRODES-Programa de Desenvolvimento Socioambiental",6,2014-09-11,"R$",6e+08,2014-09-11
 "329","Rio de Janeiro","Estados","RJ","CREDIT SUISSE-BRASIL","Credores Privados","PROSUT - Programa de Suporta à Política de Transporte",6,2014-08-29,"R$",4.5e+08,2014-08-29
-"330","Rio de Janeiro","Estados","RJ","BNDES","Bancos Federais","Implantação da Infraestrutura da Linha 4 Metrô. Lei nº 6.699, de 06/03/2014",56,2014-07-03,"R$",3e+09,2014-07-03
+"330","Rio de Janeiro","Estados","RJ","BNDES","Bancos Federais","Implantação da Infraestrutura da Linha 4 Metrô. Lei nº 6.699, de 06/03/2014",60,2014-07-03,"R$",3e+09,2014-07-03
 "331","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa de Fortalecimento da Gestão do Setor Público e do Desenvolvimento Territorial Integrado - RIO METROPOLE PROGESTÃO II",13,2014-04-30,"USD",4.8e+07,2014-04-30
-"332","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa de Melhoramento da Qualidade e Integração dos Transportes de Massa Urbanos - PROMIT",11,2013-12-03,"USD",5e+08,2013-12-03
-"333","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Projeto de Desenvolvimento Rural Sustentável em Microbacias Hidrográficas - RIO RURAL",11,2013-08-19,"USD",1e+08,2013-08-19
+"332","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa de Melhoramento da Qualidade e Integração dos Transportes de Massa Urbanos - PROMIT",12,2013-12-03,"USD",5e+08,2013-12-03
+"333","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Projeto de Desenvolvimento Rural Sustentável em Microbacias Hidrográficas - RIO RURAL",12,2013-08-19,"USD",1e+08,2013-08-19
 "334","Rio de Janeiro","Estados","RJ","BB","Bancos Federais","Programa de Melhoria da Infra-Estrutura para Grandes Eventos - PRÓ-CIDADES II/RJ. Lei nº 6.368, de 20/12/2012",12,2013-04-26,"R$",3135800000,2013-04-26
-"335","Rio de Janeiro","Estados","RJ","BNDES","Bancos Federais","Projeto de Implantação do Metrô - Linha 4 - PRO-ML4. Lei nº 6.413, de 13/03/2013",57,2013-04-26,"R$",3031405000,2013-04-26
+"335","Rio de Janeiro","Estados","RJ","BNDES","Bancos Federais","Projeto de Implantação do Metrô - Linha 4 - PRO-ML4. Lei nº 6.413, de 13/03/2013",61,2013-04-26,"R$",3031405000,2013-04-26
 "336","Rio de Janeiro","Estados","RJ","BID","Organismos Multilaterais","Programa de Inclusão Social e Oportunidades para Jovens no Rio de Janeiro",13,2013-02-22,"USD",6e+07,2013-02-22
-"337","Rio de Janeiro","Estados","RJ","CAIXA","Bancos Federais","PROCOI - Programa Coordenado de Investimentos",70,2012-12-20,"R$",1199871427,2012-12-20
-"338","Rio de Janeiro","Estados","RJ","BB","Bancos Federais","Programa de Apoio ao Investimento dos Estados e do Distrito Federal - PROINVESTE - Resolução CMN nº 4.109, de 05/07/2012",68,2012-12-12,"R$",940956773.22,2012-12-12
+"337","Rio de Janeiro","Estados","RJ","CAIXA","Bancos Federais","PROCOI - Programa Coordenado de Investimentos",74,2012-12-20,"R$",1199871427,2012-12-20
+"338","Rio de Janeiro","Estados","RJ","BB","Bancos Federais","Programa de Apoio ao Investimento dos Estados e do Distrito Federal - PROINVESTE - Resolução CMN nº 4.109, de 05/07/2012",72,2012-12-12,"R$",940956773.22,2012-12-12
 "339","Rio de Janeiro","Estados","RJ","CAF","Organismos Multilaterais","Programa Obras Complementares do Arco Metropolitano",13,2012-12-05,"USD",2e+08,2012-12-05
 "340","Rio de Janeiro","Estados","RJ","CAF","Organismos Multilaterais","Projeto de Reforma e Adequação do Estádio do Maracanã para a Copa do Mundo 2014",12,2012-11-22,"USD",120666000,2012-11-22
-"341","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa de Desenvolvimento Econômico, Social e de Sustentabilidade Fiscal II - PRODESF-II",11,2012-10-30,"USD",3e+08,2012-10-30
+"341","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa de Desenvolvimento Econômico, Social e de Sustentabilidade Fiscal II - PRODESF-II",12,2012-10-30,"USD",3e+08,2012-10-30
 "342","Rio de Janeiro","Estados","RJ","AFD","Agências Governamentais","Apoio ao Programa de Integração e Mobilidade Urbana da Região Metropolitana do Rio de Janeiro",12,2012-10-09,"USD",394500000,2012-10-09
-"343","Rio de Janeiro","Estados","RJ","CAF","Organismos Multilaterais","Programa Emergencial Rodoviário da Região Serrana",12,2012-09-13,"USD",1e+08,2012-09-13
-"344","Rio de Janeiro","Estados","RJ","CAF","Organismos Multilaterais","Programa de Melhorias e Implantação da Infraestrutura Viária - Pro-Vias",12,2012-09-13,"USD",319675000,2012-09-13
+"343","Rio de Janeiro","Estados","RJ","CAF","Organismos Multilaterais","Programa Emergencial Rodoviário da Região Serrana",13,2012-09-13,"USD",1e+08,2012-09-13
+"344","Rio de Janeiro","Estados","RJ","CAF","Organismos Multilaterais","Programa de Melhorias e Implantação da Infraestrutura Viária - Pro-Vias",13,2012-09-13,"USD",319675000,2012-09-13
 "345","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Adicional ao Programa Estadual de Transportes - PET 2",12,2012-09-05,"USD",6e+08,2012-09-05
-"346","Rio de Janeiro","Estados","RJ","CAIXA","Bancos Federais","Programa Saneamento para Todos",70,2012-06-22,"R$",415372248.98,2012-06-22
+"346","Rio de Janeiro","Estados","RJ","CAIXA","Bancos Federais","Programa Saneamento para Todos",75,2012-06-22,"R$",415372248.98,2012-06-22
 "347","Rio de Janeiro","Estados","RJ","BB","Bancos Federais","Programa de Melhoria da Infraestrutura Rodoviária, Urbana, e da Mobilidade das Cidades - Pró-Cidades - Lei nº 6.183, de 22/03/2012",12,2012-06-05,"R$",3645563000,2012-06-05
 "348","Rio de Janeiro","Estados","RJ","BID","Organismos Multilaterais","Programa de Saneamento Ambiental dos Municípios do Entorno da Baía de Guanabara - PSAM",12,2012-03-20,"USD",451980000,2012-03-20
 "349","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa de Habitação e Desenvolvimento Urbano Metropolitano Sustentável - PROHDUMS",12,2011-08-09,"USD",4.85e+08,2011-08-09
 "350","Rio de Janeiro","Estados","RJ","BID","Organismos Multilaterais","Programa de Habitação e Desenvolvimento Urbano Metropolitano Sustentável-PROHDUMS",12,2011-08-08,"USD",1.12e+08,2011-08-08
-"351","Rio de Janeiro","Estados","RJ","BNDES","Bancos Federais","Programa BNDES de Arenas para a Copa do Mundo de 2014 - BNDES ProCopa Arenas",61,2011-07-29,"R$",4e+08,2011-07-29
+"351","Rio de Janeiro","Estados","RJ","BNDES","Bancos Federais","Programa BNDES de Arenas para a Copa do Mundo de 2014 - BNDES ProCopa Arenas",65,2011-07-29,"R$",4e+08,2011-07-29
 "352","Rio de Janeiro","Estados","RJ","CAIXA","Bancos Federais","Programa de Infraestrutura de Transporte e da Mobilidade Urbana - Pró-Transporte. Obras de Complementação do Corredor Viário denominado Via Light.",1,2011-06-28,"R$",259138332.31,2011-06-28
 "353","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa de Renovação e Fortalecimento da Gestão Pública - PRÓ-GESTÃO",13,2010-11-22,"USD",18673000,2010-11-22
 "354","Rio de Janeiro","Estados","RJ","CAIXA","Bancos Federais","Programa PAC Favelas",47,2010-06-24,"R$",606046612.59,2010-06-24
-"355","Rio de Janeiro","Estados","RJ","BID","Organismos Multilaterais","Programa de Modernização da Gestão Fazendária - PROFAZ",11,2010-05-10,"USD",19759050,2010-05-10
-"356","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa de Desenvolvimento Econômico, Social e de Sustentabilidade Fiscal - PRODESF",11,2010-03-22,"USD",4.85e+08,2010-03-22
-"357","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Projeto de Desenvolvimento Rural Sustentável em Microbacias Hidrográficas - Projeto RIORURAL",11,2009-12-14,"USD",39500000,2009-12-14
-"358","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa Estadual de Transportes - PET II",11,2009-09-24,"USD",211700000,2009-09-24
-"359","Rio de Janeiro","Estados","RJ","CAIXA","Bancos Federais","Execução de Obras/Serviços/Estudos/Projetos no Âmbito do Programa Saneamento para Todos",70,2009-07-07,"R$",557999999.98,2009-07-07
-"360","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa Estadual de Transportes - PET",11,2008-05-20,"USD",4.4e+07,2008-05-20
-"361","Rio de Janeiro","Estados","RJ","BID","Organismos Multilaterais","Programa Baixada Viva - Urbanização Integrada de Bairros da Baixada Fluminense",11,1999-07-28,"USD",1.8e+08,1999-07-28
+"355","Rio de Janeiro","Estados","RJ","BID","Organismos Multilaterais","Programa de Modernização da Gestão Fazendária - PROFAZ",12,2010-05-10,"USD",19759050,2010-05-10
+"356","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa de Desenvolvimento Econômico, Social e de Sustentabilidade Fiscal - PRODESF",12,2010-03-22,"USD",4.85e+08,2010-03-22
+"357","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Projeto de Desenvolvimento Rural Sustentável em Microbacias Hidrográficas - Projeto RIORURAL",12,2009-12-14,"USD",39500000,2009-12-14
+"358","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa Estadual de Transportes - PET II",12,2009-09-24,"USD",211700000,2009-09-24
+"359","Rio de Janeiro","Estados","RJ","CAIXA","Bancos Federais","Execução de Obras/Serviços/Estudos/Projetos no Âmbito do Programa Saneamento para Todos",75,2009-07-07,"R$",557999999.98,2009-07-07
+"360","Rio de Janeiro","Estados","RJ","BIRD","Organismos Multilaterais","Programa Estadual de Transportes - PET",12,2008-05-20,"USD",4.4e+07,2008-05-20
+"361","Rio de Janeiro","Estados","RJ","BID","Organismos Multilaterais","Programa Baixada Viva - Urbanização Integrada de Bairros da Baixada Fluminense",12,1999-07-28,"USD",1.8e+08,1999-07-28
 "362","Rio de Janeiro","Estados","RJ","JICA","Agências Governamentais","Projeto de Construção do Sistema de Esgoto da Bacia da Baía de Guanabara",12,1994-03-29,"JPY",3.1475e+10,1994-03-29
 "363","Rio de Janeiro","Estados","RJ","BID","Organismos Multilaterais","A definir",6,1994-03-09,"USD",3e+08,1994-03-09
 "364","Rio de Janeiro","Estados","RJ","BID","Organismos Multilaterais","A definir",6,1994-03-09,"USD",5e+07,1994-03-09
@@ -367,24 +368,24 @@
 "366","Rio Grande do Norte","Estados","RN","BIRD","Organismos Multilaterais","Projeto Integrado de Desenvolvimento Sustentável - RN Sustentável",6,2013-10-04,"USD",3.6e+08,2013-10-04
 "367","Rio Grande do Norte","Estados","RN","BID","Organismos Multilaterais","Projeto de Integração da Modernização da Administração Fiscal e Financeira",NA,2013-04-24,"USD",7e+06,2013-04-24
 "368","Rio Grande do Norte","Estados","RN","CAIXA","Bancos Federais","CPAC- Programa de Financiamento de Contrapartidas do Programa de Aceleração do Crescimento",9,2013-04-01,"R$",60098549.57,2013-04-01
-"369","Rio Grande do Norte","Estados","RN","BNDES","Bancos Federais","Refinanciamento de Dívida PROINVESTE. Lei nº 9.686, de 28/12/2012",21,2013-01-31,"R$",250674000,2013-01-31
-"370","Rio Grande do Norte","Estados","RN","BB","Bancos Federais","Programa de Apoio ao Investimento dos Estados e do Distrito Federal - PROINVESTE. Resolução nº 2.827, de 30/03/2001",29,2013-01-29,"R$",363851000,2013-01-29
+"369","Rio Grande do Norte","Estados","RN","BNDES","Bancos Federais","Refinanciamento de Dívida PROINVESTE. Lei nº 9.686, de 28/12/2012",24,2013-01-31,"R$",250674000,2013-01-31
+"370","Rio Grande do Norte","Estados","RN","BB","Bancos Federais","Programa de Apoio ao Investimento dos Estados e do Distrito Federal - PROINVESTE. Resolução nº 2.827, de 30/03/2001",32,2013-01-29,"R$",363851000,2013-01-29
 "371","Rio Grande do Norte","Estados","RN","BIRD","Organismos Multilaterais","Programa de Desenvolvimento Sustentável e Convivência com o Semi-Árido Potiguar",1,2008-06-20,"USD",35900000,2008-06-20
 "372","Rio Grande do Norte","Estados","RN","BIRD","Organismos Multilaterais","Financiamento Adicional ao Projeto de Combate à Pobreza Rural",1,2008-06-20,"USD",22500000,2008-06-20
 "373","Rio Grande do Norte","Estados","RN","BNB","Bancos Federais","Programa de Desenvolvimento do Turismo no Nordeste - PRODETUR/NE - II",1,2004-03-16,"R$",61772130,2004-03-16
 "374","Rio Grande do Sul","Estados","RS","BID","Organismos Multilaterais","Profisco II - Modernização da Gestão Fiscal do RS",NA,2020-12-07,"USD",6e+07,2020-12-07
 "375","Rio Grande do Sul","Estados","RS","BID","Organismos Multilaterais","Programa de Oportunidades e Direitos do Estado do Rio Grande do Sul (POD)",NA,2014-09-01,"USD",5e+07,2014-09-01
-"376","Rio Grande do Sul","Estados","RS","BIRD","Organismos Multilaterais","Programa de Consolidação do Equilíbrio Fiscal para o Desenvolvimento Econômico e Fiscal - PROCONFIS RS II",NA,2014-08-20,"USD",2.8e+08,2014-08-20
+"376","Rio Grande do Sul","Estados","RS","BIRD","Organismos Multilaterais","Programa de Consolidação do Equilíbrio Fiscal para o Desenvolvimento Econômico e Fiscal - PROCONFIS RS II",1,2014-08-20,"USD",2.8e+08,2014-08-20
 "377","Rio Grande do Sul","Estados","RS","BNDES","Bancos Federais","Programa de Modernização da Administração das Receitas e da Gestão Fiscal, Financeira e Patrimonial - PMAE. Leis nº 14.116, de 29/10/2012, e nº 14.389, DE 30/12/2013",NA,2014-08-14,"R$",39996000,2014-08-14
-"378","Rio Grande do Sul","Estados","RS","BID","Organismos Multilaterais","Programa de Consolidação do Equilíbrio fiscal para o Desenvolvimento - PROCONFIS II",NA,2014-05-29,"USD",2e+08,2014-05-29
-"379","Rio Grande do Sul","Estados","RS","BID","Organismos Multilaterais","Programa de Consolidação do Equilíbrio Fiscal - PROCONFIS",NA,2012-12-21,"USD",2e+08,2012-12-21
-"380","Rio Grande do Sul","Estados","RS","BB","Bancos Federais","Programa de Apoio ao Investimento dos Estados e do Distrito Federal - PROINVESTE - Resolução CMN nº 2.827, de 30/03/2001",NA,2012-12-20,"R$",785018812.5,2012-12-20
+"378","Rio Grande do Sul","Estados","RS","BID","Organismos Multilaterais","Programa de Consolidação do Equilíbrio fiscal para o Desenvolvimento - PROCONFIS II",1,2014-05-29,"USD",2e+08,2014-05-29
+"379","Rio Grande do Sul","Estados","RS","BID","Organismos Multilaterais","Programa de Consolidação do Equilíbrio Fiscal - PROCONFIS",1,2012-12-21,"USD",2e+08,2012-12-21
+"380","Rio Grande do Sul","Estados","RS","BB","Bancos Federais","Programa de Apoio ao Investimento dos Estados e do Distrito Federal - PROINVESTE - Resolução CMN nº 2.827, de 30/03/2001",2,2012-12-20,"R$",785018812.5,2012-12-20
 "381","Rio Grande do Sul","Estados","RS","BIRD","Organismos Multilaterais","Programa de Apoio à Retomada do Desenvolvimento Econômico e Social - PROREDES RS",NA,2012-09-11,"USD",4.8e+08,2012-09-11
-"382","Rio Grande do Sul","Estados","RS","BNDES","Bancos Federais","Programa de Apoio à Retomada do Desenvolvimento Econômico e Social - PROREDES-RS. Lei nº 13.699, de 05/04/2011",NA,2012-04-25,"R$",1085704200,2012-04-25
+"382","Rio Grande do Sul","Estados","RS","BNDES","Bancos Federais","Programa de Apoio à Retomada do Desenvolvimento Econômico e Social - PROREDES-RS. Lei nº 13.699, de 05/04/2011",2,2012-04-25,"R$",1085704200,2012-04-25
 "383","Rio Grande do Sul","Estados","RS","BNDES","Bancos Federais","Programas de Desenvolvimento Integrado Constantes do PPA. Descontingenciamento de Crédito - Resolução CMN nº 2.827, de 30/03/2001",NA,2011-11-24,"R$",94192000,2011-11-24
 "384","Rio Grande do Sul","Estados","RS","BID","Organismos Multilaterais","Projeto de Fortalecimento da Gestão Fiscal - PROFISCO",NA,2011-08-29,"USD",6e+07,2011-08-29
 "385","Rio Grande do Sul","Estados","RS","BNDES","Bancos Federais","Programas de Desenvolvimento Integrado Constantes do PPA. Descontingenciamento de Crédito - Resolução CMN nº 3.794, de 07/10/2009",NA,2011-06-09,"R$",139512000,2011-06-09
-"386","Rio Grande do Sul","Estados","RS","BIRD","Organismos Multilaterais","Programa de Sustentabilidade Fiscal para o Crescimento",NA,2008-09-01,"USD",1.1e+09,2008-09-01
+"386","Rio Grande do Sul","Estados","RS","BIRD","Organismos Multilaterais","Programa de Sustentabilidade Fiscal para o Crescimento",2,2008-09-01,"USD",1.1e+09,2008-09-01
 "387","Rio Grande do Sul","Estados","RS","BID","Organismos Multilaterais","A definir",NA,1997-07-10,"USD",1.5e+08,1997-07-10
 "388","Rio Grande do Sul","Estados","RS","BID","Organismos Multilaterais","Programa para o Gerenciamento Ambiental da Bacia Hidrográfica do Guaíba (Primeira Etapa)",NA,1995-07-26,"USD",110200000,1995-07-26
 "389","Rio Grande do Sul","Estados","RS","BID","Organismos Multilaterais","Programa para o Gerenciamento Ambiental da Bacia Hidrográfica do Guaíba (Primeira Etapa)",NA,1995-07-26,"USD",22100000,1995-07-26
@@ -527,311 +528,316 @@
 "526","Belo Horizonte","Municipios","MG","BID","Organismos Multilaterais","Programa de Recuperação Ambiental de Belo Horizonte - DRENURBS",NA,2013-12-18,"USD",5.5e+07,2013-12-18
 "527","Belo Horizonte","Municipios","MG","BIRD","Organismos Multilaterais","Projeto de Desenvolvimento Urbano e Integração com a Região Metropolitana",NA,2013-12-10,"USD",2e+08,2013-12-10
 "528","Belo Horizonte","Municipios","MG","BID","Organismos Multilaterais","Programa de Recuperação Ambiental e Saneamento dos Córregos em Leito Natural de Belo Horizonte - DRENURBS",NA,2004-07-02,"USD",46500000,2004-07-02
-"529","Betim","Municipios","MG","BIRD","Organismos Multilaterais","Revitalização Urbana e Recuperação Ambiental da Bacia do Rio Betim",NA,2005-01-18,"USD",24075000,2005-01-18
-"530","Blumenau","Municipios","SC","BID","Organismos Multilaterais","Programa Mobilidade Sustentável de Blumenau",NA,2012-08-22,"USD",5.9e+07,2012-08-22
-"531","Boa Vista","Municipios","RR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei Municipal nº 2.021, de 02/10/19",NA,2020-03-06,"R$",3.2e+07,2020-03-06
-"532","Bom Jesus","Municipios","SC","CAIXA","Bancos Federais","Pró-Transporte - Obras de qualificação viária.",NA,2019-06-14,"R$",1965550,2019-06-14
-"533","Caarapo","Municipios","MS","CAIXA","Bancos Federais","Pró-Transporte. Lei municipal nº 1.351, de 26 de junho de 2018",NA,2019-04-16,"R$",7132582.19,2019-04-16
-"534","Caarapo","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte - Lei Municipal nº 1.351, de 26 de junho de 2018",NA,2019-04-16,"R$",7641778.85,2019-04-16
-"535","Cachoeirinha","Municipios","RS","FONPLATA","Organismos Multilaterais","Projeto de Melhoria e Ampliação da Infra-Estrutura Urbana",4,2008-10-20,"USD",8910000,2008-10-20
-"536","Cachoeiro de Itapemirim","Municipios","ES","BB","Bancos Federais","Investimentos em Infraestrutura e Outras Despesas de Capital. nº 7.708, de 30/07/2019, e alterações",NA,2021-10-13,"R$",8.5e+07,2021-10-13
-"537","Camacari","Municipios","BA","CAF","Organismos Multilaterais","Programa de Integração e Desenvolvimento Urbano, Social e Ambiental",NA,2019-06-14,"USD",8e+07,2019-06-14
-"538","Camboriu","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 3.210, de 11/12/2019",NA,2021-05-27,"R$",2e+06,2021-05-27
-"539","Camboriu","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 3.209, de 11/12/2019",NA,2020-07-20,"R$",1.4e+07,2020-07-20
-"540","Camocim","Municipios","CE","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.486, de 02/12/2019",NA,2020-06-18,"R$",2.1e+07,2020-06-18
-"541","Campinas","Municipios","SP","BID","Organismos Multilaterais","Programa de Combate às Enchentes",NA,1997-03-16,"USD",19800000,1997-03-16
-"542","Campinas das Missoes","Municipios","RS","CAIXA","Bancos Federais","Progama Pró-Transporte. Obras de Qualificação Viária no Município",NA,2019-06-26,"R$",1598040.88,2019-06-26
-"543","Campo Grande","Municipios","MS","BID","Organismos Multilaterais","Programa de Desenvolvimento Integrado - Viva Campo Grande II",NA,2017-05-12,"USD",5.6e+07,2017-05-12
-"544","Campo Grande","Municipios","MS","BID","Organismos Multilaterais","Programa de Desenvolvimento Integrado -Viva Campo Grande",NA,2008-01-30,"USD",19382000,2008-01-30
-"545","Campo Grande","Municipios","MS","FONPLATA","Organismos Multilaterais","Programa de Recuperação das Áreas Degradadas do Córrego Imbirussu",NA,2007-09-06,"USD",17061000,2007-09-06
-"546","Candeias","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.221, de 31/10/2019",NA,2020-04-08,"R$",45500000,2020-04-08
-"547","Canoas","Municipios","RS","CAF","Organismos Multilaterais","Programa Integrado de Investimentos para Revitalização e Ampliação da Infraestrutura Urbana - Canoas para Todos",NA,2014-06-24,"USD",5e+07,2014-06-24
-"548","Canoas","Municipios","RS","CAF","Organismos Multilaterais","Projeto de Macrodrenagem, Recuperação Ambiental e Desenvolvimento Urbano - Fase I",NA,2007-12-28,"USD",15076500,2007-12-28
-"549","Capinzal","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de Qualificação Viária. Lei nº 3.311, de 26/12/2018, e alterações",NA,2020-07-28,"R$",10323841.7,2020-07-28
-"550","Capitolio","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.021, de 13/11/2019",NA,2020-07-17,"R$",2500000,2020-07-17
-"551","Carandai","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 2.339 e nº 2.340, ambas de 11/02/2020",NA,2020-07-27,"R$",9800000,2020-07-27
-"552","Cariacica","Municipios","ES","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento - FINISA. Lei nº 6183, de 08/07/2021.",NA,2021-12-20,"R$",8e+07,2021-12-20
-"553","Cariacica","Municipios","ES","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento (FINISA)",NA,2019-11-04,"R$",4e+07,2019-11-04
-"554","Cascavel","Municipios","PR","BB","Bancos Federais","Programa de Construção e Reforma de Unidades Escolares, Móveis, Equipamentos e Veículos. Lei nº 7.083, de 18/12/2019",NA,2020-07-27,"R$",2.8e+07,2020-07-27
-"555","Cascavel","Municipios","PR","BID","Organismos Multilaterais","Programa de Desenvolvimento Integrado (PDI) do Município de Cascavel",NA,2013-12-27,"USD",28750000,2013-12-27
-"556","Castro","Municipios","PR","CAIXA","Bancos Federais","Programa Pró-Transporte. Pavimentação de Vias Urbanas",NA,2019-09-26,"R$",6493743.72,2019-09-26
-"557","Catanduva","Municipios","SP","BID","Organismos Multilaterais","Programa de Desenvolvimento Urbano Integrado de Catanduva",NA,2010-12-21,"USD",8439000,2010-12-21
-"558","Caucaia","Municipios","CE","CAF","Organismos Multilaterais","Programa de Infraestrutura Integrada",NA,2018-10-17,"USD",8e+07,2018-10-17
-"559","Caxias do Sul","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 8.502, de 09/04/2020",NA,2020-09-10,"R$",12100000,2020-09-10
-"560","Caxias do Sul","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 8.469, de 19/12/2019, e alterações",NA,2020-06-30,"R$",3e+07,2020-06-30
-"561","Caxias do Sul","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 8.470, de 19/12/2019",NA,2020-06-23,"R$",17950000,2020-06-23
-"562","Caxias do Sul","Municipios","RS","CAF","Organismos Multilaterais","Programa de Desenvolvimento da Infraestrutura e dos Serviços Básicos II - PDI II",NA,2017-12-28,"USD",3.3e+07,2017-12-28
-"563","Caxias do Sul","Municipios","RS","CAF","Organismos Multilaterais","Programa de Desenvolvimento da Infraestrutura Municipal e Serviços Básicos",NA,2009-12-14,"USD",28800000,2009-12-14
-"564","Chapeco","Municipios","SC","BB","Bancos Federais","Programa de Investimento em Obras e Regularização Fundiária. Lei nº 7.520, de 06/08/2021.",NA,2021-12-10,"R$",3e+08,2021-12-10
-"565","Chapeco","Municipios","SC","FONPLATA","Organismos Multilaterais","Projeto de Melhoria e Expansão da Infra-Estrutura Viária",2,2007-12-10,"USD",14750000,2007-12-10
-"566","Cianorte","Municipios","PR","BB","Bancos Federais","Financiamento de Infraestrutura Viária, Pavimentação de Vias e Aquisição de Máquinas e Equipamentos. Lei nº 5.328 de 27/04/2021.",NA,2021-10-28,"R$",2280000,2021-10-28
-"567","Cianorte","Municipios","PR","BB","Bancos Federais","Financiamento de Infraestrutura Viária, Pavimentação de Vias e Aquisição de Máquinas e Equipamentos. Lei nº 5.328 de 27/04/2021.",NA,2021-10-28,"R$",12720000,2021-10-28
-"568","Colatina","Municipios","ES","BID","Organismos Multilaterais","Programa de Desenvolvimento Urbano e Saneamento Ambiental de Colatina",NA,2012-10-26,"USD",1.1e+07,2012-10-26
-"569","Concordia","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei Municipal nº 5.027, de 13 de dezembro 2017.",NA,2019-06-13,"R$",2990883.24,2019-06-13
-"570","Concordia","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte - obras de infraestrutura para não motorizados",NA,2019-06-13,"R$",1795080.66,2019-06-13
-"571","Contagem","Municipios","MG","CAF","Organismos Multilaterais","Programa Sistema Integrado de Mobilidade",NA,2019-10-23,"USD",4.2e+07,2019-10-23
-"572","Correia Pinto","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de Qualificação Viária. Lei º 2.212, de 05/12/2018, e alterações",NA,2020-09-03,"R$",3828348,2020-09-03
-"573","Corumba","Municipios","MS","FONPLATA","Organismos Multilaterais","Programa de Desenvolvimento Integrado - PDI",NA,2017-01-27,"USD",4e+07,2017-01-27
-"574","Costa Rica","Municipios","MS","CAIXA","Bancos Federais","Programa Saneamento para Todos. Ampliação do Sistema de Esgotamento Sanitário",NA,2019-09-12,"R$",19988246.93,2019-09-12
-"575","Cotipora","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei municipal nº 2.627, de 7 de junho de 2018",NA,2019-03-08,"R$",2827300.88,2019-03-08
-"576","Criciuma","Municipios","SC","BB","Bancos Federais","Projeto de implantação de sistema de iluminação pública em LED. Lei Municipal nº 7491/2019.",NA,2020-03-11,"R$",1.5e+07,2020-03-11
-"577","Criciuma","Municipios","SC","BB","Bancos Federais","Projeto de Pavimentação de Vias Públicas. Lei nº 7.492, de 25/07/2019",NA,2020-03-11,"R$",3e+07,2020-03-11
-"578","Criciuma","Municipios","SC","FONPLATA","Organismos Multilaterais","Projeto de Transporte e Mobilidade Urbana",NA,2020-02-13,"USD",17250000,2020-02-13
-"579","Crucilandia","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.176, de 23/12/2019",NA,2020-09-03,"R$",2400000,2020-09-03
-"580","Curitiba","Municipios","PR","NDB","Organismos Multilaterais","Aumento da Capacidade e Velocidade do BRT do Eixo Leste-Oeste e Sul",NA,2021-12-29,"USD",7.5e+07,2021-12-29
-"581","Curitiba","Municipios","PR","BID","Organismos Multilaterais","Mobilidade Sustentável - Aumento Capacidade e Velocidade Linha Direta Inter 2",NA,2020-11-27,"USD",106700000,2020-11-27
-"582","Curitiba","Municipios","PR","AFD","Agências Governamentais","Projeto Gestão de Risco Climático Bairro Novo do Caximba - Curitiba - PR",NA,2020-08-26,"EUR",38141124,2020-08-26
-"583","Curitiba","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 15.564, de 03/12/2019",NA,2020-06-03,"R$",2.5e+08,2020-06-03
-"584","Curitiba","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento das Contrapartidas do Programa de Aceleração do Crescimento (CPAC)",NA,2013-12-30,"R$",76265218.78,2013-12-30
-"585","Curitiba","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento das Contrapartidas do Programa de Aceleração do Crescimento (CPAC)",NA,2013-12-30,"R$",27281782.81,2013-12-30
-"586","Curitiba","Municipios","PR","AFD","Agências Governamentais","Programa e Recuperação Ambiental e Ampliação da Capacidade da Rede Integrada de Transporte",NA,2011-07-19,"EUR",36150000,2011-07-19
-"587","Curitiba","Municipios","PR","BID","Organismos Multilaterais","Programa Integrado de Desenvolvimento Social e Urbano de Curitiba-PR",NA,2010-09-10,"USD",5e+07,2010-09-10
-"588","Curitiba","Municipios","PR","FONPLATA","Organismos Multilaterais","Programa de Estruturação de Assentamentos Habitacionais da Cidade de Curitiba",NA,2007-12-03,"USD",1e+07,2007-12-03
-"589","Curitiba","Municipios","PR","BID","Organismos Multilaterais","Programa de Transporte Urbano de Curitiba II",NA,2004-05-12,"JPY",8502249000,2004-05-12
-"590","Doutor Pedrinho","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 911, de 04/11/2019",NA,2020-04-17,"R$",2500000,2020-04-17
-"591","Entre Rios","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei Municipal nº 739, de 13 de dezembro de 2018",NA,2019-07-30,"R$",1049142,2019-07-30
-"592","Eusebio","Municipios","CE","BB","Bancos Federais","Construção de Escolas e Pavimentação de Ruas e Avenidas. Lei nº 1.735, de 15/06/2020, e alterações",NA,2021-06-21,"R$",2.2e+07,2021-06-21
-"593","Feira de Santana","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 3.984, de 03/12/2019",NA,2021-11-10,"R$",3e+07,2021-11-10
-"594","Feira de Santana","Municipios","BA","CAF","Organismos Multilaterais","Projeto de Integração Urbana",NA,2008-02-15,"USD",11737000,2008-02-15
-"595","Florianopolis","Municipios","SC","BID","Organismos Multilaterais","Projeto de Expansão e Aperfeiçoamento da Educação Infantil e do Ensino Fundamental em Florianópolis",NA,2014-07-14,"USD",58860000,2014-07-14
-"596","Florianopolis","Municipios","SC","FONPLATA","Organismos Multilaterais","Programa de Desenvolvimento da Infra-estrutura Básica e dos Serviços Urbanos",NA,2004-06-29,"USD",22400000,2004-06-29
-"597","Fortaleza","Municipios","CE","SANTANDER BR","Credores Privados","Investimentos em projetos de infraestrutura, saúde, educação, saneamento e pavimentação",NA,2019-06-13,"R$",2e+08,2019-06-13
-"598","Fortaleza","Municipios","CE","CAF","Organismos Multilaterais","Programa de Infraestrutura em Educação e Saneamento",NA,2019-06-06,"USD",1.5e+08,2019-06-06
-"599","Fortaleza","Municipios","CE","BIRD","Organismos Multilaterais","Programa Fortaleza Cidade Sustentável - Lei Municipal nº 10.543, de 18 de novembro de 2016",NA,2019-06-05,"USD",73300000,2019-06-05
-"600","Fortaleza","Municipios","CE","CAF","Organismos Multilaterais","Programa Fortaleza - Cidade com Futuro",NA,2018-06-04,"USD",83250000,2018-06-04
-"601","Fortaleza","Municipios","CE","BID","Organismos Multilaterais","Programa de Fortalecimento da Inclusão Social e Redes de Atenção - PROREDES",NA,2017-12-28,"USD",65475000,2017-12-28
-"602","Fortaleza","Municipios","CE","CAIXA","Bancos Federais","Programa de Aceleração do Crescimento - PAC - I - Contrapartida do Programa de Transporte Urbano",NA,2017-09-29,"R$",48885559.47,2017-09-29
-"603","Fortaleza","Municipios","CE","BID","Organismos Multilaterais","Programa de Transporte Urbano de Fortaleza II",NA,2016-02-24,"USD",57908000,2016-02-24
-"604","Fortaleza","Municipios","CE","BB","Bancos Federais","Contrapartida das Obras do Programa de Aceleração do Crescimento (PAC), do Programa Minha Casa Minha Vida (PMCMV) e dos projetos de mobilidade urbana diretamente associados à Copa de 2014. Lei nº 10.096, de 27/09/2013",NA,2014-10-15,"R$",57312000,2014-10-15
-"605","Fortaleza","Municipios","CE","BB","Bancos Federais","Contrapartida das Obras do Programa de Aceleração do Crescimento (PAC), do Programa Minha Casa Minha Vida (PMCMV) e dos projetos de mobilidade urbana diretamente associados à Copa de 2014. Lei nº 10.096, de 27/09/2013",NA,2014-10-15,"R$",52360000,2014-10-15
-"606","Fortaleza","Municipios","CE","CAIXA","Bancos Federais","Programa Pró-Transporte",NA,2012-06-26,"R$",141700000,2012-06-26
-"607","Fortaleza","Municipios","CE","CAF","Organismos Multilaterais","Programa de Drenagem Urbana - DRENURB",NA,2012-05-14,"USD",45100000,2012-05-14
-"608","Fortaleza","Municipios","CE","CAF","Organismos Multilaterais","Programa Nacional de Desenvolvimento do Turismo - PRODETUR Nacional Fortaleza",NA,2012-05-14,"USD",5e+07,2012-05-14
-"609","Fortaleza","Municipios","CE","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 9.586, de 30/12/09 e Lei nº 9.653, de 04/06/10.",NA,2011-12-29,"R$",19600000,2011-12-29
-"610","Fortaleza","Municipios","CE","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 9.586, de 30/12/09 e Lei nº 9.653, de 04/06/10.",NA,2011-12-29,"R$",23700000,2011-12-29
-"611","Fortaleza","Municipios","CE","BID","Organismos Multilaterais","Programa Integrado de Políticas Públicas de Juventude de Fortaleza.",NA,2010-09-03,"USD",33066000,2010-09-03
-"612","Fortaleza","Municipios","CE","BID","Organismos Multilaterais","Programa de Requalificação Urbana com Inclusão Social - PREURBIS",NA,2010-09-03,"USD",59400000,2010-09-03
-"613","Fortaleza","Municipios","CE","BID","Organismos Multilaterais","Programa de Transporte Urbano de Fortaleza",NA,2006-12-19,"USD",85200000,2006-12-19
-"614","Fortim","Municipios","CE","BB","Bancos Federais","Programa de Estruturação e Requalificação Urbana. Lei nº 792, de 20/04/2021",NA,2021-10-21,"R$",1e+07,2021-10-21
-"615","Foz do Iguacu","Municipios","PR","CAIXA","Bancos Federais","Programa FINISA. Aquisição de Máquinas, Obras em Edificações Públicas e Habitação de Interesse Social.  Lei nº 4.960, de 21/12/2020.",NA,2021-11-10,"R$",6e+07,2021-11-10
-"616","Garca","Municipios","SP","CAIXA","Bancos Federais","Saneamento para Todos. Lei nº 5.234, de 28 de junho de 2018",NA,2019-03-22,"R$",2922370.77,2019-03-22
-"617","Gaspar","Municipios","SC","BB","Bancos Federais","Investimentos no âmbito do Programa Avança Gaspar. Lei nº 4033, de 11/12/2019.",NA,2021-12-08,"R$",3e+07,2021-12-08
-"618","Goiania","Municipios","GO","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 10.409, de 22/10/19.",NA,2019-11-29,"R$",7.8e+08,2019-11-29
-"619","Goiania","Municipios","GO","BID","Organismos Multilaterais","Programa Urbano Ambiental Macambira Anicuns",1,2009-09-16,"USD",56700000,2009-09-16
-"620","Goiatuba","Municipios","GO","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de Construção e Qualificação Viária. Lei nº 3.156, de 19/06/2020",NA,2021-07-29,"R$",13817270.44,2021-07-29
-"621","Goioere","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.707, de 18/12/2019, e alterações",NA,2020-06-23,"R$",1e+07,2020-06-23
-"622","Guarda-Mor","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.241, de 10/10/2019",NA,2020-05-15,"R$",4500000,2020-05-15
-"623","Guaruja do Sul","Municipios","SC","CAIXA","Bancos Federais","Infraestrutura do Loteamento Industrial Alcides Volkweis. Lei nº 2.696, de 16/12/2020, e alterações",NA,2021-06-17,"R$",2e+06,2021-06-17
-"624","Guarulhos","Municipios","SP","CAF","Organismos Multilaterais","Programa de Macrodrenagem e Controle de Cheias do Rio Baquirivu-Guaçu em Guarulhos",NA,2020-10-08,"USD",9.6e+07,2020-10-08
-"625","Gurupi","Municipios","TO","CAIXA","Bancos Federais","Financiamento para qualificação viária, visando a pavimentação de vias urbanas. Lei nº 2391, de 29/06/2018.",NA,2018-12-27,"R$",1.9e+07,2018-12-27
-"626","Hortolandia","Municipios","SP","CAF","Organismos Multilaterais","Programa de Infraestrutura Urbana e Desenvolvimento Sustentável",NA,2018-09-05,"USD",4.2e+07,2018-09-05
-"627","Hortolandia","Municipios","SP","CAF","Organismos Multilaterais","Programa de Infra-estrutura Urbana e Proteção de Áreas Naturais",NA,2012-04-09,"USD",22132000,2012-04-09
-"628","Ita","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.609, de 20/12/2019",NA,2020-05-21,"R$",2e+06,2020-05-21
-"629","Ita","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de qualificação viária",NA,2019-06-28,"R$",1754398.06,2019-06-28
-"630","Itacurubi","Municipios","RS","CAIXA","Bancos Federais","Programa de Pavimentação no Perímetro Urbano. Lei nº 1.850, de 24/06/2021 e alterações.",NA,2021-12-09,"R$",2300000,2021-12-09
-"631","Itajai","Municipios","SC","FONPLATA","Organismos Multilaterais","Programa Itajaí 2040 - Moderna e Sustentável",NA,2018-10-30,"USD",62500000,2018-10-30
-"632","Itapipoca","Municipios","CE","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 48, de 18/10/2019",NA,2020-06-15,"R$",3e+07,2020-06-15
-"633","Itatiaia","Municipios","RJ","BB","Bancos Federais","Investimentos na Infraestrutura Urbana e Social. Lei nº 1.058, de 18/03/2020",NA,2020-06-12,"R$",3e+07,2020-06-12
-"634","Ituiutaba","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 4.666, de 19/07/2019, e nº 4.683, de 23/10/2019",NA,2020-04-17,"R$",2.2e+07,2020-04-17
-"635","Ivinhema","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte - Lei Municipal nº 1.660, de 23 de janeiro de 2019.",NA,2019-09-12,"R$",5388826.91,2019-09-12
-"636","Jacarei","Municipios","SP","CAF","Organismos Multilaterais","Programa de Desenvolvimento Urbano e Social (PRODUS)",NA,2019-11-13,"USD",6e+07,2019-11-13
-"637","Jaguare","Municipios","ES","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.509, de 04/10/2019 e alterações",NA,2020-07-01,"R$",7e+06,2020-07-01
-"638","Jandira","Municipios","SP","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.291, de 19/02/2020",NA,2020-08-07,"R$",23500000,2020-08-07
-"639","Jaquirana","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei municipal nº 1.333, de 3 de julho de 2018",NA,2019-04-23,"R$",2414552.77,2019-04-23
-"640","Jaragua do Sul","Municipios","SC","CAIXA","Bancos Federais","Pavimentação de Vias, Recapeamento de Vias e Construção de Pontes. Lei nº 8.616, de 19/04/2021",NA,2021-10-26,"R$",1e+08,2021-10-26
-"641","Jaragua do Sul","Municipios","SC","BB","Bancos Federais","Obras de Infraestrutura Viária - Pavimentação e Recapeamento de Vias. Lei nº 8.200, de 18/12/2019",NA,2020-06-18,"R$",6e+07,2020-06-18
-"642","Jiquirica","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 287, de 06/05/2019",NA,2020-03-04,"R$",5500000,2020-03-04
-"643","Joao Pessoa","Municipios","PB","BID","Organismos Multilaterais","Programa de Desenvolvimento Urbano Integrado e Sustentável do Município de João Pessoa",NA,2018-12-20,"USD",1e+08,2018-12-20
-"644","Joinville","Municipios","SC","BB","Bancos Federais","Financiamento de despesas de capital constantes do PPA e da LOA . Lei nº 8.702, de 06/06/2019",NA,2019-08-09,"R$",1e+08,2019-08-09
-"645","Joinville","Municipios","SC","FONPLATA","Organismos Multilaterais","Programa Linha Verde Eixo Ecológico Leste",NA,2018-09-27,"USD",4e+07,2018-09-27
-"646","Joinville","Municipios","SC","BID","Organismos Multilaterais","Projeto Viva Cidade II - Revitalização Ambiental e Urbana do Município de Joinvile",NA,2017-08-01,"USD",7e+07,2017-08-01
-"647","Joinville","Municipios","SC","BID","Organismos Multilaterais","Projeto de Revitalização Ambiental e Qualificação Urbana das Bacias dos Rios Cachoeira, Cubatão e Piraí",NA,2008-01-29,"USD",32670000,2008-01-29
-"648","Joinville","Municipios","SC","FONPLATA","Organismos Multilaterais","Programa Eixo Ecológico Leste e Estruturação de Parques Ambientais - Linha Verde",NA,2006-12-14,"USD",11800000,2006-12-14
-"649","Jundiai","Municipios","SP","BNDES","Bancos Federais","Projeto Município Seguro - Modernização e Reestruturação da Área de Segurança Pública. Lei nº 9.245, de 11/07/2019",NA,2020-08-20,"R$",28025553,2020-08-20
-"650","Lapao","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 897, de 05/12/2019",NA,2020-08-06,"R$",4900000,2020-08-06
-"651","Linhares","Municipios","ES","BB","Bancos Federais","Programa BB Financiamento Setor Público. Lei nº 3.867, de 03/09/2019",NA,2020-05-14,"R$",9e+07,2020-05-14
-"652","Maceio","Municipios","AL","CAF","Organismos Multilaterais","Programa de Revitalização Urbana em Bairros de Maceió - Revitaliza Maceió",NA,2018-12-20,"USD",7e+07,2018-12-20
-"653","Manaus","Municipios","AM","BB","Bancos Federais","Programa de Melhoria da Infraestrutura Urbana e Tecnológica. Lei nº 2.738, de 22/04/2021",NA,2021-10-25,"R$",4e+08,2021-10-25
-"654","Manaus","Municipios","AM","BB","Bancos Federais","Projeto de Requalificação Urbana e Viária - Requalifica Manaus III. Lei nº 2.587, de 16/03/2020",NA,2020-06-05,"R$",3e+08,2020-06-05
-"655","Manaus","Municipios","AM","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento - FINISA. Lei nº 2.462, de 19/06/19",NA,2019-10-18,"R$",3.5e+08,2019-10-18
-"656","Manaus","Municipios","AM","BB","Bancos Federais","Projeto de Requalificação Urbana e Viária. Requalifica Manaus 2. Lei nº 2.457, de 13/06/2019",NA,2019-10-01,"R$",2.5e+08,2019-10-01
-"657","Manaus","Municipios","AM","BB","Bancos Federais","Projeto de Requalificação Urbana e Viária. Lei nº 2.319, de 29/05/2018",NA,2018-10-31,"R$",1e+08,2018-10-31
-"658","Manaus","Municipios","AM","BID","Organismos Multilaterais","PROEMEM - Projeto de Expansão e Melhoria Educacional da Rede Pública Municipal de Manaus",NA,2017-07-14,"USD",5.2e+07,2017-07-14
-"659","Manaus","Municipios","AM","BIRD","Organismos Multilaterais","Programa de Consolidação do Equilíbrio Fiscal para a Melhoria da Prestação de Serviços Públicos - PROCONFIS MANAUS",NA,2016-06-22,"USD",1.5e+08,2016-06-22
-"660","Manaus","Municipios","AM","CAF","Organismos Multilaterais","Programa Nacional de Desenvolvimento do Turismo - PRODETUR Nacional Manaus",NA,2012-11-13,"USD",21512846,2012-11-13
-"661","Manaus","Municipios","AM","BID","Organismos Multilaterais","Programa de Desenvolvimento e Inclusão Socioambiental de Manaus - PROURBIS",NA,2010-05-28,"USD",5e+07,2010-05-28
-"662","Manaus","Municipios","AM","CAF","Organismos Multilaterais","Programa de Infra-Estrutura Urbana e Ambiental",NA,2008-10-07,"USD",7.5e+07,2008-10-07
-"663","Maracanau","Municipios","CE","BID","Organismos Multilaterais","Programa de Transporte e Logística Urbana de Maracanaú",NA,2018-11-16,"USD",31784500,2018-11-16
-"664","Marata","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.914, de 09/01/2020",NA,2020-06-19,"R$",2400000,2020-06-19
-"665","Marau","Municipios","RS","CAIXA","Bancos Federais","Programa de Aquisição de Veículos, Máquinas e Equipamentos.  Lei nº 5.796, de 28/05/2021.",NA,2021-12-16,"R$",4e+06,2021-12-16
-"666","Maringa","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 10.915, de 17/07/2019 e alterações",NA,2020-06-18,"R$",26200000,2020-06-18
-"667","Maringa","Municipios","PR","BID","Organismos Multilaterais","Programa de Mobilidade Urbana do Município de Maringá.",NA,2010-09-22,"USD",1.3e+07,2010-09-22
-"668","Massaranduba","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei municipal nº 1.948, de 9 de outubro de 2018",NA,2019-04-03,"R$",4897085.06,2019-04-03
-"669","Mata","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Financiamento Despesas de Capital. Lei  nº 1.820, de 26/05/2020 e alterações.",NA,2021-11-19,"R$",1700000,2021-11-19
-"670","Maua","Municipios","SP","CAIXA","Bancos Federais","Confissão e Renegociação de Dívida",NA,2015-01-30,"R$",483803506.85,2015-01-30
-"671","Mineiros","Municipios","GO","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei Municipal nº 1.859, de 10 de agosto de 2018",NA,2019-06-07,"R$",12409709.45,2019-06-07
-"672","Mogi das Cruzes","Municipios","SP","CAF","Organismos Multilaterais","Programa Mais Mogi Ecotietê. Lei nº 7.563, de 06/02/2020",NA,2020-09-10,"USD",69439000,2020-09-10
-"673","Mogi das Cruzes","Municipios","SP","BB","Bancos Federais","Programa BB Financiamento Setor Público. Lei nº 7.546, de 26/12/2019",NA,2020-04-16,"R$",4.8e+07,2020-04-16
-"674","Monte Castelo","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.630, de 19/05/2020",NA,2020-08-07,"R$",3927844.98,2020-08-07
-"675","Morro da Fumaca","Municipios","SC","CAIXA","Bancos Federais","PRÓ-TRANSPORTE",NA,2018-12-18,"R$",4867140.36,2018-12-18
-"676","Morro Grande","Municipios","SC","CAIXA","Bancos Federais","PRÓ-TRANSPORTE",NA,2018-10-23,"R$",2191559.47,2018-10-23
-"677","Muriae","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 5.912, de 25/10/19",NA,2020-03-19,"R$",5e+07,2020-03-19
-"678","Nao-Me-Toque","Municipios","RS","BB","Bancos Federais","Programa Eficiência Municipal. Lei nº 5.349 de 25/05/2021.",NA,2021-12-02,"R$",5e+06,2021-12-02
-"679","Natal","Municipios","RN","CAIXA","Bancos Federais","Programa Pró-Transporte",28,2011-12-20,"R$",2.93e+08,2011-12-20
-"680","Niteroi","Municipios","RJ","CAF","Organismos Multilaterais","Programa Região Oceânica Sustentável - Pró-Sustentável",NA,2016-11-30,"USD",1e+08,2016-11-30
-"681","Niteroi","Municipios","RJ","BID","Organismos Multilaterais","Programa de Desenvolvimento Urbano e Inclusão Social de Niterói - PROCIDADES",NA,2014-02-28,"USD",26470000,2014-02-28
-"682","Nova Alvorada do Sul","Municipios","MS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 849, de 04/11/2019",NA,2020-08-06,"R$",6500000,2020-08-06
-"683","Nova Alvorada do Sul","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 822, de 24/12/2018, e alterações",NA,2020-07-23,"R$",1.5e+07,2020-07-23
-"684","Nova Santa Rita","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.554, de 23/10/2019",NA,2020-07-01,"R$",4300000,2020-07-01
-"685","Novo Hamburgo","Municipios","RS","BID","Organismos Multilaterais","Programa de Desenvolvimento Municipal Integrado de Novo Hamburgo - PROCIDADES",2,2012-10-26,"USD",23910000,2012-10-26
-"686","Osasco","Municipios","SP","BB","Bancos Federais","Mobilidade Urbana, Saúde, Segurança e Esporte. Lei nº 5.013, de 23/10/2019",NA,2020-05-14,"R$",2.96e+08,2020-05-14
-"687","Osorio","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 6.322, de 12/11/2019",NA,2021-05-28,"R$",2e+07,2021-05-28
-"688","Ouro Preto","Municipios","MG","BB","Bancos Federais","Pavimentação e Drenagem Pluvial. Lei nº 1.170, de 22/06/2020",NA,2020-09-02,"R$",4.5e+07,2020-09-02
-"689","Palmas","Municipios","TO","BB","Bancos Federais","Programa de Ampliação da Infraestrutura Urbana - PROINFRA. Lei nº 415, de 17/10/2019",NA,2020-08-14,"R$",5e+07,2020-08-14
-"690","Palmas","Municipios","TO","CAF","Organismos Multilaterais","Programa de Requalificação Urbana Palmas para o Futuro",NA,2018-12-28,"USD",60870000,2018-12-28
-"691","Panambi","Municipios","RS","CAIXA","Bancos Federais","Pró-Transporte: Obras de qualificação viária do município de Panambi. Lei nº 4700, de 12/06/2018.",NA,2018-12-28,"R$",14249348.57,2018-12-28
-"692","Paraiso","Municipios","SC","CAIXA","Bancos Federais","Programa de Aquisição e Máquinas, Implementos Industriais e Pavimentação Asfáltica.  Lei nº 1.551, de 02/07/2021.",NA,2021-12-27,"R$",3e+06,2021-12-27
-"693","Paraiso das Aguas","Municipios","MS","CAIXA","Bancos Federais","Pró-Transporte. Leis nº 267, de 18/06/18, e nº 280, de 12/12/18",NA,2019-03-07,"R$",5e+06,2019-03-07
-"694","Parana","Municipios","TO","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.150, de 16/04/2020",NA,2020-08-26,"R$",6e+06,2020-08-26
-"695","Paranagua","Municipios","PR","BB","Bancos Federais","Programa BB Financiamento Setor Público. Obras Diversas conforme a Lei nº 3.879, de 20/02/2020, e alterações",NA,2020-07-27,"R$",8e+07,2020-07-27
-"696","Paranagua","Municipios","PR","BID","Organismos Multilaterais","Programa Integrado de Desenvolvimento Social e Urbano do Município de Paranaguá",NA,2011-09-30,"USD",16649600,2011-09-30
-"697","Paranavai","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 4.809, de 12/03/2020",NA,2020-07-17,"R$",6500000,2020-07-17
-"698","Parauapebas","Municipios","PA","BID","Organismos Multilaterais","Saneamento Ambiental, Macrodrenagem e Recuperação Margens do Rio Parauapebas",NA,2020-10-29,"USD",7e+07,2020-10-29
-"699","Passo Fundo","Municipios","RS","BID","Organismos Multilaterais","Programa de Desenvolvimento Integrado do Município de Passo Fundo",NA,2010-07-16,"USD",9800000,2010-07-16
-"700","Passos Maia","Municipios","SC","CAIXA","Bancos Federais","Realização de Obras de Qualificação Viária . Lei nº 809/2018, de 17/07/2018.",NA,2019-06-14,"R$",2066985.19,2019-06-14
-"701","Paty do Alferes","Municipios","RJ","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.640, de 13/12/2019",NA,2020-06-10,"R$",1500000,2020-06-10
-"702","Pelotas","Municipios","RS","BIRD","Organismos Multilaterais","Projeto Integrado de Infra-Estrutura Municipal de Pelotas",NA,2008-03-26,"USD",18900000,2008-03-26
-"703","Pinhalzinho","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento destinado à Construção de Casas e Infraestrutura. Lei nº 2.713, de 31/05/2021.",NA,2021-12-09,"R$",9380000,2021-12-09
-"704","Pinhalzinho","Municipios","SC","BB","Bancos Federais","Pavimentação Asfáltica Linha Boa Vista e Infraestrutura Internet Rural. Leis nº 2.649, de 18/03/2020, e nº 2.653, de 31/03/2020",NA,2020-06-26,"R$",4500000,2020-06-26
-"705","Pinheiro Preto","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.098, de 24/10/2019",NA,2020-04-13,"R$",1900000,2020-04-13
-"706","Piraquara","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 1.943, de 19/07/2019, e nº 1.973, de 11/11/2019",NA,2020-03-18,"R$",2.5e+07,2020-03-18
-"707","Piripiri","Municipios","PI","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 910, de 23/10/2019",NA,2020-08-27,"R$",5e+06,2020-08-27
-"708","Pojuca","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 74, de 03/12/2019",NA,2020-07-16,"R$",7e+06,2020-07-16
-"709","Pomerode","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 2.987, de 27/04/2018, nº 2.998, de 29/06/2018, e nº 3.070, de 04/12/2019",NA,2020-04-29,"R$",1.5e+07,2020-04-29
-"710","Ponta Grossa","Municipios","PR","BID","Organismos Multilaterais","Programa de Melhoramento da Infra-Estrutura Urbana do Município de Ponta Grossa",NA,2010-09-17,"USD",7500000,2010-09-17
-"711","Ponta Pora","Municipios","MS","CAIXA","Bancos Federais","Obras de Pavimentação Asfáltica e Drenagem de Águas Pluviais. Lei nº 4.455, de 27/05/2021",NA,2021-10-25,"R$",23700000,2021-10-25
-"712","Ponta Pora","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de qualificação viária. Lei nº 4.434, de 29/05/2020",NA,2020-10-14,"R$",7829370.6,2020-10-14
-"713","Ponta Pora","Municipios","MS","FONPLATA","Organismos Multilaterais","Programa de Desenvolvimento da Faixa de Fronteira na Cidade de Ponta Porã/MS - FRONTEIRA DO FUTURO PONTA PORÃ/MS",NA,2020-01-22,"USD",2.5e+07,2020-01-22
-"714","Ponta Pora","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei municipal nº 4.360, de 10 de agosto de 2018",NA,2019-03-11,"R$",12170629.4,2019-03-11
-"715","Ponte Nova","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 4.277, de 05/07/2019, e alterações",NA,2020-04-28,"R$",28500000,2020-04-28
-"716","Ponte Serrada","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.392, de 20/12/2019",NA,2020-05-26,"R$",3e+06,2020-05-26
-"717","Porto Alegre","Municipios","RS","CAF","Organismos Multilaterais","Programa ORLA POA - Organicidade e Requalificação do Espaço Urbano, do Lazer, do Acesso e Mobilidade",NA,2016-08-10,"USD",9.2e+07,2016-08-10
-"718","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento das Contrapartidas do Programa de Aceleraçaõ do Crescimento (CPAC)",NA,2014-07-22,"R$",36520000,2014-07-22
-"719","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",40980175.2,2014-01-14
-"720","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",71300000,2014-01-14
-"721","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",61400000,2014-01-14
-"722","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",29669446.27,2014-01-14
-"723","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",84382597.79,2014-01-14
-"724","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",24900795.19,2014-01-14
-"725","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",12521979.24,2014-01-14
-"726","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",99527369.2,2014-01-14
-"727","Porto Alegre","Municipios","RS","BID","Organismos Multilaterais","Programa Integrado Sócio-Ambiental - PISA",NA,2009-05-20,"USD",83270000,2009-05-20
-"728","Porto Alegre","Municipios","RS","FONPLATA","Organismos Multilaterais","Prog. Integrado Zona Norte Entrada da Cidade",NA,2003-12-22,"USD",27500000,2003-12-22
-"729","Porto Alegre","Municipios","RS","BID","Organismos Multilaterais","A definir.",NA,1998-07-28,"USD",76500000,1998-07-28
-"730","Porto Nacional","Municipios","TO","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento - FINISA. Lei nº 2458, de 30/12/2019.",NA,2021-12-27,"R$",1.5e+07,2021-12-27
-"731","Prudentopolis","Municipios","PR","CAIXA","Bancos Federais","Pró-Transporte. Lei municipal nº 2.313, de 23 de maio de 2018",NA,2019-04-16,"R$",1e+07,2019-04-16
-"732","Recife","Municipios","PE","BIRD","Organismos Multilaterais","Programa de Desenvolvimento da Educação e da Gestão Pública",NA,2012-10-31,"USD",1.3e+08,2012-10-31
-"733","Recife","Municipios","PE","BIRD","Organismos Multilaterais","Projeto de Desenvolvimento Urbano e Inclusão Social do Recife (Capibaribe Melhor)",NA,2009-09-03,"USD",32760000,2009-09-03
-"734","Relvado","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento destinado à Infraestrutura Urbana e Aquisição de Equipamento Asfáltico. Lei nº 1.665, de 07/04/2021.",NA,2021-10-15,"R$",1500000,2021-10-15
-"735","Ribeirao Preto","Municipios","SP","BB","Bancos Federais","Contrapartida do Programa de Aceleração do Crescimento II - PAC 2. Leis nº 13.061, nº 13.062, nº 13.063 e nº 13.065 e nº 13.067, de 23/08/2013",NA,2014-10-24,"R$",37404434.3,2014-10-24
-"736","Ribeirao Preto","Municipios","SP","CAIXA","Bancos Federais","Programa Saneamento para Todos - Obras, Serviços, Estudos e Projetos",NA,2014-03-31,"R$",35903222.88,2014-03-31
-"737","Ribeirao Preto","Municipios","SP","CAIXA","Bancos Federais","Programa Pró-Transporte",NA,2014-03-31,"R$",5140531.82,2014-03-31
-"738","Ribeirao Preto","Municipios","SP","CAIXA","Bancos Federais","PRO-TRANSPORTE - Programa de Infraestrutura de Transporte e da Mobilidade Urbana",NA,2014-03-31,"R$",25573089.04,2014-03-31
-"739","Ribeirao Preto","Municipios","SP","CAIXA","Bancos Federais","PRO-TRANSPORTE - Programa de Infraestrutura de Transporte e da Mobilidade Urbana",NA,2014-03-31,"R$",3044764.48,2014-03-31
-"740","Ribeirao Preto","Municipios","SP","CAIXA","Bancos Federais","Pró-Transporte -Execução de Obras/Serviços",NA,2014-02-14,"R$",278763189,2014-02-14
-"741","Rio Branco","Municipios","AC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura do parque de iluminação pública. Leis nº 68, de 19/07/19 e nº 70, de 10/09/19.",NA,2019-11-13,"R$",4.8e+07,2019-11-13
-"742","Rio Branco","Municipios","AC","BB","Bancos Federais","Financiamento de despesas de capital constantes do PPA e da LOA 2018. Lei nº 50, de 23/08/2018",NA,2018-10-24,"R$",14500000,2018-10-24
-"743","Rio de Janeiro","Municipios","RJ","BIRD","Organismos Multilaterais","Projeto de Promoção da Excelência na Gestão Pública",NA,2014-08-26,"USD",16200000,2014-08-26
-"744","Rio de Janeiro","Municipios","RJ","BNDES","Bancos Federais","Programa Estruturador de Transporte Urbano. Decreto Legislativo nº 1.053, de 08/11/2013",NA,2014-05-20,"R$",2715389458.89,2014-05-20
-"745","Rio de Janeiro","Municipios","RJ","BID","Organismos Multilaterais","Programa de Urbanização de Assentamentos Populares - PROAP III",NA,2012-07-05,"USD",1.5e+08,2012-07-05
-"746","Rio de Janeiro","Municipios","RJ","BIRD","Organismos Multilaterais","Projeto de Política de Desenvolvimento do Município",NA,2010-08-20,"USD",1.045e+09,2010-08-20
-"747","Rio de Janeiro","Municipios","RJ","BID","Organismos Multilaterais","Programa de Urbanização de Assentamentos Populares, ""Favela-Bairro"" - 2ª Etapa (PROAP II)",NA,2000-03-29,"USD",1.8e+08,2000-03-29
-"748","Rio de Janeiro","Municipios","RJ","BID","Organismos Multilaterais","Programa de Urbanização de Assentamentos Populares",NA,1995-12-08,"USD",1.8e+08,1995-12-08
-"749","Rio de Janeiro","Municipios","RJ","BID","Organismos Multilaterais","Projeto de Mapeamento Digital e Drenagem Urbana para o Município do Rio de Janeiro - Baía da Guanabara",NA,1995-05-08,"USD",2.8e+07,1995-05-08
-"750","Rio do Campo","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.293, de 13/11/2019",NA,2020-05-27,"R$",1350000,2020-05-27
-"751","Rio Grande","Municipios","RS","BIRD","Organismos Multilaterais","Programa Rio Grande 2010 - Uma Visão do Futuro",1,2010-02-25,"USD",8100000,2010-02-25
-"752","Rio Paranaiba","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.646, 23/10/2019",NA,2020-08-27,"R$",5e+06,2020-08-27
-"753","Roca Sales","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 1.800, de 20/08/2019, e nº 1.813, de 29/10/2019",NA,2020-03-09,"R$",2500000,2020-03-09
-"754","Salvador","Municipios","BA","BIRD","Organismos Multilaterais","Salvador Social Multi-Sector Service Delivery Project II - Salvador Social 2ª Fase",NA,2021-10-04,"USD",1.25e+08,2021-10-04
-"755","Salvador","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 9.491, de 18/10/19.",NA,2019-12-12,"R$",104100000,2019-12-12
-"756","Salvador","Municipios","BA","CAF","Organismos Multilaterais","Programa de Requalificação Urbanística - PROQUALI",NA,2018-12-18,"USD",60700000,2018-12-18
-"757","Salvador","Municipios","BA","BIRD","Organismos Multilaterais","Projeto Salvador Social",NA,2018-07-11,"USD",1.25e+08,2018-07-11
-"758","Salvador","Municipios","BA","BID","Organismos Multilaterais","Projeto Novo Mané Dendê",NA,2018-06-26,"USD",67500000,2018-06-26
-"759","Salvador","Municipios","BA","BID","Organismos Multilaterais","Prodetur - Programa Nacional de Desenvolvimento Turístico",NA,2017-06-06,"USD",52512340,2017-06-06
-"760","Salvador do Sul","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 3.502, de 03/03/2020, e alterações",NA,2020-07-08,"R$",1620225,2020-07-08
-"761","Santa Helena","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.031, de 22/10/2019",NA,2020-05-20,"R$",1500000,2020-05-20
-"762","Santa Maria","Municipios","RS","BIRD","Organismos Multilaterais","Programa de Desenvolvimento Sustentável para a Região de Santa Maria",NA,2010-03-04,"USD",13950000,2010-03-04
-"763","Santa Rosa","Municipios","RS","BB","Bancos Federais","Infraestrutura Viária e Mobilidade Urbana. Leis nº 5.528, de 14/10/2019, e nº 5.544, de 12/12/2019",NA,2020-05-14,"R$",7e+06,2020-05-14
-"764","Santa Vitoria","Municipios","MG","CAIXA","Bancos Federais","Programa Saneamento para Todos. Lei nº 3.204, de 17/10/18",NA,2019-02-15,"R$",21624188.9,2019-02-15
-"765","Santo Andre","Municipios","SP","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 10.268, de 11/12/2019",NA,2020-08-28,"R$",2e+07,2020-08-28
-"766","Santo Andre","Municipios","SP","CAF","Organismos Multilaterais","Programa Sanear Santo André - SANEASA",NA,2019-12-30,"USD",5e+07,2019-12-30
-"767","Santo Andre","Municipios","SP","BID","Organismos Multilaterais","Programa de Mobilidade Urbana Sustentável de Santo André",NA,2018-07-16,"USD",2.5e+07,2018-07-16
-"768","Santos","Municipios","SP","BIRD","Organismos Multilaterais","Programa de Desenvolvimento Estratégico de Santos e Infraestrutura Urbana e Habitacional das Zonas Noroeste e dos Morros - Santos Novos Tempos",NA,2010-02-08,"USD",4.4e+07,2010-02-08
-"769","Sao Bento do Sul","Municipios","SC","BB","Bancos Federais","Programa Eficiência Municipal. Aquisição de Máquinas, Equipamentos e Veículos. Lei nº 4.395, de 09/06/2021.",NA,2021-12-13,"R$",8e+06,2021-12-13
-"770","Sao Bento do Sul","Municipios","SC","CAIXA","Bancos Federais","Programa FINISA. Obras de Execução de Pavimentação Viária. Lei nº 4.205, de 02/01/2020.",NA,2021-12-10,"R$",1.3e+07,2021-12-10
-"771","Sao Bernardo do Campo","Municipios","SP","CAF","Organismos Multilaterais","Programa de Recuperação e Ordenamento Sócio Ambiental de Bairros - PROSABs. Lei nº 6.733, de 06/12/2018",NA,2020-09-03,"USD",8e+07,2020-09-03
-"772","Sao Bernardo do Campo","Municipios","SP","BB","Bancos Federais","Investimentos nas Áreas de Mobilidade Urbana, Habitação e Saúde. Lei nº 6.882, de 27/02/2020",NA,2020-05-14,"R$",3.78e+08,2020-05-14
-"773","Sao Bernardo do Campo","Municipios","SP","CAF","Organismos Multilaterais","Programa de Infraestrutura Urbana - PROINFRA",NA,2017-10-05,"USD",1.25e+08,2017-10-05
-"774","Sao Bernardo do Campo","Municipios","SP","BID","Organismos Multilaterais","Programa de Fortalecimento do Sistema Único de Saúde",NA,2016-05-17,"USD",59050000,2016-05-17
-"775","Sao Bernardo do Campo","Municipios","SP","BID","Organismos Multilaterais","Programa de Transporte Urbano de são Bernardo do Campo/SP",1,2013-06-25,"USD",1.25e+08,2013-06-25
-"776","Sao Bernardo do Campo","Municipios","SP","BIRD","Organismos Multilaterais","Programa de Saneamento Ambiental dos Mananciais da Bacia Hidrográfica do Alto Tietê (Programa Mananciais)",NA,2012-10-29,"USD",20820000,2012-10-29
-"777","Sao Bernardo do Campo","Municipios","SP","BID","Organismos Multilaterais","Programa de Modernização e Humanização da Saúde do Município São Bernardo do Campo",NA,2012-03-21,"USD",21600000,2012-03-21
-"778","Sao Bernardo do Campo","Municipios","SP","BID","Organismos Multilaterais","Programa de Transporte Urbano de São Bernardo do Campo",NA,2006-03-31,"USD",7.2e+07,2006-03-31
-"779","Sao Caetano do Sul","Municipios","SP","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 17, de 31/10/2019",NA,2020-06-18,"R$",5.4e+07,2020-06-18
-"780","Sao Gabriel do Oeste","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte. Pavimentação asfáltica e drenagem de aguas pluviais em vias urbanas do bairro Primo Maffissoni",NA,2019-09-10,"R$",4999763.91,2019-09-10
-"781","Sao Goncalo do Amarante","Municipios","RN","FONPLATA","Organismos Multilaterais","Programa de Ações Estruturantes - PAES. Lei Complementar do Município nº 89, de 23/08/2019, e alterações",NA,2020-08-26,"USD",3.4e+07,2020-08-26
-"782","Sao Jose dos Campos","Municipios","SP","BID","Organismos Multilaterais","Programa de Estruturação Urbana de São José dos Campos/SP",NA,2011-08-18,"USD",85672400,2011-08-18
-"783","Sao Luis","Municipios","MA","BID","Organismos Multilaterais","Programa de Revitalização do Centro Histórico do Município de São Luis - PRCHSL",NA,2016-11-29,"USD",13590000,2016-11-29
-"784","Sao Luis","Municipios","MA","BIRD","Organismos Multilaterais","Programa de Recuperação Ambiental e Melhoria da Qualidade de Vida da Bacia do Bacanga",NA,2008-11-11,"USD",35640000,2008-11-11
-"785","Sao Paulo","Municipios","SP","BIRD","Organismos Multilaterais","Programa de Melhoria da Mobilidade Urbana Universal - Corredor Aricanduva",NA,2021-12-31,"USD",9.7e+07,2021-12-31
-"786","Sao Paulo","Municipios","SP","Itaú","Credores Privados","Recapeamento de vias urbanas municipais",NA,2019-11-21,"R$",5e+08,2019-11-21
-"787","Sao Paulo","Municipios","SP","BID","Organismos Multilaterais","Projeto de Reestruturação e Qualificação das Redes Assistenciais - Avança Saúde - Lei nº 16.757 - 14/11/17.",NA,2019-06-19,"USD",1e+08,2019-06-19
-"788","Sao Paulo","Municipios","SP","CAIXA","Bancos Federais","Saneamento para Todos - Execução de Intervenções no Sistema de Drenagem. Lei nº 16.757, de 14/11/2017",NA,2018-12-26,"R$",2e+08,2018-12-26
-"789","Sao Paulo","Municipios","SP","SANTANDER BR","Credores Privados","Asfalto Novo do Município de São Paulo",NA,2018-08-09,"R$",3e+07,2018-08-09
-"790","Sao Paulo","Municipios","SP","SANTANDER BR","Credores Privados","Programa Habitacional Casa da Família",NA,2018-08-09,"R$",2e+08,2018-08-09
-"791","Sao Paulo","Municipios","SP","BID","Organismos Multilaterais","Programa de reabilitação da área central do município de São Paulo - PROCENTRO",NA,2004-06-02,"USD",100400000,2004-06-02
-"792","Sao Paulo","Municipios","SP","BID","Organismos Multilaterais","Programa de Melhoramento em Favelas",NA,1996-07-11,"USD",1.5e+08,1996-07-11
-"793","Sao Paulo","Municipios","SP","BID","Organismos Multilaterais","A definir.",NA,1995-01-10,"USD",3.02e+08,1995-01-10
-"794","Sao Sebastiao do Cai","Municipios","RS","BB","Bancos Federais","Obras de Infraestrutura pela Pavimentação de Vias. Lei nº 4.277, de 09/02/2021 e alterações",NA,2021-07-12,"R$",7500000,2021-07-12
-"795","Sao Sebastiao do Cai","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 4.225, de 02/06/2020",NA,2020-08-27,"R$",1863925.24,2020-08-27
-"796","Schroeder","Municipios","SC","CAIXA","Bancos Federais","Progama Pró-Transporte. Obras de Qualificação Viária no Município",NA,2019-08-28,"R$",4750000,2019-08-28
-"797","Serafina Correa","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de qualificação viária. Leis nº 3.676, de 07/12/2018, e nº 3.800, de 02/03/2020",NA,2020-03-30,"R$",2372684.96,2020-03-30
-"798","Serra","Municipios","ES","BB","Bancos Federais","Financiamento de despesas de capital constantes do PPA e da LOA. Lei nº 4.880, de 08/08/2018",NA,2019-02-13,"R$",1.3e+08,2019-02-13
-"799","Sete Lagoas","Municipios","MG","CAIXA","Bancos Federais","PRO-TRANSPORTE - Programa de Infraestrutura de Transporte e da Mobilidade Urbana",NA,2014-02-12,"R$",25200000,2014-02-12
-"800","Sete Lagoas","Municipios","MG","CAIXA","Bancos Federais","PRO-TRANSPORTE - Programa de Infraestrutura de Transporte e da Mobilidade Urbana",NA,2014-02-12,"R$",22669475,2014-02-12
-"801","Sete Lagoas","Municipios","MG","CAIXA","Bancos Federais","PRO-TRANSPORTE - Programa de Infraestrutura de Transporte e da Mobilidade Urbana",NA,2014-02-12,"R$",2e+06,2014-02-12
-"802","Sidrolandia","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de pavimentação asfáltica e drenagem. Lei nº 1.924, de 08/06/2018, e alterações",NA,2021-05-28,"R$",13168000,2021-05-28
-"803","Sobral","Municipios","CE","CAF","Organismos Multilaterais","Programa de Desenvolvimento Socioambiental de Sobral - PRODESOL",NA,2018-11-14,"USD",5e+07,2018-11-14
-"804","Sonora","Municipios","MS","CAIXA","Bancos Federais","Pró-Transporte. Lei municipal nº 832, de 3 de julho de 2018",NA,2019-03-07,"R$",5e+06,2019-03-07
-"805","Sorocaba","Municipios","SP","CAIXA","Bancos Federais","Programa Saneamento para Todos. Lei nº 11.748, de 17/07/2018",NA,2020-12-11,"R$",81927397.16,2020-12-11
-"806","Sorocaba","Municipios","SP","CAIXA","Bancos Federais","Programa Saneamento para Todos. Redução e Controle de Perdas. Lei nº 11.747, de 17/07/2018",NA,2020-12-11,"R$",26600000,2020-12-11
-"807","Sorocaba","Municipios","SP","CAF","Organismos Multilaterais","Programa Ambiental e de Otimização Viária - Mobilidade Total",NA,2018-10-09,"USD",7e+07,2018-10-09
-"808","Sorocaba","Municipios","SP","CAF","Organismos Multilaterais","Programa Ambiental e de Integração Social do Município de Sorocaba",NA,2008-09-08,"USD",42790000,2008-09-08
-"809","Suzano","Municipios","SP","BB","Bancos Federais","Implantação de Infraestrutura Viária. Lei nº 339, de 04/12/2019",NA,2020-07-27,"R$",3e+07,2020-07-27
-"810","Tangua","Municipios","RJ","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.182, de 29/10/2019",NA,2020-08-10,"R$",15850000,2020-08-10
-"811","Tapejara","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 4.465, de 24/03/2020",NA,2020-07-15,"R$",6e+06,2020-07-15
-"812","Tapejara","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 4.288, de 06/11/18",NA,2019-08-09,"R$",14232697.72,2019-08-09
-"813","Taubate","Municipios","SP","CAF","Organismos Multilaterais","Programa de Melhoria da Mobilidade Urbana e Socioambiental",NA,2017-12-01,"USD",6e+07,2017-12-01
-"814","Teresina","Municipios","PI","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Implantação de Infraestrutura Urbana e Social. Lei nº 5.528, de 18/06/2020",NA,2020-10-14,"R$",1e+08,2020-10-14
-"815","Teresina","Municipios","PI","BB","Bancos Federais","Financiamento de despesas de capital constantes do PPA e da LOA. Lei nº 5.304, de 16/11/2018",NA,2018-12-28,"R$",1.2e+08,2018-12-28
-"816","Teresina","Municipios","PI","CAF","Organismos Multilaterais","Programa De Desenvolvimento Urbano Integrado - Teresina Sustentável",NA,2018-09-28,"USD",45982658.96,2018-09-28
-"817","Teresina","Municipios","PI","BIRD","Organismos Multilaterais","Projeto de Melhoria da Qualidade de Vida e da Gestão Municipal - Programa Lagoas do Norte - Etapa II",NA,2016-04-27,"USD",8.8e+07,2016-04-27
-"818","Teresina","Municipios","PI","BIRD","Organismos Multilaterais","Programa Lagoas do Norte",NA,2008-07-24,"USD",31130000,2008-07-24
-"819","Timbo","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 3.080, de 19/09/2019",NA,2020-07-21,"R$",1e+07,2020-07-21
-"820","Timbo","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei Municipal nº 2.997, de 11 de setembro de 2018",NA,2019-05-13,"R$",1.5e+07,2019-05-13
-"821","Tio Hugo","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte - Execução de obras/serviços. Lei nº 979, de 13 de março de 2018.",NA,2019-08-14,"R$",1166167,2019-08-14
-"822","Toledo","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 33, de 18/06/2020",NA,2020-08-27,"R$",7e+06,2020-08-27
-"823","Toledo","Municipios","PR","AFD","Agências Governamentais","Programa de Desenvolvimento Ambiental e Sustentável do Município de Toledo",NA,2012-07-31,"EUR",9463000,2012-07-31
-"824","Toledo","Municipios","PR","BID","Organismos Multilaterais","Programa de Desenvolvimento Sócio-Econômico Sustentável do Município de Toledo",NA,2008-07-23,"USD",7333700,2008-07-23
-"825","Ubaira","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento",NA,2020-03-04,"R$",8e+06,2020-03-04
-"826","Uberaba","Municipios","MG","BIRD","Organismos Multilaterais","Projeto de Recuperação Ambiental da Bacia do Rio Uberaba e Revitalização de Sistema de Abastecimento de Água",NA,2008-05-19,"USD",17270000,2008-05-19
-"827","Uruguaiana","Municipios","RS","BIRD","Organismos Multilaterais","Programa Uruguaiana Vencerá",NA,2009-05-13,"USD",6830000,2009-05-13
-"828","Vale Real","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Execução de Investimentos de Pavimentação e Qualificação Viária",NA,2019-07-01,"R$",1909901.22,2019-07-01
-"829","Vargeao","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.674, de 16/09/2019, e alterações",NA,2020-07-07,"R$",2500000,2020-07-07
-"830","Veranopolis","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de Qualificação Viária. Lei nº 7.203, de 07/08/2018, e alterações",NA,2020-08-27,"R$",2673056.97,2020-08-27
-"831","Vicosa","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 11, de 01/11/2019",NA,2020-07-15,"R$",7500000,2020-07-15
-"832","Vila Velha","Municipios","ES","FONPLATA","Organismos Multilaterais","Programa de Requalificação Urbana e Melhorias Ambientais",NA,2019-12-29,"USD",27600000,2019-12-29
-"833","Virmond","Municipios","PR","CAIXA","Bancos Federais","Obras em Infraestrutura Urbana e Habitação de Interesse Social. Lei nº 543, de 21/05/2021",NA,2021-12-10,"R$",2e+06,2021-12-10
-"834","Vitoria","Municipios","ES","BID","Organismos Multilaterais","Programa de Requalificação Urbana e Segurança Cidadã - Lei Municipal nº 9.054, de 28/11/2016",NA,2019-08-12,"USD",1e+08,2019-08-12
-"835","Vitoria","Municipios","ES","BID","Organismos Multilaterais","Programa de Desenvolvimento Urbano e Inclusão Social de Vitória/ES",NA,2008-08-14,"USD",39100000,2008-08-14
-"836","Votuporanga","Municipios","SP","SANTANDER BR","Credores Privados","Financiamento para Galerias de Águas Pluviais, Transposição do Córrego do Cortume, Infraestrutura Urbana e  Construção do Paço Municipal.",NA,2019-10-25,"R$",2e+07,2019-10-25
+"529","Blumenau","Municipios","SC","BID","Organismos Multilaterais","Programa Mobilidade Sustentável de Blumenau",NA,2012-08-22,"USD",5.9e+07,2012-08-22
+"530","Boa Vista","Municipios","RR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei Municipal nº 2.021, de 02/10/19",NA,2020-03-06,"R$",3.2e+07,2020-03-06
+"531","Bom Jesus","Municipios","SC","CAIXA","Bancos Federais","Pró-Transporte - Obras de qualificação viária.",NA,2019-06-14,"R$",1965550,2019-06-14
+"532","Caarapo","Municipios","MS","CAIXA","Bancos Federais","Pró-Transporte. Lei municipal nº 1.351, de 26 de junho de 2018",NA,2019-04-16,"R$",7132582.19,2019-04-16
+"533","Caarapo","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte - Lei Municipal nº 1.351, de 26 de junho de 2018",NA,2019-04-16,"R$",7641778.85,2019-04-16
+"534","Cachoeirinha","Municipios","RS","FONPLATA","Organismos Multilaterais","Projeto de Melhoria e Ampliação da Infra-Estrutura Urbana",4,2008-10-20,"USD",8910000,2008-10-20
+"535","Cachoeiro de Itapemirim","Municipios","ES","BB","Bancos Federais","Investimentos em Infraestrutura e Outras Despesas de Capital. nº 7.708, de 30/07/2019, e alterações",NA,2021-10-13,"R$",8.5e+07,2021-10-13
+"536","Camacari","Municipios","BA","CAF","Organismos Multilaterais","Programa de Integração e Desenvolvimento Urbano, Social e Ambiental",NA,2019-06-14,"USD",8e+07,2019-06-14
+"537","Camboriu","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 3.210, de 11/12/2019",NA,2021-05-27,"R$",2e+06,2021-05-27
+"538","Camboriu","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 3.209, de 11/12/2019",NA,2020-07-20,"R$",1.4e+07,2020-07-20
+"539","Camocim","Municipios","CE","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.486, de 02/12/2019",NA,2020-06-18,"R$",2.1e+07,2020-06-18
+"540","Campinas das Missoes","Municipios","RS","CAIXA","Bancos Federais","Progama Pró-Transporte. Obras de Qualificação Viária no Município",NA,2019-06-26,"R$",1598040.88,2019-06-26
+"541","Campo Grande","Municipios","MS","BID","Organismos Multilaterais","Programa de Desenvolvimento Integrado - Viva Campo Grande II",NA,2017-05-12,"USD",5.6e+07,2017-05-12
+"542","Campo Grande","Municipios","MS","BID","Organismos Multilaterais","Programa de Desenvolvimento Integrado -Viva Campo Grande",NA,2008-01-30,"USD",19382000,2008-01-30
+"543","Campo Grande","Municipios","MS","FONPLATA","Organismos Multilaterais","Programa de Recuperação das Áreas Degradadas do Córrego Imbirussu",NA,2007-09-06,"USD",17061000,2007-09-06
+"544","Candeias","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.221, de 31/10/2019",NA,2020-04-08,"R$",45500000,2020-04-08
+"545","Canoas","Municipios","RS","CAF","Organismos Multilaterais","Programa Integrado de Investimentos para Revitalização e Ampliação da Infraestrutura Urbana - Canoas para Todos",NA,2014-06-24,"USD",5e+07,2014-06-24
+"546","Canoas","Municipios","RS","CAF","Organismos Multilaterais","Projeto de Macrodrenagem, Recuperação Ambiental e Desenvolvimento Urbano - Fase I",NA,2007-12-28,"USD",15076500,2007-12-28
+"547","Capinzal","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de Qualificação Viária. Lei nº 3.311, de 26/12/2018, e alterações",NA,2020-07-28,"R$",10323841.7,2020-07-28
+"548","Capitolio","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.021, de 13/11/2019",NA,2020-07-17,"R$",2500000,2020-07-17
+"549","Carandai","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 2.339 e nº 2.340, ambas de 11/02/2020",NA,2020-07-27,"R$",9800000,2020-07-27
+"550","Cariacica","Municipios","ES","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento - FINISA. Lei nº 6183, de 08/07/2021.",NA,2021-12-20,"R$",8e+07,2021-12-20
+"551","Cariacica","Municipios","ES","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento (FINISA)",NA,2019-11-04,"R$",4e+07,2019-11-04
+"552","Cascavel","Municipios","PR","BB","Bancos Federais","Programa de Construção e Reforma de Unidades Escolares, Móveis, Equipamentos e Veículos. Lei nº 7.083, de 18/12/2019",NA,2020-07-27,"R$",2.8e+07,2020-07-27
+"553","Cascavel","Municipios","PR","BID","Organismos Multilaterais","Programa de Desenvolvimento Integrado (PDI) do Município de Cascavel",NA,2013-12-27,"USD",28750000,2013-12-27
+"554","Castro","Municipios","PR","CAIXA","Bancos Federais","Programa Pró-Transporte. Pavimentação de Vias Urbanas",NA,2019-09-26,"R$",6493743.72,2019-09-26
+"555","Catanduva","Municipios","SP","BID","Organismos Multilaterais","Programa de Desenvolvimento Urbano Integrado de Catanduva",NA,2010-12-21,"USD",8439000,2010-12-21
+"556","Caucaia","Municipios","CE","CAF","Organismos Multilaterais","Programa de Infraestrutura Integrada",NA,2018-10-17,"USD",8e+07,2018-10-17
+"557","Caxias do Sul","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 8.502, de 09/04/2020",NA,2020-09-10,"R$",12100000,2020-09-10
+"558","Caxias do Sul","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 8.469, de 19/12/2019, e alterações",NA,2020-06-30,"R$",3e+07,2020-06-30
+"559","Caxias do Sul","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 8.470, de 19/12/2019",NA,2020-06-23,"R$",17950000,2020-06-23
+"560","Caxias do Sul","Municipios","RS","CAF","Organismos Multilaterais","Programa de Desenvolvimento da Infraestrutura e dos Serviços Básicos II - PDI II",NA,2017-12-28,"USD",3.3e+07,2017-12-28
+"561","Caxias do Sul","Municipios","RS","CAF","Organismos Multilaterais","Programa de Desenvolvimento da Infraestrutura Municipal e Serviços Básicos",NA,2009-12-14,"USD",28800000,2009-12-14
+"562","Chapeco","Municipios","SC","BB","Bancos Federais","Programa de Investimento em Obras e Regularização Fundiária. Lei nº 7.520, de 06/08/2021.",NA,2021-12-10,"R$",3e+08,2021-12-10
+"563","Chapeco","Municipios","SC","FONPLATA","Organismos Multilaterais","Projeto de Melhoria e Expansão da Infra-Estrutura Viária",2,2007-12-10,"USD",14750000,2007-12-10
+"564","Cianorte","Municipios","PR","BB","Bancos Federais","Financiamento de Infraestrutura Viária, Pavimentação de Vias e Aquisição de Máquinas e Equipamentos. Lei nº 5.328 de 27/04/2021.",NA,2021-10-28,"R$",2280000,2021-10-28
+"565","Cianorte","Municipios","PR","BB","Bancos Federais","Financiamento de Infraestrutura Viária, Pavimentação de Vias e Aquisição de Máquinas e Equipamentos. Lei nº 5.328 de 27/04/2021.",NA,2021-10-28,"R$",12720000,2021-10-28
+"566","Colatina","Municipios","ES","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 6.830, 08/06/21.",NA,2022-03-25,"R$",3.4e+07,2022-03-25
+"567","Colatina","Municipios","ES","BID","Organismos Multilaterais","Programa de Desenvolvimento Urbano e Saneamento Ambiental de Colatina",NA,2012-10-26,"USD",1.1e+07,2012-10-26
+"568","Concordia","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei Municipal nº 5.027, de 13 de dezembro 2017.",NA,2019-06-13,"R$",2990883.24,2019-06-13
+"569","Concordia","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte - obras de infraestrutura para não motorizados",NA,2019-06-13,"R$",1795080.66,2019-06-13
+"570","Contagem","Municipios","MG","CAF","Organismos Multilaterais","Programa Sistema Integrado de Mobilidade",NA,2019-10-23,"USD",4.2e+07,2019-10-23
+"571","Correia Pinto","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de Qualificação Viária. Lei º 2.212, de 05/12/2018, e alterações",NA,2020-09-03,"R$",3828348,2020-09-03
+"572","Corumba","Municipios","MS","FONPLATA","Organismos Multilaterais","Programa de Desenvolvimento Integrado - PDI",NA,2017-01-27,"USD",4e+07,2017-01-27
+"573","Costa Rica","Municipios","MS","CAIXA","Bancos Federais","Programa Saneamento para Todos. Ampliação do Sistema de Esgotamento Sanitário",NA,2019-09-12,"R$",19988246.93,2019-09-12
+"574","Cotipora","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei municipal nº 2.627, de 7 de junho de 2018",NA,2019-03-08,"R$",2827300.88,2019-03-08
+"575","Criciuma","Municipios","SC","BB","Bancos Federais","Projeto de implantação de sistema de iluminação pública em LED. Lei Municipal nº 7491/2019.",NA,2020-03-11,"R$",1.5e+07,2020-03-11
+"576","Criciuma","Municipios","SC","BB","Bancos Federais","Projeto de Pavimentação de Vias Públicas. Lei nº 7.492, de 25/07/2019",NA,2020-03-11,"R$",3e+07,2020-03-11
+"577","Criciuma","Municipios","SC","FONPLATA","Organismos Multilaterais","Projeto de Transporte e Mobilidade Urbana",NA,2020-02-13,"USD",17250000,2020-02-13
+"578","Crucilandia","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.176, de 23/12/2019",NA,2020-09-03,"R$",2400000,2020-09-03
+"579","Curitiba","Municipios","PR","NDB","Organismos Multilaterais","Aumento da Capacidade e Velocidade do BRT do Eixo Leste-Oeste e Sul",NA,2021-12-29,"USD",7.5e+07,2021-12-29
+"580","Curitiba","Municipios","PR","BID","Organismos Multilaterais","Mobilidade Sustentável - Aumento Capacidade e Velocidade Linha Direta Inter 2",NA,2020-11-27,"USD",106700000,2020-11-27
+"581","Curitiba","Municipios","PR","AFD","Agências Governamentais","Projeto Gestão de Risco Climático Bairro Novo do Caximba - Curitiba - PR",NA,2020-08-26,"EUR",38141124,2020-08-26
+"582","Curitiba","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 15.564, de 03/12/2019",NA,2020-06-03,"R$",2.5e+08,2020-06-03
+"583","Curitiba","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento das Contrapartidas do Programa de Aceleração do Crescimento (CPAC)",NA,2013-12-30,"R$",76265218.78,2013-12-30
+"584","Curitiba","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento das Contrapartidas do Programa de Aceleração do Crescimento (CPAC)",NA,2013-12-30,"R$",27281782.81,2013-12-30
+"585","Curitiba","Municipios","PR","AFD","Agências Governamentais","Programa e Recuperação Ambiental e Ampliação da Capacidade da Rede Integrada de Transporte",NA,2011-07-19,"EUR",36150000,2011-07-19
+"586","Curitiba","Municipios","PR","BID","Organismos Multilaterais","Programa Integrado de Desenvolvimento Social e Urbano de Curitiba-PR",NA,2010-09-10,"USD",5e+07,2010-09-10
+"587","Curitiba","Municipios","PR","FONPLATA","Organismos Multilaterais","Programa de Estruturação de Assentamentos Habitacionais da Cidade de Curitiba",NA,2007-12-03,"USD",1e+07,2007-12-03
+"588","Curitiba","Municipios","PR","BID","Organismos Multilaterais","Programa de Transporte Urbano de Curitiba II",NA,2004-05-12,"JPY",8502249000,2004-05-12
+"589","Doutor Pedrinho","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 911, de 04/11/2019",NA,2020-04-17,"R$",2500000,2020-04-17
+"590","Entre Rios","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei Municipal nº 739, de 13 de dezembro de 2018",NA,2019-07-30,"R$",1049142,2019-07-30
+"591","Estancia","Municipios","SE","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.941, de 26/12/2017, e alterações",NA,2022-03-24,"R$",2e+07,2022-03-24
+"592","Euclides da Cunha","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.614, de 21/05/2021",NA,2022-04-22,"R$",1.5e+07,2022-04-22
+"593","Eusebio","Municipios","CE","BB","Bancos Federais","Construção de Escolas e Pavimentação de Ruas e Avenidas. Lei nº 1.735, de 15/06/2020, e alterações",NA,2021-06-21,"R$",2.2e+07,2021-06-21
+"594","Feira de Santana","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 3.984, de 03/12/2019",NA,2021-11-10,"R$",3e+07,2021-11-10
+"595","Feira de Santana","Municipios","BA","CAF","Organismos Multilaterais","Projeto de Integração Urbana",NA,2008-02-15,"USD",11737000,2008-02-15
+"596","Florianopolis","Municipios","SC","BID","Organismos Multilaterais","Projeto de Expansão e Aperfeiçoamento da Educação Infantil e do Ensino Fundamental em Florianópolis",NA,2014-07-14,"USD",58860000,2014-07-14
+"597","Florianopolis","Municipios","SC","FONPLATA","Organismos Multilaterais","Programa de Desenvolvimento da Infra-estrutura Básica e dos Serviços Urbanos",NA,2004-06-29,"USD",22400000,2004-06-29
+"598","Fortaleza","Municipios","CE","SANTANDER BR","Credores Privados","Investimentos em projetos de infraestrutura, saúde, educação, saneamento e pavimentação",NA,2019-06-13,"R$",2e+08,2019-06-13
+"599","Fortaleza","Municipios","CE","CAF","Organismos Multilaterais","Programa de Infraestrutura em Educação e Saneamento",NA,2019-06-06,"USD",1.5e+08,2019-06-06
+"600","Fortaleza","Municipios","CE","BIRD","Organismos Multilaterais","Programa Fortaleza Cidade Sustentável - Lei Municipal nº 10.543, de 18 de novembro de 2016",NA,2019-06-05,"USD",73300000,2019-06-05
+"601","Fortaleza","Municipios","CE","CAF","Organismos Multilaterais","Programa Fortaleza - Cidade com Futuro",NA,2018-06-04,"USD",83250000,2018-06-04
+"602","Fortaleza","Municipios","CE","BID","Organismos Multilaterais","Programa de Fortalecimento da Inclusão Social e Redes de Atenção - PROREDES",NA,2017-12-28,"USD",65475000,2017-12-28
+"603","Fortaleza","Municipios","CE","CAIXA","Bancos Federais","Programa de Aceleração do Crescimento - PAC - I - Contrapartida do Programa de Transporte Urbano",NA,2017-09-29,"R$",48885559.47,2017-09-29
+"604","Fortaleza","Municipios","CE","BID","Organismos Multilaterais","Programa de Transporte Urbano de Fortaleza II",NA,2016-02-24,"USD",57908000,2016-02-24
+"605","Fortaleza","Municipios","CE","BB","Bancos Federais","Contrapartida das Obras do Programa de Aceleração do Crescimento (PAC), do Programa Minha Casa Minha Vida (PMCMV) e dos projetos de mobilidade urbana diretamente associados à Copa de 2014. Lei nº 10.096, de 27/09/2013",NA,2014-10-15,"R$",57312000,2014-10-15
+"606","Fortaleza","Municipios","CE","BB","Bancos Federais","Contrapartida das Obras do Programa de Aceleração do Crescimento (PAC), do Programa Minha Casa Minha Vida (PMCMV) e dos projetos de mobilidade urbana diretamente associados à Copa de 2014. Lei nº 10.096, de 27/09/2013",NA,2014-10-15,"R$",52360000,2014-10-15
+"607","Fortaleza","Municipios","CE","CAIXA","Bancos Federais","Programa Pró-Transporte",NA,2012-06-26,"R$",141700000,2012-06-26
+"608","Fortaleza","Municipios","CE","CAF","Organismos Multilaterais","Programa de Drenagem Urbana - DRENURB",NA,2012-05-14,"USD",45100000,2012-05-14
+"609","Fortaleza","Municipios","CE","CAF","Organismos Multilaterais","Programa Nacional de Desenvolvimento do Turismo - PRODETUR Nacional Fortaleza",NA,2012-05-14,"USD",5e+07,2012-05-14
+"610","Fortaleza","Municipios","CE","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 9.586, de 30/12/09 e Lei nº 9.653, de 04/06/10.",NA,2011-12-29,"R$",19600000,2011-12-29
+"611","Fortaleza","Municipios","CE","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 9.586, de 30/12/09 e Lei nº 9.653, de 04/06/10.",NA,2011-12-29,"R$",23700000,2011-12-29
+"612","Fortaleza","Municipios","CE","BID","Organismos Multilaterais","Programa Integrado de Políticas Públicas de Juventude de Fortaleza.",NA,2010-09-03,"USD",33066000,2010-09-03
+"613","Fortaleza","Municipios","CE","BID","Organismos Multilaterais","Programa de Requalificação Urbana com Inclusão Social - PREURBIS",NA,2010-09-03,"USD",59400000,2010-09-03
+"614","Fortaleza","Municipios","CE","BID","Organismos Multilaterais","Programa de Transporte Urbano de Fortaleza",NA,2006-12-19,"USD",85200000,2006-12-19
+"615","Fortim","Municipios","CE","BB","Bancos Federais","Programa de Estruturação e Requalificação Urbana. Lei nº 792, de 20/04/2021",NA,2021-10-21,"R$",1e+07,2021-10-21
+"616","Foz do Iguacu","Municipios","PR","CAIXA","Bancos Federais","Programa FINISA. Aquisição de Máquinas, Obras em Edificações Públicas e Habitação de Interesse Social.  Lei nº 4.960, de 21/12/2020.",NA,2021-11-10,"R$",6e+07,2021-11-10
+"617","Garca","Municipios","SP","CAIXA","Bancos Federais","Saneamento para Todos. Lei nº 5.234, de 28 de junho de 2018",NA,2019-03-22,"R$",2922370.77,2019-03-22
+"618","Gaspar","Municipios","SC","BB","Bancos Federais","Investimentos no âmbito do Programa Avança Gaspar. Lei nº 4033, de 11/12/2019.",NA,2021-12-08,"R$",3e+07,2021-12-08
+"619","Goiania","Municipios","GO","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 10.409, de 22/10/19.",NA,2019-11-29,"R$",7.8e+08,2019-11-29
+"620","Goiania","Municipios","GO","BID","Organismos Multilaterais","Programa Urbano Ambiental Macambira Anicuns",1,2009-09-16,"USD",56700000,2009-09-16
+"621","Goiatuba","Municipios","GO","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de Construção e Qualificação Viária. Lei nº 3.156, de 19/06/2020",NA,2021-07-29,"R$",13817270.44,2021-07-29
+"622","Goioere","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.707, de 18/12/2019, e alterações",NA,2020-06-23,"R$",1e+07,2020-06-23
+"623","Guarda-Mor","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.241, de 10/10/2019",NA,2020-05-15,"R$",4500000,2020-05-15
+"624","Guaruja do Sul","Municipios","SC","CAIXA","Bancos Federais","Infraestrutura do Loteamento Industrial Alcides Volkweis. Lei nº 2.696, de 16/12/2020, e alterações",NA,2021-06-17,"R$",2e+06,2021-06-17
+"625","Guarulhos","Municipios","SP","CAF","Organismos Multilaterais","Programa de Macrodrenagem e Controle de Cheias do Rio Baquirivu-Guaçu em Guarulhos",NA,2020-10-08,"USD",9.6e+07,2020-10-08
+"626","Gurupi","Municipios","TO","CAIXA","Bancos Federais","Financiamento para qualificação viária, visando a pavimentação de vias urbanas. Lei nº 2391, de 29/06/2018.",NA,2018-12-27,"R$",1.9e+07,2018-12-27
+"627","Hortolandia","Municipios","SP","CAF","Organismos Multilaterais","Programa de Infraestrutura Urbana e Desenvolvimento Sustentável",NA,2018-09-05,"USD",4.2e+07,2018-09-05
+"628","Hortolandia","Municipios","SP","CAF","Organismos Multilaterais","Programa de Infra-estrutura Urbana e Proteção de Áreas Naturais",NA,2012-04-09,"USD",22132000,2012-04-09
+"629","Indaiatuba","Municipios","SP","FONPLATA","Organismos Multilaterais","Programa Integrado de Saneamento e Recursos Hídricos de
+Indaiatuba/SP - Rio Jundiaí Limpo",NA,2022-03-30,"USD",3e+07,2022-03-30
+"630","Ita","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.609, de 20/12/2019",NA,2020-05-21,"R$",2e+06,2020-05-21
+"631","Ita","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de qualificação viária",NA,2019-06-28,"R$",1754398.06,2019-06-28
+"632","Itacurubi","Municipios","RS","CAIXA","Bancos Federais","Programa de Pavimentação no Perímetro Urbano. Lei nº 1.850, de 24/06/2021 e alterações.",NA,2021-12-09,"R$",2300000,2021-12-09
+"633","Itajai","Municipios","SC","FONPLATA","Organismos Multilaterais","Programa Itajaí 2040 - Moderna e Sustentável",NA,2018-10-30,"USD",62500000,2018-10-30
+"634","Itapipoca","Municipios","CE","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 48, de 18/10/2019",NA,2020-06-15,"R$",3e+07,2020-06-15
+"635","Itatiaia","Municipios","RJ","BB","Bancos Federais","Investimentos na Infraestrutura Urbana e Social. Lei nº 1.058, de 18/03/2020",NA,2020-06-12,"R$",3e+07,2020-06-12
+"636","Ituiutaba","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 4.666, de 19/07/2019, e nº 4.683, de 23/10/2019",NA,2020-04-17,"R$",2.2e+07,2020-04-17
+"637","Ivinhema","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte - Lei Municipal nº 1.660, de 23 de janeiro de 2019.",NA,2019-09-12,"R$",5388826.91,2019-09-12
+"638","Jacarei","Municipios","SP","CAF","Organismos Multilaterais","Programa de Desenvolvimento Urbano e Social (PRODUS)",NA,2019-11-13,"USD",6e+07,2019-11-13
+"639","Jaguare","Municipios","ES","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.509, de 04/10/2019 e alterações",NA,2020-07-01,"R$",7e+06,2020-07-01
+"640","Jandira","Municipios","SP","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.291, de 19/02/2020",NA,2020-08-07,"R$",23500000,2020-08-07
+"641","Jaquirana","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei municipal nº 1.333, de 3 de julho de 2018",NA,2019-04-23,"R$",2414552.77,2019-04-23
+"642","Jaragua do Sul","Municipios","SC","CAIXA","Bancos Federais","Pavimentação de Vias, Recapeamento de Vias e Construção de Pontes. Lei nº 8.616, de 19/04/2021",NA,2021-10-26,"R$",1e+08,2021-10-26
+"643","Jaragua do Sul","Municipios","SC","BB","Bancos Federais","Obras de Infraestrutura Viária - Pavimentação e Recapeamento de Vias. Lei nº 8.200, de 18/12/2019",NA,2020-06-18,"R$",6e+07,2020-06-18
+"644","Jiquirica","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 287, de 06/05/2019",NA,2020-03-04,"R$",5500000,2020-03-04
+"645","Joao Pessoa","Municipios","PB","BID","Organismos Multilaterais","Programa de Desenvolvimento Urbano Integrado e Sustentável do Município de João Pessoa",NA,2018-12-20,"USD",1e+08,2018-12-20
+"646","Joinville","Municipios","SC","BB","Bancos Federais","Financiamento de despesas de capital constantes do PPA e da LOA . Lei nº 8.702, de 06/06/2019",NA,2019-08-09,"R$",1e+08,2019-08-09
+"647","Joinville","Municipios","SC","FONPLATA","Organismos Multilaterais","Programa Linha Verde Eixo Ecológico Leste",NA,2018-09-27,"USD",4e+07,2018-09-27
+"648","Joinville","Municipios","SC","BID","Organismos Multilaterais","Projeto Viva Cidade II - Revitalização Ambiental e Urbana do Município de Joinvile",NA,2017-08-01,"USD",7e+07,2017-08-01
+"649","Joinville","Municipios","SC","BID","Organismos Multilaterais","Projeto de Revitalização Ambiental e Qualificação Urbana das Bacias dos Rios Cachoeira, Cubatão e Piraí",NA,2008-01-29,"USD",32670000,2008-01-29
+"650","Joinville","Municipios","SC","FONPLATA","Organismos Multilaterais","Programa Eixo Ecológico Leste e Estruturação de Parques Ambientais - Linha Verde",NA,2006-12-14,"USD",11800000,2006-12-14
+"651","Jundiai","Municipios","SP","BNDES","Bancos Federais","Projeto Município Seguro - Modernização e Reestruturação da Área de Segurança Pública. Lei nº 9.245, de 11/07/2019",NA,2020-08-20,"R$",28025553,2020-08-20
+"652","Lapao","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 897, de 05/12/2019",NA,2020-08-06,"R$",4900000,2020-08-06
+"653","Linhares","Municipios","ES","BB","Bancos Federais","Programa BB Financiamento Setor Público. Lei nº 3.867, de 03/09/2019",NA,2020-05-14,"R$",9e+07,2020-05-14
+"654","Maceio","Municipios","AL","CAF","Organismos Multilaterais","Programa de Revitalização Urbana em Bairros de Maceió - Revitaliza Maceió",NA,2018-12-20,"USD",7e+07,2018-12-20
+"655","Manaus","Municipios","AM","BB","Bancos Federais","Programa de Melhoria da Infraestrutura Urbana e Tecnológica. Lei nº 2.738, de 22/04/2021",NA,2021-10-25,"R$",4e+08,2021-10-25
+"656","Manaus","Municipios","AM","BB","Bancos Federais","Projeto de Requalificação Urbana e Viária - Requalifica Manaus III. Lei nº 2.587, de 16/03/2020",NA,2020-06-05,"R$",3e+08,2020-06-05
+"657","Manaus","Municipios","AM","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento - FINISA. Lei nº 2.462, de 19/06/19",NA,2019-10-18,"R$",3.5e+08,2019-10-18
+"658","Manaus","Municipios","AM","BB","Bancos Federais","Projeto de Requalificação Urbana e Viária. Requalifica Manaus 2. Lei nº 2.457, de 13/06/2019",NA,2019-10-01,"R$",2.5e+08,2019-10-01
+"659","Manaus","Municipios","AM","BB","Bancos Federais","Projeto de Requalificação Urbana e Viária. Lei nº 2.319, de 29/05/2018",NA,2018-10-31,"R$",1e+08,2018-10-31
+"660","Manaus","Municipios","AM","BID","Organismos Multilaterais","PROEMEM - Projeto de Expansão e Melhoria Educacional da Rede Pública Municipal de Manaus",NA,2017-07-14,"USD",5.2e+07,2017-07-14
+"661","Manaus","Municipios","AM","BIRD","Organismos Multilaterais","Programa de Consolidação do Equilíbrio Fiscal para a Melhoria da Prestação de Serviços Públicos - PROCONFIS MANAUS",NA,2016-06-22,"USD",1.5e+08,2016-06-22
+"662","Manaus","Municipios","AM","CAF","Organismos Multilaterais","Programa Nacional de Desenvolvimento do Turismo - PRODETUR Nacional Manaus",NA,2012-11-13,"USD",21512846,2012-11-13
+"663","Manaus","Municipios","AM","BID","Organismos Multilaterais","Programa de Desenvolvimento e Inclusão Socioambiental de Manaus - PROURBIS",NA,2010-05-28,"USD",5e+07,2010-05-28
+"664","Manaus","Municipios","AM","CAF","Organismos Multilaterais","Programa de Infra-Estrutura Urbana e Ambiental",NA,2008-10-07,"USD",7.5e+07,2008-10-07
+"665","Maracanau","Municipios","CE","BID","Organismos Multilaterais","Programa de Transporte e Logística Urbana de Maracanaú",NA,2018-11-16,"USD",31784500,2018-11-16
+"666","Marata","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.914, de 09/01/2020",NA,2020-06-19,"R$",2400000,2020-06-19
+"667","Marau","Municipios","RS","CAIXA","Bancos Federais","Programa de Aquisição de Veículos, Máquinas e Equipamentos.  Lei nº 5.796, de 28/05/2021.",NA,2021-12-16,"R$",4e+06,2021-12-16
+"668","Maringa","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 10.915, de 17/07/2019 e alterações",NA,2020-06-18,"R$",26200000,2020-06-18
+"669","Maringa","Municipios","PR","BID","Organismos Multilaterais","Programa de Mobilidade Urbana do Município de Maringá.",NA,2010-09-22,"USD",1.3e+07,2010-09-22
+"670","Massaranduba","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei municipal nº 1.948, de 9 de outubro de 2018",NA,2019-04-03,"R$",4897085.06,2019-04-03
+"671","Mata","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Financiamento Despesas de Capital. Lei  nº 1.820, de 26/05/2020 e alterações.",NA,2021-11-19,"R$",1700000,2021-11-19
+"672","Maua","Municipios","SP","CAIXA","Bancos Federais","Confissão e Renegociação de Dívida",NA,2015-01-30,"R$",483803506.85,2015-01-30
+"673","Mineiros","Municipios","GO","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei Municipal nº 1.859, de 10 de agosto de 2018",NA,2019-06-07,"R$",12409709.45,2019-06-07
+"674","Mogi das Cruzes","Municipios","SP","CAF","Organismos Multilaterais","Programa Mais Mogi Ecotietê. Lei nº 7.563, de 06/02/2020",NA,2020-09-10,"USD",69439000,2020-09-10
+"675","Mogi das Cruzes","Municipios","SP","BB","Bancos Federais","Programa BB Financiamento Setor Público. Lei nº 7.546, de 26/12/2019",NA,2020-04-16,"R$",4.8e+07,2020-04-16
+"676","Monte Castelo","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.630, de 19/05/2020",NA,2020-08-07,"R$",3927844.98,2020-08-07
+"677","Morro da Fumaca","Municipios","SC","CAIXA","Bancos Federais","PRÓ-TRANSPORTE",NA,2018-12-18,"R$",4867140.36,2018-12-18
+"678","Morro Grande","Municipios","SC","CAIXA","Bancos Federais","PRÓ-TRANSPORTE",NA,2018-10-23,"R$",2191559.47,2018-10-23
+"679","Muriae","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 5.912, de 25/10/19",NA,2020-03-19,"R$",5e+07,2020-03-19
+"680","Nao-Me-Toque","Municipios","RS","BB","Bancos Federais","Programa Eficiência Municipal. Lei nº 5.349 de 25/05/2021.",NA,2021-12-02,"R$",5e+06,2021-12-02
+"681","Natal","Municipios","RN","CAIXA","Bancos Federais","Programa Pró-Transporte",28,2011-12-20,"R$",2.93e+08,2011-12-20
+"682","Niteroi","Municipios","RJ","CAF","Organismos Multilaterais","Programa Região Oceânica Sustentável - Pró-Sustentável",NA,2016-11-30,"USD",1e+08,2016-11-30
+"683","Niteroi","Municipios","RJ","BID","Organismos Multilaterais","Programa de Desenvolvimento Urbano e Inclusão Social de Niterói - PROCIDADES",NA,2014-02-28,"USD",26470000,2014-02-28
+"684","Nova Alvorada do Sul","Municipios","MS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 849, de 04/11/2019",NA,2020-08-06,"R$",6500000,2020-08-06
+"685","Nova Alvorada do Sul","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 822, de 24/12/2018, e alterações",NA,2020-07-23,"R$",1.5e+07,2020-07-23
+"686","Nova Santa Rita","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.554, de 23/10/2019",NA,2020-07-01,"R$",4300000,2020-07-01
+"687","Novo Hamburgo","Municipios","RS","BID","Organismos Multilaterais","Programa de Desenvolvimento Municipal Integrado de Novo Hamburgo - PROCIDADES",2,2012-10-26,"USD",23910000,2012-10-26
+"688","Osasco","Municipios","SP","BB","Bancos Federais","Mobilidade Urbana, Saúde, Segurança e Esporte. Lei nº 5.013, de 23/10/2019",NA,2020-05-14,"R$",2.96e+08,2020-05-14
+"689","Osorio","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 6.322, de 12/11/2019",NA,2021-05-28,"R$",2e+07,2021-05-28
+"690","Ouro Preto","Municipios","MG","BB","Bancos Federais","Pavimentação e Drenagem Pluvial. Lei nº 1.170, de 22/06/2020",NA,2020-09-02,"R$",4.5e+07,2020-09-02
+"691","Palmas","Municipios","TO","BB","Bancos Federais","Programa de Ampliação da Infraestrutura Urbana - PROINFRA. Lei nº 415, de 17/10/2019",NA,2020-08-14,"R$",5e+07,2020-08-14
+"692","Palmas","Municipios","TO","CAF","Organismos Multilaterais","Programa de Requalificação Urbana Palmas para o Futuro",NA,2018-12-28,"USD",60870000,2018-12-28
+"693","Panambi","Municipios","RS","CAIXA","Bancos Federais","Pró-Transporte: Obras de qualificação viária do município de Panambi. Lei nº 4700, de 12/06/2018.",NA,2018-12-28,"R$",14249348.57,2018-12-28
+"694","Paraiso","Municipios","SC","CAIXA","Bancos Federais","Programa de Aquisição e Máquinas, Implementos Industriais e Pavimentação Asfáltica.  Lei nº 1.551, de 02/07/2021.",NA,2021-12-27,"R$",3e+06,2021-12-27
+"695","Paraiso das Aguas","Municipios","MS","CAIXA","Bancos Federais","Pró-Transporte. Leis nº 267, de 18/06/18, e nº 280, de 12/12/18",NA,2019-03-07,"R$",5e+06,2019-03-07
+"696","Parana","Municipios","TO","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.150, de 16/04/2020",NA,2020-08-26,"R$",6e+06,2020-08-26
+"697","Paranagua","Municipios","PR","BB","Bancos Federais","Programa BB Financiamento Setor Público. Obras Diversas conforme a Lei nº 3.879, de 20/02/2020, e alterações",NA,2020-07-27,"R$",8e+07,2020-07-27
+"698","Paranagua","Municipios","PR","BID","Organismos Multilaterais","Programa Integrado de Desenvolvimento Social e Urbano do Município de Paranaguá",NA,2011-09-30,"USD",16649600,2011-09-30
+"699","Paranavai","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 4.809, de 12/03/2020",NA,2020-07-17,"R$",6500000,2020-07-17
+"700","Parauapebas","Municipios","PA","BID","Organismos Multilaterais","Saneamento Ambiental, Macrodrenagem e Recuperação Margens do Rio Parauapebas",NA,2020-10-29,"USD",7e+07,2020-10-29
+"701","Passo Fundo","Municipios","RS","BID","Organismos Multilaterais","Programa de Desenvolvimento Integrado do Município de Passo Fundo",NA,2010-07-16,"USD",9800000,2010-07-16
+"702","Passos Maia","Municipios","SC","CAIXA","Bancos Federais","Realização de Obras de Qualificação Viária . Lei nº 809/2018, de 17/07/2018.",NA,2019-06-14,"R$",2066985.19,2019-06-14
+"703","Paty do Alferes","Municipios","RJ","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.640, de 13/12/2019",NA,2020-06-10,"R$",1500000,2020-06-10
+"704","Pelotas","Municipios","RS","BIRD","Organismos Multilaterais","Projeto Integrado de Infra-Estrutura Municipal de Pelotas",NA,2008-03-26,"USD",18900000,2008-03-26
+"705","Pinhalzinho","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento destinado à Construção de Casas e Infraestrutura. Lei nº 2.713, de 31/05/2021.",NA,2021-12-09,"R$",9380000,2021-12-09
+"706","Pinhalzinho","Municipios","SC","BB","Bancos Federais","Pavimentação Asfáltica Linha Boa Vista e Infraestrutura Internet Rural. Leis nº 2.649, de 18/03/2020, e nº 2.653, de 31/03/2020",NA,2020-06-26,"R$",4500000,2020-06-26
+"707","Pinheiro Preto","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.098, de 24/10/2019",NA,2020-04-13,"R$",1900000,2020-04-13
+"708","Piraquara","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 1.943, de 19/07/2019, e nº 1.973, de 11/11/2019",NA,2020-03-18,"R$",2.5e+07,2020-03-18
+"709","Piripiri","Municipios","PI","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 910, de 23/10/2019",NA,2020-08-27,"R$",5e+06,2020-08-27
+"710","Pojuca","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 74, de 03/12/2019",NA,2020-07-16,"R$",7e+06,2020-07-16
+"711","Pomerode","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 2.987, de 27/04/2018, nº 2.998, de 29/06/2018, e nº 3.070, de 04/12/2019",NA,2020-04-29,"R$",1.5e+07,2020-04-29
+"712","Ponta Grossa","Municipios","PR","BID","Organismos Multilaterais","Programa de Melhoramento da Infra-Estrutura Urbana do Município de Ponta Grossa",NA,2010-09-17,"USD",7500000,2010-09-17
+"713","Ponta Pora","Municipios","MS","CAIXA","Bancos Federais","Obras de Pavimentação Asfáltica e Drenagem de Águas Pluviais. Lei nº 4.455, de 27/05/2021",NA,2021-10-25,"R$",23700000,2021-10-25
+"714","Ponta Pora","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de qualificação viária. Lei nº 4.434, de 29/05/2020",NA,2020-10-14,"R$",7829370.6,2020-10-14
+"715","Ponta Pora","Municipios","MS","FONPLATA","Organismos Multilaterais","Programa de Desenvolvimento da Faixa de Fronteira na Cidade de Ponta Porã/MS - FRONTEIRA DO FUTURO PONTA PORÃ/MS",NA,2020-01-22,"USD",2.5e+07,2020-01-22
+"716","Ponta Pora","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei municipal nº 4.360, de 10 de agosto de 2018",NA,2019-03-11,"R$",12170629.4,2019-03-11
+"717","Ponte Nova","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 4.277, de 05/07/2019, e alterações",NA,2020-04-28,"R$",28500000,2020-04-28
+"718","Ponte Serrada","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.392, de 20/12/2019",NA,2020-05-26,"R$",3e+06,2020-05-26
+"719","Porto Alegre","Municipios","RS","CAF","Organismos Multilaterais","Programa ORLA POA - Organicidade e Requalificação do Espaço Urbano, do Lazer, do Acesso e Mobilidade",NA,2016-08-10,"USD",9.2e+07,2016-08-10
+"720","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento das Contrapartidas do Programa de Aceleraçaõ do Crescimento (CPAC)",NA,2014-07-22,"R$",36520000,2014-07-22
+"721","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",40980175.2,2014-01-14
+"722","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",71300000,2014-01-14
+"723","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",61400000,2014-01-14
+"724","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",29669446.27,2014-01-14
+"725","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",84382597.79,2014-01-14
+"726","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",24900795.19,2014-01-14
+"727","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",12521979.24,2014-01-14
+"728","Porto Alegre","Municipios","RS","CAIXA","Bancos Federais","Projetos de Mobilidade Urbana Associados à Copa do Mundo de 2014",NA,2014-01-14,"R$",99527369.2,2014-01-14
+"729","Porto Alegre","Municipios","RS","BID","Organismos Multilaterais","Programa Integrado Sócio-Ambiental - PISA",NA,2009-05-20,"USD",83270000,2009-05-20
+"730","Porto Alegre","Municipios","RS","FONPLATA","Organismos Multilaterais","Prog. Integrado Zona Norte Entrada da Cidade",NA,2003-12-22,"USD",27500000,2003-12-22
+"731","Porto Alegre","Municipios","RS","BID","Organismos Multilaterais","A definir.",NA,1998-07-28,"USD",76500000,1998-07-28
+"732","Porto Nacional","Municipios","TO","CAIXA","Bancos Federais","Pavimentação e Drenagem Profunda com Intervenção em Ruas, Avenidas, Canteiros e Praças. Lei nº 2.458, de 30/12/2019, e alterações",NA,2021-12-27,"R$",1.5e+07,2021-12-27
+"733","Prudentopolis","Municipios","PR","CAIXA","Bancos Federais","Pró-Transporte. Lei municipal nº 2.313, de 23 de maio de 2018",NA,2019-04-16,"R$",1e+07,2019-04-16
+"734","Recife","Municipios","PE","BIRD","Organismos Multilaterais","Programa de Desenvolvimento da Educação e da Gestão Pública",NA,2012-10-31,"USD",1.3e+08,2012-10-31
+"735","Recife","Municipios","PE","BIRD","Organismos Multilaterais","Projeto de Desenvolvimento Urbano e Inclusão Social do Recife (Capibaribe Melhor)",NA,2009-09-03,"USD",32760000,2009-09-03
+"736","Relvado","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento destinado à Infraestrutura Urbana e Aquisição de Equipamento Asfáltico. Lei nº 1.665, de 07/04/2021.",NA,2021-10-15,"R$",1500000,2021-10-15
+"737","Ribeirao Preto","Municipios","SP","BB","Bancos Federais","Contrapartida do Programa de Aceleração do Crescimento II - PAC 2. Leis nº 13.061, nº 13.062, nº 13.063 e nº 13.065 e nº 13.067, de 23/08/2013",NA,2014-10-24,"R$",37404434.3,2014-10-24
+"738","Ribeirao Preto","Municipios","SP","CAIXA","Bancos Federais","Programa Saneamento para Todos - Obras, Serviços, Estudos e Projetos",NA,2014-03-31,"R$",35903222.88,2014-03-31
+"739","Ribeirao Preto","Municipios","SP","CAIXA","Bancos Federais","Programa Pró-Transporte",NA,2014-03-31,"R$",5140531.82,2014-03-31
+"740","Ribeirao Preto","Municipios","SP","CAIXA","Bancos Federais","PRO-TRANSPORTE - Programa de Infraestrutura de Transporte e da Mobilidade Urbana",NA,2014-03-31,"R$",25573089.04,2014-03-31
+"741","Ribeirao Preto","Municipios","SP","CAIXA","Bancos Federais","PRO-TRANSPORTE - Programa de Infraestrutura de Transporte e da Mobilidade Urbana",NA,2014-03-31,"R$",3044764.48,2014-03-31
+"742","Ribeirao Preto","Municipios","SP","CAIXA","Bancos Federais","Pró-Transporte -Execução de Obras/Serviços",NA,2014-02-14,"R$",278763189,2014-02-14
+"743","Rio Branco","Municipios","AC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura do parque de iluminação pública. Leis nº 68, de 19/07/19 e nº 70, de 10/09/19.",NA,2019-11-13,"R$",4.8e+07,2019-11-13
+"744","Rio Branco","Municipios","AC","BB","Bancos Federais","Financiamento de despesas de capital constantes do PPA e da LOA 2018. Lei nº 50, de 23/08/2018",NA,2018-10-24,"R$",14500000,2018-10-24
+"745","Rio de Janeiro","Municipios","RJ","BIRD","Organismos Multilaterais","Projeto de Promoção da Excelência na Gestão Pública",NA,2014-08-26,"USD",16200000,2014-08-26
+"746","Rio de Janeiro","Municipios","RJ","BNDES","Bancos Federais","Programa Estruturador de Transporte Urbano. Decreto Legislativo nº 1.053, de 08/11/2013",NA,2014-05-20,"R$",2715389458.89,2014-05-20
+"747","Rio de Janeiro","Municipios","RJ","BID","Organismos Multilaterais","Programa de Urbanização de Assentamentos Populares - PROAP III",NA,2012-07-05,"USD",1.5e+08,2012-07-05
+"748","Rio de Janeiro","Municipios","RJ","BIRD","Organismos Multilaterais","Projeto de Política de Desenvolvimento do Município",NA,2010-08-20,"USD",1.045e+09,2010-08-20
+"749","Rio de Janeiro","Municipios","RJ","BID","Organismos Multilaterais","Programa de Urbanização de Assentamentos Populares, ""Favela-Bairro"" - 2ª Etapa (PROAP II)",NA,2000-03-29,"USD",1.8e+08,2000-03-29
+"750","Rio de Janeiro","Municipios","RJ","BID","Organismos Multilaterais","Programa de Urbanização de Assentamentos Populares",NA,1995-12-08,"USD",1.8e+08,1995-12-08
+"751","Rio de Janeiro","Municipios","RJ","BID","Organismos Multilaterais","Projeto de Mapeamento Digital e Drenagem Urbana para o Município do Rio de Janeiro - Baía da Guanabara",NA,1995-05-08,"USD",2.8e+07,1995-05-08
+"752","Rio do Campo","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 2.293, de 13/11/2019",NA,2020-05-27,"R$",1350000,2020-05-27
+"753","Rio Grande","Municipios","RS","BIRD","Organismos Multilaterais","Programa Rio Grande 2010 - Uma Visão do Futuro",1,2010-02-25,"USD",8100000,2010-02-25
+"754","Rio Paranaiba","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.646, 23/10/2019",NA,2020-08-27,"R$",5e+06,2020-08-27
+"755","Roca Sales","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 1.800, de 20/08/2019, e nº 1.813, de 29/10/2019",NA,2020-03-09,"R$",2500000,2020-03-09
+"756","Salvador","Municipios","BA","BIRD","Organismos Multilaterais","Salvador Social Multi-Sector Service Delivery Project II - Salvador Social 2ª Fase",NA,2021-10-04,"USD",1.25e+08,2021-10-04
+"757","Salvador","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 9.491, de 18/10/19.",NA,2019-12-12,"R$",104100000,2019-12-12
+"758","Salvador","Municipios","BA","CAF","Organismos Multilaterais","Programa de Requalificação Urbanística - PROQUALI",NA,2018-12-18,"USD",60700000,2018-12-18
+"759","Salvador","Municipios","BA","BIRD","Organismos Multilaterais","Projeto Salvador Social",NA,2018-07-11,"USD",1.25e+08,2018-07-11
+"760","Salvador","Municipios","BA","BID","Organismos Multilaterais","Projeto Novo Mané Dendê",NA,2018-06-26,"USD",67500000,2018-06-26
+"761","Salvador","Municipios","BA","BID","Organismos Multilaterais","Prodetur - Programa Nacional de Desenvolvimento Turístico",NA,2017-06-06,"USD",52512340,2017-06-06
+"762","Salvador do Sul","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 3.502, de 03/03/2020, e alterações",NA,2020-07-08,"R$",1620225,2020-07-08
+"763","Santa Helena","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.031, de 22/10/2019",NA,2020-05-20,"R$",1500000,2020-05-20
+"764","Santa Maria","Municipios","RS","BIRD","Organismos Multilaterais","Programa de Desenvolvimento Sustentável para a Região de Santa Maria",NA,2010-03-04,"USD",13950000,2010-03-04
+"765","Santa Rosa","Municipios","RS","BB","Bancos Federais","Infraestrutura Viária e Mobilidade Urbana. Leis nº 5.528, de 14/10/2019, e nº 5.544, de 12/12/2019",NA,2020-05-14,"R$",7e+06,2020-05-14
+"766","Santa Vitoria","Municipios","MG","CAIXA","Bancos Federais","Programa Saneamento para Todos. Lei nº 3.204, de 17/10/18",NA,2019-02-15,"R$",21624188.9,2019-02-15
+"767","Santo Andre","Municipios","SP","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 10.268, de 11/12/2019",NA,2020-08-28,"R$",2e+07,2020-08-28
+"768","Santo Andre","Municipios","SP","CAF","Organismos Multilaterais","Programa Sanear Santo André - SANEASA",NA,2019-12-30,"USD",5e+07,2019-12-30
+"769","Santo Andre","Municipios","SP","BID","Organismos Multilaterais","Programa de Mobilidade Urbana Sustentável de Santo André",NA,2018-07-16,"USD",2.5e+07,2018-07-16
+"770","Santos","Municipios","SP","BIRD","Organismos Multilaterais","Programa de Desenvolvimento Estratégico de Santos e Infraestrutura Urbana e Habitacional das Zonas Noroeste e dos Morros - Santos Novos Tempos",NA,2010-02-08,"USD",4.4e+07,2010-02-08
+"771","Sao Bento do Sul","Municipios","SC","BB","Bancos Federais","Programa Eficiência Municipal. Aquisição de Máquinas, Equipamentos e Veículos. Lei nº 4.395, de 09/06/2021.",NA,2021-12-13,"R$",8e+06,2021-12-13
+"772","Sao Bento do Sul","Municipios","SC","CAIXA","Bancos Federais","Programa FINISA. Obras de Execução de Pavimentação Viária. Lei nº 4.205, de 02/01/2020.",NA,2021-12-10,"R$",1.3e+07,2021-12-10
+"773","Sao Bernardo do Campo","Municipios","SP","CAF","Organismos Multilaterais","Programa de Recuperação e Ordenamento Sócio Ambiental de Bairros - PROSABs. Lei nº 6.733, de 06/12/2018",NA,2020-09-03,"USD",8e+07,2020-09-03
+"774","Sao Bernardo do Campo","Municipios","SP","BB","Bancos Federais","Investimentos nas Áreas de Mobilidade Urbana, Habitação e Saúde. Lei nº 6.882, de 27/02/2020",NA,2020-05-14,"R$",3.78e+08,2020-05-14
+"775","Sao Bernardo do Campo","Municipios","SP","CAF","Organismos Multilaterais","Programa de Infraestrutura Urbana - PROINFRA",NA,2017-10-05,"USD",1.25e+08,2017-10-05
+"776","Sao Bernardo do Campo","Municipios","SP","BID","Organismos Multilaterais","Programa de Fortalecimento do Sistema Único de Saúde",NA,2016-05-17,"USD",59050000,2016-05-17
+"777","Sao Bernardo do Campo","Municipios","SP","BID","Organismos Multilaterais","Programa de Transporte Urbano de são Bernardo do Campo/SP",1,2013-06-25,"USD",1.25e+08,2013-06-25
+"778","Sao Bernardo do Campo","Municipios","SP","BIRD","Organismos Multilaterais","Programa de Saneamento Ambiental dos Mananciais da Bacia Hidrográfica do Alto Tietê (Programa Mananciais)",NA,2012-10-29,"USD",20820000,2012-10-29
+"779","Sao Bernardo do Campo","Municipios","SP","BID","Organismos Multilaterais","Programa de Modernização e Humanização da Saúde do Município São Bernardo do Campo",NA,2012-03-21,"USD",21600000,2012-03-21
+"780","Sao Bernardo do Campo","Municipios","SP","BID","Organismos Multilaterais","Programa de Transporte Urbano de São Bernardo do Campo",NA,2006-03-31,"USD",7.2e+07,2006-03-31
+"781","Sao Caetano do Sul","Municipios","SP","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 17, de 31/10/2019",NA,2020-06-18,"R$",5.4e+07,2020-06-18
+"782","Sao Gabriel do Oeste","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte. Pavimentação asfáltica e drenagem de aguas pluviais em vias urbanas do bairro Primo Maffissoni",NA,2019-09-10,"R$",4999763.91,2019-09-10
+"783","Sao Goncalo do Amarante","Municipios","RN","FONPLATA","Organismos Multilaterais","Programa de Ações Estruturantes - PAES. Lei Complementar do Município nº 89, de 23/08/2019, e alterações",NA,2020-08-26,"USD",3.4e+07,2020-08-26
+"784","Sao Jose do Rio Preto","Municipios","SP","CAIXA","Bancos Federais","Infraestrutura e Apoio Financeiro de Despesas de Capital. Lei nº 13.946, de 30/09/2021",NA,2022-03-08,"R$",1e+08,2022-03-08
+"785","Sao Jose dos Campos","Municipios","SP","BID","Organismos Multilaterais","Programa de Estruturação Urbana de São José dos Campos/SP",NA,2011-08-18,"USD",85672400,2011-08-18
+"786","Sao Luis","Municipios","MA","BID","Organismos Multilaterais","Programa de Revitalização do Centro Histórico do Município de São Luis - PRCHSL",NA,2016-11-29,"USD",13590000,2016-11-29
+"787","Sao Luis","Municipios","MA","BIRD","Organismos Multilaterais","Programa de Recuperação Ambiental e Melhoria da Qualidade de Vida da Bacia do Bacanga",NA,2008-11-11,"USD",35640000,2008-11-11
+"788","Sao Paulo","Municipios","SP","BIRD","Organismos Multilaterais","Programa de Melhoria da Mobilidade Urbana Universal - Corredor Aricanduva",NA,2021-12-31,"USD",9.7e+07,2021-12-31
+"789","Sao Paulo","Municipios","SP","Itaú","Credores Privados","Recapeamento de vias urbanas municipais",NA,2019-11-21,"R$",5e+08,2019-11-21
+"790","Sao Paulo","Municipios","SP","BID","Organismos Multilaterais","Projeto de Reestruturação e Qualificação das Redes Assistenciais - Avança Saúde - Lei nº 16.757 - 14/11/17.",NA,2019-06-19,"USD",1e+08,2019-06-19
+"791","Sao Paulo","Municipios","SP","CAIXA","Bancos Federais","Saneamento para Todos - Execução de Intervenções no Sistema de Drenagem. Lei nº 16.757, de 14/11/2017",NA,2018-12-26,"R$",2e+08,2018-12-26
+"792","Sao Paulo","Municipios","SP","SANTANDER BR","Credores Privados","Asfalto Novo do Município de São Paulo",NA,2018-08-09,"R$",3e+07,2018-08-09
+"793","Sao Paulo","Municipios","SP","SANTANDER BR","Credores Privados","Programa Habitacional Casa da Família",NA,2018-08-09,"R$",2e+08,2018-08-09
+"794","Sao Paulo","Municipios","SP","BID","Organismos Multilaterais","Programa de reabilitação da área central do município de São Paulo - PROCENTRO",NA,2004-06-02,"USD",100400000,2004-06-02
+"795","Sao Paulo","Municipios","SP","BID","Organismos Multilaterais","Programa de Melhoramento em Favelas",NA,1996-07-11,"USD",1.5e+08,1996-07-11
+"796","Sao Paulo","Municipios","SP","BID","Organismos Multilaterais","A definir.",NA,1995-01-10,"USD",3.02e+08,1995-01-10
+"797","Sao Sebastiao do Cai","Municipios","RS","BB","Bancos Federais","Obras de Infraestrutura pela Pavimentação de Vias. Lei nº 4.277, de 09/02/2021 e alterações",NA,2021-07-12,"R$",7500000,2021-07-12
+"798","Sao Sebastiao do Cai","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 4.225, de 02/06/2020",NA,2020-08-27,"R$",1863925.24,2020-08-27
+"799","Schroeder","Municipios","SC","CAIXA","Bancos Federais","Progama Pró-Transporte. Obras de Qualificação Viária no Município",NA,2019-08-28,"R$",4750000,2019-08-28
+"800","Serafina Correa","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de qualificação viária. Leis nº 3.676, de 07/12/2018, e nº 3.800, de 02/03/2020",NA,2020-03-30,"R$",2372684.96,2020-03-30
+"801","Serra","Municipios","ES","BB","Bancos Federais","Financiamento de despesas de capital constantes do PPA e da LOA. Lei nº 4.880, de 08/08/2018",NA,2019-02-13,"R$",1.3e+08,2019-02-13
+"802","Sete Lagoas","Municipios","MG","CAIXA","Bancos Federais","PRO-TRANSPORTE - Programa de Infraestrutura de Transporte e da Mobilidade Urbana",NA,2014-02-12,"R$",25200000,2014-02-12
+"803","Sete Lagoas","Municipios","MG","CAIXA","Bancos Federais","PRO-TRANSPORTE - Programa de Infraestrutura de Transporte e da Mobilidade Urbana",NA,2014-02-12,"R$",22669475,2014-02-12
+"804","Sete Lagoas","Municipios","MG","CAIXA","Bancos Federais","PRO-TRANSPORTE - Programa de Infraestrutura de Transporte e da Mobilidade Urbana",NA,2014-02-12,"R$",2e+06,2014-02-12
+"805","Sidrolandia","Municipios","MS","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de pavimentação asfáltica e drenagem. Lei nº 1.924, de 08/06/2018, e alterações",NA,2021-05-28,"R$",13168000,2021-05-28
+"806","Sobral","Municipios","CE","CAF","Organismos Multilaterais","Programa de Desenvolvimento Socioambiental de Sobral - PRODESOL",NA,2018-11-14,"USD",5e+07,2018-11-14
+"807","Sonora","Municipios","MS","CAIXA","Bancos Federais","Pró-Transporte. Lei municipal nº 832, de 3 de julho de 2018",NA,2019-03-07,"R$",5e+06,2019-03-07
+"808","Sorocaba","Municipios","SP","CAIXA","Bancos Federais","Programa Saneamento para Todos. Lei nº 11.748, de 17/07/2018",NA,2020-12-11,"R$",81927397.16,2020-12-11
+"809","Sorocaba","Municipios","SP","CAIXA","Bancos Federais","Programa Saneamento para Todos. Redução e Controle de Perdas. Lei nº 11.747, de 17/07/2018",NA,2020-12-11,"R$",26600000,2020-12-11
+"810","Sorocaba","Municipios","SP","CAF","Organismos Multilaterais","Programa Ambiental e de Otimização Viária - Mobilidade Total",NA,2018-10-09,"USD",7e+07,2018-10-09
+"811","Sorocaba","Municipios","SP","CAF","Organismos Multilaterais","Programa Ambiental e de Integração Social do Município de Sorocaba",NA,2008-09-08,"USD",42790000,2008-09-08
+"812","Suzano","Municipios","SP","BB","Bancos Federais","Implantação de Infraestrutura Viária. Lei nº 339, de 04/12/2019",NA,2020-07-27,"R$",3e+07,2020-07-27
+"813","Tangua","Municipios","RJ","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.182, de 29/10/2019",NA,2020-08-10,"R$",15850000,2020-08-10
+"814","Tapejara","Municipios","RS","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 4.465, de 24/03/2020",NA,2020-07-15,"R$",6e+06,2020-07-15
+"815","Tapejara","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei nº 4.288, de 06/11/18",NA,2019-08-09,"R$",14232697.72,2019-08-09
+"816","Taubate","Municipios","SP","CAF","Organismos Multilaterais","Programa de Melhoria da Mobilidade Urbana e Socioambiental",NA,2017-12-01,"USD",6e+07,2017-12-01
+"817","Telemaco Borba","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Leis nº 2.384, de 15/09/2021, e nº 2.391, 29/09/2021",NA,2022-03-08,"R$",9e+07,2022-03-08
+"818","Teresina","Municipios","PI","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Implantação de Infraestrutura Urbana e Social. Lei nº 5.528, de 18/06/2020",NA,2020-10-14,"R$",1e+08,2020-10-14
+"819","Teresina","Municipios","PI","BB","Bancos Federais","Financiamento de despesas de capital constantes do PPA e da LOA. Lei nº 5.304, de 16/11/2018",NA,2018-12-28,"R$",1.2e+08,2018-12-28
+"820","Teresina","Municipios","PI","CAF","Organismos Multilaterais","Programa De Desenvolvimento Urbano Integrado - Teresina Sustentável",NA,2018-09-28,"USD",45982658.96,2018-09-28
+"821","Teresina","Municipios","PI","BIRD","Organismos Multilaterais","Projeto de Melhoria da Qualidade de Vida e da Gestão Municipal - Programa Lagoas do Norte - Etapa II",NA,2016-04-27,"USD",8.8e+07,2016-04-27
+"822","Teresina","Municipios","PI","BIRD","Organismos Multilaterais","Programa Lagoas do Norte",NA,2008-07-24,"USD",31130000,2008-07-24
+"823","Timbo","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 3.080, de 19/09/2019",NA,2020-07-21,"R$",1e+07,2020-07-21
+"824","Timbo","Municipios","SC","CAIXA","Bancos Federais","Programa Pró-Transporte. Lei Municipal nº 2.997, de 11 de setembro de 2018",NA,2019-05-13,"R$",1.5e+07,2019-05-13
+"825","Tio Hugo","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte - Execução de obras/serviços. Lei nº 979, de 13 de março de 2018.",NA,2019-08-14,"R$",1166167,2019-08-14
+"826","Toledo","Municipios","PR","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 33, de 18/06/2020",NA,2020-08-27,"R$",7e+06,2020-08-27
+"827","Toledo","Municipios","PR","AFD","Agências Governamentais","Programa de Desenvolvimento Ambiental e Sustentável do Município de Toledo",NA,2012-07-31,"EUR",9463000,2012-07-31
+"828","Toledo","Municipios","PR","BID","Organismos Multilaterais","Programa de Desenvolvimento Sócio-Econômico Sustentável do Município de Toledo",NA,2008-07-23,"USD",7333700,2008-07-23
+"829","Ubaira","Municipios","BA","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento",NA,2020-03-04,"R$",8e+06,2020-03-04
+"830","Uberaba","Municipios","MG","BIRD","Organismos Multilaterais","Projeto de Recuperação Ambiental da Bacia do Rio Uberaba e Revitalização de Sistema de Abastecimento de Água",NA,2008-05-19,"USD",17270000,2008-05-19
+"831","Uruguaiana","Municipios","RS","BIRD","Organismos Multilaterais","Programa Uruguaiana Vencerá",NA,2009-05-13,"USD",6830000,2009-05-13
+"832","Vale Real","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Execução de Investimentos de Pavimentação e Qualificação Viária",NA,2019-07-01,"R$",1909901.22,2019-07-01
+"833","Vargeao","Municipios","SC","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 1.674, de 16/09/2019, e alterações",NA,2020-07-07,"R$",2500000,2020-07-07
+"834","Veranopolis","Municipios","RS","CAIXA","Bancos Federais","Programa Pró-Transporte. Obras de Qualificação Viária. Lei nº 7.203, de 07/08/2018, e alterações",NA,2020-08-27,"R$",2673056.97,2020-08-27
+"835","Vicosa","Municipios","MG","CAIXA","Bancos Federais","Programa de Financiamento à Infraestrutura e ao Saneamento. Lei nº 11, de 01/11/2019",NA,2020-07-15,"R$",7500000,2020-07-15
+"836","Vila Velha","Municipios","ES","FONPLATA","Organismos Multilaterais","Programa de Requalificação Urbana e Melhorias Ambientais",NA,2019-12-29,"USD",27600000,2019-12-29
+"837","Virmond","Municipios","PR","CAIXA","Bancos Federais","Obras em Infraestrutura Urbana e Habitação de Interesse Social. Lei nº 543, de 21/05/2021",NA,2021-12-10,"R$",2e+06,2021-12-10
+"838","Vitoria","Municipios","ES","BID","Organismos Multilaterais","Programa de Requalificação Urbana e Segurança Cidadã - Lei Municipal nº 9.054, de 28/11/2016",NA,2019-08-12,"USD",1e+08,2019-08-12
+"839","Vitoria","Municipios","ES","BID","Organismos Multilaterais","Programa de Desenvolvimento Urbano e Inclusão Social de Vitória/ES",NA,2008-08-14,"USD",39100000,2008-08-14
+"840","Votuporanga","Municipios","SP","SANTANDER BR","Credores Privados","Financiamento para Galerias de Águas Pluviais, Transposição do Córrego do Cortume, Infraestrutura Urbana e  Construção do Paço Municipal.",NA,2019-10-25,"R$",2e+07,2019-10-25

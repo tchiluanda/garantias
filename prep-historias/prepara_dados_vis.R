@@ -10,14 +10,15 @@ library(readxl)
 #extrafont::font_import()
 loadfonts()
 
-load("Garantias_dez_2021.Rdata")
+load("Garantias_abr_2022.Rdata")
 
 nomes_honras <- names(honras)
 
 # investigacao honras x contratos -----------------------------------------
 
 honras_unicas <- honras %>%
-  count(`Nome do Contrato`)
+  group_by(`Nome do Contrato`) %>%
+  summarise(n = n())
 
 teste <- novos_contratos %>% left_join(honras_unicas)
 
@@ -49,7 +50,7 @@ write.csv(dados_vis, file = "webpage/dados/dados_vis_garantias.csv", fileEncodin
 
 total_classificador <- dados_vis %>% group_by(Classificador) %>% summarize(first(total_classificador))
 
-save(total_classificador, file = "./R_prep_vis/outros_dados/total_garantias_classificador.RData")
+save(total_classificador, file = "./prep-historias/outros_dados/total_garantias_classificador.RData")
 
 dados_vis %>% filter(rank_geral>=16) %>% group_by() %>% summarise(sum(valor))
 
@@ -126,7 +127,7 @@ Sys.setlocale("LC_ALL", "pt_br.utf-8")
 #lista_contratos <- novos_contratos %>% count(Mutuário)
 #contratos <- read.csv2("./R_prep_vis/dados/Abr2021/InfCadastrais 30abr2021.csv", skip = 10, stringsAsFactors = FALSE)
 
-contratos <- readxl::read_excel("./R_prep_vis/dados/Dez2021/InfCadastrais 31dez2021.xlsx")
+contratos <- readxl::read_excel("./prep-historias/dados/Abr2022/InfCadastrais 30abr2022.xlsx", skip = 10)
 #contratos <- readRDS("R_prep_vis/dados/Dez2020/contratos.rds")
 
 
@@ -216,7 +217,7 @@ lista_unica <- full_join(lista_garantias_mutuarios,
 # honras <- read.csv2("./R_prep_vis/dados/Dez2020/Relatorio_honras_atrasos 31dez2020.csv",
 #                     skip = 10, stringsAsFactors = FALSE)
 
-honras <- read_excel("./R_prep_vis/dados/Dez2021/Relatorio_honras_atrasos 31dez2021.xlsx")
+honras <- read_excel("./prep-historias/dados/Abr2022/Relatorio_honras_atrasos 30abr2022.xlsx", skip = 10)
 
 names(honras) <- c("Data de Vencimento", "Tipo de Dívida", "Nome do Contrato", 
                    "Credor", "Classificação do Credor", "Mutuário", "Tipo de Mutuário", 
