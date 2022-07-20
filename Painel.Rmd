@@ -4,7 +4,7 @@ runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     navbar:
-      - { title: "Data: 31/12/2021",icon: ion-ios-calendar-outline, href: "https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/" ,align: right }
+      - { title: "Data: 30/04/2022",icon: ion-ios-calendar-outline, href: "https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/" ,align: right }
     orientation: columns
     vertical_layout: fill
     
@@ -112,7 +112,7 @@ library(systemfonts)
 library(kableExtra)
 library(DT)
 
-load("Garantias_dez_2021.Rdata")
+load("Garantias_abr_2022.Rdata")
 
 funcao_formata_quantidade <- function(x){
   paste0(format(round(x/1000000, 2), big.mark = ".", decimal.mark = ","))
@@ -435,7 +435,7 @@ observeEvent(Garantia_ATM_reativo_geral(),{
                       filter(Inicio == entrada) }
 
   output$Garantia_ATM_geral <- renderText(
-    paste0(format(round(filtro_classificador_geral_atm$ATM_Total,2), big.mark = ".", decimal.mark = ","), " anos")
+    paste0(format(round(numero(filtro_classificador_geral_atm$ATM_Total),2), big.mark = ".", decimal.mark = ","), " anos")
     )
   
 })
@@ -3314,7 +3314,7 @@ output$divida_total_municipios <-renderPlotly(
 ```
 
 > **Fonte:** [Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
-<br>**Nota:**  `r nrow(agrupador_formatado_municipios)` municípios possuem operações de crédito garantidas pela União.No entanto, `r nrow(agrupador_formatado_municipios)-max(rank(-agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, seu saldo de operações garantidas é zero.
+<br>**Nota:**  `r nrow(agrupador_formatado_municipios)` municípios possuem operações de crédito garantidas pela União.No entanto, `r nrow(agrupador_formatado_municipios)-max(rank(agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, seu saldo de operações garantidas é zero.
 
 
 
@@ -3383,7 +3383,7 @@ output$ATM_municipios <-renderPlotly(
 ```
 
 > **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
-<br>**Nota:** `r nrow(agrupador_formatado_municipios)-max(rank(-agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, suas respectivos vidas médias (ATM) são iguais a zero.
+<br>**Nota:** `r nrow(agrupador_formatado_municipios)-max(rank(agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, suas respectivos vidas médias (ATM) são iguais a zero.
 
 
 ### Custo Médio
@@ -3449,7 +3449,7 @@ output$custos_municipios <-renderPlotly(
 ```
 
 > **Fonte:**[Secretaria do Tesouro Nacional](https://www.tesourotransparente.gov.br/publicacoes/relatorio-quadrimestral-de-operacoes-de-credito-garantidas-rqg/)
-<br>**Nota:** `r nrow(agrupador_formatado_municipios)-max(rank(-agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, seus respectivos custos são iguais a zero. 
+<br>**Nota:** `r nrow(agrupador_formatado_municipios)-max(rank(agrupador_ATM_municipios_formatado$ATM_Total))` municípios ainda não relizaram nenhum desembolso e, portanto, seus respectivos custos são iguais a zero. 
 
 
 ### Operações Garantidas Cambiais
