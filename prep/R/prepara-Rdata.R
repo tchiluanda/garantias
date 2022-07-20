@@ -254,7 +254,8 @@ agrupador_atm_completo <- agrupador_atm %>%
     left_join(agrupador_atm_interno) %>%
     left_join(agrupador_atm_externo) %>%
     mutate(Inicio = rm_accent(Inicio)) %>%
-    mutate(Classificador = rm_accent(Classificador))
+    mutate(Classificador = rm_accent(Classificador)) %>%
+    mutate(across(starts_with("ATM"), numero))
 #_______________________________________________________________________________________________________
 
 #Processamento Custo Médio
